@@ -5,26 +5,23 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private GenericBehaviour golem;
+    private GenericBehaviour golemBehaviour;
 
     [SerializeField]
-    private GenericBehaviour beetle;
+    private GenericBehaviour beetleBehaviour;
 
     [SerializeField]
-    private Cinemachine.CinemachineFreeLook cam;
-
-    [SerializeField]
-    private Transform camLookAt;
+    private Transform camLookAtTarget;
 
     // Start is called before the first frame update
     void Start()
     {
         // Activate golem
-        golem.isActive = true;
-        beetle.isActive = false;
+        golemBehaviour.isActive = true;
+        beetleBehaviour.isActive = false;
 
-        camLookAt.parent = golem.transform;
-        camLookAt.localPosition = Vector3.zero;
+        camLookAtTarget.parent = golemBehaviour.transform;
+        camLookAtTarget.localPosition = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -36,23 +33,23 @@ public class GameManager : MonoBehaviour
 
     private void SwapCharacter()
     {
-        if (golem.isActive)
+        if (golemBehaviour.isActive)
         {
             // Activate beetle
-            golem.isActive = false;
-            beetle.isActive = true;
+            golemBehaviour.isActive = false;
+            beetleBehaviour.isActive = true;
 
-            camLookAt.parent = beetle.transform;
-            camLookAt.localPosition = Vector3.zero;
+            camLookAtTarget.parent = beetleBehaviour.transform;
+            camLookAtTarget.localPosition = Vector3.zero;
         }
         else
         {
             // Activate golem
-            golem.isActive = true;
-            beetle.isActive = false;
+            golemBehaviour.isActive = true;
+            beetleBehaviour.isActive = false;
 
-            camLookAt.parent = golem.transform;
-            camLookAt.localPosition = Vector3.zero;
+            camLookAtTarget.parent = golemBehaviour.transform;
+            camLookAtTarget.localPosition = Vector3.zero;
         }
     }
 }
