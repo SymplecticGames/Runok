@@ -27,6 +27,15 @@ public class GenericBehaviour : MonoBehaviour
     [SerializeField]
     private float runningSpeedFactor;
 
+    [HideInInspector]
+    public Vector2 movementInput;
+
+    [HideInInspector]
+    public bool isRunning;
+
+    [HideInInspector]
+    public bool jumpPressed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +47,9 @@ public class GenericBehaviour : MonoBehaviour
     {
         Vector3 playerVel = Vector3.zero;
 
-        if (isActive)
-            playerVel += Movement();
-
         playerVel += gravity * (1.0f - jumpFactor) + jumpSpeed * jumpFactor;
+
+        playerVel += Movement();
 
         if (jumpFactor > 0.0f)
             jumpFactor -= Time.deltaTime;
@@ -54,18 +62,15 @@ public class GenericBehaviour : MonoBehaviour
             Rotation();
     }
 
-    private Vector3 Movement()
+    public Vector3 Movement()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 movementVel = Camera.main.transform.TransformVector(new Vector3(x, 0, z)) * baseMovementSpeed;
+        Vector3 movementVel = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y)) * baseMovementSpeed;
         movementVel.y = 0;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (isRunning)
             movementVel *= runningSpeedFactor;
 
-        if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
+        if (jumpPressed && controller.isGrounded)
             jumpFactor = 1.0f;
 
         return movementVel;
