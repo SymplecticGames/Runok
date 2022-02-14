@@ -20,6 +20,9 @@ public class GenericBehaviour : MonoBehaviour
     [SerializeField]
     private Vector3 jumpSpeed;
 
+    [SerializeField]
+    private float rotFactor = 0.3f;
+
     [Header("Movement")]
     [SerializeField]
     private float baseMovementSpeed;
@@ -84,6 +87,7 @@ public class GenericBehaviour : MonoBehaviour
         Vector3 targetLookAt = this.transform.position + controller.velocity;
         targetLookAt.y = this.transform.position.y;
 
-        this.transform.LookAt(targetLookAt, Vector3.up);
+        Vector3 forwardVec = targetLookAt - this.transform.position;
+        this.transform.forward = Vector3.Slerp(this.transform.forward, forwardVec, rotFactor);
     }
 }
