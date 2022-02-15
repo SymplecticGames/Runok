@@ -7,9 +7,6 @@ public class GenericBehaviour : MonoBehaviour
     private CharacterController controller;
 
     [HideInInspector]
-    public bool isActive = true;
-
-    [HideInInspector]
     public bool canRotate = true;
 
     private float jumpFactor;

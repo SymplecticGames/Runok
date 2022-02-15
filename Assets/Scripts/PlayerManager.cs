@@ -22,9 +22,6 @@ public class PlayerManager : MonoBehaviour
         // Activate golem
         currentCharacter = golemBehaviour;
 
-        golemBehaviour.isActive = true;
-        beetleBehaviour.isActive = false;
-
         camLookAtTarget.parent = golemBehaviour.transform;
         camLookAtTarget.localPosition = Vector3.zero;
     }
@@ -52,18 +49,21 @@ public class PlayerManager : MonoBehaviour
         currentCharacter.jumpPressed = context.performed;
     }
 
+    public void OnHit(InputAction.CallbackContext context)
+    {
+        if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
+            golem.hitPressed = context.performed;
+    }
+
     public void SwapCharacter(InputAction.CallbackContext context)
     {
         if (!context.performed)
             return;
 
-        if (golemBehaviour.isActive)
+        if (currentCharacter == golemBehaviour)
         {
             // Activate beetle
             currentCharacter = beetleBehaviour;
-
-            //golemBehaviour.isActive = false;
-            //beetleBehaviour.isActive = true;
 
             camLookAtTarget.parent = beetleBehaviour.transform;
             camLookAtTarget.localPosition = Vector3.zero;
@@ -72,9 +72,6 @@ public class PlayerManager : MonoBehaviour
         {
             // Activate golem
             currentCharacter = golemBehaviour;
-
-            //golemBehaviour.isActive = true;
-            //beetleBehaviour.isActive = false;
 
             camLookAtTarget.parent = golemBehaviour.transform;
             camLookAtTarget.localPosition = Vector3.zero;

@@ -81,6 +81,50 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1995677919525363334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1373860283652964038}
+  - component: {fileID: 6166546426458023632}
+  m_Layer: 0
+  m_Name: HitRegister
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1373860283652964038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995677919525363334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.12, z: 0.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6793133458884979323}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6166546426458023632
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995677919525363334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 1.2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7404438760194089661
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +136,7 @@ GameObject:
   - component: {fileID: 6793133458884979323}
   - component: {fileID: 7404438760194089663}
   - component: {fileID: 7404438760194089662}
+  - component: {fileID: 1684484324024519184}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Golem
@@ -111,6 +156,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5380498816598253366}
+  - {fileID: 1373860283652964038}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,9 +190,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670402e44cd0d3d49bed16761e8d64ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
   canRotate: 1
   gravity: {x: 0, y: -9.8, z: 0}
   jumpSpeed: {x: 0, y: 5, z: 0}
+  rotFactor: 0.3
   baseMovementSpeed: 2
   runningSpeedFactor: 2
+  movementInput: {x: 0, y: 0}
+  isRunning: 0
+  jumpPressed: 0
+--- !u!114 &1684484324024519184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7404438760194089661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc9b5f7e389796419d9e38b0a4ba4ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderLifetime: 0.3
+  hitRegister: {fileID: 6166546426458023632}
+  hitPressed: 0
