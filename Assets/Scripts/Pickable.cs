@@ -52,11 +52,11 @@ public class Pickable : MonoBehaviour
 
             action.Invoke();
 
-            StartCoroutine(DestroyPickableDelayed(0.2f));
+            StartCoroutine(HidePickableDelayed(0.2f));
         }
     }
 
-    private IEnumerator DestroyPickableDelayed(float delay)
+    private IEnumerator HidePickableDelayed(float delay)
     {
         // Play particles/animation
 

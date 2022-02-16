@@ -39,7 +39,7 @@ public class BeetleHoleManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Equals("Beetle") && !_cameFromNeighbour)
+        if (other.CompareTag("Beetle") && !_cameFromNeighbour)
         {
             if (!doWaitTime)
             {
@@ -56,7 +56,7 @@ public class BeetleHoleManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name.Equals("Beetle") && _cameFromNeighbour)
+        if (other.CompareTag("Beetle") && _cameFromNeighbour)
         {
             // reset values
             _cameFromNeighbour = false;
@@ -69,7 +69,7 @@ public class BeetleHoleManager : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // increase waitedTime if required and if beetle didnt came from the neighbour hole
-        if (doWaitTime && other.name.Equals("Beetle") && !_cameFromNeighbour)
+        if (doWaitTime && other.CompareTag("Beetle") && !_cameFromNeighbour)
         {
             _waitedTime += Time.deltaTime;
 
