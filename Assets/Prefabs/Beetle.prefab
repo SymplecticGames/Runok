@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 8938529657250927628}
   m_Layer: 0
   m_Name: Beetle
-  m_TagString: Untagged
+  m_TagString: Beetle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,12 +211,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670402e44cd0d3d49bed16761e8d64ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
   canRotate: 1
   gravity: {x: 0, y: 0, z: 0}
   jumpSpeed: {x: 0, y: 0, z: 0}
+  rotFactor: 0.3
   baseMovementSpeed: 4
   runningSpeedFactor: 2
+  movementInput: {x: 0, y: 0}
+  isRunning: 0
+  jumpPressed: 0
 --- !u!1 &8451300915474145945
 GameObject:
   m_ObjectHideFlags: 0
