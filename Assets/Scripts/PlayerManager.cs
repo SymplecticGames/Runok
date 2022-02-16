@@ -42,11 +42,6 @@ public class PlayerManager : MonoBehaviour
         currentCharacter.movementInput = movement;
     }
 
-    public void OnRun(InputAction.CallbackContext context)
-    {
-        currentCharacter.isRunning = context.performed;
-    }
-
     public void OnJump(InputAction.CallbackContext context)
     {
         currentCharacter.jumpPressed = context.performed;

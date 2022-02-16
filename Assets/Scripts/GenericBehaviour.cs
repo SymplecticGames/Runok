@@ -24,14 +24,8 @@ public class GenericBehaviour : MonoBehaviour
     [SerializeField]
     private float baseMovementSpeed;
 
-    [SerializeField]
-    private float runningSpeedFactor;
-
     [HideInInspector]
     public Vector2 movementInput;
-
-    [HideInInspector]
-    public bool isRunning;
 
     [HideInInspector]
     public bool jumpPressed;
@@ -67,9 +61,6 @@ public class GenericBehaviour : MonoBehaviour
         Vector3 movementVel = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y)) * baseMovementSpeed;
         movementVel.y = 0;
 
-        if (isRunning)
-            movementVel *= runningSpeedFactor;
-
         if (jumpPressed && controller.isGrounded)
             jumpFactor = 1.0f;
 
@@ -92,7 +83,8 @@ public class GenericBehaviour : MonoBehaviour
     {
         controller.enabled = false;
 
-        this.transform.position = respawnPoint.position;
+        transform.position = respawnPoint.position;
+        transform.rotation = respawnPoint.rotation;
 
         controller.enabled = true;
     }

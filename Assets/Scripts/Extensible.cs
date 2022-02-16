@@ -6,6 +6,7 @@ public class Extensible : MonoBehaviour
 {
     [Header("Extensible Properties")]
     [SerializeField] string colliderTag;
+    [SerializeField] PlayerManager playerManager;
 
     private Vector3 restScale;
     private float newScale;
@@ -15,12 +16,19 @@ public class Extensible : MonoBehaviour
     {
         restScale = transform.parent.localScale;
     }
-
     private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
+        {
+            playerManager.Die();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag(colliderTag))
         {
-            newScale = Vector3.Distance(transform.parent.position, other.transform.position);
+            newScale = Vector3.Distance(transform.parent.position, other.transform.position) * 0.5f;
             transform.parent.localScale = new Vector3(newScale, restScale.y, restScale.z);
         }
     }
