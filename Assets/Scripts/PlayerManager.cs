@@ -8,6 +8,9 @@ public class PlayerManager : MonoBehaviour
     private GenericBehaviour currentCharacter;
 
     [SerializeField]
+    private Transform respawnPoint;
+
+    [SerializeField]
     private GenericBehaviour golemBehaviour;
 
     [SerializeField]
@@ -76,5 +79,17 @@ public class PlayerManager : MonoBehaviour
             camLookAtTarget.parent = golemBehaviour.transform;
             camLookAtTarget.localPosition = Vector3.zero;
         }
+    }
+
+    public void Checkpoint(Transform newRespawnPoint)
+    {
+        Debug.Log("Checkpoint");
+        respawnPoint = newRespawnPoint;
+    }
+
+    public void Die()
+    {
+        golemBehaviour.Die(respawnPoint);
+        beetleBehaviour.Die(respawnPoint);
     }
 }

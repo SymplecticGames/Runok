@@ -85,6 +85,15 @@ public class GenericBehaviour : MonoBehaviour
         targetLookAt.y = this.transform.position.y;
 
         Vector3 forwardVec = targetLookAt - this.transform.position;
-        this.transform.forward = Vector3.Slerp(this.transform.forward, forwardVec, rotFactor);
+        this.transform.forward = Vector3.Slerp(this.transform.forward, forwardVec, rotFactor * Time.deltaTime);
+    }
+
+    public void Die(Transform respawnPoint)
+    {
+        controller.enabled = false;
+
+        this.transform.position = respawnPoint.position;
+
+        controller.enabled = true;
     }
 }
