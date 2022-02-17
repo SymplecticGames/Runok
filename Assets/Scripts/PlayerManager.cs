@@ -58,6 +58,8 @@ public class PlayerManager : MonoBehaviour
         if (!context.performed)
             return;
 
+        currentCharacter.movementInput = Vector2.zero;
+
         if (currentCharacter == golemBehaviour)
         {
             // Activate beetle
