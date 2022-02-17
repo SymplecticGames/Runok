@@ -9,8 +9,11 @@ public class Pushable : MonoBehaviour
     [Header("Pushable Properties")]
     [SerializeField] string applierTag;
     [SerializeField] float forceToApply;
+    [SerializeField] Transform cubeRespawn;
 
     private Rigidbody rb;
+    private Collider boxCollider;
+    private MeshRenderer renderer;
 
     // Angles for constraint direction
     float forwardAngle;
@@ -22,6 +25,10 @@ public class Pushable : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        boxCollider = GetComponent<Collider>();
+        renderer = GetComponent<MeshRenderer>();
+
+        ResetBox();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,5 +53,18 @@ public class Pushable : MonoBehaviour
 
             rb.AddForce(dir * forceToApply, ForceMode.Impulse);
         }
+    }
+
+    public void ResetBox()
+    {
+        rb.useGravity = false;
+        renderer.enabled = false;
+        transform.position = cubeRespawn.position;
+    }
+
+    public void SpawnCube()
+    {
+        rb.useGravity = true;
+        renderer.enabled = true;
     }
 }
