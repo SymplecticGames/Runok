@@ -12,8 +12,7 @@ public class Pushable : MonoBehaviour
     [SerializeField] Transform cubeRespawn;
 
     private Rigidbody rb;
-    private Collider boxCollider;
-    private MeshRenderer renderer;
+    private MeshRenderer rend;
 
     // Angles for constraint direction
     float forwardAngle;
@@ -25,10 +24,9 @@ public class Pushable : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<Collider>();
-        renderer = GetComponent<MeshRenderer>();
+        rend = GetComponent<MeshRenderer>();
 
-        ResetBox();
+        ResetPushable();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -55,16 +53,17 @@ public class Pushable : MonoBehaviour
         }
     }
 
-    public void ResetBox()
+    public void ResetPushable()
     {
         rb.useGravity = false;
-        renderer.enabled = false;
+        rend.enabled = false;
         transform.position = cubeRespawn.position;
     }
 
-    public void SpawnCube()
+    public void SpawnPushable()
     {
         rb.useGravity = true;
-        renderer.enabled = true;
+        rend.enabled = true;
+        transform.position = cubeRespawn.position;
     }
 }
