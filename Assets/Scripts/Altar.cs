@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,13 +28,24 @@ public class Altar : MonoBehaviour
 
     public void enableAltar()
     {
-        _altarPortal.GetComponent<CapsuleCollider>().isTrigger = true;
+        _altarPortal.GetComponent<Collider>().isTrigger = true;
+        _altarPortal.GetComponent<MeshRenderer>().material.color = new Color(0.0f, 1.0f, 0.0f, 0.5f);
         action.Invoke();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        _altarPortal.GetComponent<MeshRenderer>().material.color = new Color(0.0f, 1.0f, 1.0f, 0.5f);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        _altarPortal.GetComponent<MeshRenderer>().material.color = new Color(0.0f, 1.0f, 0.0f, 0.5f);
     }
 
     public void disableAltar()
     {
-        _altarPortal.GetComponent<CapsuleCollider>().isTrigger = false;
+        _altarPortal.GetComponent<Collider>().isTrigger = false;
     }
 
     // Update is called once per frame

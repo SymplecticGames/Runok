@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    private GenericBehaviour currentCharacter;
+    [HideInInspector]
+    public GenericBehaviour currentCharacter;
 
     [SerializeField]
     private Transform respawnPoint;

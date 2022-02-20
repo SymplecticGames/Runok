@@ -106,7 +106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995677919525363334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.12, z: 0.91}
+  m_LocalPosition: {x: 0, y: 0.12, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6793133458884979323}
@@ -123,7 +123,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 1.2
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7404438760194089661
 GameObject:
@@ -194,9 +194,10 @@ MonoBehaviour:
   gravity: {x: 0, y: -9.8, z: 0}
   jumpSpeed: {x: 0, y: 5, z: 0}
   rotFactor: 4
-  baseMovementSpeed: 7
+  baseMovementSpeed: 10
   movementInput: {x: 0, y: 0}
   jumpPressed: 0
+  player: {fileID: 0}
 --- !u!114 &1684484324024519184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc9b5f7e389796419d9e38b0a4ba4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderLifetime: 0.3
+  colliderLifetime: 1
   hitRegister: {fileID: 6166546426458023632}
   hitPressed: 0
+  golemMaterial: 0

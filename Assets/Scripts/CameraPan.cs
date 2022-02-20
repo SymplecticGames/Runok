@@ -12,10 +12,7 @@ public class CameraPan : MonoBehaviour
 
     [SerializeField]
     private Transform camLookAtTarget;
-
-    [SerializeField]
-    private Transform beetleTransform;
-
+    
     private bool firstTime = true;
 
     public void Pan()
@@ -36,7 +33,7 @@ public class CameraPan : MonoBehaviour
 
         yield return new WaitForSeconds(panTime);
 
-        camLookAtTarget.parent = beetleTransform;
+        camLookAtTarget.parent = playerManager.currentCharacter.transform;
         camLookAtTarget.localPosition = Vector3.zero;
 
         playerManager.gameObject.SetActive(true);
