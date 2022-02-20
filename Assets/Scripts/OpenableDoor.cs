@@ -22,7 +22,7 @@ public class OpenableDoor : MonoBehaviour
     private IEnumerator DelayedOpenDoor()
     {
         yield return new WaitForSeconds(1.0f);
-        gameObject.SetActive(false);
+        GetComponent<Collider>().enabled = false;
         GetComponent<Renderer>().enabled = false;
     } 
 }
