@@ -88,5 +88,7 @@ public class PlayerManager : MonoBehaviour
     {
         golemBehaviour.Die(respawnPoint);
         beetleBehaviour.Die(respawnPoint);
+        
+        GameManager.instance.newDeath();
     }
 }

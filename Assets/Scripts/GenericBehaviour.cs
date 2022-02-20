@@ -30,6 +30,9 @@ public class GenericBehaviour : MonoBehaviour
     [HideInInspector]
     public bool jumpPressed;
 
+    [SerializeField] 
+    private PlayerManager player;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -88,4 +91,13 @@ public class GenericBehaviour : MonoBehaviour
 
         controller.enabled = true;
     }
+    
+    private void OnControllerColliderHit(ControllerColliderHit other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            player.Die();
+        }
+    }
+    
 }

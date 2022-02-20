@@ -4,20 +4,136 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
+    /////////////////////////////////////////  s t a t i c   v a r i a b l e s  ////////////////////////////////////////
+
+    public static GameManager instance;
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
+    //
+    // --------------------------------------------------- runes --------------------------------------------------- //
+    // list of runes in the level
+    public List<GameObject> runes;
+
+    // minimum number of runes the player has to collect to finish the level
+    public int minNumRunesToCollect;
+    // ------------------------------------------------------------------------------------------------------------- //
+    
+    // --------------------------------------------------- altar --------------------------------------------------- //
+    // altar present in the level
+    public GameObject altar;
+    // ------------------------------------------------------------------------------------------------------------- //
+    
+    
+    ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
+    //
+    // --------------------------------------------------- runes --------------------------------------------------- //
+    // number of runes in the level
+    private int _numRunes;
+    
+    // number of runes collected in the level
+    private int _collectedRunes;
+    // ------------------------------------------------------------------------------------------------------------- //
+    
+    // --------------------------------------------------- enemies ------------------------------------------------- //
+    // list of defeated respawnable enemies in the level
+    private List<GameObject> _defeatedRespawnableEnemies;
+    // ------------------------------------------------------------------------------------------------------------- //
+    
+    // --------------------------------------------------- palyer --------------------------------------------------- //
+    // number of deaths in the level
+    private int _numDeaths;
+
+    // ------------------------------------------------------------------------------------------------------------- //
+    
+    
+    
     private void Awake()
     {
         Application.targetFrameRate = 60;
+
+        instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        _defeatedRespawnableEnemies = new List<GameObject>();
+        _numRunes = runes.Count;
+        _collectedRunes = 0;
+        _numDeaths = 0;
+
+        if (_collectedRunes < minNumRunesToCollect)
+        {
+            altar.GetComponent<Altar>().disableAltar();
+        }
         
     }
 
+    // --------------------------------------------------- runes --------------------------------------------------- //
+    public void pickedRune()
+    {
+        // this method is called when a rune is picked
+        // if the player has colleted enough runes, the altar is enabled
+
+        _collectedRunes++;
+        if (_collectedRunes >= minNumRunesToCollect)
+        {
+            altar.GetComponent<Altar>().enableAltar();
+            
+        }
+    }
+
+    public void respawnedPickedRune()
+    {
+        // this method is called when a rune that was picked, is respawned
+        // if a rune is respawned, check if the minimum number of runes required for the altar to be enabled is not met
+        
+        _collectedRunes--;
+        if (_collectedRunes < minNumRunesToCollect)
+        {
+            altar.GetComponent<Altar>().disableAltar();
+            
+        }
+        
+    }
+    // ------------------------------------------------------------------------------------------------------------- //
+    
+    
+    // --------------------------------------------------- enemies ------------------------------------------------- //
+    public void defeatedRespawnableEnemy(GameObject enemy)
+    {
+        _defeatedRespawnableEnemies.Add(enemy);
+    }
+    // ------------------------------------------------------------------------------------------------------------- //
+    
+    
+    
+    // --------------------------------------------------- palyer --------------------------------------------------- //
+    public void newDeath()
+    {
+        // this method is called when the player dies
+        
+        _numDeaths++;
+        
+        // each defeated respawnable enemie is respawned
+        foreach (var enemy in _defeatedRespawnableEnemies)
+        {
+            enemy.GetComponent<Enemy>().SpawnEnemy();
+        }
+        
+        // reset list
+        _defeatedRespawnableEnemies.Clear();
+        
+    }
+
+    // ------------------------------------------------------------------------------------------------------------- //
+    
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

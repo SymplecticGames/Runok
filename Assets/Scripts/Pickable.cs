@@ -39,6 +39,14 @@ public class Pickable : MonoBehaviour
                 // Play particles/animation
 
                 trigger.enabled = true;
+                
+                // if pickable is a rune
+                if (gameObject.CompareTag("Runa"))
+                {
+                    
+                    GameManager.instance.respawnedPickedRune();
+                    
+                }
             }
         }
     }
@@ -53,6 +61,14 @@ public class Pickable : MonoBehaviour
             action.Invoke();
 
             StartCoroutine(HidePickableDelayed(0.2f));
+            
+            // if pickable is a rune
+            if (gameObject.CompareTag("Runa"))
+            {
+
+                GameManager.instance.pickedRune();
+                
+            }
         }
     }
 

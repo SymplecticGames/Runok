@@ -16,12 +16,15 @@ public class GolemBehaviour : MonoBehaviour
     [HideInInspector]
     public bool hitPressed;
 
+    // 1 --> piedra,  2-->metal,  3--> terracota,  4--> madera
+    public int golemMaterial; 
+    
     // Start is called before the first frame update
     void Start()
     {
         lifeTimer = colliderLifetime;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
