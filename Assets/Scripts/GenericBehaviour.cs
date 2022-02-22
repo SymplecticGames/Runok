@@ -32,7 +32,11 @@ public class GenericBehaviour : MonoBehaviour
 
     [SerializeField] 
     private PlayerManager player;
-    
+
+    private Vector3 playerVel;
+
+    private Vector3 additionalVel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,9 +46,11 @@ public class GenericBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 playerVel = Vector3.zero;
+        playerVel = Vector3.zero;
 
         playerVel += gravity * (1.0f - jumpFactor) + jumpSpeed * jumpFactor;
+
+        playerVel += additionalVel;
 
         playerVel += Movement();
 
@@ -55,8 +61,13 @@ public class GenericBehaviour : MonoBehaviour
 
         controller.Move(playerVel * Time.deltaTime);
 
-        if (canRotate)
+        if (canRotate && movementInput.magnitude > 0.0f)
             Rotation();
+    }
+
+    public void SetAdditionalVel(Vector3 additionalVelocity)
+    {
+        additionalVel = additionalVelocity;
     }
 
     public Vector3 Movement()

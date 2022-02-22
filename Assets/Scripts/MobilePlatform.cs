@@ -37,7 +37,7 @@ public class MobilePlatform : MonoBehaviour
     {
         if (other.CompareTag("Golem"))
         {
-            other.transform.parent = transform;
+            other.GetComponent<GenericBehaviour>().SetAdditionalVel(new Vector3(_currentInc, 0.0f, 0.0f));
         }
     }
  
@@ -45,7 +45,7 @@ public class MobilePlatform : MonoBehaviour
     {
         if (other.CompareTag("Golem"))
         {
-            other.transform.parent = null;
+            other.GetComponent<GenericBehaviour>().SetAdditionalVel(Vector3.zero);
         }
     }
 
