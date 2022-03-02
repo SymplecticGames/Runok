@@ -43,12 +43,12 @@ public class PlayerManager : MonoBehaviour
         currentCharacter.movementInput = movement;
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnActiveBw_Jump(InputAction.CallbackContext context)
     {
         currentCharacter.jumpPressed = context.performed;
     }
 
-    public void OnHit(InputAction.CallbackContext context)
+    public void OnActiveFw_Hit(InputAction.CallbackContext context)
     {
         if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
             golem.hitPressed = context.performed;
