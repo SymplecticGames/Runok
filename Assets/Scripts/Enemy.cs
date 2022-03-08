@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
             _hitCounter++;
             Debug.Log(_hitCounter);
             // if hits are enough to defeat the enemy, then, do deafeated animation
-            if (_hitCounter >= golem.golemMaterial)
+            if (_hitCounter >= golem.golemStats.hitsNeededToKill)
             {
                 // the enemy is defeated
                 Die();
