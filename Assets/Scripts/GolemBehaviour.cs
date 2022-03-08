@@ -53,7 +53,6 @@ public class GolemBehaviour : MonoBehaviour
     [HideInInspector]
     public bool hitPressed;
 
-    [HideInInspector]
     public GolemMaterial currentMaterial;
 
     [HideInInspector]
@@ -61,27 +60,48 @@ public class GolemBehaviour : MonoBehaviour
 
     // All materials default stats
     [SerializeField]
-    private GolemMaterialStats TerracottaStats = new GolemMaterialStats(2, 0.75f, 1.0f, 2.0f, 2.0f);
+    private GolemMaterialStats TerracottaStats;
 
     [SerializeField]
-    private GolemMaterialStats StoneStats = new GolemMaterialStats(1, 1.25f, 0.0f, 3.0f, 4.0f);
+    private GolemMaterialStats StoneStats;
     
     [SerializeField]
-    private GolemMaterialStats MetalStats = new GolemMaterialStats(2, 1.0f, 0.0f, 5.0f, 5.0f);
+    private GolemMaterialStats MetalStats;
     
     [SerializeField]
-    private GolemMaterialStats WoodenStats = new GolemMaterialStats(4, 0.5f, 1.3f, 1.0f, 1.0f);
+    private GolemMaterialStats WoodenStats;
+
+    [HideInInspector]
+    public bool insideLava;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentMaterial = GolemMaterial.Terracotta;
-        golemStats = WoodenStats;
+        
     }
     
     // Update is called once per frame
     void Update()
     {
+        switch (currentMaterial)
+        {
+            case GolemMaterial.Terracotta:
+                golemStats = TerracottaStats;
+                break;
+
+            case GolemMaterial.Stone:
+                golemStats = StoneStats;
+                break;
+
+            case GolemMaterial.Metal:
+                golemStats = MetalStats;
+                break;
+
+            case GolemMaterial.Wooden:
+                golemStats = WoodenStats;
+                break;
+        }
+
         // Player presses hit. Hit window starts
         if (hitPressed && !inCoolDown)
         {

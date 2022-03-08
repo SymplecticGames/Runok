@@ -10,6 +10,9 @@ public class GenericBehaviour : MonoBehaviour
     public bool canRotate = true;
 
     [HideInInspector]
+    public float movementFactor;
+
+    [HideInInspector]
     public float maxJumpFactor = 1.0f;
 
     private float jumpFactor;
@@ -75,7 +78,7 @@ public class GenericBehaviour : MonoBehaviour
 
     public Vector3 Movement()
     {
-        Vector3 movementVel = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y)) * baseMovementSpeed;
+        Vector3 movementVel = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y)) * baseMovementSpeed * movementFactor;
         movementVel.y = 0;
 
         if (jumpPressed && controller.isGrounded)

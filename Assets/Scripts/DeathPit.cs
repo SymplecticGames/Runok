@@ -19,9 +19,46 @@ public class DeathPit : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    // If what entered was not the golem or the beetle
+    //    if (!other.CompareTag("Golem") && !other.CompareTag("Beetle"))
+    //        return;
+
+    //    // If the deathpit is lava, and the golem got inside it
+    //    if (CompareTag("Lava") && player.currentCharacter.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Stone)
+    //    {
+    //        golem.insideLava = true;
+    //        return;
+    //    }
+
+    //    player.Die();
+    //}
+
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
-            player.Die();
+        // If what entered was not the golem or the beetle
+        if (!other.CompareTag("Golem") && !other.CompareTag("Beetle"))
+            return;
+
+        // If the deathpit is lava, and the golem got inside it
+        if (CompareTag("Lava") && player.currentCharacter.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Stone)
+        {
+            golem.insideLava = true;
+            return;
+        }
+
+        player.Die();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // If what entered was not the golem or the beetle
+        if (!other.CompareTag("Golem") && !other.CompareTag("Beetle"))
+            return;
+
+        // If the deathpit is lava, and the golem got inside it
+        if (CompareTag("Lava") && player.currentCharacter.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Stone)
+            golem.insideLava = false;
     }
 }

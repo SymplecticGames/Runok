@@ -33,7 +33,17 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
+        {
+            float factor = golem.insideLava ? 0.5f : 1.0f;
+            currentCharacter.movementFactor = factor / golem.golemStats.weight;
 
+            currentCharacter.maxJumpFactor = golem.golemStats.jumpStrength;
+        }
+        else
+        {
+            currentCharacter.movementFactor = 1.0f;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -45,11 +55,7 @@ public class PlayerManager : MonoBehaviour
 
     public void OnActiveBw_Jump(InputAction.CallbackContext context)
     {
-        if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
-        {
-            currentCharacter.maxJumpFactor = golem.golemStats.jumpStrength;
-            currentCharacter.jumpPressed = context.performed;
-        }
+        currentCharacter.jumpPressed = context.performed;
     }
 
     public void OnActiveFw_Hit(InputAction.CallbackContext context)
@@ -93,7 +99,9 @@ public class PlayerManager : MonoBehaviour
     {
         golemBehaviour.Die(respawnPoint);
         beetleBehaviour.Die(respawnPoint);
-        
+
+        golemBehaviour.GetComponent<GolemBehaviour>().insideLava = false;
+
         GameManager.instance.newDeath();
     }
 }
