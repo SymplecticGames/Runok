@@ -9,6 +9,9 @@ public class GenericBehaviour : MonoBehaviour
     [HideInInspector]
     public bool canRotate = true;
 
+    [HideInInspector]
+    public float maxJumpFactor = 1.0f;
+
     private float jumpFactor;
 
     [SerializeField]
@@ -76,7 +79,7 @@ public class GenericBehaviour : MonoBehaviour
         movementVel.y = 0;
 
         if (jumpPressed && controller.isGrounded)
-            jumpFactor = 1.0f;
+            jumpFactor = maxJumpFactor;
 
         return movementVel;
     }

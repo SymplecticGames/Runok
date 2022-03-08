@@ -60,7 +60,7 @@ public class GolemBehaviour : MonoBehaviour
 
     // All materials default stats
     private GolemMaterialStats TerracottaStats = new GolemMaterialStats(2, 0.75f, 1.0f, 2.0f, 2.0f);
-    private GolemMaterialStats WoodenStats = new GolemMaterialStats(4, 0.5f, 3.0f, 1.0f, 1.0f);
+    private GolemMaterialStats WoodenStats = new GolemMaterialStats(4, 0.5f, 1.3f, 1.0f, 1.0f);
     private GolemMaterialStats StoneStats = new GolemMaterialStats(1, 1.25f, 0.0f, 3.0f, 4.0f);
     private GolemMaterialStats MetalStats = new GolemMaterialStats(2, 1.0f, 0.0f, 5.0f, 5.0f);
 
@@ -68,7 +68,7 @@ public class GolemBehaviour : MonoBehaviour
     void Start()
     {
         currentMaterial = GolemMaterial.Terracotta;
-        golemStats = TerracottaStats;
+        golemStats = WoodenStats;
     }
     
     // Update is called once per frame

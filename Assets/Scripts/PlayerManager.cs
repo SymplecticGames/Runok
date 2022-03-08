@@ -45,7 +45,11 @@ public class PlayerManager : MonoBehaviour
 
     public void OnActiveBw_Jump(InputAction.CallbackContext context)
     {
-        currentCharacter.jumpPressed = context.performed;
+        if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
+        {
+            currentCharacter.maxJumpFactor = golem.golemStats.jumpStrength;
+            currentCharacter.jumpPressed = context.performed;
+        }
     }
 
     public void OnActiveFw_Hit(InputAction.CallbackContext context)
