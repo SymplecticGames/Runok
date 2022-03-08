@@ -6,11 +6,12 @@ using UnityEngine.InputSystem;
 public enum GolemMaterial
 {
     Terracotta = 0,
-    Wooden = 1,
-    Stone = 2,
-    Metal = 3
+    Stone = 1,
+    Metal = 2,
+    Wooden = 3
 }
 
+[System.Serializable]
 public struct GolemMaterialStats
 {
     public GolemMaterialStats(int hits, float coolDown, float jump, float res, float weight)
@@ -59,10 +60,17 @@ public class GolemBehaviour : MonoBehaviour
     public GolemMaterialStats golemStats;
 
     // All materials default stats
+    [SerializeField]
     private GolemMaterialStats TerracottaStats = new GolemMaterialStats(2, 0.75f, 1.0f, 2.0f, 2.0f);
-    private GolemMaterialStats WoodenStats = new GolemMaterialStats(4, 0.5f, 1.3f, 1.0f, 1.0f);
+
+    [SerializeField]
     private GolemMaterialStats StoneStats = new GolemMaterialStats(1, 1.25f, 0.0f, 3.0f, 4.0f);
+    
+    [SerializeField]
     private GolemMaterialStats MetalStats = new GolemMaterialStats(2, 1.0f, 0.0f, 5.0f, 5.0f);
+    
+    [SerializeField]
+    private GolemMaterialStats WoodenStats = new GolemMaterialStats(4, 0.5f, 1.3f, 1.0f, 1.0f);
 
     // Start is called before the first frame update
     void Start()
