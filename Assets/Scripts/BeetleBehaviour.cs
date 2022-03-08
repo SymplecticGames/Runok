@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum LumMode
+{
+    None = 0,
+    RadialLight = 1,
+    LightImpulse = 2,
+    LightShot = 3
+}
+
 public class BeetleBehaviour : MonoBehaviour
 {
     [SerializeField]
@@ -10,13 +18,15 @@ public class BeetleBehaviour : MonoBehaviour
     [SerializeField]
     private float verticalSpeed;
 
-    private int speedSign = 1;
-
     private GenericBehaviour charBehaviour;
+
+    public LumMode currentLumMode;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentLumMode = LumMode.None;
+
         charBehaviour = GetComponent<GenericBehaviour>();
     }
 
@@ -33,5 +43,10 @@ public class BeetleBehaviour : MonoBehaviour
 
             charBehaviour.SetAdditionalVel(new Vector3(0.0f, verticalSpeed * factorByDist, 0.0f));
         }
+    }
+
+    public void ChangeLumMode(LumMode newMode)
+    {
+        currentLumMode = newMode;
     }
 }
