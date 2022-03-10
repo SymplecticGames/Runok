@@ -35,7 +35,7 @@ public class BeetleBehaviour : MonoBehaviour
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y - 1.0f, transform.position.z);
 
-        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 5.0f, LayerMask.GetMask("LevelGeometry")))
+        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 10.0f, LayerMask.GetMask("LevelGeometry")))
         {
             float distance = this.transform.position.y - hit.point.y;
 

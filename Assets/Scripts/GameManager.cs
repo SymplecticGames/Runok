@@ -42,12 +42,16 @@ public class GameManager : MonoBehaviour
     private List<GameObject> _defeatedRespawnableEnemies;
     // ------------------------------------------------------------------------------------------------------------- //
     
-    // --------------------------------------------------- palyer --------------------------------------------------- //
+    // --------------------------------------------------- player --------------------------------------------------- //
     // number of deaths in the level
     private int _numDeaths;
 
     // ------------------------------------------------------------------------------------------------------------- //
-    
+
+    private Color currentBGColor;
+
+    [SerializeField]
+    private Light mainLight;
     
     
     private void Awake()
@@ -64,6 +68,8 @@ public class GameManager : MonoBehaviour
         _numRunes = runes.Count;
         _collectedRunes = 0;
         _numDeaths = 0;
+
+        currentBGColor = Camera.main.backgroundColor;
 
         if (_collectedRunes < minNumRunesToCollect)
         {
@@ -134,6 +140,19 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Camera.main.transform.position.y < 0.0f)
+        {
+            RenderSettings.ambientIntensity = 0.0f;
+            RenderSettings.reflectionIntensity = 0.0f;
+            Camera.main.backgroundColor = new Color();
+            mainLight.enabled = false;
+        }
+        else
+        {
+            RenderSettings.ambientIntensity = 1.0f;
+            RenderSettings.reflectionIntensity = 1.0f;
+            Camera.main.backgroundColor = currentBGColor;
+            mainLight.enabled = true;
+        }
     }
 }
