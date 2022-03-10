@@ -12,10 +12,14 @@ public class GenericBehaviour : MonoBehaviour
     [HideInInspector]
     public float movementFactor;
 
-    [HideInInspector]
-    public float maxJumpFactor = 1.0f;
+    private float maxJumpFactor = 1.0f;
 
     private float jumpFactor;
+
+    [HideInInspector]
+    public int maxJumps;
+
+    private int jumps;
 
     [SerializeField]
     private Vector3 gravity = new Vector3(0.0f, -9.8f, 0.0f);
@@ -69,6 +73,9 @@ public class GenericBehaviour : MonoBehaviour
 
         if (canRotate && movementInput.magnitude > 0.0f)
             Rotation();
+
+        if (controller.isGrounded && jumpFactor == 0.0f)
+            jumps = 0;
     }
 
     public void SetAdditionalVel(Vector3 additionalVelocity)
@@ -81,8 +88,13 @@ public class GenericBehaviour : MonoBehaviour
         Vector3 movementVel = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y)) * baseMovementSpeed * movementFactor;
         movementVel.y = 0;
 
-        if (jumpPressed && controller.isGrounded)
+        if (jumpPressed && jumps < maxJumps)
+        {
+            jumpPressed = false;
             jumpFactor = maxJumpFactor;
+            jumps ++;
+        }
+            
 
         return movementVel;
     }

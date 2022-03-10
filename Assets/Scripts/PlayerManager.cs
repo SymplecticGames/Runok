@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
             float factor = golem.insideLava ? 0.5f : 1.0f;
             currentCharacter.movementFactor = factor / golem.golemStats.weight;
 
-            currentCharacter.maxJumpFactor = golem.golemStats.jumpStrength;
+            currentCharacter.maxJumps = golem.golemStats.jumps;
         }
         else
         {

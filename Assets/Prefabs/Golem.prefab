@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canRotate: 1
   movementFactor: 0
-  maxJumpFactor: 1
+  maxJumps: 0
   gravity: {x: 0, y: -9.8, z: 0}
   jumpSpeed: {x: 0, y: 5, z: 0}
   rotFactor: 4
@@ -219,31 +219,25 @@ MonoBehaviour:
   golemStats:
     hitsNeededToKill: 0
     hitCoolDown: 0
-    jumpStrength: 0
+    jumps: 0
     resistance: 0
     weight: 0
   TerracottaStats:
     hitsNeededToKill: 2
     hitCoolDown: 0.75
-    jumpStrength: 1
+    jumps: 1
     resistance: 2
     weight: 1
-  StoneStats:
+  PlumberStats:
     hitsNeededToKill: 1
-    hitCoolDown: 1.25
-    jumpStrength: 0
-    resistance: 3
-    weight: 2
-  MetalStats:
-    hitsNeededToKill: 2
     hitCoolDown: 1
-    jumpStrength: 0
-    resistance: 5
-    weight: 1.5
+    jumps: 0
+    resistance: 3
+    weight: 1.25
   WoodenStats:
-    hitsNeededToKill: 4
+    hitsNeededToKill: 3
     hitCoolDown: 0.5
-    jumpStrength: 1.3
+    jumps: 2
     resistance: 1
     weight: 0.75
   insideLava: 0

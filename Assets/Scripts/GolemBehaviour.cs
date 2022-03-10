@@ -6,26 +6,25 @@ using UnityEngine.InputSystem;
 public enum GolemMaterial
 {
     Terracotta = 0,
-    Stone = 1,
-    Metal = 2,
+    Plumber = 1,
     Wooden = 3
 }
 
 [System.Serializable]
 public struct GolemMaterialStats
 {
-    public GolemMaterialStats(int hits, float coolDown, float jump, float res, float weight)
+    public GolemMaterialStats(int hits, float coolDown, int jump, float res, float weight)
     {
         this.hitsNeededToKill = hits;
         this.hitCoolDown = coolDown;
-        this.jumpStrength = jump;
+        this.jumps = jump;
         this.resistance = res;
         this.weight = weight;
     }
 
     public int hitsNeededToKill;
     public float hitCoolDown;
-    public float jumpStrength;
+    public int jumps;
     public float resistance;
     public float weight;
 }
@@ -63,10 +62,7 @@ public class GolemBehaviour : MonoBehaviour
     private GolemMaterialStats TerracottaStats;
 
     [SerializeField]
-    private GolemMaterialStats StoneStats;
-    
-    [SerializeField]
-    private GolemMaterialStats MetalStats;
+    private GolemMaterialStats PlumberStats;
     
     [SerializeField]
     private GolemMaterialStats WoodenStats;
@@ -89,12 +85,8 @@ public class GolemBehaviour : MonoBehaviour
                 golemStats = TerracottaStats;
                 break;
 
-            case GolemMaterial.Stone:
-                golemStats = StoneStats;
-                break;
-
-            case GolemMaterial.Metal:
-                golemStats = MetalStats;
+            case GolemMaterial.Plumber:
+                golemStats = PlumberStats;
                 break;
 
             case GolemMaterial.Wooden:
@@ -144,14 +136,11 @@ public class GolemBehaviour : MonoBehaviour
             case GolemMaterial.Terracotta:
                 golemStats = TerracottaStats;
                 break;
+            case GolemMaterial.Plumber:
+                golemStats = PlumberStats;
+                break;
             case GolemMaterial.Wooden:
                 golemStats = WoodenStats;
-                break;
-            case GolemMaterial.Stone:
-                golemStats = StoneStats;
-                break;
-            case GolemMaterial.Metal:
-                golemStats = MetalStats;
                 break;
         }
     }

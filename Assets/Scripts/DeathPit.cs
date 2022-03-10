@@ -42,7 +42,7 @@ public class DeathPit : MonoBehaviour
             return;
 
         // If the deathpit is lava, and the golem got inside it
-        if (CompareTag("Lava") && player.currentCharacter.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Stone)
+        if (CompareTag("Lava") && player.currentCharacter.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Plumber)
         {
             golem.insideLava = true;
             return;
@@ -58,7 +58,7 @@ public class DeathPit : MonoBehaviour
             return;
 
         // If the deathpit is lava, and the golem got inside it
-        if (CompareTag("Lava") && player.currentCharacter.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Stone)
+        if (CompareTag("Lava") && player.currentCharacter.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Plumber)
             golem.insideLava = false;
     }
 }

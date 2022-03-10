@@ -21,7 +21,7 @@ public class BreakableBlock : MonoBehaviour
         if (!other.CompareTag("Hitter"))
             return;
 
-        if (other.transform.parent.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Stone)
+        if (other.transform.parent.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Plumber)
         {
             // Break
             Destroy(this.gameObject);

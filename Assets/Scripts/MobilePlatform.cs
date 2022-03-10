@@ -18,7 +18,6 @@ public class MobilePlatform : MonoBehaviour
         _startingPos = transform.position.x;
         _finalPos = transform.position.x - 7.0f;
         _movementStarted = false;
-        _currentInc = _increment;
     }
 
     // Update is called once per frame
@@ -57,6 +56,7 @@ public class MobilePlatform : MonoBehaviour
     private IEnumerator MovePlatform()
     {
         yield return new WaitForSeconds(1.0f);
+        _currentInc = _increment;
         _movementStarted = true;
     }
 }
