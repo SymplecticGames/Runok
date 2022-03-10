@@ -265,9 +265,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5137379156794872745}
   - component: {fileID: 321628341499314616}
+  - component: {fileID: 6081270022636359706}
   m_Layer: 8
   m_Name: RadialLight
-  m_TagString: Untagged
+  m_TagString: RadialLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,7 +299,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.38039216, g: 0.9019608, b: 0.87058824, a: 1}
-  m_Intensity: 2
+  m_Intensity: 5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -348,6 +349,19 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!135 &6081270022636359706
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5774224530619368432}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8451300915474145945
 GameObject:
   m_ObjectHideFlags: 0
