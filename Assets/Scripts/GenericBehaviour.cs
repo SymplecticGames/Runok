@@ -74,7 +74,7 @@ public class GenericBehaviour : MonoBehaviour
         if (canRotate && movementInput.magnitude > 0.0f)
             Rotation();
 
-        if (controller.isGrounded && jumpFactor == 0.0f)
+        if (controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
             jumps = 0;
     }
 
@@ -92,7 +92,7 @@ public class GenericBehaviour : MonoBehaviour
         {
             jumpPressed = false;
             jumpFactor = maxJumpFactor;
-            jumps ++;
+            jumps++;
         }
             
 
