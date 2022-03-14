@@ -39,6 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4125194868291172715}
+  - component: {fileID: 7286041299336931692}
   m_Layer: 6
   m_Name: MobilePlatform
   m_TagString: Untagged
@@ -63,6 +64,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7286041299336931692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125194868291172724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfcb8c43b3c55464fb38745a0664b5e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platform: {fileID: 6972115006046284872}
+  _finalPos: {fileID: 6187947663881979970}
+  speed: 1
+  startMovingWhenOn: 0
 --- !u!1 &8609242578139264501
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,9 +92,9 @@ GameObject:
   - component: {fileID: 6500666130236080329}
   - component: {fileID: 2837699635521854720}
   - component: {fileID: 4672216399612999700}
-  - component: {fileID: 3973024252087008888}
   - component: {fileID: 2695306203808630102}
   - component: {fileID: 7621082358913330936}
+  - component: {fileID: 4244618176639923116}
   m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
@@ -364,20 +381,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8609242578139264501}
   m_Mesh: {fileID: 0}
---- !u!114 &3973024252087008888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8609242578139264501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfcb8c43b3c55464fb38745a0664b5e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _finalPos: {fileID: 6187947663881979970}
-  speed: 1
 --- !u!65 &2695306203808630102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -404,6 +407,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.11, y: 7.03, z: 6.74}
   m_Center: {x: 1.5, y: 0.5, z: -3}
+--- !u!114 &4244618176639923116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8609242578139264501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f53e799579bf247b9ddcb631d670c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4125194867806424228
 PrefabInstance:
   m_ObjectHideFlags: 0
