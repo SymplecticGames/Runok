@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private Transform camLookAtTarget;
 
+    public CinemachineFreeLook freelookCam;
+
+    [HideInInspector]
+    public float camOrbitRadius;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +34,8 @@ public class PlayerManager : MonoBehaviour
 
         camLookAtTarget.parent = golemBehaviour.transform;
         camLookAtTarget.localPosition = Vector3.zero;
+
+        camOrbitRadius = freelookCam.m_Orbits[1].m_Radius;
     }
 
     // Update is called once per frame
