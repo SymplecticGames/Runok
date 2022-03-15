@@ -5,17 +5,24 @@ using UnityEngine;
 
 public class MobilePlatform : MonoBehaviour
 {
-    private Transform _startingPos;
-
     [SerializeField]
-    private Transform _finalPos;
+    private Transform platform;
+
+    public Transform _finalPos;
 
     [SerializeField]
     private float speed;
 
-    private float currentSpeed;
+    public bool startMovingWhenOn;
 
-    private bool _movementStarted;
+    [HideInInspector]
+    public Transform _startingPos;
+
+    [HideInInspector]
+    public float currentSpeed;
+
+    [HideInInspector]
+    public bool _movementStarted;
 
     private bool loopMovement;
 
@@ -24,7 +31,7 @@ public class MobilePlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _startingPos = this.transform.parent;
+        _startingPos = this.transform;
         _movementStarted = false;
 
         lerpTime = 0.0f;
@@ -35,7 +42,7 @@ public class MobilePlatform : MonoBehaviour
     {
         if (_movementStarted)
         {
-            transform.position = Vector3.Lerp(_startingPos.position, _finalPos.position, lerpTime);
+            platform.position = Vector3.Lerp(_startingPos.position, _finalPos.position, lerpTime);
 
             if (lerpTime > 1.0f)
             {
@@ -58,24 +65,6 @@ public class MobilePlatform : MonoBehaviour
             else
                 lerpTime += Time.deltaTime * currentSpeed;
         }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (!other.CompareTag("Golem"))
-            return;
-
-        Vector3 velVector = currentSpeed * (_finalPos.position - _startingPos.position);
-
-        other.GetComponent<GenericBehaviour>().SetAdditionalVel(velVector);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.CompareTag("Golem"))
-            return;
-
-        other.GetComponent<GenericBehaviour>().SetAdditionalVel(Vector3.zero);
     }
 
     public void StartMovingPlatform(bool loop)

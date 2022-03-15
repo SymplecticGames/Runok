@@ -5,13 +5,16 @@ using UnityEngine;
 public class Gemstone : MonoBehaviour
 {
     [SerializeField]
-    private float maxLightCoolDown = 2.0f;
+    private float stayGlowDuration = 2.0f;
+
+    [SerializeField]
+    private float glowDownDuration = 3.0f;
 
     [SerializeField]
     private float glowUpDuration = 0.5f;
 
     [SerializeField]
-    private float glowDownDuration = 3.0f;
+    private bool neverGlowDown;
 
     private float lightCoolDown;
 
@@ -53,6 +56,9 @@ public class Gemstone : MonoBehaviour
                 lightLerpStep = 0.0f;
         }
 
+        if (neverGlowDown)
+            return;
+
         // Timer for lightCoolDown
         if (lightCoolDown > 0.0f)
         {
@@ -71,7 +77,7 @@ public class Gemstone : MonoBehaviour
         if (!other.CompareTag("RadialLight"))
             return;
 
-        lightCoolDown = maxLightCoolDown;
+        lightCoolDown = stayGlowDuration;
         glowingUp = true;
     }
 }
