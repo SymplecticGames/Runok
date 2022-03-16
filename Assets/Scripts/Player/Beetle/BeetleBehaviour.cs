@@ -18,6 +18,16 @@ public class BeetleBehaviour : MonoBehaviour
     [SerializeField]
     private float verticalSpeed;
 
+    // Shoot light bullets
+    [SerializeField]
+    private float shootCooldown;
+    private BulletPool bulletPool;
+    private float shootElapsedTime;
+
+    [HideInInspector]
+    public bool fwSkillPressed;
+
+
     private GenericBehaviour charBehaviour;
 
     public LumMode currentLumMode;
@@ -28,6 +38,9 @@ public class BeetleBehaviour : MonoBehaviour
         currentLumMode = LumMode.None;
 
         charBehaviour = GetComponent<GenericBehaviour>();
+
+        bulletPool = GetComponent<BulletPool>();
+        shootElapsedTime = shootCooldown;
     }
 
     // Update is called once per frame
@@ -43,6 +56,14 @@ public class BeetleBehaviour : MonoBehaviour
 
             charBehaviour.SetAdditionalVel(new Vector3(0.0f, verticalSpeed * factorByDist, 0.0f));
         }
+
+        if (fwSkillPressed && shootElapsedTime > shootCooldown)
+        {
+            bulletPool.SpawnBullet();
+            shootElapsedTime = 0;
+        }
+
+        shootElapsedTime += Time.deltaTime;
     }
 
     public void ChangeLumMode(LumMode newMode)

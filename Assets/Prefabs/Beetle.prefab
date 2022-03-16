@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 8938529657250927628}
   - component: {fileID: 3984680674814815259}
   - component: {fileID: 6655291664893331779}
+  - component: {fileID: 3364476735485776413}
   m_Layer: 8
   m_Name: Beetle
   m_TagString: Beetle
@@ -238,6 +239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetHeight: 2
   verticalSpeed: 5
+  shootCooldown: 1
+  fwSkillPressed: 0
   currentLumMode: 0
 --- !u!54 &6655291664893331779
 Rigidbody:
@@ -255,6 +258,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3364476735485776413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3122619784660323537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b254f4a2c749e4b8cc115205b945cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 6044084244078398027, guid: 6682c590e3fad16499d812f8867bc6d7, type: 3}
+  poolSize: 20
+  speed: 15
+  lifeTime: 10
+  damage: 5
 --- !u!1 &5774224530619368432
 GameObject:
   m_ObjectHideFlags: 0

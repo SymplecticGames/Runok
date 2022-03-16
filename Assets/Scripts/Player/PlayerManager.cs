@@ -70,6 +70,9 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
             golem.hitPressed = context.performed;
+
+        if (currentCharacter.TryGetComponent(out BeetleBehaviour bettle))
+            bettle.fwSkillPressed = context.performed;
     }
 
     public void SwapCharacter(InputAction.CallbackContext context)

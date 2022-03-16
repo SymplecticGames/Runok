@@ -27,11 +27,15 @@ public class Enemy : MonoBehaviour
     // original spawn transform
     private Transform _spawnTransform;
 
+    // For enable and disable component, to stop bezier movement
+    private BezierFollow bezier;
+
     //////////////////////////////////////////////////  p r o g r a m  /////////////////////////////////////////////////
     ///
     // Start is called before the first frame update
     void Start()
     {
+        bezier = GetComponent<BezierFollow>();
         _spawnTransform = gameObject.transform;
         
         if (spawnAfterTime)
