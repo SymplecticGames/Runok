@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     public GameObject altar;
     // ------------------------------------------------------------------------------------------------------------- //
     
+    // -------------------------------------------------- inGameUI ------------------------------------------------- //
+    // runes counter script
+    public RunesCounterUI runesCounterUIScript;
+    // ------------------------------------------------------------------------------------------------------------- //
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     //
@@ -88,8 +92,8 @@ public class GameManager : MonoBehaviour
         if (_collectedRunes >= minNumRunesToCollect)
         {
             altar.GetComponent<Altar>().enableAltar();
-            
         }
+        runesCounterUIScript.addRune(1);
     }
 
     public void respawnedPickedRune()
@@ -101,9 +105,8 @@ public class GameManager : MonoBehaviour
         if (_collectedRunes < minNumRunesToCollect)
         {
             altar.GetComponent<Altar>().disableAltar();
-            
         }
-        
+        runesCounterUIScript.addRune(-1);
     }
     // ------------------------------------------------------------------------------------------------------------- //
     
