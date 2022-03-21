@@ -85,9 +85,10 @@ public class LateralMenuUI : MonoBehaviour
 
     public void OnDeviceChange(PlayerInput context)
     {
+
         if (context.devices.Count > 0 && kbTags.Count > 0)
         {
-            if (context.devices[0].name == "Keyboard")
+            if (context.devices[0].name.StartsWith("Keyboard"))
             {
                 // Keyboard gamepad
                 for (int i = 0; i < kbTags.Count; i++)
@@ -98,7 +99,7 @@ public class LateralMenuUI : MonoBehaviour
                 }
 
             }
-            if (context.devices[0].name == "XInputController")
+            if (context.devices[0].name.StartsWith("XInputController"))
             {
                 // Xbox gamepad
                 for (int i = 0; i < kbTags.Count; i++)
