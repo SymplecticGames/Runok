@@ -16,6 +16,7 @@ public class Extensible : MonoBehaviour
     {
         restScale = transform.parent.localScale;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
@@ -26,9 +27,9 @@ public class Extensible : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag(colliderTag))
+        if (other.CompareTag(colliderTag) && Physics.Raycast(transform.parent.position, transform.parent.right, out RaycastHit hitInfo))
         {
-            newScale = Vector3.Distance(transform.parent.position, other.transform.position) * 0.5f;
+            newScale = hitInfo.distance * 0.5f;
             transform.parent.localScale = new Vector3(newScale, restScale.y, restScale.z);
         }
     }
