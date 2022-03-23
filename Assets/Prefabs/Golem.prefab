@@ -773,7 +773,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.5
+  m_Height: 4
   m_Radius: 1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -794,6 +794,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canRotate: 1
   movementFactor: 0
+  maxJumpFactor: 1
+  jumpFactor: 0
   maxJumps: 0
   gravity: {x: 0, y: -9.8, z: 0}
   jumpSpeed: {x: 0, y: 5, z: 0}
@@ -802,6 +804,8 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   jumpPressed: 0
   player: {fileID: 0}
+  playerVel: {x: 0, y: 0, z: 0}
+  isGrounded: 0
 --- !u!114 &1684484324024519184
 MonoBehaviour:
   m_ObjectHideFlags: 0

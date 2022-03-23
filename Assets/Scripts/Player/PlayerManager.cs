@@ -27,8 +27,6 @@ public class PlayerManager : MonoBehaviour
     public float camOrbitRadius;
 
     private Animator animator;
-    private bool isJumping;
-    private bool isFalling;
 
     // Start is called before the first frame update
     void Start()
@@ -43,8 +41,6 @@ public class PlayerManager : MonoBehaviour
         
         // Get golem animator
         animator = currentCharacter.GetComponent<Animator>();
-        isFalling = false;
-        isJumping = false;
     }
 
     // Update is called once per frame
@@ -57,19 +53,13 @@ public class PlayerManager : MonoBehaviour
 
             currentCharacter.maxJumps = golem.golemStats.jumps;
 
-            Debug.Log(currentCharacter.playerVel.y);
-            if (!isFalling && isJumping && currentCharacter.playerVel.y < 0.0)
+            if (!currentCharacter.controller.isGrounded && currentCharacter.jumpFactor < currentCharacter.maxJumpFactor * 0.5f)
             {
+                Debug.Log("Falling!");
                 animator.SetBool("isJumping", false);
                 animator.SetBool("isFalling", true);
-                isFalling = true;
-                isJumping = false;
             }
-            else if (currentCharacter.isGrounded && isFalling)
-            {
-                animator.SetBool("isFalling", false);
-                isFalling = false;
-            }
+            animator.SetBool("isFalling", !currentCharacter.controller.isGrounded);
         }
         else
         {
@@ -81,14 +71,14 @@ public class PlayerManager : MonoBehaviour
     {
         Vector2 movement = context.ReadValue<Vector2>();
         currentCharacter.movementInput = movement;
-        animator.SetBool("isWalking", movement.y != 0 || movement.x != 0);
+        animator.SetBool("isWalking", movement.magnitude > 0);
+        animator.SetFloat("WalkSpeed", Mathf.Clamp(movement.magnitude, 0.1f, 1.0f));
     }
 
     public void OnActiveBw_Jump(InputAction.CallbackContext context)
     {
         currentCharacter.jumpPressed = context.performed;
         animator.SetBool("isJumping", true);
-        isJumping = true;
     }
 
     public void OnActiveFw_Hit(InputAction.CallbackContext context)

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GenericBehaviour : MonoBehaviour
 {
-    private CharacterController controller;
+    [HideInInspector]
+    public CharacterController controller;
 
     [HideInInspector]
     public bool canRotate = true;
@@ -12,9 +13,11 @@ public class GenericBehaviour : MonoBehaviour
     [HideInInspector]
     public float movementFactor;
 
-    private float maxJumpFactor = 1.0f;
+    [HideInInspector]
+    public float maxJumpFactor = 1.0f;
 
-    private float jumpFactor;
+    [HideInInspector]
+    public float jumpFactor;
 
     [HideInInspector]
     public int maxJumps;
@@ -48,9 +51,6 @@ public class GenericBehaviour : MonoBehaviour
 
     private Vector3 additionalVel;
 
-    [HideInInspector]
-    public bool isGrounded;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -79,10 +79,7 @@ public class GenericBehaviour : MonoBehaviour
             Rotation();
 
         if (controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
-        {
-            jumps = 0;
-            isGrounded = true;
-        }
+            jumps = 0;     
     }
 
     public void SetAdditionalVel(Vector3 additionalVelocity)
@@ -100,10 +97,8 @@ public class GenericBehaviour : MonoBehaviour
             jumpPressed = false;
             jumpFactor = maxJumpFactor;
             jumps++;
-            isGrounded = false;
         }
             
-
         return movementVel;
     }
 

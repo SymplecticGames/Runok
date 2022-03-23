@@ -85,7 +85,6 @@ public class LateralMenuUI : MonoBehaviour
 
     public void OnDeviceChange(PlayerInput context)
     {
-
         if (context.devices.Count > 0 && kbTags.Count > 0)
         {
             if (context.devices[0].name.StartsWith("Keyboard"))
@@ -98,19 +97,8 @@ public class LateralMenuUI : MonoBehaviour
                     psTags[i].enabled = false;
                 }
 
-            }
-            if (context.devices[0].name.StartsWith("XInputController"))
-            {
-                // Xbox gamepad
-                for (int i = 0; i < kbTags.Count; i++)
-                {
-                    kbTags[i].enabled = false;
-                    xboxTags[i].enabled = true;
-                    psTags[i].enabled = false;
-                }
-
-            }
-            if (context.devices[0].name.StartsWith("DualShock"))
+            }          
+            else if (context.devices[0].name.StartsWith("DualShock"))
             {
                 // PlayStation gamepad
                 for (int i = 0; i < kbTags.Count; i++)
@@ -118,6 +106,17 @@ public class LateralMenuUI : MonoBehaviour
                     kbTags[i].enabled = false;
                     xboxTags[i].enabled = false;
                     psTags[i].enabled = true;
+                }
+
+            }
+            else
+            {
+                // Xbox gamepad
+                for (int i = 0; i < kbTags.Count; i++)
+                {
+                    kbTags[i].enabled = false;
+                    xboxTags[i].enabled = true;
+                    psTags[i].enabled = false;
                 }
 
             }
