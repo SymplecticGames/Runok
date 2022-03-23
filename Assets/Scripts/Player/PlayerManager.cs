@@ -55,7 +55,6 @@ public class PlayerManager : MonoBehaviour
 
             if (!currentCharacter.controller.isGrounded && currentCharacter.jumpFactor < currentCharacter.maxJumpFactor * 0.5f)
             {
-                Debug.Log("Falling!");
                 animator.SetBool("isJumping", false);
                 animator.SetBool("isFalling", true);
             }
