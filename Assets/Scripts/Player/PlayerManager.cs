@@ -26,16 +26,25 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public float camOrbitRadius;
 
+    private Animator animator;
+    private bool isJumping;
+    private bool isFalling;
+
     // Start is called before the first frame update
     void Start()
     {
         // Activate golem
         currentCharacter = golemBehaviour;
 
-        camLookAtTarget.parent = golemBehaviour.transform;
+        camLookAtTarget.parent = currentCharacter.transform;
         camLookAtTarget.localPosition = Vector3.zero;
 
         camOrbitRadius = freelookCam.m_Orbits[1].m_Radius;
+        
+        // Get golem animator
+        animator = currentCharacter.GetComponent<Animator>();
+        isFalling = false;
+        isJumping = false;
     }
 
     // Update is called once per frame
@@ -47,6 +56,20 @@ public class PlayerManager : MonoBehaviour
             currentCharacter.movementFactor = factor / golem.golemStats.weight;
 
             currentCharacter.maxJumps = golem.golemStats.jumps;
+
+            Debug.Log(currentCharacter.playerVel.y);
+            if (!isFalling && isJumping && currentCharacter.playerVel.y < 0.0)
+            {
+                animator.SetBool("isJumping", false);
+                animator.SetBool("isFalling", true);
+                isFalling = true;
+                isJumping = false;
+            }
+            else if (currentCharacter.isGrounded && isFalling)
+            {
+                animator.SetBool("isFalling", false);
+                isFalling = false;
+            }
         }
         else
         {
@@ -57,19 +80,24 @@ public class PlayerManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 movement = context.ReadValue<Vector2>();
-
         currentCharacter.movementInput = movement;
+        animator.SetBool("isWalking", movement.y != 0 || movement.x != 0);
     }
 
     public void OnActiveBw_Jump(InputAction.CallbackContext context)
     {
         currentCharacter.jumpPressed = context.performed;
+        animator.SetBool("isJumping", true);
+        isJumping = true;
     }
 
     public void OnActiveFw_Hit(InputAction.CallbackContext context)
     {
         if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
+        {
             golem.hitPressed = context.performed;
+            if (context.performed) animator.SetTrigger("isHitR");
+        }
 
         if (currentCharacter.TryGetComponent(out BeetleBehaviour bettle))
             bettle.fwSkillPressed = context.performed;
@@ -87,16 +115,22 @@ public class PlayerManager : MonoBehaviour
             // Activate beetle
             currentCharacter = beetleBehaviour;
 
-            camLookAtTarget.parent = beetleBehaviour.transform;
+            camLookAtTarget.parent = currentCharacter.transform;
             camLookAtTarget.localPosition = Vector3.zero;
+            
+            // Get beetle animator
+            animator = currentCharacter.GetComponent<Animator>();
         }
         else
         {
             // Activate golem
             currentCharacter = golemBehaviour;
 
-            camLookAtTarget.parent = golemBehaviour.transform;
+            camLookAtTarget.parent = currentCharacter.transform;
             camLookAtTarget.localPosition = Vector3.zero;
+            
+            // Get golem animator
+            animator = currentCharacter.GetComponent<Animator>();
         }
     }
 

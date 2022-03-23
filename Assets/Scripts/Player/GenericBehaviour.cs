@@ -43,9 +43,13 @@ public class GenericBehaviour : MonoBehaviour
     [SerializeField] 
     private PlayerManager player;
 
-    private Vector3 playerVel;
+    [HideInInspector]
+    public Vector3 playerVel;
 
     private Vector3 additionalVel;
+
+    [HideInInspector]
+    public bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +79,10 @@ public class GenericBehaviour : MonoBehaviour
             Rotation();
 
         if (controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
+        {
             jumps = 0;
+            isGrounded = true;
+        }
     }
 
     public void SetAdditionalVel(Vector3 additionalVelocity)
@@ -93,6 +100,7 @@ public class GenericBehaviour : MonoBehaviour
             jumpPressed = false;
             jumpFactor = maxJumpFactor;
             jumps++;
+            isGrounded = false;
         }
             
 
