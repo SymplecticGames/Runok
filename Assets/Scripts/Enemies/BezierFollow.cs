@@ -34,6 +34,7 @@ public class BezierFollow : MonoBehaviour
         tParam += Time.deltaTime * speedFactor;
 
         transform.position = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
+        transform.forward = Mathf.Pow(1 - tParam, 2) * p0 - (3 * Mathf.Pow(tParam, 2) - 4 * tParam + 1) * p1 - (2 * tParam - 3 * Mathf.Pow(tParam, 2)) * p2 - Mathf.Pow(tParam, 2) * p3;
 
         if (tParam >= 1.0f)
         {
