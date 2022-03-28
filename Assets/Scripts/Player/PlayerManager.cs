@@ -72,7 +72,6 @@ public class PlayerManager : MonoBehaviour
             if (!currentCharacter.controller.isGrounded && currentCharacter.jumpFactor < currentCharacter.maxJumpFactor * 0.5f)
             {
                 animator.SetBool("isJumping", false);
-                animator.SetBool("isFalling", true);
             }
             animator.SetBool("isFalling", !currentCharacter.controller.isGrounded);
 
@@ -173,26 +172,36 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void SwapCharacter(InputAction.CallbackContext context)
+    public void OnSwapCharacter(InputAction.CallbackContext context)
     {
         if (!context.performed || lateralMenu.menuOpen)
             return;
-
+        SwapCharacter();
+    }
+    
+    public void SwapCharacter()
+    {
         currentCharacter.movementInput = Vector2.zero;
 
         if (currentCharacter == golemBehaviour)
         {
+            // Stop any golem animation and go to idle
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isHit1", false);
+            animator.SetBool("isHit2", false);
+            animator.SetBool("isHit3", false);
+            
             if (restingBeetle)
             {
                 restingBeetle = false;
                 beetleBehaviour.controller.enabled = true;
-
                 beetleBehaviour.transform.SetParent(null);
             }
-
+            
             // Activate beetle
             currentCharacter = beetleBehaviour;
-
             camLookAtTarget.parent = currentCharacter.transform;
             camLookAtTarget.localPosition = Vector3.zero;
             
@@ -221,8 +230,8 @@ public class PlayerManager : MonoBehaviour
 
         if (currentCharacter == beetleBehaviour)
         {
-            SwapCharacter(context);
-            lateralMenu.UISwapCharacter(context);
+            SwapCharacter();
+            lateralMenu.UISwapCharacter();
         }
 
         AppendBeetle();
@@ -246,9 +255,19 @@ public class PlayerManager : MonoBehaviour
 
     public void Die()
     {
-        golemBehaviour.Die(respawnPoint);
+        if (currentCharacter == golemBehaviour)
+        {
+            golemBehaviour.Die(respawnPoint);
+        }
+        else
+        {
+            SwapCharacter();
+            lateralMenu.UISwapCharacter();
+        }
+        
         beetleBehaviour.Die(respawnPoint);
-
+        AppendBeetle();
+        
         golemBehaviour.GetComponent<GolemBehaviour>().insideLava = false;
 
         GameManager.instance.newDeath();

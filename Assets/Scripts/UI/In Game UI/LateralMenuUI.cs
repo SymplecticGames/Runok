@@ -40,11 +40,15 @@ public class LateralMenuUI : MonoBehaviour
     [HideInInspector]
     public bool menuOpen;
 
-    public void UISwapCharacter(InputAction.CallbackContext context)
+    public void OnUISwapCharacter(InputAction.CallbackContext context)
     {
         if (!context.performed || menuOpen)
             return;
-
+        UISwapCharacter();
+    }
+    
+    public void UISwapCharacter()
+    {
         // highlight button:     0-> swapTag     1-> parchmentTag     2->selectionWheelTag
         StartCoroutine(highLightButton(0));
 

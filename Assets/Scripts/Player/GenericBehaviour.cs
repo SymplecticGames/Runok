@@ -73,7 +73,8 @@ public class GenericBehaviour : MonoBehaviour
         else
             jumpFactor = 0.0f;
 
-        controller.Move(playerVel * Time.deltaTime);
+        if (controller.enabled)
+            controller.Move(playerVel * Time.deltaTime);
 
         if (canRotate && movementInput.magnitude > 0.0f)
             Rotation();
