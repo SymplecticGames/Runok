@@ -8520,6 +8520,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 79320297}
   golemBehaviour: {fileID: 1594185254}
   beetleBehaviour: {fileID: 1191218096}
+  lateralMenu: {fileID: 1329854101}
   camLookAtTarget: {fileID: 1748840433}
   freelookCam: {fileID: 498799636}
   camOrbitRadius: 0
@@ -8746,6 +8747,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c1fbfc74-aa2c-4c7e-a9d8-33185dfd1fcc
     m_ActionName: UI/DeviceJoined[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 745358889}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: ReturnToGolem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f85514c6-7071-4729-99c3-5041aac64437
+    m_ActionName: Player/ReturnToGolem[/Keyboard/q,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -20465,7 +20482,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.18059154, y: 0.06799659, z: -0.012515843, w: 0.9811252}
+  m_LocalRotation: {x: 0.18059155, y: 0.06799657, z: -0.01251584, w: 0.9811252}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -22833,7 +22850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10da1bb33657a3f4abb7d22134751864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1265234565}
   runes:
   - {fileID: 395158044}
   - {fileID: 410307977}
@@ -22847,6 +22863,7 @@ MonoBehaviour:
   - {fileID: 140283525}
   golem: {fileID: 7404438760301021386}
   beetle: {fileID: 1747101719}
+  usingGamepad: 0
   runesCounterUIScript: {fileID: 22136927}
   mainLight: {fileID: 982756973}
 --- !u!4 &1818878431
