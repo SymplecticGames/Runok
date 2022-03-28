@@ -20,9 +20,9 @@ public class BeetleBehaviour : MonoBehaviour
 
     // Shoot light bullets
     [SerializeField]
-    private float shootCooldown;
+    public float shootCooldown;
     private BulletPool bulletPool;
-    private float shootElapsedTime;
+    public float shootElapsedTime;
 
     [HideInInspector]
     public bool fwSkillPressed;

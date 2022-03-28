@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
     private int comboCounter;
     private float lastComboHitTime;
     private float maxComboDelay;
+    private bool continuousShot;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,7 @@ public class PlayerManager : MonoBehaviour
         comboCounter = 0;
         lastComboHitTime = 0.0f;
         maxComboDelay = 0.7f;
+        continuousShot = false;
     }
 
     // Update is called once per frame
@@ -88,9 +90,11 @@ public class PlayerManager : MonoBehaviour
                 comboCounter = 0;
             }
         }
-        else
+        else if (currentCharacter.TryGetComponent(out BeetleBehaviour beetle))
         {
             currentCharacter.movementFactor = 1.0f;
+            if (continuousShot && beetle.shootElapsedTime > beetle.shootCooldown)
+                animator.SetTrigger("Shoot");
         }
     }
 
@@ -99,13 +103,19 @@ public class PlayerManager : MonoBehaviour
         Vector2 movement = context.ReadValue<Vector2>();
         currentCharacter.movementInput = movement;
         animator.SetBool("isWalking", movement.magnitude > 0);
-        animator.SetFloat("WalkSpeed", Mathf.Clamp(movement.magnitude, 0.1f, 1.0f));
+        if (currentCharacter == golemBehaviour)
+            animator.SetFloat("WalkSpeed", Mathf.Clamp(movement.magnitude, 0.1f, 1.0f));
     }
 
     public void OnActiveBw_Jump(InputAction.CallbackContext context)
     {
         currentCharacter.jumpPressed = context.performed;
-        animator.SetBool("isJumping", true);
+        if (currentCharacter == golemBehaviour && context.started)
+            animator.SetBool("isJumping", true);
+        else if (context.started)
+        {
+            animator.SetTrigger("Ray");
+        }
     }
 
     public void OnActiveFw_Hit(InputAction.CallbackContext context)
@@ -113,7 +123,7 @@ public class PlayerManager : MonoBehaviour
         if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
         {
             golem.hitPressed = context.performed;
-            if (context.performed)
+            if (context.started)
             {
                 comboCounter++;
                 lastComboHitTime = Time.time;
@@ -143,8 +153,16 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        if (currentCharacter.TryGetComponent(out BeetleBehaviour bettle))
-            bettle.fwSkillPressed = context.performed;
+        if (currentCharacter.TryGetComponent(out BeetleBehaviour beetle))
+        {
+            beetle.fwSkillPressed = context.performed;
+            continuousShot = context.performed;
+            if (context.started && beetle.shootElapsedTime > beetle.shootCooldown)
+            {
+                continuousShot = false;
+                animator.SetTrigger("Shoot");
+            }
+        }
     }
 
     public void SwapCharacter(InputAction.CallbackContext context)
@@ -164,6 +182,7 @@ public class PlayerManager : MonoBehaviour
             
             // Get beetle animator
             animator = currentCharacter.GetComponent<Animator>();
+            animator.SetBool("isActive", true);  // Turn on beetle animator
         }
         else
         {
@@ -173,7 +192,9 @@ public class PlayerManager : MonoBehaviour
             camLookAtTarget.parent = currentCharacter.transform;
             camLookAtTarget.localPosition = Vector3.zero;
             
+            
             // Get golem animator
+            animator.SetBool("isActive", false);  // Turn off beetle animator
             animator = currentCharacter.GetComponent<Animator>();
         }
     }
