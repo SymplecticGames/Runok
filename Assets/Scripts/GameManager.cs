@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,7 +13,10 @@ public class GameManager : MonoBehaviour
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
-    //
+    
+    // camera
+    public Camera mainCamera;
+    
     // --------------------------------------------------- runes --------------------------------------------------- //
     // list of runes in the level
     public List<GameObject> runes;
@@ -26,9 +30,20 @@ public class GameManager : MonoBehaviour
     public GameObject altar;
     // ------------------------------------------------------------------------------------------------------------- //
     
+    // --------------------------------------------------- enemies ------------------------------------------------- //
+    // list of enemies in the level
+    public List<GameObject> enemies;
+    // ------------------------------------------------------------------------------------------------------------- //
+    
+    // --------------------------------------------------- player --------------------------------------------------- //
+    // players
+    public GameObject golem;
+    public GameObject beetle;
+    
     // -------------------------------------------------- inGameUI ------------------------------------------------- //
     // runes counter script
     public RunesCounterUI runesCounterUIScript;
+    
     // ------------------------------------------------------------------------------------------------------------- //
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
@@ -138,6 +153,76 @@ public class GameManager : MonoBehaviour
         
     }
 
+    // ------------------------------------------------------------------------------------------------------------- //
+    
+        // ----------------------------------------------------- UI ----------------------------------------------------- //
+
+    public void pause()
+    {
+        
+        // golem
+        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponents<MonoBehaviour>());
+        foreach (MonoBehaviour script in scripts)
+        {
+            script.enabled = false;
+        }
+        golem.GetComponent<Animator>().enabled = false;
+        
+        // beetle
+        scripts = new List<MonoBehaviour>(beetle.GetComponents<MonoBehaviour>());
+        foreach (MonoBehaviour script in scripts)
+        {
+            script.enabled = false;
+        }
+        beetle.GetComponent<Animator>().enabled = false;
+        
+        // enemies
+        foreach (var enemy in enemies)
+        {
+            scripts = new List<MonoBehaviour>(enemy.GetComponents<MonoBehaviour>());
+            foreach (MonoBehaviour script in scripts)
+            {
+                script.enabled = false;
+            }
+            //enemy.GetComponent<Animator>().enabled = false;
+        }
+
+        mainCamera.GetComponent<CinemachineBrain>().enabled = false;
+        
+    }
+
+    public void play()
+    {
+
+        // golem
+        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponents<MonoBehaviour>());
+        foreach (MonoBehaviour script in scripts)
+        {
+            script.enabled = true;
+        }
+        golem.GetComponent<Animator>().enabled = true;
+        
+        // beetle
+        scripts = new List<MonoBehaviour>(beetle.GetComponents<MonoBehaviour>());
+        foreach (MonoBehaviour script in scripts)
+        {
+            script.enabled = true;
+        }
+        beetle.GetComponent<Animator>().enabled = true;
+        
+        // enemies
+        foreach (var enemy in enemies)
+        {
+            scripts = new List<MonoBehaviour>(enemy.GetComponents<MonoBehaviour>());
+            foreach (MonoBehaviour script in scripts)
+            {
+                script.enabled = true;
+            }
+            //enemy.GetComponent<Animator>().enabled = true;
+        }
+        
+        mainCamera.GetComponent<CinemachineBrain>().enabled = true;
+    }
     // ------------------------------------------------------------------------------------------------------------- //
     
     // Update is called once per frame

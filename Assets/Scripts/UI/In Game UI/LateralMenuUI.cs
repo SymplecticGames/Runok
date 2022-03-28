@@ -23,6 +23,10 @@ public class LateralMenuUI : MonoBehaviour
     public List<Image> xboxTags;
     public List<Image> psTags;
 
+
+    public GameObject selectionWheelGO;
+    //public Instructions instructionsScript;
+    
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////            
 
     private string _swapKeyboardTag;
@@ -33,9 +37,11 @@ public class LateralMenuUI : MonoBehaviour
     private string _selectionWheelJoyStickTag;
     private string _parchmentJoyStickTag;
 
+    private bool menuOpen;
+
     public void UISwapCharacter(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed || menuOpen)
             return;
 
         // highlight button:     0-> swapTag     1-> parchmentTag     2->selectionWheelTag
@@ -65,7 +71,7 @@ public class LateralMenuUI : MonoBehaviour
 
     public void UIOpenInstructions(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed || menuOpen)
             return;
 
         // highlight button:     0-> swapTag     1-> parchmentTag     2->selectionWheelTag
@@ -75,16 +81,30 @@ public class LateralMenuUI : MonoBehaviour
 
     public void UISelectHability(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (context.canceled && menuOpen)
+        {
+            selectionWheelGO.SetActive(false);
+            GameManager.instance.play();
+            menuOpen = false;
             return;
+        }
 
+        GameManager.instance.pause();
         // highlight button:     0-> swapTag     1-> parchmentTag     2->selectionWheelTag
         StartCoroutine(highLightButton(2));
+        
+        // stop gameMovement
+        
+        // open menu
+        selectionWheelGO.GetComponentInChildren<SelectionWheel>().isGolem = isGolem;
+        selectionWheelGO.SetActive(true);
+        menuOpen = true;
 
     }
 
     public void OnDeviceChange(PlayerInput context)
     {
+
         if (context.devices.Count > 0 && kbTags.Count > 0)
         {
             if (context.devices[0].name.StartsWith("Keyboard"))
@@ -97,7 +117,7 @@ public class LateralMenuUI : MonoBehaviour
                     psTags[i].enabled = false;
                 }
 
-            }          
+            }
             else if (context.devices[0].name.StartsWith("DualShock"))
             {
                 // PlayStation gamepad
@@ -109,7 +129,7 @@ public class LateralMenuUI : MonoBehaviour
                 }
 
             }
-            else
+            else 
             {
                 // Xbox gamepad
                 for (int i = 0; i < kbTags.Count; i++)
@@ -120,6 +140,7 @@ public class LateralMenuUI : MonoBehaviour
                 }
 
             }
+
         }
     }
 
