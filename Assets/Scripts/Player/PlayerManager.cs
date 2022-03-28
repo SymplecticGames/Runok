@@ -23,10 +23,15 @@ public class PlayerManager : MonoBehaviour
 
     public CinemachineFreeLook freelookCam;
 
+    [SerializeField]
+    private LateralMenuUI lateralMenu;
+
     [HideInInspector]
     public float camOrbitRadius;
 
     private Animator animator;
+
+    private bool restingBeetle;
 
     // Start is called before the first frame update
     void Start()
@@ -38,9 +43,12 @@ public class PlayerManager : MonoBehaviour
         camLookAtTarget.localPosition = Vector3.zero;
 
         camOrbitRadius = freelookCam.m_Orbits[1].m_Radius;
-        
+
         // Get golem animator
         animator = currentCharacter.GetComponent<Animator>();
+
+        // Set beetle on Golem's back
+        AppendBeetle();
     }
 
     // Update is called once per frame
@@ -94,19 +102,27 @@ public class PlayerManager : MonoBehaviour
 
     public void SwapCharacter(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed || lateralMenu.menuOpen)
             return;
 
         currentCharacter.movementInput = Vector2.zero;
 
         if (currentCharacter == golemBehaviour)
         {
+            if (restingBeetle)
+            {
+                restingBeetle = false;
+                beetleBehaviour.controller.enabled = true;
+
+                beetleBehaviour.transform.SetParent(null);
+            }
+
             // Activate beetle
             currentCharacter = beetleBehaviour;
 
             camLookAtTarget.parent = currentCharacter.transform;
             camLookAtTarget.localPosition = Vector3.zero;
-            
+
             // Get beetle animator
             animator = currentCharacter.GetComponent<Animator>();
         }
@@ -117,10 +133,34 @@ public class PlayerManager : MonoBehaviour
 
             camLookAtTarget.parent = currentCharacter.transform;
             camLookAtTarget.localPosition = Vector3.zero;
-            
+
             // Get golem animator
             animator = currentCharacter.GetComponent<Animator>();
         }
+    }
+
+    public void ReturnToGolem(InputAction.CallbackContext context)
+    {
+        if (!context.performed || lateralMenu.menuOpen)
+            return;
+
+        if (currentCharacter == beetleBehaviour)
+        {
+            SwapCharacter(context);
+            lateralMenu.UISwapCharacter(context);
+        }
+
+        AppendBeetle();
+    }
+
+    private void AppendBeetle()
+    {
+        restingBeetle = true;
+        beetleBehaviour.controller.enabled = false;
+
+        beetleBehaviour.transform.SetParent(golemBehaviour.GetComponent<GolemBehaviour>().beetleRestPose);
+        beetleBehaviour.transform.localPosition = Vector3.zero;
+        beetleBehaviour.transform.localRotation = Quaternion.identity;
     }
 
     public void Checkpoint(Transform newRespawnPoint)

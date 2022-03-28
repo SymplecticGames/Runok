@@ -37,7 +37,8 @@ public class LateralMenuUI : MonoBehaviour
     private string _selectionWheelJoyStickTag;
     private string _parchmentJoyStickTag;
 
-    private bool menuOpen;
+    [HideInInspector]
+    public bool menuOpen;
 
     public void UISwapCharacter(InputAction.CallbackContext context)
     {
