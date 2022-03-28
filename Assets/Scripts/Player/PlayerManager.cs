@@ -53,13 +53,10 @@ public class PlayerManager : MonoBehaviour
         comboCounter = 0;
         lastComboHitTime = 0.0f;
         maxComboDelay = 0.7f;
-<<<<<<< HEAD
         continuousShot = false;
-=======
 
         // Set beetle on Golem's back
         AppendBeetle();
->>>>>>> 7cada902c8227508e64a4885f0fa1ce29cc1276b
     }
 
     // Update is called once per frame
@@ -210,7 +207,6 @@ public class PlayerManager : MonoBehaviour
 
             camLookAtTarget.parent = currentCharacter.transform;
             camLookAtTarget.localPosition = Vector3.zero;
-            
             
             // Get golem animator
             animator.SetBool("isActive", false);  // Turn off beetle animator
