@@ -27,6 +27,9 @@ public class PlayerManager : MonoBehaviour
     public float camOrbitRadius;
 
     private Animator animator;
+    private int comboCounter;
+    private float lastComboHitTime;
+    private float maxComboDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +44,9 @@ public class PlayerManager : MonoBehaviour
         
         // Get golem animator
         animator = currentCharacter.GetComponent<Animator>();
+        comboCounter = 0;
+        lastComboHitTime = 0.0f;
+        maxComboDelay = 0.7f;
     }
 
     // Update is called once per frame
@@ -59,6 +65,28 @@ public class PlayerManager : MonoBehaviour
                 animator.SetBool("isFalling", true);
             }
             animator.SetBool("isFalling", !currentCharacter.controller.isGrounded);
+
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
+            {
+                animator.SetBool("isHit1", false);
+            }
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
+            {
+                animator.SetBool("isHit2", false);
+            }
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Hit3"))
+            {
+                animator.SetBool("isHit3", false);
+                comboCounter = 0;
+            }
+
+            if (Time.time - lastComboHitTime > maxComboDelay)
+            {
+                comboCounter = 0;
+            }
         }
         else
         {
@@ -85,7 +113,34 @@ public class PlayerManager : MonoBehaviour
         if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
         {
             golem.hitPressed = context.performed;
-            if (context.performed) animator.SetTrigger("isHitR");
+            if (context.performed)
+            {
+                comboCounter++;
+                lastComboHitTime = Time.time;
+                
+                if (comboCounter == 1)
+                {
+                    animator.SetBool("isHit1", true);
+                }
+                
+                comboCounter = Mathf.Clamp(comboCounter, 0, 3);
+                
+                if (comboCounter >= 2 &&
+                    animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                    animator.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
+                {
+                    animator.SetBool("isHit1", false);
+                    animator.SetBool("isHit2", true);
+                }
+
+                if (comboCounter >= 3 &&
+                    animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
+                    animator.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
+                {
+                    animator.SetBool("isHit2", false);
+                    animator.SetBool("isHit3", true);
+                }
+            }
         }
 
         if (currentCharacter.TryGetComponent(out BeetleBehaviour bettle))
