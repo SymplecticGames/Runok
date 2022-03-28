@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ReturnToGolem",
+                    "type": "Button",
+                    "id": "f85514c6-7071-4729-99c3-5041aac64437",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ActiveBw_Jump",
                     "type": "Button",
                     "id": "1236cc8d-72b6-4ef1-aeed-29a0c4f9de42",
@@ -268,41 +277,8 @@
                 },
                 {
                     "name": "",
-                    "id": "0921f165-db1e-4ec5-93db-263b2877933e",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwapCharacter",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2ab6843f-2d85-46f6-a270-2c3f32471ecd",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActiveBw_Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "61b50f04-8a05-4379-96e0-f4637f2c287c",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActiveBw_Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a4b8ce2e-df2f-40db-a184-90e6ca7cdc96",
-                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -325,17 +301,6 @@
                     "name": "",
                     "id": "10b5dce8-d81e-4f2e-9d53-163c72de8ec4",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActiveFw_Hit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "79e248cb-ff38-4873-915f-a38d46f29305",
-                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -417,6 +382,28 @@
                     "processors": "",
                     "groups": "Joystick;Gamepad",
                     "action": "WheelMenu - Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35ec5f81-2e84-4286-baf4-6e469848a92b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReturnToGolem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e32c4ebf-61ac-4c20-9411-98783044af0b",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReturnToGolem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

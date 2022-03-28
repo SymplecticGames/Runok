@@ -1144,7 +1144,7 @@ MonoBehaviour:
   - {fileID: 4677629453301971265}
   - {fileID: 3665640279243655996}
   - {fileID: 2781538815847525454}
-  selectionWheelGO: {fileID: 0}
+  selectionWheelGO: {fileID: 4167879864070127333}
 --- !u!1 &4516555386620809659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,7 +2213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8601912599073043718, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8907670496544076414, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2229,6 +2229,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
+--- !u!1 &4167879864070127333 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8601912599073043718, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
+  m_PrefabInstance: {fileID: 5672118015615011811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6061525429735578578 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1921264675936358449, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
