@@ -14,9 +14,6 @@ public class GameManager : MonoBehaviour
     
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
     
-    // camera
-    public Camera mainCamera;
-    
     // --------------------------------------------------- runes --------------------------------------------------- //
     // list of runes in the level
     public List<GameObject> runes;
@@ -39,6 +36,7 @@ public class GameManager : MonoBehaviour
     // players
     public GameObject golem;
     public GameObject beetle;
+    [HideInInspector] public bool usingGamepad;
     
     // -------------------------------------------------- inGameUI ------------------------------------------------- //
     // runes counter script
@@ -161,7 +159,7 @@ public class GameManager : MonoBehaviour
     {
         
         // golem
-        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponents<MonoBehaviour>());
+        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = false;
@@ -169,7 +167,7 @@ public class GameManager : MonoBehaviour
         golem.GetComponent<Animator>().enabled = false;
         
         // beetle
-        scripts = new List<MonoBehaviour>(beetle.GetComponents<MonoBehaviour>());
+        scripts = new List<MonoBehaviour>(beetle.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = false;
@@ -179,7 +177,7 @@ public class GameManager : MonoBehaviour
         // enemies
         foreach (var enemy in enemies)
         {
-            scripts = new List<MonoBehaviour>(enemy.GetComponents<MonoBehaviour>());
+            scripts = new List<MonoBehaviour>(enemy.GetComponentsInChildren<MonoBehaviour>());
             foreach (MonoBehaviour script in scripts)
             {
                 script.enabled = false;
@@ -187,7 +185,7 @@ public class GameManager : MonoBehaviour
             //enemy.GetComponent<Animator>().enabled = false;
         }
 
-        mainCamera.GetComponent<CinemachineBrain>().enabled = false;
+        Camera.main.GetComponent<CinemachineBrain>().enabled = false;
         
     }
 
@@ -195,7 +193,7 @@ public class GameManager : MonoBehaviour
     {
 
         // golem
-        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponents<MonoBehaviour>());
+        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = true;
@@ -203,7 +201,7 @@ public class GameManager : MonoBehaviour
         golem.GetComponent<Animator>().enabled = true;
         
         // beetle
-        scripts = new List<MonoBehaviour>(beetle.GetComponents<MonoBehaviour>());
+        scripts = new List<MonoBehaviour>(beetle.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = true;
@@ -213,7 +211,7 @@ public class GameManager : MonoBehaviour
         // enemies
         foreach (var enemy in enemies)
         {
-            scripts = new List<MonoBehaviour>(enemy.GetComponents<MonoBehaviour>());
+            scripts = new List<MonoBehaviour>(enemy.GetComponentsInChildren<MonoBehaviour>());
             foreach (MonoBehaviour script in scripts)
             {
                 script.enabled = true;
@@ -221,7 +219,7 @@ public class GameManager : MonoBehaviour
             //enemy.GetComponent<Animator>().enabled = true;
         }
         
-        mainCamera.GetComponent<CinemachineBrain>().enabled = true;
+        Camera.main.GetComponent<CinemachineBrain>().enabled = true;
     }
     // ------------------------------------------------------------------------------------------------------------- //
     

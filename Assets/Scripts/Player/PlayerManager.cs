@@ -19,6 +19,9 @@ public class PlayerManager : MonoBehaviour
     private GenericBehaviour beetleBehaviour;
 
     [SerializeField]
+    private LateralMenuUI lateralMenu;
+
+    [SerializeField]
     private Transform camLookAtTarget;
 
     public CinemachineFreeLook freelookCam;
@@ -31,6 +34,8 @@ public class PlayerManager : MonoBehaviour
     private float lastComboHitTime;
     private float maxComboDelay;
     private bool continuousShot;
+
+    private bool restingBeetle;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +53,13 @@ public class PlayerManager : MonoBehaviour
         comboCounter = 0;
         lastComboHitTime = 0.0f;
         maxComboDelay = 0.7f;
+<<<<<<< HEAD
         continuousShot = false;
+=======
+
+        // Set beetle on Golem's back
+        AppendBeetle();
+>>>>>>> 7cada902c8227508e64a4885f0fa1ce29cc1276b
     }
 
     // Update is called once per frame
@@ -167,13 +178,21 @@ public class PlayerManager : MonoBehaviour
 
     public void SwapCharacter(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed || lateralMenu.menuOpen)
             return;
 
         currentCharacter.movementInput = Vector2.zero;
 
         if (currentCharacter == golemBehaviour)
         {
+            if (restingBeetle)
+            {
+                restingBeetle = false;
+                beetleBehaviour.controller.enabled = true;
+
+                beetleBehaviour.transform.SetParent(null);
+            }
+
             // Activate beetle
             currentCharacter = beetleBehaviour;
 
@@ -197,6 +216,30 @@ public class PlayerManager : MonoBehaviour
             animator.SetBool("isActive", false);  // Turn off beetle animator
             animator = currentCharacter.GetComponent<Animator>();
         }
+    }
+
+    public void ReturnToGolem(InputAction.CallbackContext context)
+    {
+        if (!context.performed || lateralMenu.menuOpen)
+            return;
+
+        if (currentCharacter == beetleBehaviour)
+        {
+            SwapCharacter(context);
+            lateralMenu.UISwapCharacter(context);
+        }
+
+        AppendBeetle();
+    }
+
+    private void AppendBeetle()
+    {
+        restingBeetle = true;
+        beetleBehaviour.controller.enabled = false;
+
+        beetleBehaviour.transform.SetParent(golemBehaviour.GetComponent<GolemBehaviour>().beetleRestPose);
+        beetleBehaviour.transform.localPosition = Vector3.zero;
+        beetleBehaviour.transform.localRotation = Quaternion.identity;
     }
 
     public void Checkpoint(Transform newRespawnPoint)

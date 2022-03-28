@@ -31,6 +31,10 @@ public struct GolemMaterialStats
 
 public class GolemBehaviour : MonoBehaviour
 {
+    public Transform beetleRestPose;
+
+    [Space]
+
     [Header("Hit control")]
     // Hit Window
     [SerializeField]
@@ -52,6 +56,7 @@ public class GolemBehaviour : MonoBehaviour
     [HideInInspector]
     public bool hitPressed;
 
+    [Header("Materials")]
     public GolemMaterial currentMaterial;
 
     [HideInInspector]

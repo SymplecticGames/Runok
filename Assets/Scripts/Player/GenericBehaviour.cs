@@ -52,7 +52,7 @@ public class GenericBehaviour : MonoBehaviour
     private Vector3 additionalVel;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         controller = GetComponent<CharacterController>();
     }
