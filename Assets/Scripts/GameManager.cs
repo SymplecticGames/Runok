@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
     {
         
         // golem
-        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponents<MonoBehaviour>());
+        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = false;
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
         golem.GetComponent<Animator>().enabled = false;
         
         // beetle
-        scripts = new List<MonoBehaviour>(beetle.GetComponents<MonoBehaviour>());
+        scripts = new List<MonoBehaviour>(beetle.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = false;
@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
         // enemies
         foreach (var enemy in enemies)
         {
-            scripts = new List<MonoBehaviour>(enemy.GetComponents<MonoBehaviour>());
+            scripts = new List<MonoBehaviour>(enemy.GetComponentsInChildren<MonoBehaviour>());
             foreach (MonoBehaviour script in scripts)
             {
                 script.enabled = false;
@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
     {
 
         // golem
-        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponents<MonoBehaviour>());
+        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = true;
@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
         golem.GetComponent<Animator>().enabled = true;
         
         // beetle
-        scripts = new List<MonoBehaviour>(beetle.GetComponents<MonoBehaviour>());
+        scripts = new List<MonoBehaviour>(beetle.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = true;
@@ -211,7 +211,7 @@ public class GameManager : MonoBehaviour
         // enemies
         foreach (var enemy in enemies)
         {
-            scripts = new List<MonoBehaviour>(enemy.GetComponents<MonoBehaviour>());
+            scripts = new List<MonoBehaviour>(enemy.GetComponentsInChildren<MonoBehaviour>());
             foreach (MonoBehaviour script in scripts)
             {
                 script.enabled = true;

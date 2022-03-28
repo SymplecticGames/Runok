@@ -56,7 +56,6 @@ public class SelectionWheel : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log(_golemAbility);
         if (isGolem)
         {
             golemCanvas.alpha = 1;

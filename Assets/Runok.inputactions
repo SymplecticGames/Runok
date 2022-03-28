@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ReturnToGolem",
+                    "type": "Button",
+                    "id": "f85514c6-7071-4729-99c3-5041aac64437",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ActiveBw_Jump",
                     "type": "Button",
                     "id": "1236cc8d-72b6-4ef1-aeed-29a0c4f9de42",
@@ -373,6 +382,28 @@
                     "processors": "",
                     "groups": "Joystick;Gamepad",
                     "action": "WheelMenu - Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35ec5f81-2e84-4286-baf4-6e469848a92b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReturnToGolem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e32c4ebf-61ac-4c20-9411-98783044af0b",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReturnToGolem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &35304284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3352154728959369660, guid: 8d105a3c6d5772a4c80f5ad815632a3a, type: 3}
+  m_PrefabInstance: {fileID: 1524314907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &56482085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3352154728959369660, guid: 8d105a3c6d5772a4c80f5ad815632a3a, type: 3}
+  m_PrefabInstance: {fileID: 140283523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &59613260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,6 +1760,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7404438760194089661, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
   m_PrefabInstance: {fileID: 7404438760301021384}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &556886445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3352154728959369660, guid: 8d105a3c6d5772a4c80f5ad815632a3a, type: 3}
+  m_PrefabInstance: {fileID: 1026724488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &559077056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,7 +1892,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.0052683405, y: 0.9759752, z: -0.21651943, w: 0.02374738}
+  m_LocalRotation: {x: 0.0052683493, y: 0.9759752, z: -0.21651945, w: 0.023747424}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2254,6 +2269,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c1fbfc74-aa2c-4c7e-a9d8-33185dfd1fcc
     m_ActionName: UI/DeviceJoined[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 745358889}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: ReturnToGolem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f85514c6-7071-4729-99c3-5041aac64437
+    m_ActionName: Player/ReturnToGolem[/Keyboard/q,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2289,6 +2320,11 @@ Transform:
   m_Father: {fileID: 703093013}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &830679871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3352154728959369660, guid: 8d105a3c6d5772a4c80f5ad815632a3a, type: 3}
+  m_PrefabInstance: {fileID: 696057596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832537823
 GameObject:
   m_ObjectHideFlags: 0
@@ -3924,7 +3960,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.0052683414, y: 0.9759752, z: -0.21651945, w: 0.023747383}
+  m_LocalRotation: {x: 0.00526835, y: 0.9759752, z: -0.21651946, w: 0.023747426}
   m_LocalPosition: {x: 9.510472, y: 14.843, z: -29.437748}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4758,7 +4794,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.005268342, y: 0.9759752, z: -0.21651945, w: 0.023747388}
+  m_LocalRotation: {x: 0.0052683493, y: 0.9759752, z: -0.21651945, w: 0.023747424}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5459,7 +5495,11 @@ MonoBehaviour:
   - {fileID: 1576006981}
   minNumRunesToCollect: 4
   altar: {fileID: 1846359093}
-  enemies: []
+  enemies:
+  - {fileID: 35304284}
+  - {fileID: 56482085}
+  - {fileID: 830679871}
+  - {fileID: 556886445}
   golem: {fileID: 533264077}
   beetle: {fileID: 906962534}
   usingGamepad: 0
@@ -6283,7 +6323,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh85316
+  m_Name: pb_Mesh145984
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
