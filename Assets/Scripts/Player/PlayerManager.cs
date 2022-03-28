@@ -47,6 +47,9 @@ public class PlayerManager : MonoBehaviour
         comboCounter = 0;
         lastComboHitTime = 0.0f;
         maxComboDelay = 0.7f;
+
+        // Set beetle on Golem's back
+        AppendBeetle();
     }
 
     // Update is called once per frame
