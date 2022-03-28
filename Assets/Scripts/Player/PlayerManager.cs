@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviour
     private bool continuousShot;
 
     private bool restingBeetle;
+    private Light beetleLight;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,7 @@ public class PlayerManager : MonoBehaviour
         continuousShot = false;
 
         // Set beetle on Golem's back
+        beetleLight = beetleBehaviour.GetComponentInChildren<Light>();
         AppendBeetle();
     }
 
@@ -199,6 +201,8 @@ public class PlayerManager : MonoBehaviour
             // Get beetle animator
             animator = currentCharacter.GetComponent<Animator>();
             animator.SetBool("isActive", true);  // Turn on beetle animator
+
+            beetleLight.enabled = true;
         }
         else
         {
@@ -236,6 +240,8 @@ public class PlayerManager : MonoBehaviour
         beetleBehaviour.transform.SetParent(golemBehaviour.GetComponent<GolemBehaviour>().beetleRestPose);
         beetleBehaviour.transform.localPosition = Vector3.zero;
         beetleBehaviour.transform.localRotation = Quaternion.identity;
+
+        beetleLight.enabled = false;
     }
 
     public void Checkpoint(Transform newRespawnPoint)
@@ -247,7 +253,9 @@ public class PlayerManager : MonoBehaviour
     public void Die()
     {
         golemBehaviour.Die(respawnPoint);
-        beetleBehaviour.Die(respawnPoint);
+
+        if(!restingBeetle)
+            beetleBehaviour.Die(respawnPoint);
 
         golemBehaviour.GetComponent<GolemBehaviour>().insideLava = false;
 
