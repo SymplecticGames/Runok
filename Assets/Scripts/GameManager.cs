@@ -14,9 +14,6 @@ public class GameManager : MonoBehaviour
     
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
     
-    // camera
-    public Camera mainCamera;
-    
     // --------------------------------------------------- runes --------------------------------------------------- //
     // list of runes in the level
     public List<GameObject> runes;
@@ -39,6 +36,7 @@ public class GameManager : MonoBehaviour
     // players
     public GameObject golem;
     public GameObject beetle;
+    [HideInInspector] public bool usingGamepad;
     
     // -------------------------------------------------- inGameUI ------------------------------------------------- //
     // runes counter script
@@ -187,7 +185,7 @@ public class GameManager : MonoBehaviour
             //enemy.GetComponent<Animator>().enabled = false;
         }
 
-        mainCamera.GetComponent<CinemachineBrain>().enabled = false;
+        Camera.main.GetComponent<CinemachineBrain>().enabled = false;
         
     }
 
@@ -221,7 +219,7 @@ public class GameManager : MonoBehaviour
             //enemy.GetComponent<Animator>().enabled = true;
         }
         
-        mainCamera.GetComponent<CinemachineBrain>().enabled = true;
+        Camera.main.GetComponent<CinemachineBrain>().enabled = true;
     }
     // ------------------------------------------------------------------------------------------------------------- //
     

@@ -26,7 +26,7 @@ public class LateralMenuUI : MonoBehaviour
 
     public GameObject selectionWheelGO;
     //public Instructions instructionsScript;
-    
+
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////            
 
     private string _swapKeyboardTag;
@@ -76,7 +76,6 @@ public class LateralMenuUI : MonoBehaviour
 
         // highlight button:     0-> swapTag     1-> parchmentTag     2->selectionWheelTag
         StartCoroutine(highLightButton(1));
-
     }
 
     public void UISelectHability(InputAction.CallbackContext context)
@@ -92,14 +91,13 @@ public class LateralMenuUI : MonoBehaviour
         GameManager.instance.pause();
         // highlight button:     0-> swapTag     1-> parchmentTag     2->selectionWheelTag
         StartCoroutine(highLightButton(2));
-        
+
         // stop gameMovement
-        
+
         // open menu
         selectionWheelGO.GetComponentInChildren<SelectionWheel>().isGolem = isGolem;
         selectionWheelGO.SetActive(true);
         menuOpen = true;
-
     }
 
     public void OnDeviceChange(PlayerInput context)
@@ -117,6 +115,9 @@ public class LateralMenuUI : MonoBehaviour
                     psTags[i].enabled = false;
                 }
 
+                if (GameManager.instance)
+                    GameManager.instance.usingGamepad = false;
+
             }
             else if (context.devices[0].name.StartsWith("DualShock"))
             {
@@ -128,8 +129,10 @@ public class LateralMenuUI : MonoBehaviour
                     psTags[i].enabled = true;
                 }
 
+                if (GameManager.instance)
+                    GameManager.instance.usingGamepad = true;
             }
-            else 
+            else
             {
                 // Xbox gamepad
                 for (int i = 0; i < kbTags.Count; i++)
@@ -139,8 +142,9 @@ public class LateralMenuUI : MonoBehaviour
                     psTags[i].enabled = false;
                 }
 
+                if (GameManager.instance)
+                    GameManager.instance.usingGamepad = true;
             }
-
         }
     }
 
