@@ -26,6 +26,10 @@ public class Gemstone : MonoBehaviour
 
     private float lightLerpStep;
 
+    private Material gemMaterial;
+
+    private Color gemEmiColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,12 +38,19 @@ public class Gemstone : MonoBehaviour
 
         lightLerpStep = 0.0f;
         lightCoolDown = 0.0f;
+
+        gemMaterial = GetComponent<MeshRenderer>().material;
+        gemEmiColor = gemMaterial.GetColor("_EmissionColor");
     }
 
     // Update is called once per frame
     void Update()
     {
         pointLight.range = Mathf.Lerp(0.0f, maxLightRange, lightLerpStep);
+        if (glowingUp)
+            gemMaterial.SetColor("_EmissionColor", gemEmiColor * Mathf.Clamp(Mathf.Pow(lightLerpStep, 1.5f), 0.01f, 1.0f));
+        else
+            gemMaterial.SetColor("_EmissionColor", gemEmiColor * Mathf.Clamp(Mathf.Pow(lightLerpStep, 6), 0.01f, 1.0f));
 
         if (glowingUp)
         {

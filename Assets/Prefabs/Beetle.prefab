@@ -602,6 +602,7 @@ MonoBehaviour:
   targetHeight: 2
   verticalSpeed: 5
   shootCooldown: 1
+  shootElapsedTime: 0
   fwSkillPressed: 0
   currentLumMode: 0
 --- !u!54 &6655291664893331779
@@ -914,7 +915,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5821020111891302371
 GameObject:

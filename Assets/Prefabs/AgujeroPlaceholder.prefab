@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8260676842697338852}
   - component: {fileID: 8260676842697338855}
+  - component: {fileID: 1607676570805358964}
+  - component: {fileID: 729825881226375978}
   m_Layer: 0
   m_Name: AgujeroPlaceholder
   m_TagString: Untagged
@@ -82,3 +84,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1607676570805358964
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260676842697338854}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 2}
+  m_Center: {x: 0, y: 0, z: 1}
+--- !u!114 &729825881226375978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260676842697338854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4353d71d3c56f9f4f9ed7a393fad1bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourHole: {fileID: 0}
+  path: {fileID: 0}
+  followPath: 0
+  doWaitTime: 0
+  waitTime: 0

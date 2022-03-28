@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7361629966797893335}
   - component: {fileID: 7435938446701233472}
   - component: {fileID: 1711214595496517907}
+  - component: {fileID: 5596095980981379139}
   m_Layer: 0
   m_Name: ActivationMonolith
   m_TagString: Untagged
@@ -97,6 +98,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5596095980981379139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711214595496517908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648bb970cb10e3d45bd64bfb82d2a6ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stayGlowDuration: 0
+  glowDownDuration: 1
+  glowUpDuration: 0.5
+  neverGlowDown: 0
 --- !u!1 &4221274713480455184
 GameObject:
   m_ObjectHideFlags: 0

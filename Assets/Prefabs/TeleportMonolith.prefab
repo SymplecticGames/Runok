@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4195674775607011188}
   - component: {fileID: 4260974896060337379}
   - component: {fileID: 575324249604673233}
+  - component: {fileID: 2305005628975487935}
   m_Layer: 0
   m_Name: TeleportMonolith
   m_TagString: Untagged
@@ -63,6 +64,22 @@ MonoBehaviour:
   followPath: 0
   doWaitTime: 0
   waitTime: 0
+--- !u!114 &2305005628975487935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452926842892462263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648bb970cb10e3d45bd64bfb82d2a6ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stayGlowDuration: 0
+  glowDownDuration: 1.5
+  glowUpDuration: 0.5
+  neverGlowDown: 0
 --- !u!1 &7387942388231302579
 GameObject:
   m_ObjectHideFlags: 0

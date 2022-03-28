@@ -27,7 +27,7 @@ public class BeetleHoleManager : MonoBehaviour
 
     // time variable
     private float _waitedTime = 0;
-    
+
     //////////////////////////////////////////////////  p r o g r a m  /////////////////////////////////////////////////
     /// 
     // Start is called before the first frame update
