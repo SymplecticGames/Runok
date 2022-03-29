@@ -7,23 +7,23 @@ public class RunesCounterUI : MonoBehaviour
 {
     private int nRunes = 0;
 
-    private Text runesCounterText;
+    private Text[] runesCounterTexts;
 
     // Start is called before the first frame update
     void Start()
     {
-        runesCounterText = GetComponent<Text>();
+        runesCounterTexts = GetComponentsInChildren<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(nRunes);
     }
 
     public void addRune(int amount)
     {
         nRunes += amount;
-        runesCounterText.text = " "+nRunes;
+        foreach (Text runesCounterText in runesCounterTexts)
+            runesCounterText.text = " " + nRunes;
     }
 }

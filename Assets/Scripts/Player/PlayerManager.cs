@@ -265,7 +265,6 @@ public class PlayerManager : MonoBehaviour
 
     public void Checkpoint(Transform newRespawnPoint)
     {
-        Debug.Log("Checkpoint");
         respawnPoint = newRespawnPoint;
     }
 

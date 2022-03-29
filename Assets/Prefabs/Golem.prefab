@@ -829,12 +829,11 @@ MonoBehaviour:
   jumpFactor: 0
   maxJumps: 0
   gravity: {x: 0, y: -9.8, z: 0}
-  jumpSpeed: {x: 0, y: 5, z: 0}
+  jumpSpeed: {x: 0, y: 10, z: 0}
   rotFactor: 4
   baseMovementSpeed: 10
   movementInput: {x: 0, y: 0}
   jumpPressed: 0
-  player: {fileID: 0}
   playerVel: {x: 0, y: 0, z: 0}
 --- !u!114 &1684484324024519184
 MonoBehaviour:
@@ -857,27 +856,22 @@ MonoBehaviour:
     hitsNeededToKill: 0
     hitCoolDown: 0
     jumps: 0
-    resistance: 0
     weight: 0
   TerracottaStats:
     hitsNeededToKill: 2
     hitCoolDown: 0.75
     jumps: 1
-    resistance: 2
     weight: 1
   PlumberStats:
     hitsNeededToKill: 1
     hitCoolDown: 1
     jumps: 0
-    resistance: 3
     weight: 1.25
   WoodenStats:
     hitsNeededToKill: 3
     hitCoolDown: 0.5
     jumps: 2
-    resistance: 1
     weight: 0.75
-  insideLava: 0
 --- !u!95 &89025840277155712
 Animator:
   serializedVersion: 3
