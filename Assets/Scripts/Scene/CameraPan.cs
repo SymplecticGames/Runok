@@ -15,7 +15,7 @@ public class CameraPan : MonoBehaviour
 
     [SerializeField]
     private float distanceToTarget = 15.0f;
-    
+
     private bool firstTime = true;
 
     public void Pan()
@@ -29,7 +29,8 @@ public class CameraPan : MonoBehaviour
 
     private IEnumerator PanCoroutine()
     {
-        playerManager.gameObject.SetActive(false);
+        //playerManager.gameObject.SetActive(false);
+        playerManager.input.DeactivateInput();
 
         camLookAtTarget.parent = transform;
         camLookAtTarget.localPosition = Vector3.zero;
@@ -49,6 +50,12 @@ public class CameraPan : MonoBehaviour
         playerManager.freelookCam.m_Orbits[1].m_Radius = playerManager.camOrbitRadius;
         playerManager.freelookCam.m_Orbits[2].m_Radius = playerManager.camOrbitRadius + 5.0f;
 
-        playerManager.gameObject.SetActive(true);
+        //playerManager.gameObject.SetActive(true);
+        playerManager.input.ActivateInput();
+
+        if (playerManager.selectionWheelEnabled)
+            playerManager.input.actions.FindAction("WheelMenu").Enable();
+        else
+            playerManager.input.actions.FindAction("WheelMenu").Disable();
     }
 }

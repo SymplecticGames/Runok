@@ -38,8 +38,8 @@ public class PlayerManager : MonoBehaviour
     private bool restingBeetle;
     private Light beetleLight;
 
-    [SerializeField] private bool selectionWheelEnabled;
-    private PlayerInput input;
+    public bool selectionWheelEnabled;
+    [HideInInspector] public PlayerInput input;
 
     private void Awake()
     {
