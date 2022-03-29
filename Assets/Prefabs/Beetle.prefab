@@ -585,7 +585,6 @@ MonoBehaviour:
   baseMovementSpeed: 12
   movementInput: {x: 0, y: 0}
   jumpPressed: 0
-  player: {fileID: 0}
   playerVel: {x: 0, y: 0, z: 0}
 --- !u!114 &3984680674814815259
 MonoBehaviour:
@@ -600,7 +599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetHeight: 2
-  verticalSpeed: 5
+  upVerticalSpeed: 5
+  downVerticalSpeed: 2
   shootCooldown: 1
   shootElapsedTime: 0
   fwSkillPressed: 0

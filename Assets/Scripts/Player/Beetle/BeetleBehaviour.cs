@@ -15,6 +15,11 @@ public class BeetleBehaviour : MonoBehaviour
     private float targetHeight;
 
     [SerializeField]
+    private float upVerticalSpeed;
+
+    [SerializeField]
+    private float downVerticalSpeed;
+
     private float verticalSpeed;
 
     // Shoot light bullets
@@ -36,6 +41,8 @@ public class BeetleBehaviour : MonoBehaviour
     {
         currentLumMode = LumMode.RadialLight;
 
+        verticalSpeed = downVerticalSpeed;
+
         charBehaviour = GetComponent<GenericBehaviour>();
 
         bulletPool = GetComponent<BulletPool>();
@@ -47,14 +54,20 @@ public class BeetleBehaviour : MonoBehaviour
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y - 1.0f, transform.position.z);
 
-        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 10.0f, LayerMask.GetMask("LevelGeometry")))
+        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 7.0f, LayerMask.GetMask("LevelGeometry")))
         {
             float distance = this.transform.position.y - hit.point.y;
 
             float factorByDist = targetHeight - distance;
+            if (factorByDist < 0.0f)
+                verticalSpeed = downVerticalSpeed;
+            else
+                verticalSpeed = upVerticalSpeed;
 
             charBehaviour.SetAdditionalVel(new Vector3(0.0f, verticalSpeed * factorByDist, 0.0f));
         }
+        else
+            charBehaviour.SetAdditionalVel(Vector3.zero);
 
         if (fwSkillPressed && shootElapsedTime > shootCooldown)
         {
