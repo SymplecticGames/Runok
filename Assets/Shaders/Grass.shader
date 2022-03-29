@@ -112,7 +112,7 @@ Shader "PGATR/Grass"
 	{
 		float3 pos = IN[0].vertex;
 
-		float3 vNormal = IN[0].normal;
+		float3 vNormal = -IN[0].normal;
 		float4 vTangent = IN[0].tangent;
 		float3 vBinormal = cross(vNormal, vTangent) * vTangent.w;
 
