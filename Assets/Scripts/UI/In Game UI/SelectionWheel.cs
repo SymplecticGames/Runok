@@ -21,8 +21,7 @@ public class SelectionWheel : MonoBehaviour
     public bool isGolem;
 
     [HideInInspector]
-    public int _golemAbility = 1;
-    public int _beetleAbility = 1;
+    public int ability = 1;
 
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     private Vector2 _selectorPosition;
@@ -88,10 +87,7 @@ public class SelectionWheel : MonoBehaviour
                     wheelButtons[2].color = neutralColor;
                     wheelButtons[3].color = neutralColor;
 
-                    if (isGolem)
-                        _golemAbility = 0;
-                    else
-                        _beetleAbility = 0;
+                    ability = 0;
                 }
             }
             else
@@ -104,10 +100,7 @@ public class SelectionWheel : MonoBehaviour
                     wheelButtons[2].color = neutralColor;
                     wheelButtons[3].color = neutralColor;
 
-                    if (isGolem)
-                        _golemAbility = 3;
-                    else
-                        _beetleAbility = 3;
+                    ability = 3;
                 }
                 else if (selectorAngle > 105 && selectorAngle <= 223) // B2
                 {
@@ -116,10 +109,7 @@ public class SelectionWheel : MonoBehaviour
                     wheelButtons[2].color = hoverColor;
                     wheelButtons[3].color = neutralColor;
 
-                    if (isGolem)
-                        _golemAbility = 2;
-                    else
-                        _beetleAbility = 2;
+                    ability = 2;
                 }
                 else // B1
                 {
@@ -128,10 +118,7 @@ public class SelectionWheel : MonoBehaviour
                     wheelButtons[2].color = neutralColor;
                     wheelButtons[3].color = hoverColor;
 
-                    if (isGolem)
-                        _golemAbility = 1;
-                    else
-                        _beetleAbility = 1;
+                    ability = 1;
                 }
             }
         }
@@ -142,10 +129,7 @@ public class SelectionWheel : MonoBehaviour
             wheelButtons[2].color = neutralColor;
             wheelButtons[3].color = neutralColor;
 
-            if (isGolem)
-                _golemAbility = 0;
-            else
-                _beetleAbility = 0;
+            ability = 0;
         }
     }
 

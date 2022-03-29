@@ -4,10 +4,9 @@ using UnityEngine;
 
 public enum LumMode
 {
-    None = 0,
     RadialLight = 1,
-    LightImpulse = 2,
-    LightShot = 3
+    LightShot = 2,
+    LightImpulse = 3
 }
 
 public class BeetleBehaviour : MonoBehaviour
@@ -35,7 +34,7 @@ public class BeetleBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentLumMode = LumMode.None;
+        currentLumMode = LumMode.RadialLight;
 
         charBehaviour = GetComponent<GenericBehaviour>();
 
@@ -69,5 +68,6 @@ public class BeetleBehaviour : MonoBehaviour
     public void ChangeLumMode(LumMode newMode)
     {
         currentLumMode = newMode;
+        Debug.Log(currentLumMode);
     }
 }

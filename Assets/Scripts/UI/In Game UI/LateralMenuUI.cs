@@ -27,6 +27,8 @@ public class LateralMenuUI : MonoBehaviour
     public GameObject selectionWheelGO;
     //public Instructions instructionsScript;
 
+    [SerializeField] private PlayerManager playerManager;
+
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////            
 
     private string _swapKeyboardTag;
@@ -90,6 +92,7 @@ public class LateralMenuUI : MonoBehaviour
             selectionWheelGO.SetActive(false);
             GameManager.instance.play();
             menuOpen = false;
+            playerManager.ApplySelection(selectionWheelGO.GetComponent<SelectionWheel>().ability);
             return;
         }
 

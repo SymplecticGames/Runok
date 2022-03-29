@@ -278,4 +278,16 @@ public class PlayerManager : MonoBehaviour
 
         GameManager.instance.newDeath();
     }
+
+    public void ApplySelection(int selection)
+    {
+        if (selection <= 0)
+            return;
+
+        if (currentCharacter == golemBehaviour)
+            golemBehaviour.GetComponent<GolemBehaviour>().ChangeMaterial((GolemMaterial)selection);
+        else
+            beetleBehaviour.GetComponent<BeetleBehaviour>().ChangeLumMode((LumMode)selection);
+
+    }
 }

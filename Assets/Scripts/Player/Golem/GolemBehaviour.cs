@@ -5,27 +5,25 @@ using UnityEngine.InputSystem;
 
 public enum GolemMaterial
 {
-    Terracotta = 0,
-    Plumber = 1,
+    Terracotta = 1,
+    Plumber = 2,
     Wooden = 3
 }
 
 [System.Serializable]
 public struct GolemMaterialStats
 {
-    public GolemMaterialStats(int hits, float coolDown, int jump, float res, float weight)
+    public GolemMaterialStats(int hits, float coolDown, int jump, float weight)
     {
         this.hitsNeededToKill = hits;
         this.hitCoolDown = coolDown;
         this.jumps = jump;
-        this.resistance = res;
         this.weight = weight;
     }
 
     public int hitsNeededToKill;
     public float hitCoolDown;
     public int jumps;
-    public float resistance;
     public float weight;
 }
 
@@ -133,20 +131,8 @@ public class GolemBehaviour : MonoBehaviour
 
     public void ChangeMaterial(GolemMaterial newMaterial)
     {
-        if (currentMaterial == newMaterial)
-            return;
+        currentMaterial = newMaterial;
 
-        switch(newMaterial)
-        {
-            case GolemMaterial.Terracotta:
-                golemStats = TerracottaStats;
-                break;
-            case GolemMaterial.Plumber:
-                golemStats = PlumberStats;
-                break;
-            case GolemMaterial.Wooden:
-                golemStats = WoodenStats;
-                break;
-        }
+        Debug.Log(currentMaterial);
     }
 }

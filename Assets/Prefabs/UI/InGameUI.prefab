@@ -1145,6 +1145,7 @@ MonoBehaviour:
   - {fileID: 3665640279243655996}
   - {fileID: 2781538815847525454}
   selectionWheelGO: {fileID: 4167879864070127333}
+  playerManager: {fileID: 0}
   menuOpen: 0
 --- !u!1 &4516555386620809659
 GameObject:
@@ -2108,14 +2109,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5871649715921980119}
     m_Modifications:
-    - target: {fileID: 1905844908216905565, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905844908216905565, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1921264675936358449, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2200,14 +2193,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5662234555232833874, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5662234555232833874, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -335
-      objectReference: {fileID: 0}
     - target: {fileID: 8601912599073043718, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
       propertyPath: m_Name
       value: WheelMenu
@@ -2215,18 +2200,6 @@ PrefabInstance:
     - target: {fileID: 8601912599073043718, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8907670496544076414, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8907670496544076414, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 355
-      objectReference: {fileID: 0}
-    - target: {fileID: 8907670496544076414, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -170
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e8a6d110937b9b4cad77c73113c3346, type: 3}
