@@ -38,6 +38,19 @@ public class PlayerManager : MonoBehaviour
     private bool restingBeetle;
     private Light beetleLight;
 
+    [SerializeField] private bool selectionWheelEnabled;
+    private PlayerInput input;
+
+    private void Awake()
+    {
+        input = GetComponent<PlayerInput>();
+
+        if (selectionWheelEnabled)
+            input.actions.FindAction("WheelMenu").Enable();
+        else
+            input.actions.FindAction("WheelMenu").Disable();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +61,7 @@ public class PlayerManager : MonoBehaviour
         camLookAtTarget.localPosition = Vector3.zero;
 
         camOrbitRadius = freelookCam.m_Orbits[1].m_Radius;
-        
+
         // Get golem animator
         animator = currentCharacter.GetComponent<Animator>();
         comboCounter = 0;
@@ -136,14 +149,14 @@ public class PlayerManager : MonoBehaviour
             {
                 comboCounter++;
                 lastComboHitTime = Time.time;
-                
+
                 if (comboCounter == 1)
                 {
                     animator.SetBool("isHit1", true);
                 }
-                
+
                 comboCounter = Mathf.Clamp(comboCounter, 0, 3);
-                
+
                 if (comboCounter >= 2 &&
                     animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
                     animator.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
@@ -180,7 +193,7 @@ public class PlayerManager : MonoBehaviour
             return;
         SwapCharacter();
     }
-    
+
     public void SwapCharacter()
     {
         currentCharacter.movementInput = Vector2.zero;
@@ -194,19 +207,19 @@ public class PlayerManager : MonoBehaviour
             animator.SetBool("isHit1", false);
             animator.SetBool("isHit2", false);
             animator.SetBool("isHit3", false);
-            
+
             if (restingBeetle)
             {
                 restingBeetle = false;
                 beetleBehaviour.controller.enabled = true;
                 beetleBehaviour.transform.SetParent(null);
             }
-            
+
             // Activate beetle
             currentCharacter = beetleBehaviour;
             camLookAtTarget.parent = currentCharacter.transform;
             camLookAtTarget.localPosition = Vector3.zero;
-            
+
             // Get beetle animator
             animator = currentCharacter.GetComponent<Animator>();
             animator.SetBool("isActive", true);  // Turn on beetle animator
@@ -220,7 +233,7 @@ public class PlayerManager : MonoBehaviour
 
             camLookAtTarget.parent = currentCharacter.transform;
             camLookAtTarget.localPosition = Vector3.zero;
-            
+
             // Get golem animator
             animator.SetBool("isActive", false);  // Turn off beetle animator
             animator = currentCharacter.GetComponent<Animator>();
@@ -270,7 +283,7 @@ public class PlayerManager : MonoBehaviour
             SwapCharacter();
             lateralMenu.UISwapCharacter();
         }
-        
+
         beetleBehaviour.Die(respawnPoint);
         AppendBeetle();
 
