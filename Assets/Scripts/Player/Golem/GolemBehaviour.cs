@@ -70,9 +70,6 @@ public class GolemBehaviour : MonoBehaviour
     [SerializeField]
     private GolemMaterialStats WoodenStats;
 
-    [HideInInspector]
-    public bool insideLava;
-
     // Start is called before the first frame update
     void Start()
     {

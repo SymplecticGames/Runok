@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class DeathPit : MonoBehaviour
 {
-    [SerializeField]
     private PlayerManager player;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameManager.instance.player;
     }
 
     // Update is called once per frame
@@ -19,46 +18,12 @@ public class DeathPit : MonoBehaviour
 
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    // If what entered was not the golem or the beetle
-    //    if (!other.CompareTag("Golem") && !other.CompareTag("Beetle"))
-    //        return;
-
-    //    // If the deathpit is lava, and the golem got inside it
-    //    if (CompareTag("Lava") && player.currentCharacter.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Stone)
-    //    {
-    //        golem.insideLava = true;
-    //        return;
-    //    }
-
-    //    player.Die();
-    //}
-
     private void OnTriggerStay(Collider other)
     {
         // If what entered was not the golem or the beetle
         if (!other.CompareTag("Golem") && !other.CompareTag("Beetle"))
             return;
 
-        // If the deathpit is lava, and the golem got inside it
-        if (CompareTag("Lava") && player.currentCharacter.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Plumber)
-        {
-            golem.insideLava = true;
-            return;
-        }
-
         player.Die();
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        // If what entered was not the golem or the beetle
-        if (!other.CompareTag("Golem") && !other.CompareTag("Beetle"))
-            return;
-
-        // If the deathpit is lava, and the golem got inside it
-        if (CompareTag("Lava") && player.currentCharacter.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Plumber)
-            golem.insideLava = false;
     }
 }

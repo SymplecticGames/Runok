@@ -6,7 +6,6 @@ public class Extensible : MonoBehaviour
 {
     [Header("Extensible Properties")]
     [SerializeField] string colliderTag;
-    [SerializeField] PlayerManager playerManager;
 
     private Vector3 restScale;
     private float newScale;
@@ -21,7 +20,7 @@ public class Extensible : MonoBehaviour
     {
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
         {
-            playerManager.Die();
+            GameManager.instance.player.Die();
         }
     }
 

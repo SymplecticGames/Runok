@@ -5,28 +5,25 @@ using UnityEngine;
 
 public class RunesCounterUI : MonoBehaviour
 {
-    /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
     private int nRunes = 0;
 
-    ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
-    public Text runesCounterText;
+    private Text runesCounterText;
 
-
-    public void addRune(int amount)
-    {
-        nRunes += amount;
-        runesCounterText.text = " "+nRunes;
-    }
-    
     // Start is called before the first frame update
     void Start()
     {
-        
+        runesCounterText = GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(nRunes);
+    }
 
+    public void addRune(int amount)
+    {
+        nRunes += amount;
+        runesCounterText.text = " "+nRunes;
     }
 }

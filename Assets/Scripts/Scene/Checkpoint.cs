@@ -8,9 +8,6 @@ public class Checkpoint : MonoBehaviour
     [SerializeField]
     private Transform respawnPoint;
 
-    [SerializeField]
-    private PlayerManager player;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +24,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
         {
-            player.Checkpoint(respawnPoint);
+            GameManager.instance.player.Checkpoint(respawnPoint);
         }
     }
 }

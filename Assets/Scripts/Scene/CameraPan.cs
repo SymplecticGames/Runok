@@ -7,7 +7,6 @@ public class CameraPan : MonoBehaviour
     [SerializeField]
     private float panTime;
 
-    [SerializeField]
     private PlayerManager playerManager;
 
     [SerializeField]
@@ -17,6 +16,11 @@ public class CameraPan : MonoBehaviour
     private float distanceToTarget = 15.0f;
 
     private bool firstTime = true;
+
+    private void Start()
+    {
+        playerManager = GameManager.instance.player;
+    }
 
     public void Pan()
     {

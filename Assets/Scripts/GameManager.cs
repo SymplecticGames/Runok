@@ -31,16 +31,15 @@ public class GameManager : MonoBehaviour
     // list of enemies in the level
     public List<GameObject> enemies;
     // ------------------------------------------------------------------------------------------------------------- //
-    
+
     // --------------------------------------------------- player --------------------------------------------------- //
     // players
-    public GameObject golem;
-    public GameObject beetle;
+    public PlayerManager player;
     [HideInInspector] public bool usingGamepad;
     
     // -------------------------------------------------- inGameUI ------------------------------------------------- //
     // runes counter script
-    public RunesCounterUI runesCounterUIScript;
+    [SerializeField] private RunesCounterUI runesCounterUIScript;
     
     // ------------------------------------------------------------------------------------------------------------- //
     
@@ -159,20 +158,20 @@ public class GameManager : MonoBehaviour
     {
         
         // golem
-        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponentsInChildren<MonoBehaviour>());
+        List<MonoBehaviour> scripts = new List<MonoBehaviour>(player.golemBehaviour.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = false;
         }
-        golem.GetComponent<Animator>().enabled = false;
+        player.golemBehaviour.GetComponent<Animator>().enabled = false;
         
         // beetle
-        scripts = new List<MonoBehaviour>(beetle.GetComponentsInChildren<MonoBehaviour>());
+        scripts = new List<MonoBehaviour>(player.beetleBehaviour.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = false;
         }
-        beetle.GetComponent<Animator>().enabled = false;
+        player.beetleBehaviour.GetComponent<Animator>().enabled = false;
         
         // enemies
         foreach (var enemy in enemies)
@@ -193,20 +192,20 @@ public class GameManager : MonoBehaviour
     {
 
         // golem
-        List<MonoBehaviour> scripts = new List<MonoBehaviour>(golem.GetComponentsInChildren<MonoBehaviour>());
+        List<MonoBehaviour> scripts = new List<MonoBehaviour>(player.golemBehaviour.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = true;
         }
-        golem.GetComponent<Animator>().enabled = true;
+        player.golemBehaviour.GetComponent<Animator>().enabled = true;
         
         // beetle
-        scripts = new List<MonoBehaviour>(beetle.GetComponentsInChildren<MonoBehaviour>());
+        scripts = new List<MonoBehaviour>(player.beetleBehaviour.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
         {
             script.enabled = true;
         }
-        beetle.GetComponent<Animator>().enabled = true;
+        player.beetleBehaviour.GetComponent<Animator>().enabled = true;
         
         // enemies
         foreach (var enemy in enemies)

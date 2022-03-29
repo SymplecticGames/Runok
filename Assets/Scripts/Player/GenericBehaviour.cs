@@ -43,9 +43,6 @@ public class GenericBehaviour : MonoBehaviour
     [HideInInspector]
     public bool jumpPressed;
 
-    [SerializeField] 
-    private PlayerManager player;
-
     [HideInInspector]
     public Vector3 playerVel;
 
@@ -129,7 +126,7 @@ public class GenericBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            player.Die();
+            GameManager.instance.player.Die();
         }
     }
     

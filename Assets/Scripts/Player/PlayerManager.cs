@@ -12,11 +12,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private Transform respawnPoint;
 
-    [SerializeField]
-    private GenericBehaviour golemBehaviour;
+    public GenericBehaviour golemBehaviour;
 
-    [SerializeField]
-    private GenericBehaviour beetleBehaviour;
+    public GenericBehaviour beetleBehaviour;
 
     [SerializeField]
     private LateralMenuUI lateralMenu;
@@ -79,8 +77,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
         {
-            float factor = golem.insideLava ? 0.5f : 1.0f;
-            currentCharacter.movementFactor = factor / golem.golemStats.weight;
+            currentCharacter.movementFactor = 1.0f / golem.golemStats.weight;
 
             currentCharacter.maxJumps = golem.golemStats.jumps;
 
@@ -286,8 +283,6 @@ public class PlayerManager : MonoBehaviour
 
         beetleBehaviour.Die(respawnPoint);
         AppendBeetle();
-
-        golemBehaviour.GetComponent<GolemBehaviour>().insideLava = false;
 
         GameManager.instance.newDeath();
     }
