@@ -116,8 +116,9 @@ public class Enemy : MonoBehaviour
         foreach (Renderer visualPart in GetComponentsInChildren<Renderer>())
             visualPart.enabled = false;
 
-        // disenable CC
+        // Disable CC and collider
         gameObject.GetComponent<CharacterController>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
 
     }
 

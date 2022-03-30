@@ -63,15 +63,22 @@ public class GolemBehaviour : MonoBehaviour
     [SerializeField]
     private GolemMaterialStats WoodenStats;
 
+    private Animator animator;
+
+    [HideInInspector]
+    public bool continueCombo = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
     
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("continueCombo", continueCombo);
+
         switch (currentMaterial)
         {
             case GolemMaterial.Terracotta:
@@ -85,23 +92,6 @@ public class GolemBehaviour : MonoBehaviour
             case GolemMaterial.Wooden:
                 golemStats = WoodenStats;
                 break;
-        }
-
-        // Player presses hit. Hit window starts
-        if (hitPressed && !inCoolDown)
-        {
-            inCoolDown = true;
-            coolDownTimer = 0.0f;
-        }
-
-        if (inCoolDown)
-        {
-            coolDownTimer += Time.deltaTime;
-            if (coolDownTimer >= golemStats.hitCoolDown)
-            {
-                // The cooldown ends
-                inCoolDown = false;
-            }
         }
     }
 
@@ -130,5 +120,10 @@ public class GolemBehaviour : MonoBehaviour
         currentMaterial = newMaterial;
 
         Debug.Log(currentMaterial);
+    }
+
+    private void ResetHitCombo()
+    {
+        continueCombo = true;
     }
 }
