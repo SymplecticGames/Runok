@@ -914,7 +914,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3344334297768477913}
-  - component: {fileID: 182885697327267153}
+  - component: {fileID: 2479325760031830566}
   - component: {fileID: 3289683469279122185}
   - component: {fileID: 6290289370386142380}
   - component: {fileID: 1524314910}
@@ -942,7 +942,7 @@ Transform:
   m_Father: {fileID: 2018659996360999601}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &182885697327267153
+--- !u!136 &2479325760031830566
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -952,10 +952,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 1
+  m_Height: 4.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.5, z: -0.6}
 --- !u!143 &3289683469279122185
 CharacterController:
   m_ObjectHideFlags: 0
@@ -968,12 +968,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 4.5
-  m_Radius: 1
+  m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Center: {x: 0, y: 1.5, z: -0.6}
 --- !u!114 &6290289370386142380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,6 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f34a3006c551984d84dbe1376d687c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowWalking: 1
   spawnAfterTime: 0
   spawnTime: 5
   respawnAfterPlayerDeath: 1

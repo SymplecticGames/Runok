@@ -151,13 +151,4 @@ public class GenericBehaviour : MonoBehaviour
     {
         canMove = false;
     }
-
-    private void OnControllerColliderHit(ControllerColliderHit other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            GameManager.instance.player.Die();
-        }
-    }
-
 }
