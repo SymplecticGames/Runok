@@ -194,7 +194,6 @@ public class PlayerManager : MonoBehaviour
             camLookAtTarget.localPosition = Vector3.zero;
 
             // Get golem animator
-            animator.SetBool("isActive", false);  // Turn off beetle animator
             animator = currentCharacter.GetComponent<Animator>();
         }
     }
@@ -206,9 +205,12 @@ public class PlayerManager : MonoBehaviour
 
         if (currentCharacter == beetleBehaviour)
         {
+            animator.SetBool("isActive", false);  // Turn off beetle animator
             SwapCharacter();
             lateralMenu.UISwapCharacter();
         }
+        else
+            beetleBehaviour.GetComponent<Animator>().SetBool("isActive", false);  // Turn off beetle animator
 
         AppendBeetle();
     }
@@ -244,6 +246,8 @@ public class PlayerManager : MonoBehaviour
 
         beetleBehaviour.Die(respawnPoint);
         AppendBeetle();
+
+        beetleBehaviour.GetComponent<Animator>().SetBool("isActive", false);
 
         GameManager.instance.newDeath();
     }

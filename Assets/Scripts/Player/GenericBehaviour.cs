@@ -8,7 +8,7 @@ public class GenericBehaviour : MonoBehaviour
     public CharacterController controller;
 
     [HideInInspector]
-    public bool canMove = true;
+    private bool isAttacking = false;
 
     [HideInInspector]
     public bool canRotate = true;
@@ -66,7 +66,7 @@ public class GenericBehaviour : MonoBehaviour
 
         playerVel += additionalVel;
 
-        if (canMove)
+        if (!isAttacking || CompareTag("Beetle"))
             playerVel += Movement();
 
         if (jumpFactor > 0.0f)
@@ -77,16 +77,15 @@ public class GenericBehaviour : MonoBehaviour
         if (controller.enabled)
             controller.Move(playerVel * Time.deltaTime);
 
-        if (canRotate && movementInput.magnitude > 0.0f)
-            Rotation();
-
-        if (!canMove)
+        if (isAttacking)
         {
-            if (movementInput.magnitude <= 0.0f)
+            if (CompareTag("Beetle") || movementInput.magnitude <= 0.0f)
                 InstantRotation(Camera.main.transform.forward);
             else
                 InstantRotation(controller.velocity);
         }
+        else if (canRotate && movementInput.magnitude > 0.0f)
+            Rotation();
 
         if (controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
             jumps = 0;
@@ -144,11 +143,11 @@ public class GenericBehaviour : MonoBehaviour
 
     private void EnableMovement()
     {
-        canMove = true;
+        isAttacking = false;
     }
 
     private void DisableMovement()
     {
-        canMove = false;
+        isAttacking = true;
     }
 }
