@@ -31,17 +31,7 @@ public class GolemBehaviour : MonoBehaviour
 {
     public Transform beetleRestPose;
 
-    [Space]
-
     [Header("Hit control")]
-    // Hit Window
-    [SerializeField]
-    [Tooltip("How long the collider stays active after pressing hit, in seconds")]
-    private float hitWindow;
-
-    private float hitWindowTimer;
-
-    private bool inHitWindow;
 
     // CoolDown
     private float coolDownTimer;
@@ -49,7 +39,10 @@ public class GolemBehaviour : MonoBehaviour
     private bool inCoolDown;
 
     [SerializeField]
-    private Collider hitRegister;
+    private Collider leftHitRegister;
+
+    [SerializeField]
+    private Collider rightHitRegister;
 
     [HideInInspector]
     public bool hitPressed;
@@ -97,22 +90,8 @@ public class GolemBehaviour : MonoBehaviour
         // Player presses hit. Hit window starts
         if (hitPressed && !inCoolDown)
         {
-            hitRegister.enabled = true;
-            inHitWindow = true;
             inCoolDown = true;
-            hitWindowTimer = 0.0f;
             coolDownTimer = 0.0f;
-        }
-
-        if (inHitWindow)
-        {
-            hitWindowTimer += Time.deltaTime;
-            if (hitWindowTimer >= hitWindow)
-            {
-                // The hit window ends
-                hitRegister.enabled = false;
-                inHitWindow = false;
-            }
         }
 
         if (inCoolDown)
@@ -124,6 +103,26 @@ public class GolemBehaviour : MonoBehaviour
                 inCoolDown = false;
             }
         }
+    }
+
+    public void EnableLeftHitWindow()
+    {
+        leftHitRegister.enabled = true;
+    }
+
+    public void DisableLeftHitWindow()
+    {
+        leftHitRegister.enabled = false;
+    }
+
+    public void EnableRightHitWindow()
+    {
+        rightHitRegister.enabled = true;
+    }
+
+    public void DisableRightHitWindow()
+    {
+        rightHitRegister.enabled = false;
     }
 
     public void ChangeMaterial(GolemMaterial newMaterial)

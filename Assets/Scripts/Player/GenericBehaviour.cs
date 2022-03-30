@@ -8,6 +8,9 @@ public class GenericBehaviour : MonoBehaviour
     public CharacterController controller;
 
     [HideInInspector]
+    public bool canMove = true;
+
+    [HideInInspector]
     public bool canRotate = true;
 
     [HideInInspector]
@@ -19,13 +22,13 @@ public class GenericBehaviour : MonoBehaviour
     [HideInInspector]
     public float jumpFactor;
 
+    [SerializeField]
+    private float gravityFactor;
+
     [HideInInspector]
     public int maxJumps;
 
     private int jumps;
-
-    [SerializeField]
-    private Vector3 gravity = new Vector3(0.0f, -9.8f, 0.0f);
 
     [SerializeField]
     private Vector3 jumpSpeed;
@@ -59,11 +62,12 @@ public class GenericBehaviour : MonoBehaviour
     {
         playerVel = Vector3.zero;
 
-        playerVel += gravity * (1.0f - jumpFactor) + jumpSpeed * jumpFactor;
+        playerVel += gravityFactor * GameManager.gravity * (1.0f - jumpFactor) + jumpSpeed * jumpFactor;
 
         playerVel += additionalVel;
 
-        playerVel += Movement();
+        if (canMove)
+            playerVel += Movement();
 
         if (jumpFactor > 0.0f)
             jumpFactor -= Time.deltaTime;
@@ -76,8 +80,16 @@ public class GenericBehaviour : MonoBehaviour
         if (canRotate && movementInput.magnitude > 0.0f)
             Rotation();
 
+        if (!canMove)
+        {
+            if (movementInput.magnitude <= 0.0f)
+                InstantRotation(Camera.main.transform.forward);
+            else
+                InstantRotation(controller.velocity);
+        }
+
         if (controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
-            jumps = 0;     
+            jumps = 0;
     }
 
     public void SetAdditionalVel(Vector3 additionalVelocity)
@@ -96,14 +108,22 @@ public class GenericBehaviour : MonoBehaviour
             jumpFactor = maxJumpFactor;
             jumps++;
         }
-            
+
         return movementVel;
+    }
+
+    private void InstantRotation(Vector3 target)
+    {
+        // Rotation
+        Vector3 targetLookAt = this.transform.position + target;
+        targetLookAt.y = this.transform.position.y;
+
+        Vector3 forwardVec = targetLookAt - this.transform.position;
+        this.transform.forward = Vector3.Slerp(this.transform.forward, forwardVec, 3.0f * rotFactor * Time.deltaTime);
     }
 
     private void Rotation()
     {
-        // Hacer esto mejor con un slerp
-
         // Rotation
         Vector3 targetLookAt = this.transform.position + controller.velocity;
         targetLookAt.y = this.transform.position.y;
@@ -121,7 +141,17 @@ public class GenericBehaviour : MonoBehaviour
 
         controller.enabled = true;
     }
-    
+
+    private void EnableMovement()
+    {
+        canMove = true;
+    }
+
+    private void DisableMovement()
+    {
+        canMove = false;
+    }
+
     private void OnControllerColliderHit(ControllerColliderHit other)
     {
         if (other.gameObject.CompareTag("Enemy"))
@@ -129,5 +159,5 @@ public class GenericBehaviour : MonoBehaviour
             GameManager.instance.player.Die();
         }
     }
-    
+
 }

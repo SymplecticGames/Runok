@@ -30,7 +30,6 @@ public class PlayerManager : MonoBehaviour
     private Animator animator;
     private int comboCounter;
     private float lastComboHitTime;
-    private float maxComboDelay;
     private bool continuousShot;
 
     private bool restingBeetle;
@@ -64,7 +63,6 @@ public class PlayerManager : MonoBehaviour
         animator = currentCharacter.GetComponent<Animator>();
         comboCounter = 0;
         lastComboHitTime = 0.0f;
-        maxComboDelay = 0.7f;
         continuousShot = false;
 
         // Set beetle on Golem's back
@@ -104,7 +102,7 @@ public class PlayerManager : MonoBehaviour
                 comboCounter = 0;
             }
 
-            if (Time.time - lastComboHitTime > maxComboDelay)
+            if (Time.time - lastComboHitTime > golem.golemStats.hitCoolDown)
             {
                 comboCounter = 0;
             }

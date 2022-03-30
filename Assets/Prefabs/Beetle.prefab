@@ -574,12 +574,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  canMove: 1
   canRotate: 1
   movementFactor: 0
   maxJumpFactor: 1
   jumpFactor: 0
+  gravityFactor: 0
   maxJumps: 0
-  gravity: {x: 0, y: 0, z: 0}
   jumpSpeed: {x: 0, y: 0, z: 0}
   rotFactor: 6
   baseMovementSpeed: 12
@@ -604,7 +605,7 @@ MonoBehaviour:
   shootCooldown: 1
   shootElapsedTime: 0
   fwSkillPressed: 0
-  currentLumMode: 0
+  currentLumMode: 1
 --- !u!54 &6655291664893331779
 Rigidbody:
   m_ObjectHideFlags: 0
