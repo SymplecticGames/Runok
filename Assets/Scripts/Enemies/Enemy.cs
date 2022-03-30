@@ -9,7 +9,10 @@ public class Enemy : MonoBehaviour
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
     [SerializeField]
     private bool allowWalking;
-    
+
+    [SerializeField]
+    private bool shadowEnemy;
+
     // spawn variables
     public bool spawnAfterTime;
     public float spawnTime = 10.0f;
@@ -89,6 +92,27 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        if (other.CompareTag("Bullet"))
+        {
+            other.GetComponent<LightBullet>().SetInactive();
+
+            if (shadowEnemy)
+            {
+                // update hit counter
+                _hitCounter++;
+
+                bezier.enabled = false;
+                animator.SetBool("isHit", true);
+
+                Debug.Log(_hitCounter);
+                // if hits are enough to defeat the enemy, then, do deafeated animation
+                if (_hitCounter >= 2)
+                {
+                    // the enemy is defeated
+                    Die();
+                }
+            }
+        }
     }
 
     public void Die()

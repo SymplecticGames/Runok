@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
             {
                 script.enabled = false;
             }
-            //enemy.GetComponent<Animator>().enabled = false;
+            enemy.GetComponent<Animator>().enabled = false;
         }
 
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
             {
                 script.enabled = true;
             }
-            //enemy.GetComponent<Animator>().enabled = true;
+            enemy.GetComponent<Animator>().enabled = true;
         }
         
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;

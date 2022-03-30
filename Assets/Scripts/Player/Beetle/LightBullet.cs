@@ -56,8 +56,13 @@ public class LightBullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void SetInactive()
     {
-       
+        despawned = true;
+
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+
+        gameObject.SetActive(false);
     }
 }

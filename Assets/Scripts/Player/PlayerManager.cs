@@ -97,7 +97,7 @@ public class PlayerManager : MonoBehaviour
         {
             currentCharacter.movementFactor = 1.0f;
             if (continuousShot && beetle.shootElapsedTime > beetle.shootCooldown)
-                animator.SetTrigger("Shoot");
+                animator.SetBool("Shoot", true);
         }
     }
 
@@ -112,12 +112,20 @@ public class PlayerManager : MonoBehaviour
 
     public void OnActiveBw_Jump(InputAction.CallbackContext context)
     {
-        currentCharacter.jumpPressed = context.performed;
-        if (currentCharacter == golemBehaviour && context.started)
-            animator.SetBool("isJumping", true);
-        else if (context.started)
+        if (currentCharacter == golemBehaviour)
         {
-            animator.SetTrigger("Ray");
+            currentCharacter.jumpPressed = context.performed;
+
+            if (context.started)
+                animator.SetBool("isJumping", true);
+        }
+
+        if (currentCharacter.TryGetComponent(out BeetleBehaviour beetle))
+        {
+            beetle.bwSkillPressed = context.performed;
+
+            if (context.started)
+                animator.SetBool("Ray", true);
         }
     }
 
@@ -144,7 +152,7 @@ public class PlayerManager : MonoBehaviour
             if (context.started && beetle.shootElapsedTime > beetle.shootCooldown)
             {
                 continuousShot = false;
-                animator.SetTrigger("Shoot");
+                animator.SetBool("Shoot", true);
             }
         }
     }

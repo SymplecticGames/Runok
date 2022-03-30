@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TriggerDoor : MonoBehaviour
+public class ActionTriggerer : MonoBehaviour
 {
     [SerializeField]
     private UnityEvent action;
+
+    [SerializeField]
+    private string triggererTag = "Beetle";
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,9 @@ public class TriggerDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Beetle"))
+        if (other.CompareTag(triggererTag))
+        {
             action.Invoke();
+        }
     }
 }

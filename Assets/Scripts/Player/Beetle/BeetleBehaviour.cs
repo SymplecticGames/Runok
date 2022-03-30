@@ -22,19 +22,31 @@ public class BeetleBehaviour : MonoBehaviour
 
     private float verticalSpeed;
 
+    private float originalCoodown;
+
     // Shoot light bullets
     [SerializeField]
     public float shootCooldown;
     private BulletPool bulletPool;
     public float shootElapsedTime;
 
+    [SerializeField]
+    private GameObject forwardRay;
+
+    [SerializeField]
+    private GameObject backwardRay;
+
     [HideInInspector]
     public bool fwSkillPressed;
 
+    [HideInInspector]
+    public bool bwSkillPressed;
 
     private GenericBehaviour charBehaviour;
 
     public LumMode currentLumMode;
+
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +59,10 @@ public class BeetleBehaviour : MonoBehaviour
 
         bulletPool = GetComponent<BulletPool>();
         shootElapsedTime = shootCooldown;
+
+        animator = GetComponent<Animator>();
+
+        originalCoodown = shootCooldown;
     }
 
     // Update is called once per frame
@@ -69,18 +85,65 @@ public class BeetleBehaviour : MonoBehaviour
         else
             charBehaviour.SetAdditionalVel(Vector3.zero);
 
-        if (fwSkillPressed && shootElapsedTime > shootCooldown)
+        switch (currentLumMode)
         {
-            bulletPool.SpawnBullet();
-            shootElapsedTime = 0;
-        }
+            case LumMode.RadialLight:
+                break;
+            case LumMode.LightImpulse:
+                shootCooldown = 0;
 
-        shootElapsedTime += Time.deltaTime;
+                if (fwSkillPressed)
+                {
+                    // Impulse
+                    Debug.Log("bw ray");
+
+                    // Ray fw
+                    backwardRay.SetActive(true);
+                }
+
+                if (bwSkillPressed)
+                {
+                    // Impulse
+                    Debug.Log("fw ray");
+
+                    // Ray fw
+                    forwardRay.SetActive(true);
+                }
+
+                break;
+            case LumMode.LightShot:
+                shootCooldown = originalCoodown;
+
+                if (fwSkillPressed && shootElapsedTime > shootCooldown)
+                {
+                    bulletPool.SpawnBullet();
+                    shootElapsedTime = 0;
+                }
+
+                shootElapsedTime += Time.deltaTime;
+                break;
+        }
     }
 
     public void ChangeLumMode(LumMode newMode)
     {
         currentLumMode = newMode;
         Debug.Log(currentLumMode);
+    }
+
+    private void DeactivateRays()
+    {
+        forwardRay.SetActive(false);
+        backwardRay.SetActive(false);
+    }
+
+    private void SetShootFalse()
+    {
+        animator.SetBool("Shoot", false);
+    }
+
+    private void SetRayFalse()
+    {
+        animator.SetBool("Ray", false);
     }
 }
