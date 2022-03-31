@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 2818099675424526842}
   - component: {fileID: 2818099675424526843}
   - component: {fileID: 2818099675424526840}
-  - component: {fileID: 2818099675424526791}
   m_Layer: 0
-  m_Name: Pushable
+  m_Name: ExtensibleBlock
   m_TagString: Pushable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,18 +112,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2818099675424526791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2818099675424526841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48ea3da70eca2de4da30426856489f0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  applierTag: Hitter
-  forceToApply: 8
-  cubeRespawn: {fileID: 0}

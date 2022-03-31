@@ -3201,6 +3201,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 90288137044050475, guid: e02cb0f342fe47d45aac3173ae1db8cb, type: 3}
   m_PrefabInstance: {fileID: 1396212514}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1411603903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2453525739542956952, guid: 05496ba0c309fe74dac793867931248d, type: 3}
+  m_PrefabInstance: {fileID: 6776540506455857000}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023c4ae09133ad243865154acc0512df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1417418434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4216,9 +4227,9 @@ MonoBehaviour:
   minNumRunesToCollect: 3
   altar: {fileID: 747229234}
   enemies: []
-  player: {fileID: 0}
+  player: {fileID: 745358889}
   usingGamepad: 0
-  runesCounterUIScript: {fileID: 0}
+  runesCounterUIScript: {fileID: 1411603903}
   mainLight: {fileID: 982756973}
 --- !u!4 &1818878431
 Transform:
@@ -9387,6 +9398,10 @@ PrefabInstance:
       propertyPath: camLookAtTarget
       value: 
       objectReference: {fileID: 1748840433}
+    - target: {fileID: 6776540506789089601, guid: 05496ba0c309fe74dac793867931248d, type: 3}
+      propertyPath: selectionWheelEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6776540506789089602, guid: 05496ba0c309fe74dac793867931248d, type: 3}
       propertyPath: m_RootOrder
       value: 2
