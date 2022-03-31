@@ -7,8 +7,7 @@ public class Enemy : MonoBehaviour
 {
 
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
-    [SerializeField]
-    private bool allowWalking;
+    public bool allowWalking;
 
     [SerializeField]
     private bool shadowEnemy;
@@ -113,6 +112,12 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+
+        if (other.CompareTag("Ray"))
+        {
+            if (shadowEnemy)
+                Die();
+        }
     }
 
     public void Die()
@@ -163,7 +168,7 @@ public class Enemy : MonoBehaviour
         bezier.enabled = allowWalking;
     }
 
-    private void EnsableMovement()
+    private void EnableMovement()
     {
         bezier.enabled = allowWalking;
         animator.SetBool("isHit", false);

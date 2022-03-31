@@ -57,8 +57,6 @@ public class BeetleBehaviour : MonoBehaviour
 
     private GenericBehaviour charBehaviour;
 
-    private Rigidbody body;
-
     public LumMode currentLumMode;
 
     private Animator animator;
@@ -83,7 +81,6 @@ public class BeetleBehaviour : MonoBehaviour
         verticalSpeed = downVerticalSpeed;
 
         charBehaviour = GetComponent<GenericBehaviour>();
-        body = GetComponent<Rigidbody>();
 
         bulletPool = GetComponent<BulletPool>();
         shootElapsedTime = shootCooldown;

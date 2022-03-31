@@ -93,7 +93,7 @@ public class GolemBehaviour : MonoBehaviour
 
         // Material dependant stats
         genericBehaviour.movementFactor = 1.0f / golemStats.weight;
-        genericBehaviour.maxJumps = golemStats.jumps;
+        genericBehaviour.maxJumps = genericBehaviour.controller.isGrounded ? golemStats.jumps : golemStats.jumps - 1;
 
         // Animator controller update
         animator.SetBool("canDoCombo", canDoCombo);

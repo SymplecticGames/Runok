@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1373860283652964038}
-  - component: {fileID: 6166546426458023632}
+  - component: {fileID: 7391894691480666732}
   m_Layer: 7
   m_Name: LeftPunchRegister
   m_TagString: Hitter
@@ -222,8 +222,8 @@ Transform:
   m_Father: {fileID: 2022160795733066218}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6166546426458023632
-SphereCollider:
+--- !u!65 &7391894691480666732
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -231,10 +231,10 @@ SphereCollider:
   m_GameObject: {fileID: 1995677919525363334}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.7
-  m_Center: {x: 0.7, y: -2.5, z: 0}
+  m_Size: {x: 2, y: 1.5, z: 1}
+  m_Center: {x: 0.5, y: -2, z: 0}
 --- !u!1 &2051518914087515209
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5093301856880581384}
-  - component: {fileID: 1074726072199360139}
+  - component: {fileID: 7931645416450534476}
   m_Layer: 7
   m_Name: RightPunchRegister
   m_TagString: Hitter
@@ -633,8 +633,8 @@ Transform:
   m_Father: {fileID: 4953326940068036088}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1074726072199360139
-SphereCollider:
+--- !u!65 &7931645416450534476
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -642,10 +642,10 @@ SphereCollider:
   m_GameObject: {fileID: 5732271449442407784}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.7
-  m_Center: {x: -0.7, y: -2.5, z: 0}
+  m_Size: {x: 2, y: 1.5, z: 1}
+  m_Center: {x: -0.5, y: -2, z: 0}
 --- !u!1 &5815355651429050061
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,19 +867,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  canMove: 1
   canRotate: 1
   movementFactor: 0
   maxJumpFactor: 1
   jumpFactor: 0
   gravityFactor: 1
   maxJumps: 0
+  jumps: 0
   jumpSpeed: {x: 0, y: 10, z: 0}
   rotFactor: 4
   baseMovementSpeed: 10
   movementInput: {x: 0, y: 0}
   jumpPressed: 0
   playerVel: {x: 0, y: 0, z: 0}
+  currentForwardTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &1684484324024519184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,9 +894,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beetleRestPose: {fileID: 8480557706266092662}
-  leftHitRegister: {fileID: 6166546426458023632}
-  rightHitRegister: {fileID: 1074726072199360139}
-  hitPressed: 0
+  leftHitRegister: {fileID: 7391894691480666732}
+  rightHitRegister: {fileID: 7931645416450534476}
   currentMaterial: 1
   golemStats:
     hitsNeededToKill: 0
@@ -917,7 +917,6 @@ MonoBehaviour:
     hitCoolDown: 1.5
     jumps: 2
     weight: 0.75
-  continueCombo: 1
 --- !u!95 &89025840277155712
 Animator:
   serializedVersion: 3

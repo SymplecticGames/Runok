@@ -107,7 +107,7 @@ public class GenericBehaviour : MonoBehaviour
         animator.SetBool("isWalking", movementInput.magnitude > 0); // Golem/Beetle
 
         // Golem walkspeed, jump and falling
-        if (!isAttacking && jumps == 0)
+        if (!isAttacking && controller.isGrounded)
             animator.SetFloat("WalkSpeed", Mathf.Clamp(movementInput.magnitude, 0.1f, 1.0f));
         else
             animator.SetFloat("WalkSpeed", 1.0f);
@@ -138,9 +138,10 @@ public class GenericBehaviour : MonoBehaviour
         {
             jumpPressed = false;
             jumpFactor = maxJumpFactor;
-            jumps++;
+            if (!controller.isGrounded) jumps++;
         }
 
+        // Allow some movement (0.4) while shooting a ray
         if (TryGetComponent(out BeetleBehaviour beetle) && (beetle.shootingFrontRay || beetle.shootingBackRay))
             return movementVel * 0.4f;
 

@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
         player.beetleBehaviour.GetComponent<Animator>().enabled = false;
         
         // enemies
-        foreach (var enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
             scripts = new List<MonoBehaviour>(enemy.GetComponentsInChildren<MonoBehaviour>());
             foreach (MonoBehaviour script in scripts)
@@ -210,13 +210,15 @@ public class GameManager : MonoBehaviour
         player.beetleBehaviour.GetComponent<Animator>().enabled = true;
         
         // enemies
-        foreach (var enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
             scripts = new List<MonoBehaviour>(enemy.GetComponentsInChildren<MonoBehaviour>());
             foreach (MonoBehaviour script in scripts)
             {
                 script.enabled = true;
             }
+
+            enemy.GetComponent<BezierFollow>().enabled = enemy.GetComponent<Enemy>().allowWalking;
             enemy.GetComponent<Animator>().enabled = true;
         }
         

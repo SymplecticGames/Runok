@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 6463726785098186383}
   m_Layer: 0
   m_Name: BackBeetleRay
-  m_TagString: Untagged
+  m_TagString: Ray
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5638,9 +5638,11 @@ MonoBehaviour:
   shootPressed: 0
   frontRayPressed: 0
   backRayPressed: 0
+  shootingBackRay: 0
+  shootingFrontRay: 0
   currentLumMode: 1
   rayClip: {fileID: 7400000, guid: cf674a69ffe37284c971076b169ea2f3, type: 2}
-  impulseFactor: 10
+  impulseFactor: 20
 --- !u!54 &6655291664893331779
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11264,7 +11266,7 @@ GameObject:
   - component: {fileID: 1423125892270999034}
   m_Layer: 0
   m_Name: FrontBeetleRay
-  m_TagString: Untagged
+  m_TagString: Ray
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
