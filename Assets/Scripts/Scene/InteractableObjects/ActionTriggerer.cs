@@ -6,10 +6,10 @@ using UnityEngine.Events;
 public class ActionTriggerer : MonoBehaviour
 {
     [SerializeField]
-    private UnityEvent action;
+    private List<string> triggererTags;
 
     [SerializeField]
-    private string triggererTag = "Beetle";
+    private UnityEvent action;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class ActionTriggerer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(triggererTag))
+        if (triggererTags.Contains(other.tag))
         {
             action.Invoke();
         }

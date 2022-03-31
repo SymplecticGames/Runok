@@ -88,25 +88,7 @@ public class GenericBlock : MonoBehaviour
         {
             // Pushable
             if (golem.currentMaterial == GolemMaterial.Terracotta)
-            {
-                forwardAngle = Vector3.Angle(transform.forward, other.transform.forward);
-                leftAngle = Vector3.Angle(transform.forward, -other.transform.right);
-                backwardAngle = Vector3.Angle(transform.forward, -other.transform.forward);
-                rightAngle = Vector3.Angle(transform.forward, other.transform.right);
-
-                float minAngle = Mathf.Min(forwardAngle, Mathf.Min(leftAngle, Mathf.Min(backwardAngle, rightAngle)));
-
-                Vector3 dir = transform.forward;
-
-                if (minAngle == leftAngle)
-                    dir = transform.right;
-                else if (minAngle == backwardAngle)
-                    dir = -transform.forward;
-                else if (minAngle == rightAngle)
-                    dir = -transform.right;
-
-                rb.AddForce(dir * forceToApply, ForceMode.Impulse);
-            }
+                rb.AddForce(golem.transform.forward * forceToApply, ForceMode.Impulse);
 
             // Breakable
             if (golem.currentMaterial == GolemMaterial.Plumber)

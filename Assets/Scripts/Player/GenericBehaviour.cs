@@ -105,7 +105,10 @@ public class GenericBehaviour : MonoBehaviour
         animator.SetBool("isWalking", movementInput.magnitude > 0); // Golem/Beetle
 
         // Golem walkspeed, jump and falling
-        animator.SetFloat("WalkSpeed", Mathf.Clamp(movementInput.magnitude, 0.1f, 1.0f));
+        if (!isAttacking && jumps == 0)
+            animator.SetFloat("WalkSpeed", Mathf.Clamp(movementInput.magnitude, 0.1f, 1.0f));
+        else
+            animator.SetFloat("WalkSpeed", 1.0f);
 
         if (jumpPressed && !isAttacking)
             animator.SetBool("isJumping", true);

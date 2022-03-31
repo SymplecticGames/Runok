@@ -24,9 +24,15 @@ public class BeetleBehaviour : MonoBehaviour
 
     // Shoot light bullets
     [SerializeField]
-    public float shootCooldown;
+    private float shootCooldown;
     private BulletPool bulletPool;
-    public float shootElapsedTime;
+    private float shootElapsedTime;
+
+    // Light bullets
+    [SerializeField]
+    private float rayCooldown;
+    private float fwRayElapsedTime;
+    private float bwRayElapsedTime;
 
     [SerializeField]
     private GameObject frontRay;
@@ -43,11 +49,18 @@ public class BeetleBehaviour : MonoBehaviour
     [HideInInspector]
     public bool backRayPressed;
 
+    private bool shootingBackRay = false;
+
+    private bool shootingFrontRay = false;
+
     private GenericBehaviour charBehaviour;
 
     public LumMode currentLumMode;
 
     private Animator animator;
+
+    [SerializeField]
+    private AnimationClip rayClip;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +73,9 @@ public class BeetleBehaviour : MonoBehaviour
 
         bulletPool = GetComponent<BulletPool>();
         shootElapsedTime = shootCooldown;
+
+        bwRayElapsedTime = rayCooldown;
+        fwRayElapsedTime = rayCooldown;
 
         animator = GetComponent<Animator>();
     }
@@ -96,7 +112,7 @@ public class BeetleBehaviour : MonoBehaviour
                     animator.SetBool("BackRay", true);
 
                     bulletPool.SpawnBullet();
-                    shootElapsedTime = 0;
+                    shootElapsedTime = 0.0f;
                 }
                 else
                     animator.SetBool("BackRay", false);
@@ -104,26 +120,28 @@ public class BeetleBehaviour : MonoBehaviour
                 shootElapsedTime += Time.deltaTime;
                 break;
             case LumMode.LightImpulse:
-                animator.SetBool("BackRay", backRayPressed);
-                animator.SetBool("FrontRay", frontRayPressed);
-
-                if (frontRayPressed)
+                if (frontRayPressed && !shootingFrontRay && fwRayElapsedTime > rayCooldown)
                 {
-                    // Impulse backwards
-                    
+                    shootingFrontRay = true;
+                    animator.SetBool("FrontRay", true);
 
-                    // Ray fw
-                    frontRay.SetActive(true);
+                    StartCoroutine(ImpulseBwAndFrontRay(rayClip.length));
                 }
+                else
+                    animator.SetBool("FrontRay", false);
 
-                if (backRayPressed)
+                if (backRayPressed && !shootingBackRay && bwRayElapsedTime > rayCooldown)
                 {
-                    // Impulse forward
-                    
+                    shootingBackRay = true;
+                    animator.SetBool("BackRay", true);
 
-                    // Ray fw
-                    backRay.SetActive(true);
+                    StartCoroutine(ImpulseFwAndBackRay(rayClip.length));
                 }
+                else
+                    animator.SetBool("BackRay", false);
+
+                fwRayElapsedTime += Time.deltaTime;
+                bwRayElapsedTime += Time.deltaTime;
 
                 break;
         }
@@ -132,16 +150,47 @@ public class BeetleBehaviour : MonoBehaviour
     public void ChangeLumMode(LumMode newMode)
     {
         currentLumMode = newMode;
-        Debug.Log(currentLumMode);
     }
 
-    #region Animation Events
+    // Impulse Backward and FrontRay
+    private IEnumerator ImpulseBwAndFrontRay(float rayDuration)
+    {
+        // Impulse backwards
 
-    private void DeactivateRays()
+
+        // Front Ray
+        frontRay.SetActive(true);
+
+        yield return new WaitForSeconds(rayDuration);
+
+        DeactivateFrontRay();
+    }
+
+    private void DeactivateFrontRay()
     {
         frontRay.SetActive(false);
-        backRay.SetActive(false);
+        fwRayElapsedTime = 0.0f;
+        shootingFrontRay = false;
     }
 
-    #endregion
+    // Impulse Forward and Back Ray
+    private IEnumerator ImpulseFwAndBackRay(float rayDuration)
+    {
+        // Impulse forward
+
+
+        // Back Ray
+        backRay.SetActive(true);
+
+        yield return new WaitForSeconds(rayDuration);
+
+        DeactivateBackRay();
+    }
+
+    private void DeactivateBackRay()
+    {
+        backRay.SetActive(false);
+        bwRayElapsedTime = 0.0f;
+        shootingBackRay = false;
+    }
 }

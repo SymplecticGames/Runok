@@ -5608,6 +5608,7 @@ MonoBehaviour:
   jumpFactor: 0
   gravityFactor: 0
   maxJumps: 0
+  jumps: 0
   jumpSpeed: {x: 0, y: 0, z: 0}
   rotFactor: 6
   baseMovementSpeed: 12
@@ -5630,13 +5631,14 @@ MonoBehaviour:
   upVerticalSpeed: 5
   downVerticalSpeed: 2
   shootCooldown: 1
-  shootElapsedTime: 0
+  rayCooldown: 1
   frontRay: {fileID: 9097798309166200037}
   backRay: {fileID: 185177204210142353}
   shootPressed: 0
   frontRayPressed: 0
   backRayPressed: 0
   currentLumMode: 1
+  rayClip: {fileID: 7400000, guid: cf674a69ffe37284c971076b169ea2f3, type: 2}
 --- !u!54 &6655291664893331779
 Rigidbody:
   m_ObjectHideFlags: 0
