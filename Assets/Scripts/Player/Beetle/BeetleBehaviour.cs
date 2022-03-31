@@ -22,8 +22,6 @@ public class BeetleBehaviour : MonoBehaviour
 
     private float verticalSpeed;
 
-    private float originalCoodown;
-
     // Shoot light bullets
     [SerializeField]
     public float shootCooldown;
@@ -31,16 +29,19 @@ public class BeetleBehaviour : MonoBehaviour
     public float shootElapsedTime;
 
     [SerializeField]
-    private GameObject forwardRay;
+    private GameObject frontRay;
 
     [SerializeField]
-    private GameObject backwardRay;
+    private GameObject backRay;
 
     [HideInInspector]
-    public bool fwSkillPressed;
+    public bool shootPressed;
 
     [HideInInspector]
-    public bool bwSkillPressed;
+    public bool frontRayPressed;
+
+    [HideInInspector]
+    public bool backRayPressed;
 
     private GenericBehaviour charBehaviour;
 
@@ -61,8 +62,6 @@ public class BeetleBehaviour : MonoBehaviour
         shootElapsedTime = shootCooldown;
 
         animator = GetComponent<Animator>();
-
-        originalCoodown = shootCooldown;
     }
 
     // Update is called once per frame
@@ -88,39 +87,44 @@ public class BeetleBehaviour : MonoBehaviour
         switch (currentLumMode)
         {
             case LumMode.RadialLight:
-                break;
-            case LumMode.LightImpulse:
-                shootCooldown = 0;
-
-                if (fwSkillPressed)
-                {
-                    // Impulse
-                    Debug.Log("bw ray");
-
-                    // Ray fw
-                    backwardRay.SetActive(true);
-                }
-
-                if (bwSkillPressed)
-                {
-                    // Impulse
-                    Debug.Log("fw ray");
-
-                    // Ray fw
-                    forwardRay.SetActive(true);
-                }
-
+                animator.SetBool("BackRay", false);
+                animator.SetBool("FrontRay", false);
                 break;
             case LumMode.LightShot:
-                shootCooldown = originalCoodown;
-
-                if (fwSkillPressed && shootElapsedTime > shootCooldown)
+                if (shootPressed && shootElapsedTime > shootCooldown)
                 {
+                    animator.SetBool("BackRay", true);
+
                     bulletPool.SpawnBullet();
                     shootElapsedTime = 0;
                 }
+                else
+                    animator.SetBool("BackRay", false);
 
                 shootElapsedTime += Time.deltaTime;
+                break;
+            case LumMode.LightImpulse:
+                animator.SetBool("BackRay", backRayPressed);
+                animator.SetBool("FrontRay", frontRayPressed);
+
+                if (frontRayPressed)
+                {
+                    // Impulse backwards
+                    
+
+                    // Ray fw
+                    frontRay.SetActive(true);
+                }
+
+                if (backRayPressed)
+                {
+                    // Impulse forward
+                    
+
+                    // Ray fw
+                    backRay.SetActive(true);
+                }
+
                 break;
         }
     }
@@ -131,19 +135,13 @@ public class BeetleBehaviour : MonoBehaviour
         Debug.Log(currentLumMode);
     }
 
+    #region Animation Events
+
     private void DeactivateRays()
     {
-        forwardRay.SetActive(false);
-        backwardRay.SetActive(false);
+        frontRay.SetActive(false);
+        backRay.SetActive(false);
     }
 
-    private void SetShootFalse()
-    {
-        animator.SetBool("Shoot", false);
-    }
-
-    private void SetRayFalse()
-    {
-        animator.SetBool("Ray", false);
-    }
+    #endregion
 }

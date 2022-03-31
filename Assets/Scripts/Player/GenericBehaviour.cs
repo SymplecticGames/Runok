@@ -28,7 +28,8 @@ public class GenericBehaviour : MonoBehaviour
     [HideInInspector]
     public int maxJumps;
 
-    private int jumps;
+    [HideInInspector]
+    public int jumps;
 
     [SerializeField]
     private Vector3 jumpSpeed;
@@ -51,15 +52,24 @@ public class GenericBehaviour : MonoBehaviour
 
     private Vector3 additionalVel;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Awake()
     {
         controller = GetComponent<CharacterController>();
     }
 
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        movementFactor = 1.0f;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        // Movement
         playerVel = Vector3.zero;
 
         playerVel += gravityFactor * GameManager.gravity * (1.0f - jumpFactor) + jumpSpeed * jumpFactor;
@@ -77,6 +87,7 @@ public class GenericBehaviour : MonoBehaviour
         if (controller.enabled)
             controller.Move(playerVel * Time.deltaTime);
 
+        // Rotation
         if (isAttacking)
         {
             if (CompareTag("Beetle") || movementInput.magnitude <= 0.0f)
@@ -89,6 +100,20 @@ public class GenericBehaviour : MonoBehaviour
 
         if (controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
             jumps = 0;
+
+        // Animations
+        animator.SetBool("isWalking", movementInput.magnitude > 0); // Golem/Beetle
+
+        // Golem walkspeed, jump and falling
+        animator.SetFloat("WalkSpeed", Mathf.Clamp(movementInput.magnitude, 0.1f, 1.0f));
+
+        if (jumpPressed && !isAttacking)
+            animator.SetBool("isJumping", true);
+
+        if (!controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
+            animator.SetBool("isJumping", false);
+
+        animator.SetBool("isFalling", !controller.isGrounded);
     }
 
     public void SetAdditionalVel(Vector3 additionalVelocity)

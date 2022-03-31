@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 6687333112598470116}
   - component: {fileID: 6463726785098186383}
   m_Layer: 0
-  m_Name: BackwardBeetleRay
+  m_Name: BackBeetleRay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5631,10 +5631,11 @@ MonoBehaviour:
   downVerticalSpeed: 2
   shootCooldown: 1
   shootElapsedTime: 0
-  forwardRay: {fileID: 9097798309166200037}
-  backwardRay: {fileID: 185177204210142353}
-  fwSkillPressed: 0
-  bwSkillPressed: 0
+  frontRay: {fileID: 9097798309166200037}
+  backRay: {fileID: 185177204210142353}
+  shootPressed: 0
+  frontRayPressed: 0
+  backRayPressed: 0
   currentLumMode: 1
 --- !u!54 &6655291664893331779
 Rigidbody:
@@ -11258,7 +11259,7 @@ GameObject:
   - component: {fileID: 8170119189542744506}
   - component: {fileID: 1423125892270999034}
   m_Layer: 0
-  m_Name: ForwardBeetleRay
+  m_Name: FrontBeetleRay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

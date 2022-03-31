@@ -28,9 +28,6 @@ public class PlayerManager : MonoBehaviour
     public float camOrbitRadius;
 
     private Animator animator;
-    public int comboCounter;
-    public float lastComboHitTime;
-    private bool continuousShot;
 
     private bool restingBeetle;
     private Light beetleLight;
@@ -61,9 +58,6 @@ public class PlayerManager : MonoBehaviour
 
         // Get golem animator
         animator = currentCharacter.GetComponent<Animator>();
-        comboCounter = 0;
-        lastComboHitTime = 0.0f;
-        continuousShot = false;
 
         // Set beetle on Golem's back
         beetleLight = beetleBehaviour.GetComponentInChildren<Light>();
@@ -73,87 +67,71 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetInteger("comboCounter", comboCounter);
-
-        if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
-        {
-            currentCharacter.movementFactor = 1.0f / golem.golemStats.weight;
-
-            currentCharacter.maxJumps = golem.golemStats.jumps;
-
-            if (!currentCharacter.controller.isGrounded && currentCharacter.jumpFactor < currentCharacter.maxJumpFactor * 0.5f)
-            {
-                animator.SetBool("isJumping", false);
-            }
-            animator.SetBool("isFalling", !currentCharacter.controller.isGrounded);
-
-            if (Time.time - lastComboHitTime > golem.golemStats.hitCoolDown)
-            {
-                comboCounter = 0;
-                golem.continueCombo = true;
-            }
-        }
-        else if (currentCharacter.TryGetComponent(out BeetleBehaviour beetle))
-        {
-            currentCharacter.movementFactor = 1.0f;
-            if (continuousShot && beetle.shootElapsedTime > beetle.shootCooldown)
-                animator.SetBool("Shoot", true);
-        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 movement = context.ReadValue<Vector2>();
+
         currentCharacter.movementInput = movement;
-        animator.SetBool("isWalking", movement.magnitude > 0);
-        if (currentCharacter == golemBehaviour)
-            animator.SetFloat("WalkSpeed", Mathf.Clamp(movement.magnitude, 0.1f, 1.0f));
     }
 
-    public void OnActiveBw_Jump(InputAction.CallbackContext context)
-    {
-        if (currentCharacter == golemBehaviour)
-        {
-            currentCharacter.jumpPressed = context.performed;
-
-            if (context.started)
-                animator.SetBool("isJumping", true);
-        }
-
-        if (currentCharacter.TryGetComponent(out BeetleBehaviour beetle))
-        {
-            beetle.bwSkillPressed = context.performed;
-
-            if (context.started)
-                animator.SetBool("Ray", true);
-        }
-    }
-
-    public void OnActiveFw_Hit(InputAction.CallbackContext context)
+    public void OnGolemJump(InputAction.CallbackContext context)
     {
         if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
         {
-            if (context.started && golem.continueCombo)
+            if (golem.currentMaterial == GolemMaterial.Plumber)
+                return;
+
+            currentCharacter.jumpPressed = context.performed;
+        }
+    }
+
+    // Golem Hit
+    public void OnGolemHit(InputAction.CallbackContext context)
+    {
+        if (currentCharacter.TryGetComponent(out GolemBehaviour golem))
+        {
+            if (context.started)
             {
-                if (comboCounter < 3)
-                {
-                    golem.hitPressed = true;
-                    golem.continueCombo = false;
-                    lastComboHitTime = Time.time;
-                    comboCounter++;
-                }
+                golem.GolemHit();
             }
         }
+    }
 
+    // Beetle Shoot
+    public void OnBeetleShoot(InputAction.CallbackContext context)
+    {
         if (currentCharacter.TryGetComponent(out BeetleBehaviour beetle))
         {
-            beetle.fwSkillPressed = context.performed;
-            continuousShot = context.performed;
-            if (context.started && beetle.shootElapsedTime > beetle.shootCooldown)
-            {
-                continuousShot = false;
-                animator.SetBool("Shoot", true);
-            }
+            if (beetle.currentLumMode != LumMode.LightShot)
+                return;
+
+            beetle.shootPressed = context.performed;
+        }
+    }
+
+    // Beetle Ray from the front
+    public void OnBeetleFrontRay(InputAction.CallbackContext context)
+    {
+        if (currentCharacter.TryGetComponent(out BeetleBehaviour beetle))
+        {
+            if (beetle.currentLumMode != LumMode.LightImpulse)
+                return;
+
+            beetle.frontRayPressed = context.performed;
+        }
+    }
+
+    // Beetle Ray from the back
+    public void OnBeetleBackRay(InputAction.CallbackContext context)
+    {
+        if (currentCharacter.TryGetComponent(out BeetleBehaviour beetle))
+        {
+            if (beetle.currentLumMode != LumMode.LightImpulse)
+                return;
+
+            beetle.backRayPressed = context.performed;
         }
     }
 
@@ -161,6 +139,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (!context.performed || lateralMenu.menuOpen)
             return;
+
         SwapCharacter();
     }
 
@@ -168,13 +147,15 @@ public class PlayerManager : MonoBehaviour
     {
         currentCharacter.movementInput = Vector2.zero;
 
+        // Reset animator before swapping
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isJumping", false);
+        animator.SetBool("isFalling", false);
+        animator.SetBool("FrontRay", false);
+        animator.SetBool("BackRay", false);
+
         if (currentCharacter == golemBehaviour)
         {
-            // Stop any golem animation and go to idle
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isJumping", false);
-            animator.SetBool("isFalling", false);
-
             if (restingBeetle)
             {
                 restingBeetle = false;
