@@ -120,8 +120,6 @@ public class GolemBehaviour : MonoBehaviour
     public void ChangeMaterial(GolemMaterial newMaterial)
     {
         currentMaterial = newMaterial;
-
-        Debug.Log(currentMaterial);
     }
 
     #region Animation Events
