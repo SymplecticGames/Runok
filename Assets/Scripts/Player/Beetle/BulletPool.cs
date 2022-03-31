@@ -42,7 +42,9 @@ public class BulletPool : MonoBehaviour
         objToSpawn.transform.rotation = transform.rotation;
 
         bulletComponent = objToSpawn.GetComponent<LightBullet>();
-        objToSpawn.GetComponent<LightBullet>().SetDirection(transform.forward);
+        Vector3 forwardCam = Camera.main.transform.forward;
+        forwardCam.y = 0.0f;
+        objToSpawn.GetComponent<LightBullet>().SetDirection(forwardCam);
         objToSpawn.GetComponent<LightBullet>().SetSpeed(speed);
         objToSpawn.GetComponent<LightBullet>().SetDespawned(false);
 

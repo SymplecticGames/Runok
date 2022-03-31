@@ -31,28 +31,13 @@ public class GolemBehaviour : MonoBehaviour
 {
     public Transform beetleRestPose;
 
-    [Space]
-
     [Header("Hit control")]
-    // Hit Window
-    [SerializeField]
-    [Tooltip("How long the collider stays active after pressing hit, in seconds")]
-    private float hitWindow;
-
-    private float hitWindowTimer;
-
-    private bool inHitWindow;
-
-    // CoolDown
-    private float coolDownTimer;
-
-    private bool inCoolDown;
 
     [SerializeField]
-    private Collider hitRegister;
+    private Collider leftHitRegister;
 
-    [HideInInspector]
-    public bool hitPressed;
+    [SerializeField]
+    private Collider rightHitRegister;
 
     [Header("Materials")]
     public GolemMaterial currentMaterial;
@@ -66,19 +51,31 @@ public class GolemBehaviour : MonoBehaviour
 
     [SerializeField]
     private GolemMaterialStats PlumberStats;
-    
+
     [SerializeField]
     private GolemMaterialStats WoodenStats;
+
+    private GenericBehaviour genericBehaviour;
+
+    private Animator animator;
+
+    private bool canDoCombo = true;
+
+    private int comboCounter;
+
+    private float lastComboHitTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
+        genericBehaviour = GetComponent<GenericBehaviour>();
     }
-    
+
     // Update is called once per frame
     void Update()
     {
+        // Material change
         switch (currentMaterial)
         {
             case GolemMaterial.Terracotta:
@@ -94,42 +91,63 @@ public class GolemBehaviour : MonoBehaviour
                 break;
         }
 
-        // Player presses hit. Hit window starts
-        if (hitPressed && !inCoolDown)
-        {
-            hitRegister.enabled = true;
-            inHitWindow = true;
-            inCoolDown = true;
-            hitWindowTimer = 0.0f;
-            coolDownTimer = 0.0f;
-        }
+        // Material dependant stats
+        genericBehaviour.movementFactor = 1.0f / golemStats.weight;
+        genericBehaviour.maxJumps = genericBehaviour.controller.isGrounded ? golemStats.jumps : golemStats.jumps - 1;
 
-        if (inHitWindow)
-        {
-            hitWindowTimer += Time.deltaTime;
-            if (hitWindowTimer >= hitWindow)
-            {
-                // The hit window ends
-                hitRegister.enabled = false;
-                inHitWindow = false;
-            }
-        }
+        // Animator controller update
+        animator.SetBool("canDoCombo", canDoCombo);
+        animator.SetInteger("comboCounter", comboCounter);
 
-        if (inCoolDown)
+        // Hit cooldown control
+        if (Time.time - lastComboHitTime > golemStats.hitCoolDown)
         {
-            coolDownTimer += Time.deltaTime;
-            if (coolDownTimer >= golemStats.hitCoolDown)
-            {
-                // The cooldown ends
-                inCoolDown = false;
-            }
+            comboCounter = 0;
+            canDoCombo = true;
         }
+    }
+
+    public void GolemHit()
+    {
+        if (!genericBehaviour.controller.isGrounded || !canDoCombo || comboCounter >= 3)
+            return;
+
+        canDoCombo = false;
+        lastComboHitTime = Time.time;
+        comboCounter++;
     }
 
     public void ChangeMaterial(GolemMaterial newMaterial)
     {
         currentMaterial = newMaterial;
-
-        Debug.Log(currentMaterial);
     }
+
+    #region Animation Events
+
+    public void EnableLeftHitWindow()
+    {
+        leftHitRegister.enabled = true;
+    }
+
+    public void DisableLeftHitWindow()
+    {
+        leftHitRegister.enabled = false;
+    }
+
+    public void EnableRightHitWindow()
+    {
+        rightHitRegister.enabled = true;
+    }
+
+    public void DisableRightHitWindow()
+    {
+        rightHitRegister.enabled = false;
+    }
+
+    private void ResetHitCombo()
+    {
+        canDoCombo = true;
+    }
+
+    #endregion
 }

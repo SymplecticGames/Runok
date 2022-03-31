@@ -5,39 +5,53 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    
+
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
+    public bool allowWalking;
+
+    [SerializeField]
+    private bool shadowEnemy;
+
     // spawn variables
     public bool spawnAfterTime;
     public float spawnTime = 10.0f;
 
     // respawn variables
     public bool respawnAfterPlayerDeath;
-    
+
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     // number of hits recieved
     private int _hitCounter;
-    
+
     // respawn timer
     private float _activeSpawnTimer;
-    
+
     // variable to control when the enemy is defeated
     private bool _isDefeated;
-    
+
     // original spawn transform
     private Transform _spawnTransform;
 
     // For enable and disable component, to stop bezier movement
     private BezierFollow bezier;
 
+    private CharacterController controller;
+
+    private Animator animator;
+
     //////////////////////////////////////////////////  p r o g r a m  /////////////////////////////////////////////////
     ///
     // Start is called before the first frame update
     void Start()
     {
+        controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
         bezier = GetComponent<BezierFollow>();
+
+        bezier.enabled = allowWalking;
+
         _spawnTransform = gameObject.transform;
-        
+
         if (spawnAfterTime)
         {
             HideEnemy();
@@ -47,10 +61,13 @@ public class Enemy : MonoBehaviour
             SpawnEnemy();
         }
 
+        animator.SetBool("allowWalking", allowWalking);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
+            GameManager.instance.player.Die();
 
         // if the trigger is hit by the golem, the enemy dies when the number of hits is greater or equal
         // to the number of hits the golem needs (with that material) to defeat it.
@@ -61,6 +78,10 @@ public class Enemy : MonoBehaviour
 
             // update hit counter
             _hitCounter++;
+
+            bezier.enabled = false;
+            animator.SetBool("isHit", true);
+
             Debug.Log(_hitCounter);
             // if hits are enough to defeat the enemy, then, do deafeated animation
             if (_hitCounter >= golem.golemStats.hitsNeededToKill)
@@ -70,13 +91,40 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        if (other.CompareTag("Bullet"))
+        {
+            other.GetComponent<LightBullet>().SetInactive();
+
+            if (shadowEnemy)
+            {
+                // update hit counter
+                _hitCounter++;
+
+                bezier.enabled = false;
+                animator.SetBool("isHit", true);
+
+                Debug.Log(_hitCounter);
+                // if hits are enough to defeat the enemy, then, do deafeated animation
+                if (_hitCounter >= 2)
+                {
+                    // the enemy is defeated
+                    Die();
+                }
+            }
+        }
+
+        if (other.CompareTag("Ray"))
+        {
+            if (shadowEnemy)
+                Die();
+        }
     }
-    
+
     public void Die()
     {
 
         _isDefeated = true;
-        
+
         HideEnemy();
 
         // if this enemy respawns after player death, its stored in GameManager
@@ -97,11 +145,12 @@ public class Enemy : MonoBehaviour
         foreach (Renderer visualPart in GetComponentsInChildren<Renderer>())
             visualPart.enabled = false;
 
-        // disenable CC
+        // Disable CC and collider
         gameObject.GetComponent<CharacterController>().enabled = false;
-        
+        gameObject.GetComponent<Collider>().enabled = false;
+
     }
-    
+
     public void SpawnEnemy()
     {
         // reset variables
@@ -115,8 +164,16 @@ public class Enemy : MonoBehaviour
 
         // enable CC
         gameObject.GetComponent<CharacterController>().enabled = true;
+
+        bezier.enabled = allowWalking;
     }
-    
+
+    private void EnableMovement()
+    {
+        bezier.enabled = allowWalking;
+        animator.SetBool("isHit", false);
+    }
+
     /*
      *
      *
@@ -137,5 +194,10 @@ public class Enemy : MonoBehaviour
                 SpawnEnemy();
             }
         }
+
+        if (controller.enabled && !allowWalking)
+            controller.Move(GameManager.gravity * Time.deltaTime);
+
+        animator.SetBool("isFalling", !controller.isGrounded);
     }
 }

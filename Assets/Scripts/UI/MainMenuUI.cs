@@ -20,7 +20,6 @@ public class MainMenuUI : MonoBehaviour
     
     // fading parameters
     private bool _doFading;
-    private float _fadingDuration = 0.4f;
     private float _pgbTargetPos = 0.0f;
     private float _egbTargetPos = 0.0f;
 

@@ -21,10 +21,13 @@ public class BreakableBlock : MonoBehaviour
         if (!other.CompareTag("Hitter"))
             return;
 
-        if (other.transform.parent.TryGetComponent(out GolemBehaviour golem) && golem.currentMaterial == GolemMaterial.Plumber)
+        if (GameManager.instance.player.currentCharacter.TryGetComponent(out GolemBehaviour golem))
         {
-            // Break
-            Destroy(this.gameObject);
+            if(golem.currentMaterial == GolemMaterial.Plumber)
+            {
+                // Break
+                Destroy(gameObject);
+            }
         }
         else
         {

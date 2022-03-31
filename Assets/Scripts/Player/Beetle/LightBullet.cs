@@ -25,6 +25,11 @@ public class LightBullet : MonoBehaviour
         this.direction = bulletDirection;
     }
 
+    public Vector3 GetDirection()
+    {
+        return direction;
+    }
+
     public void SetSpeed(float speed)
     {
         this.speed = speed;
@@ -56,8 +61,13 @@ public class LightBullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void SetInactive()
     {
-       
+        despawned = true;
+
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+
+        gameObject.SetActive(false);
     }
 }

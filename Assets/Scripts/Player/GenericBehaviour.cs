@@ -8,6 +8,9 @@ public class GenericBehaviour : MonoBehaviour
     public CharacterController controller;
 
     [HideInInspector]
+    private bool isAttacking = false;
+
+    [HideInInspector]
     public bool canRotate = true;
 
     [HideInInspector]
@@ -19,13 +22,14 @@ public class GenericBehaviour : MonoBehaviour
     [HideInInspector]
     public float jumpFactor;
 
+    [SerializeField]
+    private float gravityFactor;
+
     [HideInInspector]
     public int maxJumps;
 
-    private int jumps;
-
-    [SerializeField]
-    private Vector3 gravity = new Vector3(0.0f, -9.8f, 0.0f);
+    [HideInInspector]
+    public int jumps;
 
     [SerializeField]
     private Vector3 jumpSpeed;
@@ -48,18 +52,30 @@ public class GenericBehaviour : MonoBehaviour
 
     private Vector3 additionalVel;
 
+    private Animator animator;
+
+    [HideInInspector]
+    public Vector3 currentForwardTarget;
+
     // Start is called before the first frame update
     void Awake()
     {
         controller = GetComponent<CharacterController>();
     }
 
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        movementFactor = 1.0f;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        // Movement
         playerVel = Vector3.zero;
 
-        playerVel += gravity * (1.0f - jumpFactor) + jumpSpeed * jumpFactor;
+        playerVel += gravityFactor * GameManager.gravity * (1.0f - jumpFactor) + jumpSpeed * jumpFactor;
 
         playerVel += additionalVel;
 
@@ -73,11 +89,36 @@ public class GenericBehaviour : MonoBehaviour
         if (controller.enabled)
             controller.Move(playerVel * Time.deltaTime);
 
-        if (canRotate && movementInput.magnitude > 0.0f)
+        // Rotation
+        if (isAttacking)
+        {
+            if (CompareTag("Beetle") || movementInput.magnitude <= 0.0f)
+                InstantRotation(Camera.main.transform.forward);
+            else
+                InstantRotation(controller.velocity);
+        }
+        else if (canRotate && movementInput.magnitude > 0.0f)
             Rotation();
 
         if (controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
-            jumps = 0;     
+            jumps = 0;
+
+        // Animations
+        animator.SetBool("isWalking", movementInput.magnitude > 0); // Golem/Beetle
+
+        // Golem walkspeed, jump and falling
+        if (!isAttacking && controller.isGrounded)
+            animator.SetFloat("WalkSpeed", Mathf.Clamp(movementInput.magnitude, 0.1f, 1.0f));
+        else
+            animator.SetFloat("WalkSpeed", 1.0f);
+
+        if (jumpPressed && !isAttacking)
+            animator.SetBool("isJumping", true);
+
+        if (!controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
+            animator.SetBool("isJumping", false);
+
+        animator.SetBool("isFalling", !controller.isGrounded);
     }
 
     public void SetAdditionalVel(Vector3 additionalVelocity)
@@ -87,6 +128,9 @@ public class GenericBehaviour : MonoBehaviour
 
     public Vector3 Movement()
     {
+        if (isAttacking && CompareTag("Golem"))
+            return Vector3.zero;
+
         Vector3 movementVel = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y)) * baseMovementSpeed * movementFactor;
         movementVel.y = 0;
 
@@ -94,22 +138,34 @@ public class GenericBehaviour : MonoBehaviour
         {
             jumpPressed = false;
             jumpFactor = maxJumpFactor;
-            jumps++;
+            if (!controller.isGrounded) jumps++;
         }
-            
+
+        // Allow some movement (0.4) while shooting a ray
+        if (TryGetComponent(out BeetleBehaviour beetle) && (beetle.shootingFrontRay || beetle.shootingBackRay))
+            return movementVel * 0.4f;
+
         return movementVel;
+    }
+
+    private void InstantRotation(Vector3 target)
+    {
+        // Rotation
+        Vector3 targetLookAt = transform.position + target;
+        targetLookAt.y = transform.position.y;
+
+        currentForwardTarget = (targetLookAt - transform.position).normalized;
+        transform.forward = Vector3.Slerp(transform.forward, currentForwardTarget, 3.0f * rotFactor * Time.deltaTime);
     }
 
     private void Rotation()
     {
-        // Hacer esto mejor con un slerp
-
         // Rotation
-        Vector3 targetLookAt = this.transform.position + controller.velocity;
-        targetLookAt.y = this.transform.position.y;
+        Vector3 targetLookAt = transform.position + controller.velocity;
+        targetLookAt.y = transform.position.y;
 
-        Vector3 forwardVec = targetLookAt - this.transform.position;
-        this.transform.forward = Vector3.Slerp(this.transform.forward, forwardVec, rotFactor * Time.deltaTime);
+        currentForwardTarget = (targetLookAt - transform.position).normalized;
+        transform.forward = Vector3.Slerp(transform.forward, currentForwardTarget, rotFactor * Time.deltaTime);
     }
 
     public void Die(Transform respawnPoint)
@@ -121,13 +177,14 @@ public class GenericBehaviour : MonoBehaviour
 
         controller.enabled = true;
     }
-    
-    private void OnControllerColliderHit(ControllerColliderHit other)
+
+    private void EnableMovement()
     {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            GameManager.instance.player.Die();
-        }
+        isAttacking = false;
     }
-    
+
+    private void DisableMovement()
+    {
+        isAttacking = true;
+    }
 }

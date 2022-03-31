@@ -21,14 +21,18 @@ public class GameManager : MonoBehaviour
     /////////////////////////////////////////  s t a t i c   v a r i a b l e s  ////////////////////////////////////////
 
     public static GameManager instance;
-    
+
+    public static Vector3 gravity = new Vector3(0.0f, -9.8f, 0.0f);
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
+
     // 0-> swapTag     1-> parchmentTag     2->selectionWheelTag    3-> hitTag    4-> jumpTag   
     public List<Image> kbTags;
     public List<Image> xboxTags;
     public List<Image> psTags;
+
     // --------------------------------------------------- runes --------------------------------------------------- //
     // list of runes in the level
     public List<GameObject> runes;
@@ -189,7 +193,7 @@ public class GameManager : MonoBehaviour
         player.beetleBehaviour.GetComponent<Animator>().enabled = false;
         
         // enemies
-        foreach (var enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
             scripts = new List<MonoBehaviour>(enemy.GetComponentsInChildren<MonoBehaviour>());
             foreach (MonoBehaviour script in scripts)
@@ -223,14 +227,17 @@ public class GameManager : MonoBehaviour
         player.beetleBehaviour.GetComponent<Animator>().enabled = true;
         
         // enemies
-        foreach (var enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
             scripts = new List<MonoBehaviour>(enemy.GetComponentsInChildren<MonoBehaviour>());
             foreach (MonoBehaviour script in scripts)
             {
                 script.enabled = true;
             }
+
+            enemy.GetComponent<BezierFollow>().enabled = enemy.GetComponent<Enemy>().allowWalking;
             enemy.GetComponent<Animator>().enabled = true;
+            
         }
         
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;

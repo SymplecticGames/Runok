@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ActiveBw_Jump",
+                    "name": "BeetleBackRay",
                     "type": "Button",
                     "id": "1236cc8d-72b6-4ef1-aeed-29a0c4f9de42",
                     "expectedControlType": "Button",
@@ -51,9 +51,36 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ActiveFw_Hit",
+                    "name": "BeetleFrontRay",
                     "type": "Button",
                     "id": "e91308b0-fe8a-4b1e-82f7-214b2f0c3091",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BeetleShoot",
+                    "type": "Button",
+                    "id": "3def8875-3097-4c2d-bd30-03542c86419f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GolemJump",
+                    "type": "Button",
+                    "id": "554b3435-6031-4a08-bc51-3a2ea830c405",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GolemHit",
+                    "type": "Button",
+                    "id": "3fa9c75f-42fb-4c86-9363-44a0e5b4b018",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -291,40 +318,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ActiveBw_Jump",
+                    "action": "BeetleBackRay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "01fb29a9-8da6-44d4-a2e1-5f76df9043e4",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ActiveBw_Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "10b5dce8-d81e-4f2e-9d53-163c72de8ec4",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActiveFw_Hit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3a4b892c-1a8f-43c8-b6d5-6ea43b8e434c",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActiveFw_Hit",
+                    "action": "BeetleBackRay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -418,23 +423,107 @@
                 },
                 {
                     "name": "",
+<<<<<<< HEAD
                     "id": "59d46bd0-d7ac-4568-ade4-53eb673ae75b",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Pause",
+=======
+                    "id": "d6cf27c3-9202-4281-8e1c-bfbd0b612883",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GolemHit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
+                    "id": "8f96eea2-a6ab-4d5d-875d-7dfc6e71fb29",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GolemHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b1f045ae-e85e-4232-b7d6-5c90edf8c194",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GolemJump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df882970-37a5-4179-8121-3e1f373d9182",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GolemJump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ac8a531-04f8-44d3-9a0c-41ca67de75d7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BeetleShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d02b3769-da7a-450d-bed3-de5309bdf7ef",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BeetleShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10b5dce8-d81e-4f2e-9d53-163c72de8ec4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BeetleFrontRay",
+>>>>>>> b2e5a4e8780dfec1a80de9878f19559f11f405a1
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+<<<<<<< HEAD
                     "id": "e6089f97-ff7b-4a53-bc20-bbffc51c6424",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+=======
+                    "id": "3a4b892c-1a8f-43c8-b6d5-6ea43b8e434c",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BeetleFrontRay",
+>>>>>>> b2e5a4e8780dfec1a80de9878f19559f11f405a1
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
