@@ -25,6 +25,11 @@ public class LightBullet : MonoBehaviour
         this.direction = bulletDirection;
     }
 
+    public Vector3 GetDirection()
+    {
+        return direction;
+    }
+
     public void SetSpeed(float speed)
     {
         this.speed = speed;
