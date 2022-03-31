@@ -159,6 +159,8 @@ public class Enemy : MonoBehaviour
 
         // enable CC
         gameObject.GetComponent<CharacterController>().enabled = true;
+
+        bezier.enabled = allowWalking;
     }
 
     private void EnsableMovement()
