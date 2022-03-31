@@ -186,7 +186,7 @@ public class PlayerManager : MonoBehaviour
 
     public void OnSwapCharacter(InputAction.CallbackContext context)
     {
-        if (!context.performed || lateralMenu.menuOpen)
+        if (!context.performed || lateralMenu.MenuOpened())
             return;
         SwapCharacter();
     }
@@ -239,7 +239,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ReturnToGolem(InputAction.CallbackContext context)
     {
-        if (!context.performed || lateralMenu.menuOpen)
+        if (!context.performed || lateralMenu.MenuOpened())
             return;
 
         if (currentCharacter == beetleBehaviour)
@@ -296,5 +296,13 @@ public class PlayerManager : MonoBehaviour
         else
             beetleBehaviour.GetComponent<BeetleBehaviour>().ChangeLumMode((LumMode)selection);
 
+    }
+
+    public int GetSelection()
+    {
+        if (currentCharacter == golemBehaviour)
+            return (int) golemBehaviour.GetComponent<GolemBehaviour>().currentMaterial;
+        else
+            return (int) beetleBehaviour.GetComponent<BeetleBehaviour>().currentLumMode;
     }
 }

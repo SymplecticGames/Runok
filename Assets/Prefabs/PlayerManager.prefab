@@ -268,6 +268,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c1fbfc74-aa2c-4c7e-a9d8-33185dfd1fcc
     m_ActionName: UI/DeviceJoined[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3175d55b-2126-4974-b222-773eae456a76
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -332,6 +336,14 @@ PrefabInstance:
       propertyPath: playerManager
       value: 
       objectReference: {fileID: 6776540506789089601}
+    - target: {fileID: 7073080741541228282, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
+      propertyPath: m_Name
+      value: ConfirmationPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370980805377022598, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
 --- !u!4 &5216761631704418157 stripped

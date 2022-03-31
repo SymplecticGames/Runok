@@ -2,6 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
+public enum deviceTag
+{
+    swapTag = 0,
+    parchmentTag = 1,
+    selectionWheelTag = 2,
+    hitTag = 3,
+    jumpTag = 4
+    
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +25,10 @@ public class GameManager : MonoBehaviour
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
-    
+    // 0-> swapTag     1-> parchmentTag     2->selectionWheelTag    3-> hitTag    4-> jumpTag   
+    public List<Image> kbTags;
+    public List<Image> xboxTags;
+    public List<Image> psTags;
     // --------------------------------------------------- runes --------------------------------------------------- //
     // list of runes in the level
     public List<GameObject> runes;
@@ -181,7 +196,7 @@ public class GameManager : MonoBehaviour
             {
                 script.enabled = false;
             }
-            //enemy.GetComponent<Animator>().enabled = false;
+            enemy.GetComponent<Animator>().enabled = false;
         }
 
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
@@ -215,12 +230,88 @@ public class GameManager : MonoBehaviour
             {
                 script.enabled = true;
             }
-            //enemy.GetComponent<Animator>().enabled = true;
+            enemy.GetComponent<Animator>().enabled = true;
         }
         
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
+
     }
     // ------------------------------------------------------------------------------------------------------------- //
+    
+    public void OnDeviceChange(PlayerInput context)
+    {
+
+        if (context.devices.Count > 0 && kbTags.Count > 0)
+        {
+            if (context.devices[0].name.StartsWith("Keyboard"))
+            {
+                // Keyboard gamepad
+                for (int i = 0; i < kbTags.Count; i++)
+                {
+                    kbTags[i].enabled = true;
+                    xboxTags[i].enabled = false;
+                    psTags[i].enabled = false;
+                }
+
+                if (GameManager.instance)
+                    GameManager.instance.usingGamepad = false;
+
+            }
+            else if (context.devices[0].name.StartsWith("DualShock"))
+            {
+                // PlayStation gamepad
+                for (int i = 0; i < kbTags.Count; i++)
+                {
+                    kbTags[i].enabled = false;
+                    xboxTags[i].enabled = false;
+                    psTags[i].enabled = true;
+                }
+                if (GameManager.instance)
+                    GameManager.instance.usingGamepad = true;
+            }
+            else
+            {
+                // Xbox gamepad
+                for (int i = 0; i < kbTags.Count; i++)
+                {
+                    kbTags[i].enabled = false;
+                    xboxTags[i].enabled = true;
+                    psTags[i].enabled = false;
+                }
+                
+                if (GameManager.instance)
+                    GameManager.instance.usingGamepad = true;
+            }
+        }
+    }
+    
+    public IEnumerator highLightTag(deviceTag deviceTag)
+    {
+
+        if (kbTags.Count > 0)
+        {
+            if (kbTags[0].enabled)
+            {
+                Debug.Log(deviceTag);
+                Debug.Log((int)deviceTag);
+                kbTags[(int) deviceTag].color = new Color(0.676f, 0.676f, 0.676f);
+                yield return new WaitForSeconds(0.1f);
+                kbTags[(int) deviceTag].color = Color.white;
+            }
+            else if (xboxTags[0].enabled)
+            {
+                xboxTags[(int) deviceTag].color = new Color(0.676f, 0.676f, 0.676f);
+                yield return new WaitForSeconds(0.1f);
+                xboxTags[(int) deviceTag].color = Color.white;
+            }
+            else if (psTags[0].enabled)
+            {
+                psTags[(int) deviceTag].color = new Color(0.676f, 0.676f, 0.676f);
+                yield return new WaitForSeconds(0.1f);
+                psTags[(int) deviceTag].color = Color.white;
+            }
+        }
+    }
     
     // Update is called once per frame
     void Update()
