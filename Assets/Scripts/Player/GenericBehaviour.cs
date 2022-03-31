@@ -54,6 +54,9 @@ public class GenericBehaviour : MonoBehaviour
 
     private Animator animator;
 
+    [HideInInspector]
+    public Vector3 currentForwardTarget;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -76,8 +79,7 @@ public class GenericBehaviour : MonoBehaviour
 
         playerVel += additionalVel;
 
-        if (!isAttacking || CompareTag("Beetle"))
-            playerVel += Movement();
+        playerVel += Movement();
 
         if (jumpFactor > 0.0f)
             jumpFactor -= Time.deltaTime;
@@ -126,6 +128,9 @@ public class GenericBehaviour : MonoBehaviour
 
     public Vector3 Movement()
     {
+        if (isAttacking && CompareTag("Golem"))
+            return Vector3.zero;
+
         Vector3 movementVel = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y)) * baseMovementSpeed * movementFactor;
         movementVel.y = 0;
 
@@ -136,27 +141,30 @@ public class GenericBehaviour : MonoBehaviour
             jumps++;
         }
 
+        if (TryGetComponent(out BeetleBehaviour beetle) && (beetle.shootingFrontRay || beetle.shootingBackRay))
+            return movementVel * 0.4f;
+
         return movementVel;
     }
 
     private void InstantRotation(Vector3 target)
     {
         // Rotation
-        Vector3 targetLookAt = this.transform.position + target;
-        targetLookAt.y = this.transform.position.y;
+        Vector3 targetLookAt = transform.position + target;
+        targetLookAt.y = transform.position.y;
 
-        Vector3 forwardVec = targetLookAt - this.transform.position;
-        this.transform.forward = Vector3.Slerp(this.transform.forward, forwardVec, 3.0f * rotFactor * Time.deltaTime);
+        currentForwardTarget = (targetLookAt - transform.position).normalized;
+        transform.forward = Vector3.Slerp(transform.forward, currentForwardTarget, 3.0f * rotFactor * Time.deltaTime);
     }
 
     private void Rotation()
     {
         // Rotation
-        Vector3 targetLookAt = this.transform.position + controller.velocity;
-        targetLookAt.y = this.transform.position.y;
+        Vector3 targetLookAt = transform.position + controller.velocity;
+        targetLookAt.y = transform.position.y;
 
-        Vector3 forwardVec = targetLookAt - this.transform.position;
-        this.transform.forward = Vector3.Slerp(this.transform.forward, forwardVec, rotFactor * Time.deltaTime);
+        currentForwardTarget = (targetLookAt - transform.position).normalized;
+        transform.forward = Vector3.Slerp(transform.forward, currentForwardTarget, rotFactor * Time.deltaTime);
     }
 
     public void Die(Transform respawnPoint)

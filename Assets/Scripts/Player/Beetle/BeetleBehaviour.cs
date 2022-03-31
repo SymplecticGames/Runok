@@ -49,11 +49,15 @@ public class BeetleBehaviour : MonoBehaviour
     [HideInInspector]
     public bool backRayPressed;
 
-    private bool shootingBackRay = false;
+    [HideInInspector]
+    public bool shootingBackRay = false;
 
-    private bool shootingFrontRay = false;
+    [HideInInspector]
+    public bool shootingFrontRay = false;
 
     private GenericBehaviour charBehaviour;
+
+    private Rigidbody body;
 
     public LumMode currentLumMode;
 
@@ -61,6 +65,15 @@ public class BeetleBehaviour : MonoBehaviour
 
     [SerializeField]
     private AnimationClip rayClip;
+
+    [SerializeField]
+    private float impulseFactor;
+
+    private float forwardFactor;
+
+    private float backwardFactor;
+
+    private Vector3 additionalVel = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +83,7 @@ public class BeetleBehaviour : MonoBehaviour
         verticalSpeed = downVerticalSpeed;
 
         charBehaviour = GetComponent<GenericBehaviour>();
+        body = GetComponent<Rigidbody>();
 
         bulletPool = GetComponent<BulletPool>();
         shootElapsedTime = shootCooldown;
@@ -95,10 +109,10 @@ public class BeetleBehaviour : MonoBehaviour
             else
                 verticalSpeed = upVerticalSpeed;
 
-            charBehaviour.SetAdditionalVel(new Vector3(0.0f, verticalSpeed * factorByDist, 0.0f));
+            additionalVel = new Vector3(0.0f, verticalSpeed * factorByDist, 0.0f);
         }
         else
-            charBehaviour.SetAdditionalVel(Vector3.zero);
+            additionalVel = Vector3.zero;
 
         switch (currentLumMode)
         {
@@ -120,6 +134,9 @@ public class BeetleBehaviour : MonoBehaviour
                 shootElapsedTime += Time.deltaTime;
                 break;
             case LumMode.LightImpulse:
+                additionalVel += charBehaviour.currentForwardTarget * impulseFactor * forwardFactor;
+                additionalVel += charBehaviour.currentForwardTarget * impulseFactor * backwardFactor;
+
                 if (frontRayPressed && !shootingFrontRay && fwRayElapsedTime > rayCooldown)
                 {
                     shootingFrontRay = true;
@@ -145,6 +162,8 @@ public class BeetleBehaviour : MonoBehaviour
 
                 break;
         }
+
+        charBehaviour.SetAdditionalVel(additionalVel);
     }
 
     public void ChangeLumMode(LumMode newMode)
@@ -156,7 +175,7 @@ public class BeetleBehaviour : MonoBehaviour
     private IEnumerator ImpulseBwAndFrontRay(float rayDuration)
     {
         // Impulse backwards
-
+        backwardFactor = -1.0f;
 
         // Front Ray
         frontRay.SetActive(true);
@@ -171,13 +190,14 @@ public class BeetleBehaviour : MonoBehaviour
         frontRay.SetActive(false);
         fwRayElapsedTime = 0.0f;
         shootingFrontRay = false;
+        backwardFactor = 0.0f;
     }
 
     // Impulse Forward and Back Ray
     private IEnumerator ImpulseFwAndBackRay(float rayDuration)
     {
         // Impulse forward
-
+        forwardFactor = 1.0f;
 
         // Back Ray
         backRay.SetActive(true);
@@ -192,5 +212,6 @@ public class BeetleBehaviour : MonoBehaviour
         backRay.SetActive(false);
         bwRayElapsedTime = 0.0f;
         shootingBackRay = false;
+        forwardFactor = 0.0f;
     }
 }
