@@ -7,13 +7,13 @@ public class Mirror : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,7 +21,9 @@ public class Mirror : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             LightBullet bullet = other.GetComponent<LightBullet>();
-            Vector3 reflected = new Vector3(bullet.GetDirection().x, bullet.GetDirection().y, -bullet.GetDirection().z);
+
+            Vector3 normal = -transform.forward;
+            Vector3 reflected = bullet.GetDirection() - 2.0f * Vector3.Dot(bullet.GetDirection(), normal) * normal;
             other.GetComponent<LightBullet>().SetDirection(reflected);
         }
     }
