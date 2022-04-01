@@ -8,7 +8,7 @@
     }
     SubShader
     {
-        Tags { "Queue"= "Transparent" "RenderType"="Transparent" }
+        Tags { "Queue"= "Transparent" "RenderType"="Transparent" "RenderPipeline" = "UniversalRenderPipeline"}
 		Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
 
@@ -78,6 +78,8 @@
 				rim = pow(rim, _ShadowWidth);
 
 				col.rgb += rim * _RimColor;
+
+                col = clamp(col, float4(0.0f, 0.0f, 0.0f, 0.0f), float4(1.0f, 1.0f, 1.0f, 1.0f));
 
 				UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;

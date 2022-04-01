@@ -6329,6 +6329,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &775275669 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8364686330665935054, guid: 25704f400ff559945be9db23e9f261be, type: 3}
+  m_PrefabInstance: {fileID: 2087038358079543907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a95c0c2f5724e040aa469c70a49290e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &786234118
 GameObject:
   m_ObjectHideFlags: 0
@@ -7512,17 +7523,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15af40e00ada6594d96d2ca6103cb2c7, type: 3}
---- !u!114 &873756619 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2087038357206363560, guid: 25704f400ff559945be9db23e9f261be, type: 3}
-  m_PrefabInstance: {fileID: 2087038358079543907}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a95c0c2f5724e040aa469c70a49290e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &874606455 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6187947663881979970, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
@@ -9141,6 +9141,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 102917470}
+    - target: {fileID: 4938986161195083452, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938986161195083452, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938986161195083452, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 4938986161195083453, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
       propertyPath: panTime
       value: 2.5
@@ -9153,6 +9165,10 @@ PrefabInstance:
       propertyPath: camLookAtTarget
       value: 
       objectReference: {fileID: 1748840433}
+    - target: {fileID: 4938986161195083453, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
+      propertyPath: distanceToTarget
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6187947663881979970, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19006,9 +19022,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 1983739734}
     m_Modifications:
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: action.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 873756619}
+      objectReference: {fileID: 775275669}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: action.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19017,6 +19037,18 @@ PrefabInstance:
       propertyPath: action.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 603707636}
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OpenableWall, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517908, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: m_Name
       value: ActivationMonolith

@@ -12,7 +12,10 @@ public class PressureButton : MonoBehaviour
     private Collider solidButton;
 
     [SerializeField]
-    private UnityEvent action;
+    private UnityEvent onPressAction;
+
+    [SerializeField]
+    private UnityEvent onReleaseAction;
 
     private Vector3 initialPos;
 
@@ -48,7 +51,7 @@ public class PressureButton : MonoBehaviour
 
         solidButton.transform.position = pressedPos.position;
 
-        action.Invoke();
+        onPressAction.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
@@ -57,5 +60,7 @@ public class PressureButton : MonoBehaviour
             return;
 
         solidButton.transform.position = initialPos;
+
+        onReleaseAction.Invoke();
     }
 }
