@@ -21,11 +21,12 @@ public class CameraPan : MonoBehaviour
 
     public void Pan()
     {
-        if (firstTime)
-        {
-            firstTime = false;
-            StartCoroutine(PanCoroutine());
-        }
+        if (!firstTime)
+            return;
+
+        firstTime = false;
+
+        StartCoroutine(PanCoroutine());
     }
 
     private IEnumerator PanCoroutine()

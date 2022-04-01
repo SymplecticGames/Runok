@@ -78,8 +78,6 @@ public class BeetleBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentLumMode = LumMode.RadialLight;
-
         verticalSpeed = downVerticalSpeed;
 
         charBehaviour = GetComponent<GenericBehaviour>();
@@ -118,10 +116,14 @@ public class BeetleBehaviour : MonoBehaviour
         switch (currentLumMode)
         {
             case LumMode.RadialLight:
+                if (!beetleLight.activeInHierarchy) beetleLight.SetActive(true);
+
                 animator.SetBool("BackRay", false);
                 animator.SetBool("FrontRay", false);
                 break;
             case LumMode.LightShot:
+                if (beetleLight.activeInHierarchy) beetleLight.SetActive(false);
+
                 if (shootPressed && shootElapsedTime > shootCooldown)
                 {
                     animator.SetBool("BackRay", true);
@@ -135,6 +137,8 @@ public class BeetleBehaviour : MonoBehaviour
                 shootElapsedTime += Time.deltaTime;
                 break;
             case LumMode.LightImpulse:
+                if (beetleLight.activeInHierarchy) beetleLight.SetActive(false);
+                
                 additionalVel += charBehaviour.currentForwardTarget * impulseFactor * forwardFactor;
                 additionalVel += charBehaviour.currentForwardTarget * impulseFactor * backwardFactor;
 
@@ -170,11 +174,6 @@ public class BeetleBehaviour : MonoBehaviour
     public void ChangeLumMode(LumMode newMode)
     {
         currentLumMode = newMode;
-
-        if (currentLumMode == LumMode.RadialLight)
-            beetleLight.SetActive(true);
-        else
-            beetleLight.SetActive(false);
     }
 
     // Impulse Backward and FrontRay

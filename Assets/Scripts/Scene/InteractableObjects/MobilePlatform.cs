@@ -28,6 +28,8 @@ public class MobilePlatform : MonoBehaviour
 
     private float lerpTime;
 
+    private bool firstTime = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +71,11 @@ public class MobilePlatform : MonoBehaviour
 
     public void StartMovingPlatform(bool loop)
     {
+        if (!firstTime)
+            return;
+
+        firstTime = false;
+
         loopMovement = loop;
         StartCoroutine(MovePlatform());
     }
