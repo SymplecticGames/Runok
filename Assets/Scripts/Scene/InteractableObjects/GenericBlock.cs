@@ -60,6 +60,9 @@ public class GenericBlock : MonoBehaviour
 
         for (int i = 0; i < initialBoxPos.Length; i++)
             initialBoxPos[i] = boxes[i].transform.localPosition;
+
+        if (cubeRespawn)
+            ResetBlock();
     }
 
     // Update is called once per frame

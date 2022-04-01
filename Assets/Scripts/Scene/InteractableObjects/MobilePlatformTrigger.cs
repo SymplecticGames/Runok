@@ -25,7 +25,7 @@ public class MobilePlatformTrigger : MonoBehaviour
         if (!other.CompareTag("Golem"))
             return;
 
-        Vector3 velVector = mobilePlat.currentSpeed * (mobilePlat._finalPos.position - mobilePlat._startingPos.position);
+        Vector3 velVector = mobilePlat.currentSpeed * (mobilePlat.targetPos.position - mobilePlat.startingPos);
 
         other.GetComponent<GenericBehaviour>().SetAdditionalVel(velVector);
     }

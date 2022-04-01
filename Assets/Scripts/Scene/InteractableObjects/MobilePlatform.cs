@@ -8,7 +8,7 @@ public class MobilePlatform : MonoBehaviour
     [SerializeField]
     private Transform platform;
 
-    public Transform _finalPos;
+    public Transform targetPos;
 
     [SerializeField]
     private float speed;
@@ -16,7 +16,7 @@ public class MobilePlatform : MonoBehaviour
     public bool startMovingWhenOn;
 
     [HideInInspector]
-    public Transform _startingPos;
+    public Vector3 startingPos;
 
     [HideInInspector]
     public float currentSpeed;
@@ -31,7 +31,7 @@ public class MobilePlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _startingPos = this.transform;
+        startingPos = platform.position;
         _movementStarted = false;
 
         lerpTime = 0.0f;
@@ -42,7 +42,7 @@ public class MobilePlatform : MonoBehaviour
     {
         if (_movementStarted)
         {
-            platform.position = Vector3.Lerp(_startingPos.position, _finalPos.position, lerpTime);
+            platform.position = Vector3.Lerp(startingPos, targetPos.position, lerpTime);
 
             if (lerpTime > 1.0f)
             {

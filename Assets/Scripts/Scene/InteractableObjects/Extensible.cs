@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Extensible : MonoBehaviour
 {
-    [Header("Extensible Properties")]
-    [SerializeField] string colliderTag;
-
     private Vector3 restScale;
     private float newScale;
 
@@ -26,7 +23,7 @@ public class Extensible : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag(colliderTag) && Physics.Raycast(transform.parent.position, transform.parent.right, out RaycastHit hitInfo))
+        if (other.CompareTag("GenericBlock") && Physics.Raycast(transform.parent.position, transform.parent.right, out RaycastHit hitInfo))
         {
             newScale = hitInfo.distance * 0.5f;
             transform.parent.localScale = new Vector3(newScale, restScale.y, restScale.z);
@@ -35,7 +32,7 @@ public class Extensible : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(colliderTag))
+        if (other.CompareTag("GenericBlock"))
         {
             transform.parent.localScale = restScale;
         }
