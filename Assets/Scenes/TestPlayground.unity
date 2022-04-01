@@ -2812,11 +2812,11 @@ MonoBehaviour:
   m_SplineCurvature: 0.2
   m_Orbits:
   - m_Height: 12
-    m_Radius: 10
+    m_Radius: 7
   - m_Height: 8
     m_Radius: 12
   - m_Height: 5
-    m_Radius: 10
+    m_Radius: 17
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 1580229499}
@@ -2830,7 +2830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498799635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.920795, y: 24.3, z: -48.093884}
+  m_LocalPosition: {x: -22.920794, y: 24.3, z: -48.093876}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1580229500}
@@ -3908,7 +3908,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.18643548, y: 0.7327152, z: -0.2218483, w: 0.6157546}
+  m_LocalRotation: {x: 0.18643539, y: 0.73271537, z: -0.22184835, w: 0.6157543}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7193,8 +7193,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.1864355, y: 0.7327152, z: -0.2218483, w: 0.61575454}
-  m_LocalPosition: {x: -22.920795, y: 24.3, z: -48.093884}
+  m_LocalRotation: {x: 0.18643537, y: 0.73271537, z: -0.22184834, w: 0.6157543}
+  m_LocalPosition: {x: -22.920794, y: 24.3, z: -48.093876}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7267,6 +7267,25 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1297087429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5082649889577447845, guid: 05496ba0c309fe74dac793867931248d, type: 3}
+  m_PrefabInstance: {fileID: 1463427251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1297087433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297087429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5bedcd7fed52404a8d6d0f674eeefca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatedImages: []
+  animatedImageObj: {fileID: 0}
 --- !u!1 &1314197258
 GameObject:
   m_ObjectHideFlags: 0
@@ -8552,6 +8571,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6776540506789089603, guid: 05496ba0c309fe74dac793867931248d, type: 3}
+      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1818878430}
+    - target: {fileID: 6776540506789089603, guid: 05496ba0c309fe74dac793867931248d, type: 3}
+      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDeviceChange
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05496ba0c309fe74dac793867931248d, type: 3}
 --- !u!114 &1463427252 stripped
@@ -8814,7 +8841,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.18643548, y: 0.7327152, z: -0.2218483, w: 0.6157546}
+  m_LocalRotation: {x: 0.18643539, y: 0.73271537, z: -0.22184835, w: 0.6157543}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8899,7 +8926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.16397479, y: 0.7402809, z: -0.1951213, w: 0.62211263}
+  m_LocalRotation: {x: 0.16397475, y: 0.7402811, z: -0.19512136, w: 0.6221124}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9948,6 +9975,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10da1bb33657a3f4abb7d22134751864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kbTags: []
+  xboxTags: []
+  psTags: []
   runes:
   - {fileID: 1576006981}
   minNumRunesToCollect: 4

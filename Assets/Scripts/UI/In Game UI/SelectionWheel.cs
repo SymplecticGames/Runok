@@ -92,7 +92,6 @@ public class SelectionWheel : MonoBehaviour
             }
             else
             {
-
                 if (selectorAngle > 223 && selectorAngle <= 346) // B3
                 {
                     wheelButtons[0].color = neutralColor;

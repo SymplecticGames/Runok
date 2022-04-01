@@ -92,7 +92,7 @@
                     "id": "fe526956-dbd9-46b6-be85-ba154e517334",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -114,9 +114,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Pause",
+                    "name": "Pausa",
                     "type": "Button",
-                    "id": "3175d55b-2126-4974-b222-773eae456a76",
+                    "id": "ff982a67-c9fc-4740-b6bd-af41340f659f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -423,14 +423,6 @@
                 },
                 {
                     "name": "",
-<<<<<<< HEAD
-                    "id": "59d46bd0-d7ac-4568-ade4-53eb673ae75b",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Pause",
-=======
                     "id": "d6cf27c3-9202-4281-8e1c-bfbd0b612883",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -503,27 +495,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "BeetleFrontRay",
->>>>>>> b2e5a4e8780dfec1a80de9878f19559f11f405a1
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-<<<<<<< HEAD
-                    "id": "e6089f97-ff7b-4a53-bc20-bbffc51c6424",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-=======
                     "id": "3a4b892c-1a8f-43c8-b6d5-6ea43b8e434c",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "BeetleFrontRay",
->>>>>>> b2e5a4e8780dfec1a80de9878f19559f11f405a1
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44f5193e-0dc8-4d57-bcfd-d745f7a9c006",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pausa",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6be9d11c-071b-404c-b92f-40305814d957",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pausa",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

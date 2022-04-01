@@ -40,8 +40,7 @@ public class PauseMenuUI : MonoBehaviour
         }
         else
         {
-            Debug.Log("PAUSAR");
-            GameManager.instance.player.input.actions.FindAction("ActiveFw_Hit").Disable();
+            GameManager.instance.player.input.actions.FindAction("GolemHit").Disable();
             GameManager.instance.pause();
             pauseMenuPanel.SetActive(true);
             _paused = !_paused;    
@@ -51,7 +50,7 @@ public class PauseMenuUI : MonoBehaviour
 
     public void Continue()
     {
-        GameManager.instance.player.input.actions.FindAction("ActiveFw_Hit").Enable();
+        GameManager.instance.player.input.actions.FindAction("GolemHit").Enable();
         GameManager.instance.play();
         pauseMenuPanel.SetActive(false);
         _clickedButton = ClickedButton.Continue;

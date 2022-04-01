@@ -7,12 +7,12 @@ public class PlayGifs : MonoBehaviour
 {
 
     public Sprite[] animatedImages;
-    public Image animatedImageObj;
+    private Image animatedImageObj;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        animatedImageObj = GetComponent<Image>();
     }
 
     // Update is called once per frame

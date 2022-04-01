@@ -53,9 +53,7 @@ MonoBehaviour:
   camLookAtTarget: {fileID: 0}
   freelookCam: {fileID: 0}
   camOrbitRadius: 0
-  comboCounter: 0
-  lastComboHitTime: 0
-  selectionWheelEnabled: 0
+  selectionWheelEnabled: 1
   input: {fileID: 0}
 --- !u!114 &6776540506789089603
 MonoBehaviour:
@@ -80,19 +78,7 @@ MonoBehaviour:
       m_Calls: []
   m_ControlsChangedEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7721501219534350380}
-        m_TargetAssemblyTypeName: LateralMenuUI, Assembly-CSharp
-        m_MethodName: OnDeviceChange
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
@@ -119,6 +105,18 @@ MonoBehaviour:
       - m_Target: {fileID: 6776540506789089601}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: OnSwapCharacter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7721501219534350380}
+        m_TargetAssemblyTypeName: LateralMenuUI, Assembly-CSharp
+        m_MethodName: OnUISwapCharacter
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -271,11 +269,6 @@ MonoBehaviour:
     m_ActionId: c1fbfc74-aa2c-4c7e-a9d8-33185dfd1fcc
     m_ActionName: UI/DeviceJoined[/Keyboard/anyKey]
   - m_PersistentCalls:
-<<<<<<< HEAD
-      m_Calls: []
-    m_ActionId: 3175d55b-2126-4974-b222-773eae456a76
-    m_ActionName: Player/Pause[/Keyboard/escape]
-=======
       m_Calls:
       - m_Target: {fileID: 6776540506789089601}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
@@ -290,7 +283,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 3def8875-3097-4c2d-bd30-03542c86419f
-    m_ActionName: Player/BeetleShoot[/Mouse/leftButton]
+    m_ActionName: Player/BeetleShoot[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6776540506789089601}
@@ -306,7 +299,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 554b3435-6031-4a08-bc51-3a2ea830c405
-    m_ActionName: Player/GolemJump[/Keyboard/space]
+    m_ActionName: Player/GolemJump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6776540506789089601}
@@ -322,8 +315,23 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 3fa9c75f-42fb-4c86-9363-44a0e5b4b018
-    m_ActionName: Player/GolemHit[/Mouse/leftButton]
->>>>>>> b2e5a4e8780dfec1a80de9878f19559f11f405a1
+    m_ActionName: Player/GolemHit[/Mouse/leftButton,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1608361203946759419}
+        m_TargetAssemblyTypeName: PauseMenuUI, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ff982a67-c9fc-4740-b6bd-af41340f659f
+    m_ActionName: Player/Pausa[/Keyboard/escape,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -384,18 +392,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3828996318984915175, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
-      propertyPath: playerManager
-      value: 
-      objectReference: {fileID: 6776540506789089601}
-    - target: {fileID: 7073080741541228282, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
-      propertyPath: m_Name
-      value: ConfirmationPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 8370980805377022598, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
 --- !u!4 &5216761631704418157 stripped
@@ -412,6 +408,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7858d329489980e42bdc862b1bb2dda8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1608361203946759419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5213215987017237552, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
+  m_PrefabInstance: {fileID: 6776540505230074059}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ba36d622980c24482f9061fe4ad56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5461095983996822687 stripped
