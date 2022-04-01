@@ -107,18 +107,21 @@ public class GenericBehaviour : MonoBehaviour
         animator.SetBool("isWalking", movementInput.magnitude > 0); // Golem/Beetle
 
         // Golem walkspeed, jump and falling
-        if (!isAttacking && controller.isGrounded)
-            animator.SetFloat("WalkSpeed", Mathf.Clamp(movementInput.magnitude, 0.1f, 1.0f));
-        else
-            animator.SetFloat("WalkSpeed", 1.0f);
+        if (CompareTag("Golem"))
+        {
+            if (!isAttacking && controller.isGrounded)
+                animator.SetFloat("WalkSpeed", Mathf.Clamp(movementInput.magnitude, 0.1f, 1.0f));
+            else
+                animator.SetFloat("WalkSpeed", 1.0f);
 
-        if (jumpPressed && !isAttacking)
-            animator.SetBool("isJumping", true);
+            if (jumpPressed && !isAttacking)
+                animator.SetBool("isJumping", true);
 
-        if (!controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
-            animator.SetBool("isJumping", false);
+            if (!controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
+                animator.SetBool("isJumping", false);
 
-        animator.SetBool("isFalling", !controller.isGrounded);
+            animator.SetBool("isFalling", !controller.isGrounded);
+        }
     }
 
     public void SetAdditionalVel(Vector3 additionalVelocity)

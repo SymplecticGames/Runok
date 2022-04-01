@@ -10,9 +10,6 @@ public class CameraPan : MonoBehaviour
     private PlayerManager playerManager;
 
     [SerializeField]
-    private Transform camLookAtTarget;
-
-    [SerializeField]
     private float distanceToTarget = 15.0f;
 
     private bool firstTime = true;
@@ -36,8 +33,8 @@ public class CameraPan : MonoBehaviour
         //playerManager.gameObject.SetActive(false);
         playerManager.input.DeactivateInput();
 
-        camLookAtTarget.parent = transform;
-        camLookAtTarget.localPosition = Vector3.zero;
+        playerManager.camLookAtTarget.parent = transform;
+        playerManager.camLookAtTarget.localPosition = Vector3.zero;
 
         // Set the orbits to a certain radius
         playerManager.freelookCam.m_Orbits[0].m_Radius = distanceToTarget - 5.0f;
@@ -46,8 +43,8 @@ public class CameraPan : MonoBehaviour
 
         yield return new WaitForSeconds(panTime);
 
-        camLookAtTarget.parent = playerManager.currentCharacter.transform;
-        camLookAtTarget.localPosition = Vector3.zero;
+        playerManager.camLookAtTarget.parent = playerManager.currentCharacter.transform;
+        playerManager.camLookAtTarget.localPosition = Vector3.zero;
 
         // Reset the orbits
         playerManager.freelookCam.m_Orbits[0].m_Radius = playerManager.camOrbitRadius - 5.0f;

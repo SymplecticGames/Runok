@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     
     // --------------------------------------------------- enemies ------------------------------------------------- //
     // list of enemies in the level
-    public List<GameObject> enemies;
+    public List<Enemy> enemies;
     // ------------------------------------------------------------------------------------------------------------- //
 
     // --------------------------------------------------- player --------------------------------------------------- //
@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
         player.beetleBehaviour.GetComponent<Animator>().enabled = false;
         
         // enemies
-        foreach (GameObject enemy in enemies)
+        foreach (Enemy enemy in enemies)
         {
             scripts = new List<MonoBehaviour>(enemy.GetComponentsInChildren<MonoBehaviour>());
             foreach (MonoBehaviour script in scripts)
@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour
         player.beetleBehaviour.GetComponent<Animator>().enabled = true;
         
         // enemies
-        foreach (GameObject enemy in enemies)
+        foreach (Enemy enemy in enemies)
         {
             scripts = new List<MonoBehaviour>(enemy.GetComponentsInChildren<MonoBehaviour>());
             foreach (MonoBehaviour script in scripts)

@@ -19,8 +19,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private LateralMenuUI lateralMenu;
 
-    [SerializeField]
-    private Transform camLookAtTarget;
+    public Transform camLookAtTarget;
 
     public CinemachineFreeLook freelookCam;
 
@@ -149,10 +148,18 @@ public class PlayerManager : MonoBehaviour
 
         // Reset animator before swapping
         animator.SetBool("isWalking", false);
-        animator.SetBool("isJumping", false);
-        animator.SetBool("isFalling", false);
-        animator.SetBool("FrontRay", false);
-        animator.SetBool("BackRay", false);
+
+        if (currentCharacter.CompareTag("Golem"))
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", false);
+        }
+
+        if (currentCharacter.CompareTag("Beetle"))
+        {
+            animator.SetBool("FrontRay", false);
+            animator.SetBool("BackRay", false);
+        }
 
         if (currentCharacter == golemBehaviour)
         {

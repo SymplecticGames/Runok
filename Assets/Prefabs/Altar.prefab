@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1464134280639766165}
   - component: {fileID: 5599497253313223772}
+  - component: {fileID: 6771416162889864332}
   m_Layer: 0
   m_Name: Altar
   m_TagString: Untagged
@@ -46,7 +47,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc42b8dfc24e80458ee1610519ce640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _altarPortal: {fileID: 0}
+  _altarPortal: {fileID: 6747053793749481295}
+  action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7300825706276043569}
+        m_TargetAssemblyTypeName: CameraPan, Assembly-CSharp
+        m_MethodName: Pan
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!135 &6771416162889864332
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837125251361266378}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.8
+  m_Center: {x: 0, y: 4.7, z: 0}
 --- !u!1 &2873513914909197876
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,9 +265,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Height: 2
+  m_Height: 4.4828906
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.000000047683717, y: 0.014797926, z: -0.00000009536743}
 --- !u!114 &7300825706276043569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,10 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9bc4d63b181354fbe5942f43a690b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panTime: 0
-  playerManager: {fileID: 0}
-  camLookAtTarget: {fileID: 0}
-  beetleTransform: {fileID: 0}
+  panTime: 2
+  distanceToTarget: 15
 --- !u!1 &7397629048361531510
 GameObject:
   m_ObjectHideFlags: 0

@@ -102,7 +102,6 @@ public class Enemy : MonoBehaviour
                 bezier.enabled = false;
                 animator.SetBool("isHit", true);
 
-                Debug.Log(_hitCounter);
                 // if hits are enough to defeat the enemy, then, do deafeated animation
                 if (_hitCounter >= 2)
                 {
