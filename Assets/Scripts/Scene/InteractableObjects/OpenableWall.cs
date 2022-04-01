@@ -24,9 +24,6 @@ public class OpenableWall : MonoBehaviour
     private float openingVelocity;
 
     [SerializeField]
-    private bool staysOpen = true;
-
-    [SerializeField]
     private float delay = 1.0f;
 
     // Start is called before the first frame update

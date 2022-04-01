@@ -39,6 +39,11 @@ public class Enemy : MonoBehaviour
 
     private Animator animator;
 
+    private SkinnedMeshRenderer enemyMesh;
+
+    [SerializeField]
+    private Material shadowMat;
+
     //////////////////////////////////////////////////  p r o g r a m  /////////////////////////////////////////////////
     ///
     // Start is called before the first frame update
@@ -47,8 +52,10 @@ public class Enemy : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         bezier = GetComponent<BezierFollow>();
+        enemyMesh = GetComponentInChildren<SkinnedMeshRenderer>();
 
         bezier.enabled = allowWalking;
+        if (shadowEnemy) enemyMesh.material = shadowMat;
 
         _spawnTransform = gameObject.transform;
 
@@ -71,7 +78,7 @@ public class Enemy : MonoBehaviour
 
         // if the trigger is hit by the golem, the enemy dies when the number of hits is greater or equal
         // to the number of hits the golem needs (with that material) to defeat it.
-        if (other.CompareTag("Hitter"))
+        if (other.CompareTag("Hitter") && !shadowEnemy)
         {
             // get reference to golem
             GolemBehaviour golem = other.GetComponentInParent<GolemBehaviour>();
