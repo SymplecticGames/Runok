@@ -34,14 +34,24 @@ public class PlayerManager : MonoBehaviour
     public bool selectionWheelEnabled;
     [HideInInspector] public PlayerInput input;
 
+    private GameObject selectionWheel;
+
     private void Awake()
     {
+        selectionWheel = GameObject.FindGameObjectWithTag("SelectionWheel");
         input = GetComponent<PlayerInput>();
 
         if (selectionWheelEnabled)
+        {
             input.actions.FindAction("WheelMenu").Enable();
+            selectionWheel.SetActive(true);
+        }
         else
+        {
             input.actions.FindAction("WheelMenu").Disable();
+            selectionWheel.SetActive(false);
+        }
+
     }
 
     // Start is called before the first frame update

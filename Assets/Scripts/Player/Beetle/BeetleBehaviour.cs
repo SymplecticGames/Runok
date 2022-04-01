@@ -73,6 +73,8 @@ public class BeetleBehaviour : MonoBehaviour
 
     private Vector3 additionalVel = Vector3.zero;
 
+    private GameObject beetleLight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +91,8 @@ public class BeetleBehaviour : MonoBehaviour
         fwRayElapsedTime = rayCooldown;
 
         animator = GetComponent<Animator>();
+
+        beetleLight = GameObject.FindGameObjectWithTag("RadialLight");
     }
 
     // Update is called once per frame
@@ -166,6 +170,11 @@ public class BeetleBehaviour : MonoBehaviour
     public void ChangeLumMode(LumMode newMode)
     {
         currentLumMode = newMode;
+
+        if (currentLumMode == LumMode.RadialLight)
+            beetleLight.SetActive(true);
+        else
+            beetleLight.SetActive(false);
     }
 
     // Impulse Backward and FrontRay
