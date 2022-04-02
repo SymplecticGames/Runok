@@ -96,9 +96,9 @@ public class BeetleBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y - 1.0f, transform.position.z);
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
 
-        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 7.0f, LayerMask.GetMask("LevelGeometry")))
+        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 9.0f, LayerMask.GetMask("LevelGeometry")))
         {
             float distance = this.transform.position.y - hit.point.y;
 

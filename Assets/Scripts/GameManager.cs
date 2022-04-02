@@ -64,7 +64,9 @@ public class GameManager : MonoBehaviour
     private AudioSource musicSource;
 
     private float musicBaseVolume;
-    
+
+    private float volumeLerpStep = 0.0f;
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -83,6 +85,8 @@ public class GameManager : MonoBehaviour
         musicSource = GetComponent<AudioSource>();
         musicBaseVolume = musicSource.volume;
 
+        musicSource.volume = 0.0f;
+
         enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
         mobilePlatforms = new List<MobilePlatform>(FindObjectsOfType<MobilePlatform>());
         crackedPlatforms = new List<CrackedPlatform>(FindObjectsOfType<CrackedPlatform>());
@@ -93,8 +97,36 @@ public class GameManager : MonoBehaviour
         if (_collectedRunes < _numRunes)
         {
             altar.disableAltar();
+        }   
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (volumeLerpStep < 1.0f)
+        {
+            volumeLerpStep += Time.deltaTime;
+            musicSource.volume = Mathf.Lerp(0.0f, musicBaseVolume, volumeLerpStep);
         }
-        
+        else
+        {
+            musicSource.volume = musicBaseVolume;
+        }
+
+        if (Camera.main.transform.position.y < 0.0f)
+        {
+            RenderSettings.ambientIntensity = 0.0f;
+            RenderSettings.reflectionIntensity = 0.0f;
+            Camera.main.backgroundColor = new Color();
+            mainLight.enabled = false;
+        }
+        else
+        {
+            RenderSettings.ambientIntensity = 1.0f;
+            RenderSettings.reflectionIntensity = 1.0f;
+            Camera.main.backgroundColor = currentBGColor;
+            mainLight.enabled = true;
+        }
     }
 
     public void pickedRune()
@@ -299,25 +331,6 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
                 psTags[(int) deviceTag].color = Color.white;
             }
-        }
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        if (Camera.main.transform.position.y < 0.0f)
-        {
-            RenderSettings.ambientIntensity = 0.0f;
-            RenderSettings.reflectionIntensity = 0.0f;
-            Camera.main.backgroundColor = new Color();
-            mainLight.enabled = false;
-        }
-        else
-        {
-            RenderSettings.ambientIntensity = 1.0f;
-            RenderSettings.reflectionIntensity = 1.0f;
-            Camera.main.backgroundColor = currentBGColor;
-            mainLight.enabled = true;
         }
     }
 }
