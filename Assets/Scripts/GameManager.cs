@@ -60,6 +60,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Light mainLight;
+
+    private AudioSource musicSource;
+
+    private float musicBaseVolume;
     
     private void Awake()
     {
@@ -75,6 +79,9 @@ public class GameManager : MonoBehaviour
         _numRunes = GameObject.FindGameObjectsWithTag("Runa").Length;
         _collectedRunes = 0;
         _numDeaths = 0;
+
+        musicSource = GetComponent<AudioSource>();
+        musicBaseVolume = musicSource.volume;
 
         enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
         mobilePlatforms = new List<MobilePlatform>(FindObjectsOfType<MobilePlatform>());
@@ -141,7 +148,8 @@ public class GameManager : MonoBehaviour
 
     public void pause()
     {
-        
+        musicSource.volume = 0.5f * musicBaseVolume;
+
         // golem
         List<MonoBehaviour> scripts = new List<MonoBehaviour>(player.golemBehaviour.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
@@ -179,6 +187,7 @@ public class GameManager : MonoBehaviour
 
     public void play()
     {
+        musicSource.volume = musicBaseVolume;
 
         // golem
         List<MonoBehaviour> scripts = new List<MonoBehaviour>(player.golemBehaviour.GetComponentsInChildren<MonoBehaviour>());
