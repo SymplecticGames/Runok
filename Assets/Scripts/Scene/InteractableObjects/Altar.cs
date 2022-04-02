@@ -67,7 +67,8 @@ public class Altar : MonoBehaviour
         mat.color = enteredColor;
         
         // End Level
-        StartCoroutine(EndOfLevelTransition());
+        
+        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene(2));
 
 
     }
@@ -83,18 +84,6 @@ public class Altar : MonoBehaviour
     public void disableAltar()
     {
         _altarPortal.GetComponent<Collider>().isTrigger = false;
-    }
-    
-    
-    public IEnumerator EndOfLevelTransition()
-    {
-
-        yield return new WaitForSeconds(1.0f);
-        
-        // viñet animation
-        
-        // go to hub 1sec later
-        SceneManager.LoadScene(2);
     }
     
 }

@@ -29,24 +29,36 @@ public class MainMenuUI : MonoBehaviour
     public void ClickedPlayGame()
     {
         // open hub menu
-        SceneManager.LoadScene(2);
+
+        if(!selector.activeInHierarchy)
+            return;
+        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene(2));
+
     }
     
     public void ClickedExitGame() {
         
         // exit Runok
+        if(!selector.activeInHierarchy)
+            return;
         Application.Quit();
     }
 
     public void HoverPlayGameButton()
     {
         // change selector position
+        if(!selector.activeInHierarchy)
+            return;
+
         _selectorTargetPosition = playGameButton.localPosition.y;
     }
     
     public void HoverExitGameButton()
     {
         // change selector position
+        if(!selector.activeInHierarchy)
+            return;
+        
         _selectorTargetPosition = exitGameButton.transform.localPosition.y;
     }
     

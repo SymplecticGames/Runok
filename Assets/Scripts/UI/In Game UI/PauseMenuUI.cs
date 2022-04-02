@@ -45,6 +45,7 @@ public class PauseMenuUI : MonoBehaviour
             pauseMenuPanel.SetActive(true);
             _paused = !_paused;    
         }
+        EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
         
     }
 
@@ -60,40 +61,48 @@ public class PauseMenuUI : MonoBehaviour
     public void GoToMainMenu()
     {
         _clickedButton = ClickedButton.MainMenu;
+        EventSystem.current.SetSelectedGameObject(yesButton.gameObject);
         confirmationPanel.SetActive(true);
     }
 
     public void GoToHub()
     {
         _clickedButton = ClickedButton.Hub;
+        EventSystem.current.SetSelectedGameObject(yesButton.gameObject);
         confirmationPanel.SetActive(true);
     }
 
     //////////////////////////////////////  CONFIRMATION PANEL//////////////////////////////////////  
     public void ClickedYes()
     {
+        int sceneId = 0; 
+        
         switch (_clickedButton)
         {
             case ClickedButton.Hub:
                 // open hub menu
-                SceneManager.LoadScene(2);
+                sceneId = 2;
                 break;
             
             case ClickedButton.MainMenu:
                 // open main menu
-                SceneManager.LoadScene(1);
+                sceneId = 1;
                 break;
             
             default:
                 break;
         }
+        
+        // do transition animation
+        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene(sceneId));
         confirmationPanel.SetActive(false);
         pauseMenuPanel.SetActive(false);
-
+        
     }
 
     public void ClickedNo()
     {
+        EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
         confirmationPanel.SetActive(false);        
     }
 
