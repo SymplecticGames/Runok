@@ -17,11 +17,15 @@ public class CrackedPlatform : MonoBehaviour
 
     private float crackedStep = 0.0f;
 
-    private MeshRenderer currentMaterial;
+    private MeshRenderer meshRend;
+
+    private Material originalMaterial;
 
     private void Start()
     {
-        currentMaterial = GetComponent<MeshRenderer>();
+        meshRend = GetComponent<MeshRenderer>();
+
+        originalMaterial = meshRend.material;
     }
 
     private void OnTriggerStay(Collider other)
@@ -40,7 +44,7 @@ public class CrackedPlatform : MonoBehaviour
             if (crackedStep > crackedTime && currentCheckPoint < crackedTime)
             {
                 currentCheckPoint = crackedTime;
-                currentMaterial.material = crackedMaterial;
+                meshRend.material = crackedMaterial;
             }
 
             // Broken time
@@ -49,7 +53,8 @@ public class CrackedPlatform : MonoBehaviour
                 currentCheckPoint = brokenTime;
 
                 // Break
-                Destroy(gameObject);
+                gameObject.SetActive(false);
+                //Destroy(gameObject);
             }
         }
     }
@@ -66,5 +71,14 @@ public class CrackedPlatform : MonoBehaviour
 
             crackedStep = currentCheckPoint;
         }
+    }
+
+    public void ResetPlatform()
+    {
+        crackedStep = 0.0f;
+        currentCheckPoint = 0.0f;
+        meshRend.material = originalMaterial;
+
+        gameObject.SetActive(true);
     }
 }

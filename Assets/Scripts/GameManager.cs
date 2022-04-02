@@ -17,77 +17,47 @@ public enum deviceTag
 
 public class GameManager : MonoBehaviour
 {
-    
-    /////////////////////////////////////////  s t a t i c   v a r i a b l e s  ////////////////////////////////////////
-
     public static GameManager instance;
 
     public static Vector3 gravity = new Vector3(0.0f, -9.8f, 0.0f);
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
 
     // 0-> swapTag     1-> parchmentTag     2->selectionWheelTag    3-> hitTag    4-> jumpTag   
     public List<Image> kbTags;
     public List<Image> xboxTags;
     public List<Image> psTags;
 
-    // --------------------------------------------------- runes --------------------------------------------------- //
-    // list of runes in the level
-    public List<GameObject> runes;
+    // Altar present in the level
+    private Altar altar;
 
-    // minimum number of runes the player has to collect to finish the level
-    public int minNumRunesToCollect;
-    // ------------------------------------------------------------------------------------------------------------- //
-    
-    // --------------------------------------------------- altar --------------------------------------------------- //
-    // altar present in the level
-    public GameObject altar;
-    // ------------------------------------------------------------------------------------------------------------- //
-    
-    // --------------------------------------------------- enemies ------------------------------------------------- //
-    // list of enemies in the level
-    public List<Enemy> enemies;
-    // ------------------------------------------------------------------------------------------------------------- //
+    // List of enemies in the level
+    private List<Enemy> enemies;
 
-    // --------------------------------------------------- player --------------------------------------------------- //
-    // players
+    private List<CrackedPlatform> crackedPlatforms;
+
+    // List of defeated respawnable enemies in the level
+    private List<GameObject> _defeatedRespawnableEnemies;
+
+    // Players
     public PlayerManager player;
+
     [HideInInspector] public bool usingGamepad;
     
-    // -------------------------------------------------- inGameUI ------------------------------------------------- //
-    // runes counter script
+    // Runes counter script
     [SerializeField] private RunesCounterUI runesCounterUIScript;
     
-    // ------------------------------------------------------------------------------------------------------------- //
-    
-    ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
-    //
-    // --------------------------------------------------- runes --------------------------------------------------- //
-    // number of runes in the level
+    // Number of runes in the level
     private int _numRunes;
     
-    // number of runes collected in the level
+    // Number of runes collected in the level
     private int _collectedRunes;
-    // ------------------------------------------------------------------------------------------------------------- //
     
-    // --------------------------------------------------- enemies ------------------------------------------------- //
-    // list of defeated respawnable enemies in the level
-    private List<GameObject> _defeatedRespawnableEnemies;
-    // ------------------------------------------------------------------------------------------------------------- //
-    
-    // --------------------------------------------------- player --------------------------------------------------- //
-    // number of deaths in the level
+    // Number of deaths in the level
     private int _numDeaths;
-
-    // ------------------------------------------------------------------------------------------------------------- //
 
     private Color currentBGColor;
 
     [SerializeField]
     private Light mainLight;
-    
     
     private void Awake()
     {
@@ -100,29 +70,32 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _defeatedRespawnableEnemies = new List<GameObject>();
-        _numRunes = runes.Count;
+        _numRunes = GameObject.FindGameObjectsWithTag("Runa").Length;
         _collectedRunes = 0;
         _numDeaths = 0;
 
+        enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
+        crackedPlatforms = new List<CrackedPlatform>(FindObjectsOfType<CrackedPlatform>());
+        altar = FindObjectOfType<Altar>();
+
         currentBGColor = Camera.main.backgroundColor;
 
-        if (_collectedRunes < minNumRunesToCollect)
+        if (_collectedRunes < _numRunes)
         {
-            altar.GetComponent<Altar>().disableAltar();
+            altar.disableAltar();
         }
         
     }
 
-    // --------------------------------------------------- runes --------------------------------------------------- //
     public void pickedRune()
     {
         // this method is called when a rune is picked
         // if the player has colleted enough runes, the altar is enabled
 
         _collectedRunes++;
-        if (_collectedRunes >= minNumRunesToCollect)
+        if (_collectedRunes >= _numRunes)
         {
-            altar.GetComponent<Altar>().enableAltar();
+            altar.enableAltar();
         }
         runesCounterUIScript.addRune(1);
     }
@@ -133,25 +106,18 @@ public class GameManager : MonoBehaviour
         // if a rune is respawned, check if the minimum number of runes required for the altar to be enabled is not met
         
         _collectedRunes--;
-        if (_collectedRunes < minNumRunesToCollect)
+        if (_collectedRunes < _numRunes)
         {
-            altar.GetComponent<Altar>().disableAltar();
+            altar.disableAltar();
         }
         runesCounterUIScript.addRune(-1);
     }
-    // ------------------------------------------------------------------------------------------------------------- //
-    
-    
-    // --------------------------------------------------- enemies ------------------------------------------------- //
+ 
     public void defeatedRespawnableEnemy(GameObject enemy)
     {
         _defeatedRespawnableEnemies.Add(enemy);
     }
-    // ------------------------------------------------------------------------------------------------------------- //
     
-    
-    
-    // --------------------------------------------------- palyer --------------------------------------------------- //
     public void newDeath()
     {
         // this method is called when the player dies
@@ -159,19 +125,16 @@ public class GameManager : MonoBehaviour
         _numDeaths++;
         
         // each defeated respawnable enemie is respawned
-        foreach (var enemy in _defeatedRespawnableEnemies)
-        {
+        foreach (GameObject enemy in _defeatedRespawnableEnemies)
             enemy.GetComponent<Enemy>().SpawnEnemy();
-        }
-        
+
+        foreach (CrackedPlatform platform in crackedPlatforms)
+            platform.ResetPlatform();
+
         // reset list
         _defeatedRespawnableEnemies.Clear();
         
     }
-
-    // ------------------------------------------------------------------------------------------------------------- //
-    
-        // ----------------------------------------------------- UI ----------------------------------------------------- //
 
     public void pause()
     {
@@ -235,7 +198,7 @@ public class GameManager : MonoBehaviour
                 script.enabled = true;
             }
 
-            enemy.GetComponent<BezierFollow>().enabled = enemy.GetComponent<Enemy>().allowWalking;
+            enemy.GetComponent<BezierFollow>().enabled = enemy.allowWalking;
             enemy.GetComponent<Animator>().enabled = true;
             
         }
@@ -243,7 +206,6 @@ public class GameManager : MonoBehaviour
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
 
     }
-    // ------------------------------------------------------------------------------------------------------------- //
     
     public void OnDeviceChange(PlayerInput context)
     {
@@ -260,8 +222,8 @@ public class GameManager : MonoBehaviour
                     psTags[i].enabled = false;
                 }
 
-                if (GameManager.instance)
-                    GameManager.instance.usingGamepad = false;
+                if (instance)
+                    instance.usingGamepad = false;
 
             }
             else if (context.devices[0].name.StartsWith("DualShock"))
@@ -273,8 +235,8 @@ public class GameManager : MonoBehaviour
                     xboxTags[i].enabled = false;
                     psTags[i].enabled = true;
                 }
-                if (GameManager.instance)
-                    GameManager.instance.usingGamepad = true;
+                if (instance)
+                    instance.usingGamepad = true;
             }
             else
             {
@@ -286,8 +248,8 @@ public class GameManager : MonoBehaviour
                     psTags[i].enabled = false;
                 }
                 
-                if (GameManager.instance)
-                    GameManager.instance.usingGamepad = true;
+                if (instance)
+                    instance.usingGamepad = true;
             }
         }
     }
