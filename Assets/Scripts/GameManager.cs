@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     private List<CrackedPlatform> crackedPlatforms;
 
+    private List<MobilePlatform> mobilePlatforms;
+
     // List of defeated respawnable enemies in the level
     private List<GameObject> _defeatedRespawnableEnemies;
 
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
         _numDeaths = 0;
 
         enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
+        mobilePlatforms = new List<MobilePlatform>(FindObjectsOfType<MobilePlatform>());
         crackedPlatforms = new List<CrackedPlatform>(FindObjectsOfType<CrackedPlatform>());
         altar = FindObjectOfType<Altar>();
 
@@ -166,6 +169,10 @@ public class GameManager : MonoBehaviour
             enemy.GetComponent<Animator>().enabled = false;
         }
 
+        // Mobile platforms
+        foreach (MobilePlatform platform in mobilePlatforms)
+            platform.enabled = false;
+
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
         
     }
@@ -202,7 +209,11 @@ public class GameManager : MonoBehaviour
             enemy.GetComponent<Animator>().enabled = true;
             
         }
-        
+
+        // Mobile platforms
+        foreach (MobilePlatform platform in mobilePlatforms)
+            platform.enabled = true;
+
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
 
     }

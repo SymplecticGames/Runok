@@ -13,37 +13,25 @@ public class Extensible : MonoBehaviour
         restScale = transform.parent.localScale;
     }
 
+    private void Update()
+    {
+        if (Physics.Raycast(transform.parent.position, transform.parent.right, out RaycastHit hitInfo) && hitInfo.collider.CompareTag("GenericBlock"))
+        {
+            newScale = hitInfo.distance * 0.5f;
+            transform.parent.localScale = new Vector3(newScale, restScale.y, restScale.z);
+        }
+        else
+        {
+            transform.parent.localScale = restScale;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!enabled)
             return;
 
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
-        {
             GameManager.instance.player.Die();
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (!enabled)
-            return;
-
-        if (other.CompareTag("GenericBlock") && Physics.Raycast(transform.parent.position, transform.parent.right, out RaycastHit hitInfo))
-        {
-            newScale = hitInfo.distance * 0.5f;
-            transform.parent.localScale = new Vector3(newScale, restScale.y, restScale.z);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (!enabled)
-            return;
-
-        if (other.CompareTag("GenericBlock"))
-        {
-            transform.parent.localScale = restScale;
-        }
     }
 }
