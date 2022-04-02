@@ -65,32 +65,32 @@ public class GolemBehaviour : MonoBehaviour
 
     private float lastComboHitTime;
 
+    private SkinnedMeshRenderer golemMesh;
+
+    [SerializeField]
+    private Material[] golemBaseMaterials;
+
+    private Material targetMaterial;
+
+    private bool isChangingMaterial;
+
+    private float materialLerpStep;
+
+    private Material previousMaterial;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         genericBehaviour = GetComponent<GenericBehaviour>();
+        golemMesh = GetComponentInChildren<SkinnedMeshRenderer>();
+
+        ChangeMaterial(currentMaterial);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Material change
-        switch (currentMaterial)
-        {
-            case GolemMaterial.Terracotta:
-                golemStats = TerracottaStats;
-                break;
-
-            case GolemMaterial.Plumber:
-                golemStats = PlumberStats;
-                break;
-
-            case GolemMaterial.Wooden:
-                golemStats = WoodenStats;
-                break;
-        }
-
         // Material dependant stats
         genericBehaviour.movementFactor = 1.0f / golemStats.weight;
         genericBehaviour.maxJumps = genericBehaviour.controller.isGrounded ? golemStats.jumps : golemStats.jumps - 1;
@@ -105,6 +105,19 @@ public class GolemBehaviour : MonoBehaviour
             comboCounter = 0;
             canDoCombo = true;
         }
+
+        // Material lerp (Not working)
+        //if (isChangingMaterial)
+        //    if (materialLerpStep < 1.0f)
+        //    {
+        //        materialLerpStep += Time.deltaTime;
+        //        golemMesh.material.Lerp(previousMaterial, targetMaterial, materialLerpStep);
+        //    }
+        //    else
+        //    {
+        //        golemMesh.material = targetMaterial;
+        //        isChangingMaterial = false;
+        //    }
     }
 
     public void GolemHit()
@@ -119,6 +132,27 @@ public class GolemBehaviour : MonoBehaviour
 
     public void ChangeMaterial(GolemMaterial newMaterial)
     {
+        previousMaterial = golemBaseMaterials[(int)currentMaterial - 1];
+        targetMaterial = golemBaseMaterials[(int)newMaterial - 1];
+
+        isChangingMaterial = true;
+        materialLerpStep = 0.0f;
+
+        golemMesh.material = targetMaterial;
+
+        switch (newMaterial)
+        {
+            case GolemMaterial.Terracotta:
+                golemStats = TerracottaStats;
+                break;
+            case GolemMaterial.Plumber:
+                golemStats = PlumberStats;
+                break;
+            case GolemMaterial.Wooden:
+                golemStats = WoodenStats;
+                break;
+        }
+
         currentMaterial = newMaterial;
     }
 
