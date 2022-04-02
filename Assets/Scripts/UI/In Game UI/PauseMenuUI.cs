@@ -40,7 +40,7 @@ public class PauseMenuUI : MonoBehaviour
         }
         else
         {
-            GameManager.instance.player.input.actions.FindAction("GolemHit").Disable();
+            PausePlayer();
             GameManager.instance.pause();
             pauseMenuPanel.SetActive(true);
             _paused = !_paused;    
@@ -50,7 +50,7 @@ public class PauseMenuUI : MonoBehaviour
 
     public void Continue()
     {
-        GameManager.instance.player.input.actions.FindAction("GolemHit").Enable();
+        ResumePlayer();
         GameManager.instance.play();
         pauseMenuPanel.SetActive(false);
         _clickedButton = ClickedButton.Continue;
@@ -111,6 +111,33 @@ public class PauseMenuUI : MonoBehaviour
         noButton.onClick.AddListener(ClickedNo);
         
     }
+
+    private void PausePlayer()
+    {
+        GameManager.instance.player.input.actions.FindAction("Look").Disable();
+        GameManager.instance.player.input.actions.FindAction("GolemHit").Disable();
+        GameManager.instance.player.input.actions.FindAction("GolemJump").Disable();
+        GameManager.instance.player.input.actions.FindAction("ReturnToGolem").Disable();
+        GameManager.instance.player.input.actions.FindAction("SwapCharacter").Disable();
+        GameManager.instance.player.input.actions.FindAction("BeetleFrontRay").Disable();
+        GameManager.instance.player.input.actions.FindAction("BeetleBackRay").Disable();
+        GameManager.instance.player.input.actions.FindAction("BeetleShoot").Disable();
+        GameManager.instance.player.input.actions.FindAction("OpenInstructions").Disable();
+    }
+
+    private void ResumePlayer()
+    {
+        GameManager.instance.player.input.actions.FindAction("Look").Enable();
+        GameManager.instance.player.input.actions.FindAction("GolemHit").Enable();
+        GameManager.instance.player.input.actions.FindAction("GolemJump").Enable();
+        GameManager.instance.player.input.actions.FindAction("ReturnToGolem").Enable();
+        GameManager.instance.player.input.actions.FindAction("SwapCharacter").Enable();
+        GameManager.instance.player.input.actions.FindAction("BeetleFrontRay").Enable();
+        GameManager.instance.player.input.actions.FindAction("BeetleBackRay").Enable();
+        GameManager.instance.player.input.actions.FindAction("BeetleShoot").Enable();
+        GameManager.instance.player.input.actions.FindAction("OpenInstructions").Enable();
+    }
+
 
     // Update is called once per frame
     void Update()
