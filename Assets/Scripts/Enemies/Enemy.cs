@@ -73,6 +73,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
             GameManager.instance.player.Die();
 

@@ -13,6 +13,9 @@ public class MobilePlatformTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (!other.CompareTag("Golem"))
             return;
 
@@ -22,6 +25,9 @@ public class MobilePlatformTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (!other.CompareTag("Golem"))
             return;
 
@@ -32,6 +38,9 @@ public class MobilePlatformTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (!other.CompareTag("Golem"))
             return;
 

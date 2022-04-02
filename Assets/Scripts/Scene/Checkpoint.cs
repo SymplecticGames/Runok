@@ -22,6 +22,9 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
         {
             GameManager.instance.player.Checkpoint(respawnPoint);

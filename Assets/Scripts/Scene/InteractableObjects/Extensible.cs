@@ -15,6 +15,9 @@ public class Extensible : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
         {
             GameManager.instance.player.Die();
@@ -23,6 +26,9 @@ public class Extensible : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.CompareTag("GenericBlock") && Physics.Raycast(transform.parent.position, transform.parent.right, out RaycastHit hitInfo))
         {
             newScale = hitInfo.distance * 0.5f;
@@ -32,6 +38,9 @@ public class Extensible : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.CompareTag("GenericBlock"))
         {
             transform.parent.localScale = restScale;

@@ -46,6 +46,9 @@ public class PressureButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (!other.CompareTag("Golem") || !isPlumber)
             return;
 
@@ -56,6 +59,9 @@ public class PressureButton : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (!other.CompareTag("Golem"))
             return;
 

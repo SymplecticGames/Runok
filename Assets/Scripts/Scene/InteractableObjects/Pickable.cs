@@ -54,6 +54,9 @@ public class Pickable : MonoBehaviour
     // Every pickable object should contain necessary info, like the index of the rune so it won't be instantiated when you reload the level, or the amount of energy it provides
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
         {
             trigger.enabled = false;

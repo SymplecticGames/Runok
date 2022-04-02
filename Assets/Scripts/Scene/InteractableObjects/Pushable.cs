@@ -31,6 +31,9 @@ public class Pushable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.CompareTag(applierTag))
         {
             forwardAngle = Vector3.Angle(transform.forward, other.transform.forward);

@@ -25,6 +25,9 @@ public class ActionTriggerer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (triggererTags.Contains(other.tag))
         {
             action.Invoke();

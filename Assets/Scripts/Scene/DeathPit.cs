@@ -20,6 +20,9 @@ public class DeathPit : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (!enabled)
+            return;
+
         // If what entered was not the golem or the beetle
         if (!other.CompareTag("Golem") && !other.CompareTag("Beetle"))
             return;

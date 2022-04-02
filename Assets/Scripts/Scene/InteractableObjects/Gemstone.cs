@@ -85,6 +85,9 @@ public class Gemstone : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (!other.CompareTag("RadialLight"))
             return;
 

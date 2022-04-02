@@ -18,6 +18,9 @@ public class BreakableBlock : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (!other.CompareTag("Hitter"))
             return;
 

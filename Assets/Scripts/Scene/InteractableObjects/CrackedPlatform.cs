@@ -26,6 +26,9 @@ public class CrackedPlatform : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.TryGetComponent(out GolemBehaviour golem))
         {
             if (golem.currentMaterial != GolemMaterial.Plumber)
@@ -53,6 +56,9 @@ public class CrackedPlatform : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.TryGetComponent(out GolemBehaviour golem))
         {
             if (golem.currentMaterial != GolemMaterial.Plumber)

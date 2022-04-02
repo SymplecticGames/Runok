@@ -18,6 +18,9 @@ public class Mirror : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.CompareTag("Bullet"))
         {
             LightBullet bullet = other.GetComponent<LightBullet>();

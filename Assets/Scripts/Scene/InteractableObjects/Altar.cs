@@ -47,6 +47,9 @@ public class Altar : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (!other.CompareTag("Golem") && !other.CompareTag("Beetle"))
             return;
 
@@ -57,6 +60,9 @@ public class Altar : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!enabled)
+            return;
+
         mat.color = defaultColor;
     }
 
