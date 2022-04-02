@@ -3,13 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Altar : MonoBehaviour
 {
+    public Color disabledColor;
+    public Color enabledColor;
+    public Color enteredColor;
+
     // GO reference to the altar's portal
     [SerializeField]
     private GameObject _altarPortal;
 
+    [SerializeField]
+    private GameObject _altarParchment;
+    
     // action to do the Camera Pan
     [SerializeField]
     private UnityEvent action;
@@ -24,7 +32,9 @@ public class Altar : MonoBehaviour
     void Start()
     {
         mat = _altarPortal.GetComponent<MeshRenderer>().material;
-
+        mat.color = disabledColor;
+        _altarParchment.SetActive(false);
+        
         // get altar portal GOs
         disableAltar();
 
@@ -40,7 +50,8 @@ public class Altar : MonoBehaviour
     public void enableAltar()
     {
         _altarPortal.GetComponent<Collider>().isTrigger = true;
-        defaultColor = new Color(0.0f, 1.0f, 0.0f, 0.5f);
+        _altarParchment.SetActive(true);
+        defaultColor = enabledColor;
         mat.color = defaultColor;
         action.Invoke();
     }
@@ -53,9 +64,12 @@ public class Altar : MonoBehaviour
         if (!other.CompareTag("Golem") && !other.CompareTag("Beetle"))
             return;
 
-        mat.color = new Color(0.0f, 1.0f, 1.0f, 0.5f);
-
+        mat.color = enteredColor;
+        
         // End Level
+        StartCoroutine(EndOfLevelTransition());
+
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -70,4 +84,17 @@ public class Altar : MonoBehaviour
     {
         _altarPortal.GetComponent<Collider>().isTrigger = false;
     }
+    
+    
+    public IEnumerator EndOfLevelTransition()
+    {
+
+        yield return new WaitForSeconds(1.0f);
+        
+        // viñet animation
+        
+        // go to hub 1sec later
+        SceneManager.LoadScene(2);
+    }
+    
 }
