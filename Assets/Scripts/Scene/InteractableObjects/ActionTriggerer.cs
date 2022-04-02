@@ -9,18 +9,21 @@ public class ActionTriggerer : MonoBehaviour
     private List<string> triggererTags;
 
     [SerializeField]
-    private UnityEvent action;
+    private UnityEvent onHitAction;
+
+    [SerializeField]
+    private UnityEvent onReleaseAction;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,8 +32,15 @@ public class ActionTriggerer : MonoBehaviour
             return;
 
         if (triggererTags.Contains(other.tag))
-        {
-            action.Invoke();
-        }
+            onHitAction.Invoke();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!enabled)
+            return;
+
+        if (triggererTags.Contains(other.tag))
+            onReleaseAction.Invoke();
     }
 }
