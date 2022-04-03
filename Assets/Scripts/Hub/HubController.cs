@@ -28,7 +28,7 @@ public class HubController : MonoBehaviour
     private Vector3 p1;
     private Vector3 p2;
     private Vector3 p3;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -61,8 +61,8 @@ public class HubController : MonoBehaviour
             return;
 
         float direction = context.ReadValue<Vector2>().y;
-
-        if (direction > 0 && routeToGo < routes.Length - 1)
+        
+        if (direction > 0 && routeToGo < routes.Length - 1 && routeToGo < ProgressManager.instance.actualCompletedLevels)
         {
             back = false;
             AssignRoute();
@@ -70,7 +70,7 @@ public class HubController : MonoBehaviour
             continueRoute = true;
         }
 
-        else if (direction < 0 && routeToGo >= 0)
+        else if (direction < 0 && routeToGo >= 0 && routeToGo <= ProgressManager.instance.actualCompletedLevels)
         {
             back = true;
             AssignRoute();
@@ -108,7 +108,6 @@ public class HubController : MonoBehaviour
 
     public void OnExitLevel(InputAction.CallbackContext context)
     {
-        
         if (!continueRoute && context.performed)
         {
             StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("MainMenu"));

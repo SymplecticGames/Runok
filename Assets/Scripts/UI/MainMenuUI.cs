@@ -34,8 +34,7 @@ public class MainMenuUI : MonoBehaviour
 
         if(!selector.activeInHierarchy)
             return;
-        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Hub"));
-
+        SceneManager.LoadScene("Hub");
     }
     
     public void ClickedExitGame() {
@@ -51,7 +50,7 @@ public class MainMenuUI : MonoBehaviour
         // credits scene
         if(!selector.activeInHierarchy)
             return;
-        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Credits"));
+        SceneManager.LoadScene("Credits");
     }
 
     public void HoverPlayGameButton()

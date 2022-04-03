@@ -132,6 +132,7 @@ public class PauseMenuUI : MonoBehaviour
         GameManager.instance.player.input.actions.FindAction("BeetleBackRay").Disable();
         GameManager.instance.player.input.actions.FindAction("BeetleShoot").Disable();
         GameManager.instance.player.input.actions.FindAction("OpenInstructions").Disable();
+        GameManager.instance.player.input.actions.FindAction("WheelMenu").Disable();
     }
 
     private void ResumePlayer()
@@ -145,6 +146,7 @@ public class PauseMenuUI : MonoBehaviour
         GameManager.instance.player.input.actions.FindAction("BeetleBackRay").Enable();
         GameManager.instance.player.input.actions.FindAction("BeetleShoot").Enable();
         GameManager.instance.player.input.actions.FindAction("OpenInstructions").Enable();
+        GameManager.instance.player.input.actions.FindAction("WheelMenu").Enable();
     }
 
 

@@ -88,8 +88,7 @@ public class LateralMenuUI : MonoBehaviour
 
             // open menu
             instructionsMenuGO.GetComponentInChildren<InstructionsUI>().isGolem = isGolem;
-            instructionsMenuGO.GetComponentInChildren<InstructionsUI>().ability =
-                GameManager.instance.player.GetSelection();
+            instructionsMenuGO.GetComponentInChildren<InstructionsUI>().ability = GameManager.instance.player.GetSelection();
             instructionsMenuGO.SetActive(true);
             instructionsMenuGO.GetComponentInChildren<InstructionsUI>().ActivateGifAnimation();
         }

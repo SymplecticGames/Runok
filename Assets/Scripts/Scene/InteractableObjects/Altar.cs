@@ -25,7 +25,7 @@ public class Altar : MonoBehaviour
     private Color defaultColor;
 
     private Material mat;
-
+    
     //////////////////////////////////////////////////  p r o g r a m  /////////////////////////////////////////////////
     /// 
     // Start is called before the first frame update
@@ -65,12 +65,30 @@ public class Altar : MonoBehaviour
             return;
 
         mat.color = enteredColor;
-        
+
         // End Level
+        if (SceneManager.GetActiveScene().name == "Level1" && !ProgressManager.instance.completedLevel[0])
+        {
+            ProgressManager.instance.completedLevel[0] = true;
+            ProgressManager.instance.actualCompletedLevels++;
+        }
+        if (SceneManager.GetActiveScene().name == "Level2" && !ProgressManager.instance.completedLevel[1])
+        {
+            ProgressManager.instance.completedLevel[1] = true;
+            ProgressManager.instance.actualCompletedLevels++;
+        }
+        if (SceneManager.GetActiveScene().name == "Level3" && !ProgressManager.instance.completedLevel[2])
+        {
+            ProgressManager.instance.completedLevel[2] = true;
+            ProgressManager.instance.actualCompletedLevels++;
+        }
+        if (SceneManager.GetActiveScene().name == "Level4" && !ProgressManager.instance.completedLevel[3])
+        {
+            ProgressManager.instance.completedLevel[3] = true;
+            ProgressManager.instance.actualCompletedLevels++;
+        }
         
         StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Hub"));
-
-
     }
 
     private void OnTriggerExit(Collider other)
