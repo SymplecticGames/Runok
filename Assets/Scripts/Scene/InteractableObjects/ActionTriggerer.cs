@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ActionTriggerer : MonoBehaviour
 {
     [SerializeField]
-    private List<string> triggererTags;
+    public List<string> triggererTags;
 
     [SerializeField]
     private UnityEvent onHitAction;

@@ -94,7 +94,8 @@ public class HubController : MonoBehaviour
                     break;
 
                 case 1: // nivel 3
-                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level3"));
+                    //StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level3"));
+                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("TestPlayground"));
                     break;
 
                 case 2: // nivel 4

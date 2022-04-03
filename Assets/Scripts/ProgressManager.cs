@@ -16,12 +16,13 @@ public class ProgressManager : MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(this);
-        actualCompletedLevels = -1;
+        actualCompletedLevels = 1;
     }
 
     public void UpdateCompletedLevels()
     {
-        actualCompletedLevels++;
+        if (actualCompletedLevels < 1)
+            actualCompletedLevels++;
     }
     
 }

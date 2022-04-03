@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Diana : MonoBehaviour
 {
+    [SerializeField]
+    private ActionTriggerer trigger;
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(LightDiana());
+        if (!enabled)
+            return;
+        
+        if (trigger.triggererTags.Contains(other.tag))
+            StartCoroutine(LightDiana());
     }
 
     // Start is called before the first frame update
