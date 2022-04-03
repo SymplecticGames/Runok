@@ -27,7 +27,8 @@ public class Enemy : MonoBehaviour
     private float _activeSpawnTimer;
 
     // variable to control when the enemy is defeated
-    private bool _isDefeated;
+    [HideInInspector]
+    public bool _isDefeated;
 
     // original spawn transform
     private Transform _spawnTransform;
