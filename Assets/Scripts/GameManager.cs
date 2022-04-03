@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private List<MobilePlatform> mobilePlatforms;
 
     // List of defeated respawnable enemies in the level
-    private List<GameObject> _defeatedRespawnableEnemies;
+    private List<Enemy> _respawnableEnemies;
 
     // Players
     public PlayerManager player;
@@ -70,14 +70,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60;
-
+        _respawnableEnemies = new List<Enemy>();
         instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _defeatedRespawnableEnemies = new List<GameObject>();
         _numRunes = GameObject.FindGameObjectsWithTag("Runa").Length;
         _collectedRunes = 0;
         _numDeaths = 0;
@@ -155,9 +154,9 @@ public class GameManager : MonoBehaviour
         runesCounterUIScript.addRune(-1);
     }
  
-    public void defeatedRespawnableEnemy(GameObject enemy)
+    public void respawnableEnemy(Enemy enemy)
     {
-        _defeatedRespawnableEnemies.Add(enemy);
+        _respawnableEnemies.Add(enemy);
     }
     
     public void newDeath()
@@ -167,15 +166,12 @@ public class GameManager : MonoBehaviour
         _numDeaths++;
         
         // each defeated respawnable enemie is respawned
-        foreach (GameObject enemy in _defeatedRespawnableEnemies)
-            enemy.GetComponent<Enemy>().SpawnEnemy();
+        foreach (Enemy enemy in _respawnableEnemies)
+            enemy.SpawnEnemy();
 
         foreach (CrackedPlatform platform in crackedPlatforms)
             platform.ResetPlatform();
 
-        // reset list
-        _defeatedRespawnableEnemies.Clear();
-        
     }
 
     public void pause()
@@ -308,13 +304,10 @@ public class GameManager : MonoBehaviour
     
     public IEnumerator highLightTag(deviceTag deviceTag)
     {
-
         if (kbTags.Count > 0)
         {
             if (kbTags[0].enabled)
             {
-                Debug.Log(deviceTag);
-                Debug.Log((int)deviceTag);
                 kbTags[(int) deviceTag].color = new Color(0.676f, 0.676f, 0.676f);
                 yield return new WaitForSeconds(0.1f);
                 kbTags[(int) deviceTag].color = Color.white;

@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Material shadowMat;
 
+    private bool isBeingHitted;
+
     //////////////////////////////////////////////////  p r o g r a m  /////////////////////////////////////////////////
     ///
     // Start is called before the first frame update
@@ -68,6 +70,8 @@ public class Enemy : MonoBehaviour
             SpawnEnemy();
         }
 
+        if (respawnAfterPlayerDeath) GameManager.instance.respawnableEnemy(this);
+
         animator.SetBool("allowWalking", allowWalking);
     }
 
@@ -81,7 +85,7 @@ public class Enemy : MonoBehaviour
 
         // if the trigger is hit by the golem, the enemy dies when the number of hits is greater or equal
         // to the number of hits the golem needs (with that material) to defeat it.
-        if (other.CompareTag("Hitter") && !shadowEnemy)
+        if (other.CompareTag("Hitter") && !shadowEnemy && !isBeingHitted)
         {
             // get reference to golem
             GolemBehaviour golem = other.GetComponentInParent<GolemBehaviour>();
@@ -91,6 +95,9 @@ public class Enemy : MonoBehaviour
 
             bezier.enabled = false;
             animator.SetBool("isHit", true);
+            
+            // Disable enemy collider
+            isBeingHitted = true;
 
             // if hits are enough to defeat the enemy, then, do deafeated animation
             if (_hitCounter >= golem.golemStats.hitsNeededToKill)
@@ -130,21 +137,8 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-
         _isDefeated = true;
-
         HideEnemy();
-
-        // if this enemy respawns after player death, its stored in GameManager
-        if (respawnAfterPlayerDeath)
-        {
-            GameManager.instance.defeatedRespawnableEnemy(gameObject);
-        }
-
-        /////// defeated animation ///////
-        /*
-         *           P O R   I M P L E M E N T A R
-         */
     }
 
     public void HideEnemy()
@@ -172,6 +166,7 @@ public class Enemy : MonoBehaviour
 
         // enable CC
         gameObject.GetComponent<CharacterController>().enabled = true;
+        gameObject.GetComponent<Collider>().enabled = true;
 
         bezier.enabled = allowWalking;
     }
@@ -180,15 +175,8 @@ public class Enemy : MonoBehaviour
     {
         bezier.enabled = allowWalking;
         animator.SetBool("isHit", false);
+        isBeingHitted = false;
     }
-
-    /*
-     *
-     *
-     *               A Ñ A D I R  E L  M O V I M I E N T O   D E   L O S   E N E M I G O S
-     *
-     * 
-     */
 
     // Update is called once per frame
     void Update()

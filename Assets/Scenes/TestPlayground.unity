@@ -9342,7 +9342,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.116464004, y: 0.7529159, z: -0.13858603, w: 0.63273036}
+  m_LocalRotation: {x: 0.116464004, y: 0.7529159, z: -0.13858604, w: 0.63273036}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12998,6 +12998,14 @@ PrefabInstance:
     - target: {fileID: 1561791698530049490, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 2.6854696
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684484324024519184, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: WoodenStats.weight
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684484324024519184, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: PlumberStats.weight
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1998654939053330654, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

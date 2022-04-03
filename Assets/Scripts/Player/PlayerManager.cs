@@ -264,9 +264,31 @@ public class PlayerManager : MonoBehaviour
             return;
 
         if (currentCharacter == golemBehaviour)
+        {
             golemBehaviour.GetComponent<GolemBehaviour>().ChangeMaterial((GolemMaterial)selection);
+            switch (selection)
+            {
+                case 1:  // Terracota walking layer animation
+                    animator.SetLayerWeight(0, 1.0f);
+                    animator.SetLayerWeight(1, 0.0f);
+                    animator.SetLayerWeight(2, 0.0f);
+                    break;
+                case 2:  // Plumber walking layer animation
+                    animator.SetLayerWeight(0, 0.0f);
+                    animator.SetLayerWeight(1, 1.0f);
+                    animator.SetLayerWeight(2, 0.0f);
+                    break;
+                case 3:  // Wood walking layer animation
+                    animator.SetLayerWeight(0, 0.0f);
+                    animator.SetLayerWeight(1, 0.0f);
+                    animator.SetLayerWeight(2, 1.0f);
+                    break;
+            }
+        }
         else
+        {
             beetleBehaviour.GetComponent<BeetleBehaviour>().ChangeLumMode((LumMode)selection);
+        }
 
     }
 
