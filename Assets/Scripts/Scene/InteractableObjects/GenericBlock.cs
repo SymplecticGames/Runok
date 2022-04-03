@@ -13,6 +13,9 @@ public class GenericBlock : MonoBehaviour
     private Rigidbody rb;
     private MeshRenderer rend;
 
+    [SerializeField]
+    private bool startActive = false;
+
     #endregion
 
     #region Pushable_Variables
@@ -61,7 +64,7 @@ public class GenericBlock : MonoBehaviour
         for (int i = 0; i < initialBoxPos.Length; i++)
             initialBoxPos[i] = boxes[i].transform.localPosition;
 
-        if (cubeRespawn)
+        if (cubeRespawn && !startActive)
             ResetBlock();
     }
 
@@ -100,7 +103,7 @@ public class GenericBlock : MonoBehaviour
             if (golem.currentMaterial == GolemMaterial.Plumber)
             {
                 // Cute break method
-                Destroy(gameObject);
+                ResetBlock();
             }
 
             // Extensible
@@ -128,6 +131,7 @@ public class GenericBlock : MonoBehaviour
 
     public void ResetBlock()
     {
+        GetComponent<Collider>().enabled = false;
         rb.useGravity = false;
         rend.enabled = false;
         transform.position = cubeRespawn.position;
@@ -135,6 +139,7 @@ public class GenericBlock : MonoBehaviour
 
     public void SpawnBlock()
     {
+        GetComponent<Collider>().enabled = true;
         rb.useGravity = true;
         rend.enabled = true;
         transform.position = cubeRespawn.position;

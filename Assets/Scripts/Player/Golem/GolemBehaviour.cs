@@ -144,12 +144,24 @@ public class GolemBehaviour : MonoBehaviour
         {
             case GolemMaterial.Terracotta:
                 golemStats = TerracottaStats;
+
+                animator.SetLayerWeight(0, 1.0f);
+                animator.SetLayerWeight(1, 0.0f);
+                animator.SetLayerWeight(2, 0.0f);
                 break;
             case GolemMaterial.Plumber:
                 golemStats = PlumberStats;
+
+                animator.SetLayerWeight(0, 0.0f);
+                animator.SetLayerWeight(1, 1.0f);
+                animator.SetLayerWeight(2, 0.0f);
                 break;
             case GolemMaterial.Wooden:
                 golemStats = WoodenStats;
+
+                animator.SetLayerWeight(0, 0.0f);
+                animator.SetLayerWeight(1, 0.0f);
+                animator.SetLayerWeight(2, 1.0f);
                 break;
         }
 

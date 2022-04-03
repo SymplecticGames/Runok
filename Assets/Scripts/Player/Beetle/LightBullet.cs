@@ -70,4 +70,10 @@ public class LightBullet : MonoBehaviour
 
         gameObject.SetActive(false);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("LevelGeometry"))
+            SetInactive();
+    }
 }

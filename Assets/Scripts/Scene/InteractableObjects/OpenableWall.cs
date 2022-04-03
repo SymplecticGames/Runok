@@ -14,9 +14,11 @@ public class OpenableWall : MonoBehaviour
 
     private Vector3 initPos;
 
-    private bool isOpening = false;
+    private bool isOpening;
 
-    private bool isClosing = false;
+    private bool isClosing;
+
+    private bool stayOpen;
 
     private float lerpStep = 0.0f;
 
@@ -34,9 +36,9 @@ public class OpenableWall : MonoBehaviour
 
     private void Update()
     {
-        if (isOpening)
+        if (isOpening || stayOpen)
         {
-            if (lerpStep <= 1.0f)
+            if (lerpStep < 1.0f)
             {
                 wall.position = Vector3.Lerp(initPos, targetPos.position, lerpStep);
                 lerpStep += Time.deltaTime * openingVelocity;
@@ -50,7 +52,7 @@ public class OpenableWall : MonoBehaviour
         }
         else if (isClosing)
         {
-            if (lerpStep >= 0.0f)
+            if (lerpStep > 0.0f)
             {
                 wall.position = Vector3.Lerp(initPos, targetPos.position, lerpStep);
                 lerpStep -= Time.deltaTime * openingVelocity;
@@ -88,5 +90,11 @@ public class OpenableWall : MonoBehaviour
 
         isClosing = true;
         isOpening = false;
+    }
+
+    public void StayOpenWall()
+    {
+        stayOpen = true;
+        StartCoroutine(DelayedOpenWall(delay));
     }
 }
