@@ -79,6 +79,42 @@ public class HubController : MonoBehaviour
         }
     }
 
+    public void OnEnterLevel(InputAction.CallbackContext context)
+    {
+        if (!continueRoute && context.performed)
+        {
+            switch (routeToGo)
+            {
+                case -1: // nivel 1
+                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level1"));
+                    break;
+
+                case 0: // nivel 2
+                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level2"));
+                    break;
+
+                case 1: // nivel 3
+                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level3"));
+                    break;
+
+                case 2: // nivel 4
+                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level4"));
+                    break;
+
+                default: break;
+            }
+        }
+    }
+
+    public void OnExitLevel(InputAction.CallbackContext context)
+    {
+        
+        if (!continueRoute && context.performed)
+        {
+            StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("MainMenu"));
+        }
+    }
+
     private void AssignRoute()
     {
         if (back)

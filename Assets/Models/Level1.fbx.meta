@@ -3,7 +3,17 @@ guid: 0c91c347b7d27194a9785b8a8142196a
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Border
+    second: {fileID: 2100000, guid: 499f9bcf61aaef9d4bae2485362bdf4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane
+    second: {fileID: 2100000, guid: 3e79bd52f3e23ea248ff9d2908d75d66, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
