@@ -12,16 +12,18 @@ public class MainMenuUI : MonoBehaviour
     public GameObject selector;
     public Transform playGameButton; 
     public Transform exitGameButton; 
+    public Transform creditsButton; 
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     private float _selectorTargetPosition;
     private float _damp = 5.0f;
-    private float _displacement = -15.0f;
+    private float _displacement = -10.0f;
     
     // fading parameters
     private bool _doFading;
     private float _pgbTargetPos = 0.0f;
     private float _egbTargetPos = 0.0f;
+    private float _cbTargetPos = 0.0f;
 
     private float _maxX = 5024.0f;
     
@@ -43,6 +45,14 @@ public class MainMenuUI : MonoBehaviour
             return;
         Application.Quit();
     }
+    
+    public void ClickedCredits() {
+        
+        // credits scene
+        if(!selector.activeInHierarchy)
+            return;
+        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene(3));
+    }
 
     public void HoverPlayGameButton()
     {
@@ -62,6 +72,15 @@ public class MainMenuUI : MonoBehaviour
         _selectorTargetPosition = exitGameButton.transform.localPosition.y;
     }
     
+    public void HoverCreditsButton()
+    {
+        // change selector position
+        if(!selector.activeInHierarchy)
+            return;
+
+        _selectorTargetPosition = creditsButton.localPosition.y;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +93,9 @@ public class MainMenuUI : MonoBehaviour
         
         _egbTargetPos = exitGameButton.localPosition.x;
         exitGameButton.localPosition = new Vector3(_maxX, exitGameButton.localPosition.y, exitGameButton.localPosition.z);
+        
+        _cbTargetPos = creditsButton.localPosition.x;
+        creditsButton.localPosition = new Vector3(_maxX, creditsButton.localPosition.y, creditsButton.localPosition.z);
         
         _selectorTargetPosition = selector.transform.localPosition.y;
 
@@ -103,6 +125,10 @@ public class MainMenuUI : MonoBehaviour
             pos = exitGameButton.localPosition;
             exitGameButton.localPosition = Vector2.Lerp(pos, 
                 new Vector3(_egbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.5f);
+            
+            pos = creditsButton.localPosition;
+            creditsButton.localPosition = Vector2.Lerp(pos, 
+                new Vector3(_cbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.25f);
             
             _doFading = !(title.alpha >= 1 && (Mathf.Abs(_pgbTargetPos - playGameButton.localPosition.x) <= 0.001f));
             
