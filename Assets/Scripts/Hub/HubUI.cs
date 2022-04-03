@@ -1,25 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HubUI : MonoBehaviour
 {
-    public GameObject enterLevel;
-    public GameObject exitLevel;
+    private CanvasGroup _cg;
     
     // Start is called before the first frame update
     void Start()
     {
-        enterLevel.SetActive(false);
-        exitLevel.SetActive(false);
+        _cg = GetComponent<CanvasGroup>();
+        _cg.alpha = 0;
         StartCoroutine(WaitTransitionToEnd());
+    }
+
+    public void HideUI(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return;
+        _cg.alpha = 0;
+
     }
 
     private IEnumerator WaitTransitionToEnd()
     {
         yield return new WaitForSeconds(1.0f);
-        enterLevel.SetActive(true);
-        exitLevel.SetActive(true);
+        _cg.alpha = 1;
     }
 
     // Update is called once per frame

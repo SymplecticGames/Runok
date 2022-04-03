@@ -83,7 +83,6 @@ public class HubController : MonoBehaviour
     {
         if (!continueRoute && context.performed)
         {
-            Debug.Log("ENTRAR");
             switch (routeToGo)
             {
                 case -1: // nivel 1
@@ -112,7 +111,6 @@ public class HubController : MonoBehaviour
         
         if (!continueRoute && context.performed)
         {
-            Debug.Log("SALIR");
             StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("MainMenu"));
         }
     }
