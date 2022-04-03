@@ -13,13 +13,13 @@ public class SceneTransition : MonoBehaviour
     private Animator _transitionAnim;
 
     
-    public IEnumerator LoadScene(int sceneId)
+    public IEnumerator LoadScene(string sceneName)
     {
         
         yield return new WaitForSeconds(1.0f);
         _transitionAnim.SetTrigger("start");
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(sceneId);
+        SceneManager.LoadScene(sceneName);
     }
     
     private void Awake()

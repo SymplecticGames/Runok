@@ -34,7 +34,7 @@ public class MainMenuUI : MonoBehaviour
 
         if(!selector.activeInHierarchy)
             return;
-        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene(2));
+        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Hub"));
 
     }
     
@@ -51,7 +51,7 @@ public class MainMenuUI : MonoBehaviour
         // credits scene
         if(!selector.activeInHierarchy)
             return;
-        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene(3));
+        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Credits"));
     }
 
     public void HoverPlayGameButton()

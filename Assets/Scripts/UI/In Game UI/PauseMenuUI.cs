@@ -75,18 +75,18 @@ public class PauseMenuUI : MonoBehaviour
     //////////////////////////////////////  CONFIRMATION PANEL//////////////////////////////////////  
     public void ClickedYes()
     {
-        int sceneId = 0; 
+        string sceneName = "MainMenu"; 
         
         switch (_clickedButton)
         {
             case ClickedButton.Hub:
                 // open hub menu
-                sceneId = 2;
+                sceneName = "Hub";
                 break;
             
             case ClickedButton.MainMenu:
                 // open main menu
-                sceneId = 1;
+                sceneName = "MainMenu"; 
                 break;
             
             default:
@@ -94,7 +94,7 @@ public class PauseMenuUI : MonoBehaviour
         }
         
         // do transition animation
-        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene(sceneId));
+        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene(sceneName));
         confirmationPanel.SetActive(false);
         pauseMenuPanel.SetActive(false);
         

@@ -68,7 +68,7 @@ public class Altar : MonoBehaviour
         
         // End Level
         
-        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene(2));
+        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Hub"));
 
 
     }

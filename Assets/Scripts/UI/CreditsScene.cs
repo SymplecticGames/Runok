@@ -18,7 +18,7 @@ public class CreditsScene : MonoBehaviour
     {
         
         yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("MainMenu");
     }
 
     // Update is called once per frame
