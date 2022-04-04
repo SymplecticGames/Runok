@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38502935, g: 0.28073716, b: 0.27779713, a: 1}
+  m_IndirectSpecularColor: {r: 0.38502768, g: 0.28073594, b: 0.27779624, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3366,7 +3366,7 @@ PrefabInstance:
       objectReference: {fileID: 4125194868605247355}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -6672,6 +6672,10 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7286041299336931692, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
+      propertyPath: loopMovement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286041299336931692, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
       propertyPath: startMovingWhenOn
       value: 1
       objectReference: {fileID: 0}
@@ -7414,7 +7418,7 @@ PrefabInstance:
       objectReference: {fileID: 764500809}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -10984,7 +10988,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: action.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -11008,7 +11012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -11021,11 +11025,11 @@ PrefabInstance:
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 603707636}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 603707636}
+      objectReference: {fileID: 626968517}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -11044,11 +11048,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenWall
+      value: StartMovingPlatform
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: StartMovingPlatform
+      value: Pan
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -11064,11 +11068,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: OpenableWall, Assembly-CSharp
+      value: MobilePlatform, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: MobilePlatform, Assembly-CSharp
+      value: CameraPan, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
