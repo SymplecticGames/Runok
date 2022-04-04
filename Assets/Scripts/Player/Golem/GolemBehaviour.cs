@@ -65,6 +65,7 @@ public class GolemBehaviour : MonoBehaviour
 
     private float lastComboHitTime;
 
+    [SerializeField]
     private SkinnedMeshRenderer golemMesh;
 
     [SerializeField]
@@ -83,7 +84,6 @@ public class GolemBehaviour : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         genericBehaviour = GetComponent<GenericBehaviour>();
-        golemMesh = GetComponentInChildren<SkinnedMeshRenderer>();
 
         ChangeMaterial(currentMaterial);
     }
