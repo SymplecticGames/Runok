@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class Diana : MonoBehaviour
 {
-    [SerializeField]
-    private ActionTriggerer trigger;
     private void OnTriggerEnter(Collider other)
     {
         if (!enabled)
             return;
         
-        if (trigger.triggererTags.Contains(other.tag))
+        if (GetComponent<ActionTriggerer>().triggererTags.Contains(other.tag))
             StartCoroutine(LightDiana());
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
+        GetComponentInChildren<MeshRenderer>().material.DisableKeyword("_EMISSION");
     }
 
     // Update is called once per frame
@@ -29,8 +27,8 @@ public class Diana : MonoBehaviour
 
     IEnumerator LightDiana()
     {
-        GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
+        GetComponentInChildren<MeshRenderer>().material.EnableKeyword("_EMISSION");
         yield return new WaitForSeconds(1.0f);
-        GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
+        GetComponentInChildren<MeshRenderer>().material.DisableKeyword("_EMISSION");
     }
 }

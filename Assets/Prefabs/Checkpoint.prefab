@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1311827558703107837}
   - component: {fileID: 1311827558703107836}
   - component: {fileID: 6009715703696685570}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 8511605371200610866}
-  player: {fileID: 0}
 --- !u!1 &7594722862110599474
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,7 +68,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8511605371200610866}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RespawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
