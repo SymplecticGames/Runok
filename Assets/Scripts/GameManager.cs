@@ -12,7 +12,7 @@ public enum deviceTag
     selectionWheelTag = 2,
     hitTag = 3,
     jumpTag = 4
-    
+
 }
 
 public class GameManager : MonoBehaviour
@@ -43,16 +43,16 @@ public class GameManager : MonoBehaviour
     public PlayerManager player;
 
     [HideInInspector] public bool usingGamepad;
-    
+
     // Runes counter script
     [SerializeField] private RunesCounterUI runesCounterUIScript;
-    
+
     // Number of runes in the level
     private int _numRunes;
-    
+
     // Number of runes collected in the level
     private int _collectedRunes;
-    
+
     // Number of deaths in the level
     private int _numDeaths;
 
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         if (_collectedRunes < _numRunes)
         {
             altar.disableAltar();
-        }   
+        }
     }
 
     // Update is called once per frame
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
     {
         // this method is called when a rune that was picked, is respawned
         // if a rune is respawned, check if the minimum number of runes required for the altar to be enabled is not met
-        
+
         _collectedRunes--;
         if (_collectedRunes < _numRunes)
         {
@@ -153,18 +153,18 @@ public class GameManager : MonoBehaviour
         }
         runesCounterUIScript.addRune(-1);
     }
- 
+
     public void respawnableEnemy(Enemy enemy)
     {
         _respawnableEnemies.Add(enemy);
     }
-    
+
     public void newDeath()
     {
         // this method is called when the player dies
-        
+
         _numDeaths++;
-        
+
         // each defeated respawnable enemie is respawned
         foreach (Enemy enemy in _respawnableEnemies)
             enemy.SpawnEnemy();
@@ -185,7 +185,7 @@ public class GameManager : MonoBehaviour
             script.enabled = false;
         }
         player.golemBehaviour.GetComponent<Animator>().enabled = false;
-        
+
         // beetle
         scripts = new List<MonoBehaviour>(player.beetleBehaviour.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
             script.enabled = false;
         }
         player.beetleBehaviour.GetComponent<Animator>().enabled = false;
-        
+
         // enemies
         foreach (Enemy enemy in enemies)
         {
@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
             platform.enabled = false;
 
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
-        
+
     }
 
     public void play()
@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour
             script.enabled = true;
         }
         player.golemBehaviour.GetComponent<Animator>().enabled = true;
-        
+
         // beetle
         scripts = new List<MonoBehaviour>(player.beetleBehaviour.GetComponentsInChildren<MonoBehaviour>());
         foreach (MonoBehaviour script in scripts)
@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
             script.enabled = true;
         }
         player.beetleBehaviour.GetComponent<Animator>().enabled = true;
-        
+
         // enemies
         foreach (Enemy enemy in enemies)
         {
@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour
 
             enemy.GetComponent<BezierFollow>().enabled = enemy.allowWalking;
             enemy.GetComponent<Animator>().enabled = true;
-            
+
         }
 
         // Mobile platforms
@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
 
     }
-    
+
     public void OnDeviceChange(PlayerInput context)
     {
 
@@ -295,34 +295,34 @@ public class GameManager : MonoBehaviour
                     xboxTags[i].enabled = true;
                     psTags[i].enabled = false;
                 }
-                
+
                 if (instance)
                     instance.usingGamepad = true;
             }
         }
     }
-    
+
     public IEnumerator highLightTag(deviceTag deviceTag)
     {
         if (kbTags.Count > 0)
         {
             if (kbTags[0].enabled)
             {
-                kbTags[(int) deviceTag].color = new Color(0.676f, 0.676f, 0.676f);
+                kbTags[(int)deviceTag].color = new Color(0.676f, 0.676f, 0.676f);
                 yield return new WaitForSeconds(0.1f);
-                kbTags[(int) deviceTag].color = Color.white;
+                kbTags[(int)deviceTag].color = Color.white;
             }
             else if (xboxTags[0].enabled)
             {
-                xboxTags[(int) deviceTag].color = new Color(0.676f, 0.676f, 0.676f);
+                xboxTags[(int)deviceTag].color = new Color(0.676f, 0.676f, 0.676f);
                 yield return new WaitForSeconds(0.1f);
-                xboxTags[(int) deviceTag].color = Color.white;
+                xboxTags[(int)deviceTag].color = Color.white;
             }
             else if (psTags[0].enabled)
             {
-                psTags[(int) deviceTag].color = new Color(0.676f, 0.676f, 0.676f);
+                psTags[(int)deviceTag].color = new Color(0.676f, 0.676f, 0.676f);
                 yield return new WaitForSeconds(0.1f);
-                psTags[(int) deviceTag].color = Color.white;
+                psTags[(int)deviceTag].color = Color.white;
             }
         }
     }

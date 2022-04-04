@@ -9,23 +9,37 @@ public class ProgressManager : MonoBehaviour
     public bool[] completedLevel = { false, false, false, false };
 
     [HideInInspector]
-    public int currentCompletedLevels = -1;
+    public int currentCompletedLevels;
     public static ProgressManager instance;
+
+    [HideInInspector]
+    public int currentLevel;
+
+    private void Awake()
+    {
+        if (!instance)
+        {
+            currentCompletedLevels = 2;
+            currentLevel = 0;
+
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        if (instance)
-            Destroy(gameObject);
-        else
-            instance = this;
 
-        DontDestroyOnLoad(gameObject);
     }
 
     public void UpdateCompletedLevels()
     {
-        if (currentCompletedLevels < 1)
+        if (currentCompletedLevels < 2)
             currentCompletedLevels++;
     }
 

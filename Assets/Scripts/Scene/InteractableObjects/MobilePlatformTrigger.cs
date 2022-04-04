@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MobilePlatformTrigger : MonoBehaviour
 {
+    [SerializeField]
     private MobilePlatform mobilePlat;
 
-    private void Start()
+    private void Awake()
     {
-        mobilePlat = GetComponentInParent<MobilePlatform>();
+        if (!mobilePlat)
+            enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,8 +21,8 @@ public class MobilePlatformTrigger : MonoBehaviour
         if (!other.CompareTag("Golem"))
             return;
 
-        if (mobilePlat.startMovingWhenOn && !mobilePlat._movementStarted)
-            mobilePlat.StartMovingPlatform(true);
+        if (mobilePlat.platformPreset == PlatformPreset.MoveOnStep && !mobilePlat._movementStarted)
+            mobilePlat.StartMovingPlatform();
     }
 
     private void OnTriggerStay(Collider other)

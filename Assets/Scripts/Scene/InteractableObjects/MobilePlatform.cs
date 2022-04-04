@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlatformPreset
+{
+    MoveOnTrigger = 0,
+    MoveOnAwake = 1,
+    MoveOnStep = 3,
+}
+
 public class MobilePlatform : MonoBehaviour
 {
     [SerializeField]
@@ -13,7 +20,10 @@ public class MobilePlatform : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    public bool startMovingWhenOn;
+    public PlatformPreset platformPreset = PlatformPreset.MoveOnTrigger;
+
+    [SerializeField]
+    private bool loopMovement;
 
     [HideInInspector]
     public Vector3 startingPos;
@@ -23,8 +33,6 @@ public class MobilePlatform : MonoBehaviour
 
     [HideInInspector]
     public bool _movementStarted;
-
-    private bool loopMovement;
 
     private float lerpTime;
 
@@ -37,6 +45,9 @@ public class MobilePlatform : MonoBehaviour
         _movementStarted = false;
 
         lerpTime = 0.0f;
+
+        if (platformPreset == PlatformPreset.MoveOnAwake)
+            StartMovingPlatform();
     }
 
     // Update is called once per frame
@@ -69,14 +80,13 @@ public class MobilePlatform : MonoBehaviour
         }
     }
 
-    public void StartMovingPlatform(bool loop)
+    public void StartMovingPlatform()
     {
         if (!firstTime)
             return;
 
         firstTime = false;
 
-        loopMovement = loop;
         StartCoroutine(MovePlatform());
     }
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7357912338560087465}
   m_Layer: 0
   m_Name: Block
-  m_TagString: Untagged
+  m_TagString: GenericBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeRespawn: {fileID: 0}
+  startActive: 0
   forceToApply: 8
   boxes:
   - {fileID: 2818099675424526841}
@@ -243,7 +244,7 @@ GameObject:
   - component: {fileID: 796855166040406372}
   m_Layer: 0
   m_Name: Block (1)
-  m_TagString: Untagged
+  m_TagString: GenericBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

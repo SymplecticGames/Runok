@@ -30,8 +30,6 @@ public class MultipleTriggersActivator : MonoBehaviour
         if (!triggerers.Contains(triggerer) || currentActiveTriggerers.Contains(triggerer))
             return;
 
-        Debug.Log("Hit");
-
         currentActiveTriggerers.Add(triggerer);
 
         if (currentActiveTriggerers.Count >= triggerers.Count)
@@ -42,8 +40,6 @@ public class MultipleTriggersActivator : MonoBehaviour
     {
         if (!triggerers.Contains(triggerer) || !currentActiveTriggerers.Contains(triggerer))
             return;
-
-        Debug.Log("Release");
 
         currentActiveTriggerers.Remove(triggerer);
     }
