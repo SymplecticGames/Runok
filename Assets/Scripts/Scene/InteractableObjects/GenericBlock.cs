@@ -103,7 +103,10 @@ public class GenericBlock : MonoBehaviour
             if (golem.currentMaterial == GolemMaterial.Plumber)
             {
                 // Cute break method
-                ResetBlock();
+                if (cubeRespawn)
+                    ResetBlock();
+                else
+                    Destroy(gameObject);
             }
 
             // Extensible
