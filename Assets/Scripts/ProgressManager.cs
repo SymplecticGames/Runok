@@ -6,16 +6,19 @@ using UnityEngine;
 public class ProgressManager : MonoBehaviour
 {
     [HideInInspector]
-    public bool[] completedLevel = {false, false, false, false};
-    [HideInInspector]
+    public bool[] completedLevel = { false, false, false, false };
     public int actualCompletedLevels;
     public static ProgressManager instance;
 
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
-        DontDestroyOnLoad(this);
+        if (instance)
+            Destroy(gameObject);
+        else
+            instance = this;
+
+        DontDestroyOnLoad(gameObject);
         actualCompletedLevels = 1;
     }
 
@@ -24,5 +27,5 @@ public class ProgressManager : MonoBehaviour
         if (actualCompletedLevels < 1)
             actualCompletedLevels++;
     }
-    
+
 }
