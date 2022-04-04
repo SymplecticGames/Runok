@@ -62,7 +62,7 @@ public class HubController : MonoBehaviour
 
         float direction = context.ReadValue<Vector2>().y;
         
-        if (direction > 0 && routeToGo < routes.Length - 1 && routeToGo < ProgressManager.instance.actualCompletedLevels)
+        if (direction > 0 && routeToGo < routes.Length - 1 && routeToGo < ProgressManager.instance.currentCompletedLevels)
         {
             back = false;
             AssignRoute();
@@ -70,7 +70,7 @@ public class HubController : MonoBehaviour
             continueRoute = true;
         }
 
-        else if (direction < 0 && routeToGo >= 0 && routeToGo <= ProgressManager.instance.actualCompletedLevels)
+        else if (direction < 0 && routeToGo >= 0 && routeToGo <= ProgressManager.instance.currentCompletedLevels)
         {
             back = true;
             AssignRoute();
