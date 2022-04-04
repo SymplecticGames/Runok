@@ -6984,7 +6984,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.21074994, y: -0.22505675, z: 0.04992867, w: 0.949969}
+  m_LocalRotation: {x: 0.21074994, y: -0.22505677, z: 0.049928688, w: 0.949969}
   m_LocalPosition: {x: 172.67958, y: 49.5, z: -212.2457}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -8571,7 +8571,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.17614888, y: -0.2267199, z: 0.04173136, w: 0.9569891}
+  m_LocalRotation: {x: 0.17614886, y: -0.22671992, z: 0.041731358, w: 0.9569891}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12845,10 +12845,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1373860283652964038, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1684484324024519184, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: golemMaterial
       value: 3
@@ -12856,10 +12852,6 @@ PrefabInstance:
     - target: {fileID: 1684484324024519184, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: currentMaterial
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1684484324024519184, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
-      propertyPath: PlumberStats.weight
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5186055796561449082, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: m_RootOrder
@@ -12916,14 +12908,6 @@ PrefabInstance:
     - target: {fileID: 7404438760194089661, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: m_Name
       value: Golem
-      objectReference: {fileID: 0}
-    - target: {fileID: 7404438760194089662, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7404438760194089662, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
-      propertyPath: respawnPoint
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
