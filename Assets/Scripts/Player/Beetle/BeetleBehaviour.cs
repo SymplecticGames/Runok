@@ -90,7 +90,7 @@ public class BeetleBehaviour : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
-        beetleLight = GameObject.FindGameObjectWithTag("RadialLight").GetComponent<Light>();
+        beetleLight = GetComponentInChildren<Light>();
     }
 
     // Update is called once per frame
@@ -116,13 +116,16 @@ public class BeetleBehaviour : MonoBehaviour
         switch (currentLumMode)
         {
             case LumMode.RadialLight:
-                if (!beetleLight.enabled) beetleLight.enabled = true;
+                if (!GameManager.instance.player.restingBeetle)
+                    beetleLight.enabled = true;
+                else
+                    beetleLight.enabled = false;
 
                 animator.SetBool("BackRay", false);
                 animator.SetBool("FrontRay", false);
                 break;
             case LumMode.LightShot:
-                if (beetleLight.enabled) beetleLight.enabled = false;
+                beetleLight.enabled = false;
 
                 if (shootPressed && shootElapsedTime > shootCooldown)
                 {
@@ -137,7 +140,7 @@ public class BeetleBehaviour : MonoBehaviour
                 shootElapsedTime += Time.deltaTime;
                 break;
             case LumMode.LightImpulse:
-                if (beetleLight.enabled) beetleLight.enabled = false;
+                beetleLight.enabled = false;
                 
                 additionalVel += charBehaviour.currentForwardTarget * impulseFactor * forwardFactor;
                 additionalVel += charBehaviour.currentForwardTarget * impulseFactor * backwardFactor;

@@ -28,8 +28,8 @@ public class PlayerManager : MonoBehaviour
 
     private Animator animator;
 
-    private bool restingBeetle;
-    private Light beetleLight;
+    [HideInInspector]
+    public bool restingBeetle;
 
     public bool selectionWheelEnabled;
     [HideInInspector] public PlayerInput input;
@@ -69,7 +69,6 @@ public class PlayerManager : MonoBehaviour
         animator = currentCharacter.GetComponent<Animator>();
 
         // Set beetle on Golem's back
-        beetleLight = beetleBehaviour.GetComponentInChildren<Light>();
         AppendBeetle();
     }
 
@@ -188,8 +187,6 @@ public class PlayerManager : MonoBehaviour
             // Get beetle animator
             animator = currentCharacter.GetComponent<Animator>();
             animator.SetBool("isActive", true);  // Turn on beetle animator
-
-            beetleLight.enabled = true;
         }
         else
         {
@@ -229,8 +226,6 @@ public class PlayerManager : MonoBehaviour
         beetleBehaviour.transform.SetParent(golemBehaviour.GetComponent<GolemBehaviour>().beetleRestPose);
         beetleBehaviour.transform.localPosition = Vector3.zero;
         beetleBehaviour.transform.localRotation = Quaternion.identity;
-
-        beetleLight.enabled = false;
     }
 
     public void Checkpoint(Transform newRespawnPoint)
