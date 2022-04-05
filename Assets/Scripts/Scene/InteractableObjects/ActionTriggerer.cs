@@ -35,7 +35,10 @@ public class ActionTriggerer : MonoBehaviour
             return;
 
         if (triggererTags.Contains(other.tag) && isEnabled)
+        {
             onHitAction.Invoke();
+            AudioManager.audioInstance.PlayObjSound(ObjaudioTag.activation);
+        }
     }
 
     private void OnTriggerExit(Collider other)
