@@ -43,7 +43,7 @@ public class RotatingPlatform : MonoBehaviour
                 isRotating = false;
 
                 foreach (ActionTriggerer diana in dianas)
-                    diana.enabled = true;
+                    diana.Enable(0.0f);
 
                 // If Player is on platform set him free
                 if (rangeOfAction.bounds.Contains(golem.transform.position) && golem.controller.isGrounded)
@@ -64,7 +64,7 @@ public class RotatingPlatform : MonoBehaviour
         slerpStep = 0.0f;
 
         foreach (ActionTriggerer diana in dianas)
-            diana.enabled = false;
+            diana.Disable(0.0f);
 
         // If Player is on platform keep him on
         if (rangeOfAction.bounds.Contains(golem.transform.position) && golem.controller.isGrounded)
@@ -83,7 +83,7 @@ public class RotatingPlatform : MonoBehaviour
         slerpStep = 0.0f;
 
         foreach (ActionTriggerer diana in dianas)
-            diana.enabled = false;
+            diana.Disable(0.0f);
 
         // If Player is on platform keep him on
         if (rangeOfAction.bounds.Contains(golem.transform.position) && golem.controller.isGrounded)

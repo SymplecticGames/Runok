@@ -33,20 +33,11 @@ public class Pickable : MonoBehaviour
 
             if (activeRespawnTimer >= respawnTime)
             {
-                foreach (Renderer visualPart in GetComponentsInChildren<Renderer>())
-                    visualPart.enabled = true;
+                EnablePickable(0.0f);
 
-                // Play particles/animation
-
-                trigger.enabled = true;
-                
                 // if pickable is a rune
                 if (gameObject.CompareTag("Runa"))
-                {
-                    
                     GameManager.instance.respawnedPickedRune();
-                    
-                }
             }
         }
     }
@@ -59,31 +50,52 @@ public class Pickable : MonoBehaviour
 
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
         {
-            trigger.enabled = false;
-
             action.Invoke();
 
-            StartCoroutine(HidePickableDelayed(0.2f));
-            
+            trigger.enabled = false; // We force it to be disabled before the delay
+            DisablePickable(0.2f);
+
+            activeRespawnTimer = 0.0f;
+
             // if pickable is a rune
             if (gameObject.CompareTag("Runa"))
             {
-
                 GameManager.instance.pickedRune();
-                
             }
         }
     }
 
-    private IEnumerator HidePickableDelayed(float delay)
+    public void EnablePickable(float delay)
     {
+        StartCoroutine(EnablePickableDelayed(delay));
+    }
+
+    private IEnumerator EnablePickableDelayed(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
         // Play particles/animation
 
+        trigger.enabled = true;
+
+        foreach (Renderer visualPart in GetComponentsInChildren<Renderer>())
+            visualPart.enabled = true;
+    }
+
+    public void DisablePickable(float delay)
+    {
+        StartCoroutine(DisablePickableDelayed(delay));
+    }
+
+    private IEnumerator DisablePickableDelayed(float delay)
+    {
         yield return new WaitForSeconds(delay);
+
+        // Play particles/animation
+
+        trigger.enabled = false;
 
         foreach (Renderer visualPart in GetComponentsInChildren<Renderer>())
             visualPart.enabled = false;
-
-        activeRespawnTimer = 0.0f;
     }
 }

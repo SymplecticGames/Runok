@@ -9,7 +9,7 @@ public class Diana : MonoBehaviour
         if (!enabled)
             return;
         
-        if (GetComponent<ActionTriggerer>().triggererTags.Contains(other.tag))
+        if (GetComponent<ActionTriggerer>().triggererTags.Contains(other.tag) && GetComponent<ActionTriggerer>().isEnabled)
             StartCoroutine(LightDiana());
     }
 

@@ -14,6 +14,9 @@ public class ActionTriggerer : MonoBehaviour
     [SerializeField]
     private UnityEvent onReleaseAction;
 
+    [HideInInspector]
+    public bool isEnabled = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +34,7 @@ public class ActionTriggerer : MonoBehaviour
         if (!enabled)
             return;
 
-        if (triggererTags.Contains(other.tag))
+        if (triggererTags.Contains(other.tag) && isEnabled)
             onHitAction.Invoke();
     }
 
@@ -40,7 +43,31 @@ public class ActionTriggerer : MonoBehaviour
         if (!enabled)
             return;
 
-        if (triggererTags.Contains(other.tag))
+        if (triggererTags.Contains(other.tag) && isEnabled)
             onReleaseAction.Invoke();
+    }
+
+    public void Enable(float delay)
+    {
+        StartCoroutine(EnableDelayed(delay));
+    }
+
+    private IEnumerator EnableDelayed(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        isEnabled = true;
+    }
+
+    public void Disable(float delay)
+    {
+        StartCoroutine(DisableDelayed(delay));
+    }
+
+    private IEnumerator DisableDelayed(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        isEnabled = false;
     }
 }
