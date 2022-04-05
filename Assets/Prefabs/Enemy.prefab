@@ -399,7 +399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174209979265760547}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 3344334297768477913}
@@ -425,6 +425,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 08d7a341772bd2d4fbe64349e75351cb, type: 2}
+  - {fileID: 2100000, guid: ccfba0c39f6950e6eb2e1b032f8f1b9c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -464,7 +465,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4142959613496292252}
   m_AABB:
-    m_Center: {x: 0.000057441182, y: 0.017582824, z: -0.005045809}
+    m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.016556509, y: 0.027151847, z: 0.009768729}
   m_DirtyAABB: 0
 --- !u!1 &563533898274916323
@@ -954,7 +955,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1
-  m_Height: 4.5
+  m_Height: 4.8
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: -0.6}
 --- !u!143 &3289683469279122185
@@ -968,7 +969,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 4.5
+  m_Height: 5
   m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -992,6 +993,7 @@ MonoBehaviour:
   spawnAfterTime: 0
   spawnTime: 5
   respawnAfterPlayerDeath: 1
+  _isDefeated: 0
   shadowMat: {fileID: 2100000, guid: 830e9003e5fe82747a905de91f3adc35, type: 2}
 --- !u!114 &1524314910
 MonoBehaviour:
