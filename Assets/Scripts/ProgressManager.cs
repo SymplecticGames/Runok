@@ -19,7 +19,7 @@ public class ProgressManager : MonoBehaviour
     {
         if (!instance)
         {
-            currentCompletedLevels = 2;
+            currentCompletedLevels = 0;
             currentLevel = 0;
 
             instance = this;
