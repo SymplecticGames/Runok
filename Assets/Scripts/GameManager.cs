@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
 
     private float volumeLerpStep = 0.0f;
 
+    private Material skybox;
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -97,6 +99,9 @@ public class GameManager : MonoBehaviour
         {
             altar.disableAltar();
         }
+
+        skybox = RenderSettings.skybox;
+
     }
 
     // Update is called once per frame
@@ -116,14 +121,16 @@ public class GameManager : MonoBehaviour
         {
             RenderSettings.ambientIntensity = 0.0f;
             RenderSettings.reflectionIntensity = 0.0f;
-            Camera.main.backgroundColor = new Color();
+            //Camera.main.backgroundColor = new Color();
+            RenderSettings.skybox = null;
             mainLight.enabled = false;
         }
         else
         {
             RenderSettings.ambientIntensity = 1.0f;
             RenderSettings.reflectionIntensity = 1.0f;
-            Camera.main.backgroundColor = currentBGColor;
+            //Camera.main.backgroundColor = currentBGColor;
+            RenderSettings.skybox = skybox;
             mainLight.enabled = true;
         }
     }
