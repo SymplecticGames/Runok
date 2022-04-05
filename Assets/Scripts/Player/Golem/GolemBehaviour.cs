@@ -190,6 +190,40 @@ public class GolemBehaviour : MonoBehaviour
         rightHitRegister.enabled = false;
     }
 
+    public void PlayHitSound()
+    {
+        switch (currentMaterial)
+        {
+            case GolemMaterial.Terracotta:
+                AudioManager.audioInstance.PlayCharSound(CharaudioTag.terracottaHit);
+                break;
+            case GolemMaterial.Plumber:
+                AudioManager.audioInstance.PlayCharSound(CharaudioTag.plumberHit);
+                break;
+            case GolemMaterial.Wooden:
+                AudioManager.audioInstance.PlayCharSound(CharaudioTag.woodenHit);
+                break;
+        }
+    }
+
+    public void PlayStompSound()
+    {
+        if (genericBehaviour.controller.isGrounded){
+            switch (currentMaterial)
+            {
+                case GolemMaterial.Terracotta:
+                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.terracottaStomp);
+                    break;
+                case GolemMaterial.Plumber:
+                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.plumberStomp);
+                    break;
+                case GolemMaterial.Wooden:
+                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.woodenStomp);
+                    break;
+            }
+        }
+    }
+
     private void ResetHitCombo()
     {
         canDoCombo = true;
