@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public static Vector3 gravity = new Vector3(0.0f, -9.8f, 0.0f);
 
-    // 0-> swapTag     1-> parchmentTag     2->selectionWheelTag    3-> hitTag    4-> jumpTag   
+    // 0-> swapTag     1-> parchmentTag     2->selectionWheelTag    3-> hitTag    4-> jumpTag
     public List<Image> kbTags;
     public List<Image> xboxTags;
     public List<Image> psTags;
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     private float volumeLerpStep = 0.0f;
 
     private Material skybox;
+    private Color ambientLight;
 
     private void Awake()
     {
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour
         }
 
         skybox = RenderSettings.skybox;
+        ambientLight = RenderSettings.ambientLight;
 
     }
 
@@ -123,6 +125,7 @@ public class GameManager : MonoBehaviour
             RenderSettings.reflectionIntensity = 0.0f;
             //Camera.main.backgroundColor = new Color();
             RenderSettings.skybox = null;
+            RenderSettings.ambientLight = new Color(0, 0, 0);
             mainLight.enabled = false;
         }
         else
@@ -130,6 +133,7 @@ public class GameManager : MonoBehaviour
             RenderSettings.ambientIntensity = 1.0f;
             RenderSettings.reflectionIntensity = 1.0f;
             //Camera.main.backgroundColor = currentBGColor;
+            RenderSettings.ambientLight = ambientLight;
             RenderSettings.skybox = skybox;
             mainLight.enabled = true;
         }
