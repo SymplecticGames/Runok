@@ -101,7 +101,9 @@ public class HubController : MonoBehaviour
         if (!isMoving && context.performed)
         {
             isEnteringLevel = true;
-
+            
+            AudioManager.audioInstance.PlayUISound(UIaudioTag.enterLevel);
+            
             switch (ProgressManager.instance.currentLevel)
             {
                 case 0: // nivel 1
@@ -130,6 +132,7 @@ public class HubController : MonoBehaviour
     {
         if (!isMoving && context.performed)
         {
+            AudioManager.audioInstance.PlayUISound(UIaudioTag.exitHub);
             StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("MainMenu"));
         }
     }

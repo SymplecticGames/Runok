@@ -27,6 +27,7 @@ public class SelectionWheel : MonoBehaviour
     private Vector2 _selectorPosition;
     private bool _selectorMoving;
 
+    private int _prevAbility = 1;
 
     public void OnSelectorMovement(InputAction.CallbackContext context)
     {
@@ -130,6 +131,14 @@ public class SelectionWheel : MonoBehaviour
 
             ability = 0;
         }
+
+        if (_prevAbility != ability)
+        {
+            AudioManager.audioInstance.PlayUISound(UIaudioTag.hoverSelectionWheel);
+        }
+
+        _prevAbility = ability;
+
     }
 
 }

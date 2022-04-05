@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,13 +29,19 @@ public class MainMenuUI : MonoBehaviour
 
     private float _maxX = 5024.0f;
     
-    
+    // audio
+    private string audioFolder;
+    private AudioSource _audioSource;
+    private AudioClip _audioClip;
+
     public void ClickedPlayGame()
     {
         // open hub menu
 
         if(!selector.activeInHierarchy)
             return;
+        
+        AudioManager.audioInstance.PlayUISound(UIaudioTag.click);
         SceneManager.LoadScene("Hub");
     }
     
@@ -42,6 +50,7 @@ public class MainMenuUI : MonoBehaviour
         // exit Runok
         if(!selector.activeInHierarchy)
             return;
+        AudioManager.audioInstance.PlayUISound(UIaudioTag.click);
         Application.Quit();
     }
     
@@ -50,6 +59,7 @@ public class MainMenuUI : MonoBehaviour
         // credits scene
         if(!selector.activeInHierarchy)
             return;
+        AudioManager.audioInstance.PlayUISound(UIaudioTag.click);
         SceneManager.LoadScene("Credits");
     }
 
@@ -67,7 +77,6 @@ public class MainMenuUI : MonoBehaviour
         // change selector position
         if(!selector.activeInHierarchy)
             return;
-        
         _selectorTargetPosition = exitGameButton.transform.localPosition.y;
     }
     
@@ -76,10 +85,10 @@ public class MainMenuUI : MonoBehaviour
         // change selector position
         if(!selector.activeInHierarchy)
             return;
-
+        
         _selectorTargetPosition = creditsButton.localPosition.y;
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,7 +106,6 @@ public class MainMenuUI : MonoBehaviour
         creditsButton.localPosition = new Vector3(_maxX, creditsButton.localPosition.y, creditsButton.localPosition.z);
         
         _selectorTargetPosition = selector.transform.localPosition.y;
-
     }
 
     // Update is called once per frame
