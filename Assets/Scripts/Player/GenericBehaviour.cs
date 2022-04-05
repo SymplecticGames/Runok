@@ -93,7 +93,7 @@ public class GenericBehaviour : MonoBehaviour
         // Rotation
         if (isAttacking)
         {
-            if (CompareTag("Beetle") || movementInput.magnitude <= 0.0f)
+            if (CompareTag("Beetle"))
                 InstantRotation(Camera.main.transform.forward);
             // NOTE: Erased by Dani to avoid weird rotations when golem hits
             /*
