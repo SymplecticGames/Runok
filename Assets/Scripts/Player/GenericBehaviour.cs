@@ -89,15 +89,20 @@ public class GenericBehaviour : MonoBehaviour
         if (controller.enabled)
             controller.Move(playerVel * Time.deltaTime);
 
+
         // Rotation
         if (isAttacking)
         {
             if (CompareTag("Beetle") || movementInput.magnitude <= 0.0f)
                 InstantRotation(Camera.main.transform.forward);
+            // NOTE: Erased by Dani to avoid weird rotations when golem hits
+            /*
             else
                 InstantRotation(controller.velocity);
+                */
         }
-        else if (canRotate && movementInput.magnitude > 0.0f)
+
+        if (canRotate && movementInput.magnitude > 0.0f)
             Rotation();
 
         if (controller.isGrounded && jumpFactor < maxJumpFactor * 0.5f)
@@ -153,6 +158,7 @@ public class GenericBehaviour : MonoBehaviour
         return movementVel;
     }
 
+
     private void InstantRotation(Vector3 target)
     {
         // Rotation
@@ -163,6 +169,7 @@ public class GenericBehaviour : MonoBehaviour
         transform.forward = Vector3.Slerp(transform.forward, currentForwardTarget, 3.0f * rotFactor * Time.deltaTime);
     }
 
+
     private void Rotation()
     {
         // Rotation
@@ -170,7 +177,7 @@ public class GenericBehaviour : MonoBehaviour
         targetLookAt.y = transform.position.y;
 
         currentForwardTarget = (targetLookAt - transform.position).normalized;
-        transform.forward = Vector3.Slerp(transform.forward, currentForwardTarget, rotFactor * Time.deltaTime);
+        transform.forward = Vector3.Slerp(transform.forward, currentForwardTarget, .05f + rotFactor * Time.deltaTime);
     }
 
     public void Die(Transform respawnPoint)
