@@ -104,6 +104,8 @@ public class BeetleHoleManager : MonoBehaviour
 
         // change neighbour hole state
         _neighbourHoleScript._cameFromNeighbour = true;
+
+        AudioManager.audioInstance.PlayObjSound(ObjaudioTag.teleport);
     }
     void doHoleTeleport(GameObject gO, Vector3 pos)
     {

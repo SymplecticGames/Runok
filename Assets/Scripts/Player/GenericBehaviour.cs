@@ -143,7 +143,7 @@ public class GenericBehaviour : MonoBehaviour
 
         Vector3 camSpaceMovement = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y));
         camSpaceMovement.y = 0;
-        camSpaceMovement.Normalize();
+        camSpaceMovement = camSpaceMovement.normalized * movementInput.magnitude;
         Vector3 movementVel = camSpaceMovement * baseMovementSpeed * movementFactor;
 
         if (jumpPressed && jumps < maxJumps)

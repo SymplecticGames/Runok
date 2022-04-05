@@ -87,7 +87,8 @@ public class Altar : MonoBehaviour
             ProgressManager.instance.completedLevel[3] = true;
             ProgressManager.instance.currentCompletedLevels++;
         }
-        
+
+        AudioManager.audioInstance.PlayObjSound(ObjaudioTag.altar);
         StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Hub"));
     }
 

@@ -55,6 +55,8 @@ public class PressureButton : MonoBehaviour
         solidButton.transform.position = pressedPos.position;
 
         onPressAction.Invoke();
+
+        AudioManager.audioInstance.PlayObjSound(ObjaudioTag.pressButton);
     }
 
     private void OnTriggerExit(Collider other)
