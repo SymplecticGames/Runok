@@ -141,8 +141,10 @@ public class GenericBehaviour : MonoBehaviour
         if (isAttacking && CompareTag("Golem"))
             return Vector3.zero;
 
-        Vector3 movementVel = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y)) * baseMovementSpeed * movementFactor;
-        movementVel.y = 0;
+        Vector3 camSpaceMovement = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y));
+        camSpaceMovement.y = 0;
+        camSpaceMovement.Normalize();
+        Vector3 movementVel = camSpaceMovement * baseMovementSpeed * movementFactor;
 
         if (jumpPressed && jumps < maxJumps)
         {
@@ -173,7 +175,10 @@ public class GenericBehaviour : MonoBehaviour
     private void Rotation()
     {
         // Rotation
-        Vector3 targetLookAt = transform.position + controller.velocity;
+        Vector3 camSpaceMovement = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y));
+        camSpaceMovement.y = 0;
+        camSpaceMovement.Normalize();
+        Vector3 targetLookAt = transform.position + camSpaceMovement;
         targetLookAt.y = transform.position.y;
 
         currentForwardTarget = (targetLookAt - transform.position).normalized;
