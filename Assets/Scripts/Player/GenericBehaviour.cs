@@ -106,11 +106,13 @@ public class GenericBehaviour : MonoBehaviour
         // Animations
         animator.SetBool("isWalking", movementInput.magnitude > 0); // Golem/Beetle
 
+        float animationSpeed = Movement().magnitude / 8;
+
         // Golem walkspeed, jump and falling
         if (CompareTag("Golem"))
         {
             if (!isAttacking && controller.isGrounded)
-                animator.SetFloat("WalkSpeed", Mathf.Clamp(movementInput.magnitude, 0.1f, 1.0f));
+                animator.SetFloat("WalkSpeed", Mathf.Clamp(animationSpeed, 0.1f, animationSpeed));
             else
                 animator.SetFloat("WalkSpeed", 1.0f);
 
