@@ -106,7 +106,10 @@ public class GenericBlock : MonoBehaviour
                 if (cubeRespawn)
                     ResetBlock();
                 else
+                {
                     Destroy(gameObject);
+                    AudioManager.audioInstance.PlayObjSound(ObjaudioTag.destroyBox);
+                }
             }
 
             // Extensible

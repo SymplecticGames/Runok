@@ -83,6 +83,18 @@ public class Gemstone : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!enabled)
+            return;
+
+        if (glowingUp)
+            return;
+
+        if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
+            AudioManager.audioInstance.PlayObjSound(ObjaudioTag.activation);
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (!enabled)
