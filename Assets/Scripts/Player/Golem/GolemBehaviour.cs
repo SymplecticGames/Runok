@@ -92,7 +92,7 @@ public class GolemBehaviour : MonoBehaviour
     void Update()
     {
         // Material dependant stats
-        genericBehaviour.movementFactor = 1.0f / golemStats.weight;
+        genericBehaviour.movementFactor = -.2f + 1.0f / golemStats.weight;
         genericBehaviour.maxJumps = genericBehaviour.controller.isGrounded ? golemStats.jumps : golemStats.jumps - 1;
 
         // Animator controller update
