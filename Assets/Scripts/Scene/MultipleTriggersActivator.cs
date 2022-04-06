@@ -13,6 +13,8 @@ public class MultipleTriggersActivator : MonoBehaviour
     [SerializeField]
     private UnityEvent OnActivationAction;
 
+    private bool alreadyInvoked;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +34,11 @@ public class MultipleTriggersActivator : MonoBehaviour
 
         currentActiveTriggerers.Add(triggerer);
 
-        if (currentActiveTriggerers.Count >= triggerers.Count)
+        if (currentActiveTriggerers.Count >= triggerers.Count && !alreadyInvoked)
+        {
             OnActivationAction.Invoke();
+            alreadyInvoked = true;
+        }
     }
 
     public void SubtractInvokator(ActionTriggerer triggerer)
