@@ -11,7 +11,6 @@ public class SceneTransition : MonoBehaviour
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     private Animator _transitionAnim;
-
     
     public IEnumerator LoadScene(string sceneName)
     {
