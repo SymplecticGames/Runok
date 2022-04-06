@@ -3,7 +3,7 @@ name: Arte
 about: Mejoras en el apartado artístico
 title: ''
 labels: Art
-assignees: Dariasteam
+assignees: Dariasteam, shykibi
 
 ---
 
