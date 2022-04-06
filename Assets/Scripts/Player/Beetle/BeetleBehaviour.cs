@@ -222,4 +222,15 @@ public class BeetleBehaviour : MonoBehaviour
         shootingBackRay = false;
         forwardFactor = 0.0f;
     }
+
+    public void PlayFlutterSound()
+    {
+        GetComponent<AudioSource>().Play();
+    }
+    
+    public void StopFlutterSound()
+    {
+        GetComponent<AudioSource>().Stop();
+    }
+    
 }

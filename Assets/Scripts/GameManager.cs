@@ -205,6 +205,7 @@ public class GameManager : MonoBehaviour
             script.enabled = false;
         }
         player.beetleBehaviour.GetComponent<Animator>().enabled = false;
+        player.beetleBehaviour.GetComponent<AudioSource>().enabled = false;
 
         // enemies
         foreach (Enemy enemy in enemies)
@@ -244,6 +245,7 @@ public class GameManager : MonoBehaviour
             script.enabled = true;
         }
         player.beetleBehaviour.GetComponent<Animator>().enabled = true;
+        player.beetleBehaviour.GetComponent<AudioSource>().enabled = true;
 
         // enemies
         foreach (Enemy enemy in enemies)

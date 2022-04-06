@@ -105,12 +105,15 @@ public class Enemy : MonoBehaviour
             // Disable enemy collider
             isBeingHitted = true;
 
+            GetComponent<AudioSource>().Play();
+            
             // if hits are enough to defeat the enemy, then, do deafeated animation
             if (_hitCounter >= golem.golemStats.hitsNeededToKill)
             {
                 // the enemy is defeated
                 Die();
             }
+            
         }
 
         if (other.CompareTag("Bullet"))
@@ -124,20 +127,26 @@ public class Enemy : MonoBehaviour
 
                 bezier.enabled = false;
                 animator.SetBool("isHit", true);
-
+                
+                GetComponent<AudioSource>().Play();
+                
                 // if hits are enough to defeat the enemy, then, do deafeated animation
                 if (_hitCounter >= 2)
                 {
                     // the enemy is defeated
                     Die();
                 }
+                
             }
         }
 
         if (other.CompareTag("Ray"))
         {
             if (shadowEnemy)
+            {
+                GetComponent<AudioSource>().Play();
                 Die();
+            }
         }
     }
 

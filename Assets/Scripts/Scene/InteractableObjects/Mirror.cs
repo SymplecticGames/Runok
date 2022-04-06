@@ -23,6 +23,9 @@ public class Mirror : MonoBehaviour
 
         if (other.CompareTag("Bullet"))
         {
+            
+            GetComponent<AudioSource>().Play();
+            
             LightBullet bullet = other.GetComponent<LightBullet>();
 
             Vector3 normal = -transform.forward;

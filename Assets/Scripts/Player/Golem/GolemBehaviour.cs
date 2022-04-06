@@ -223,6 +223,12 @@ public class GolemBehaviour : MonoBehaviour
             }
         }
     }
+    
+    public void PlayJumpSound()
+    {
+        Debug.Log("JUMPPPPP");
+        AudioManager.audioInstance.PlayCharSound(CharaudioTag.genericJump);
+    }
 
     private void ResetHitCombo()
     {
