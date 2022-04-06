@@ -29,23 +29,6 @@ public enum UIaudioTag
 
 }
 
-public enum ObjaudioTag
-{
-    activation = 0, // monolit, target, gem
-    teleport = 1,
-
-    pickParchment = 2,
-    pickRune = 3,
-
-    pressButton = 4,
-    destroyBox = 5,
-
-    laserBeam = 6,
-
-    altar = 7,
-
-}
-
 public enum CharaudioTag
 {
     beetleFlutter = 0,
@@ -71,7 +54,6 @@ public class AudioManager : MonoBehaviour
     private AudioSource _audioSource;
 
     private AudioClip[] clipsUI;
-    private AudioClip[] clipsObj;
     private AudioClip[] clipsChar;
 
     private string _soundEffectsUIPath;
@@ -84,16 +66,13 @@ public class AudioManager : MonoBehaviour
         audioInstance = this;
 
         _soundEffectsUIPath = Application.dataPath + "/Sounds/SoundEffects/UI/";
-        _soundEffectsObjPath = Application.dataPath + "/Sounds/SoundEffects/Objects/";
         _soundEffectsCharPath = Application.dataPath + "/Sounds/SoundEffects/Characters/";
 
         string[] namesUI = System.Enum.GetNames(typeof(UIaudioTag));
-        string[] namesObj = System.Enum.GetNames(typeof(ObjaudioTag));
         string[] namesChar = System.Enum.GetNames(typeof(CharaudioTag));
 
 
         clipsUI = new AudioClip[namesUI.Length];
-        clipsObj = new AudioClip[namesObj.Length];
         clipsChar = new AudioClip[namesChar.Length];
 
         int i = 0;
@@ -102,13 +81,7 @@ public class AudioManager : MonoBehaviour
             StartCoroutine(LoadUIAudio(aTag, i, 1));
             i++;
         }
-
-        i = 0;
-        foreach (var oTag in namesObj)
-        {
-            StartCoroutine(LoadUIAudio(oTag, i, 2));
-            i++;
-        }
+        
 
         i = 0;
         foreach (var cTag in namesChar)
@@ -126,42 +99,15 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         _audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource.loop = false;
+        _audioSource.playOnAwake = false;
     }
 
     public void PlayUISound(UIaudioTag audio)
     {
-        _audioSource.loop = false;
-        _audioSource.playOnAwake = false;
+        _audioSource.volume = 0.1f;
         _audioSource.clip = clipsUI[(int)audio];
         _audioSource.Play();
-
-        // string audioName = System.Enum.GetName(typeof(UIaudioTag), audio);
-        // switch (audio)
-        // {
-        //         case UIaudioTag.click:
-        //             
-        //             break;
-        //         case UIaudioTag.hover: break;
-        //
-        //         case UIaudioTag.enterLevel: break;
-        //         case UIaudioTag.exitHub: break;
-        //         
-        //         case UIaudioTag.openPauseMenu: break;
-        //         case UIaudioTag.closePauseMenu: break;
-        //         case UIaudioTag.showConfirmationPanel: break;
-        //         
-        //         case UIaudioTag.instructions: break;
-        //         
-        //         case UIaudioTag.openSelectionWheel: break;
-        //         case UIaudioTag.hoverSelectionWheel: break;
-        //         case UIaudioTag.selectedTerracotta: break;
-        //         case UIaudioTag.selectedPlumber: break;
-        //         case UIaudioTag.selectedWooden: break;
-        //         case UIaudioTag.selectedRadial: break;
-        //         case UIaudioTag.selectedShoot: break;
-        //         case UIaudioTag.selectedLaser: break;
-        //     
-        // }
     }
 
     public void PlayAbilitySound(int ability, bool isGolem)
@@ -208,56 +154,13 @@ public class AudioManager : MonoBehaviour
         _audioSource.Play();
 
     }
-
-    public void PlayObjSound(ObjaudioTag audio)
-    {
-
-        _audioSource.loop = false;
-        _audioSource.playOnAwake = false;
-        _audioSource.clip = clipsObj[(int)audio];
-        _audioSource.Play();
-
-        // string audioName = System.Enum.GetName(typeof(ObjaudioTag), audio);
-        // switch (audio)
-        // {
-        //     case ObjaudioTag.activation: break;
-        //     case ObjaudioTag.teleport: break;
-        //     
-        //     case ObjaudioTag.pickParchment: break;
-        //     case ObjaudioTag.pickRune: break;
-        //     
-        //     case ObjaudioTag.pressButton: break;
-        //     case ObjaudioTag.destroyBox: break;
-        //
-        //     case ObjaudioTag.laserBeam: break;
-        //
-        //     case ObjaudioTag.altar: break;
-        //     
-        // }
-    }
-
+    
 
     public void PlayCharSound(CharaudioTag audio)
     {
-        _audioSource.loop = false;
-        _audioSource.playOnAwake = false;
+        _audioSource.volume = 0.05f;
         _audioSource.clip = clipsChar[(int)audio];
         _audioSource.Play();
-        // string audioName = System.Enum.GetName(typeof(CharaudioTag), audio);
-        // switch (audio)
-        // {
-        //     case CharaudioTag.beetleFlutter : break;
-        //     
-        //     case CharaudioTag.terracottaStomp : break;
-        //     case CharaudioTag.plumberStomp : break;
-        //     case CharaudioTag.woodenStomp : break;
-        //     case CharaudioTag.terracottaHit : break;
-        //     case CharaudioTag.plumberHit : break;
-        //     case CharaudioTag.woodenHit:  break;
-        //     
-        //     case CharaudioTag.elMen:  break;
-        //     
-        // }
     }
 
     private IEnumerator LoadUIAudio(string audioName, int index, int tagIdx)
@@ -273,12 +176,6 @@ public class AudioManager : MonoBehaviour
                 yield return request;
                 clipsUI[index] = request.GetAudioClip();
                 clipsUI[index].name = audioName;
-                break;
-            case 2: // obj
-                request = GetAudioFromFile(_soundEffectsObjPath, audioName);
-                yield return request;
-                clipsObj[index] = request.GetAudioClip();
-                clipsObj[index].name = audioName;
                 break;
             case 3: // char
                 request = GetAudioFromFile(_soundEffectsCharPath, audioName);

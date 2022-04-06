@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38502935, g: 0.28073716, b: 0.27779713, a: 1}
+  m_IndirectSpecularColor: {r: 0.38502768, g: 0.28073594, b: 0.27779624, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2930,7 +2930,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.21658354, y: -0.000006826972, z: 0.000001514559, w: 0.9762641}
+  m_LocalRotation: {x: 0.21658354, y: -0.00000684377, z: 0.0000015182858, w: 0.9762641}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5701,7 +5701,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1265234566}
   - component: {fileID: 1265234565}
-  - component: {fileID: 1265234564}
   - component: {fileID: 1265234567}
   - component: {fileID: 1265234568}
   m_Layer: 0
@@ -5711,14 +5710,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1265234564
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265234563}
-  m_Enabled: 1
 --- !u!20 &1265234565
 Camera:
   m_ObjectHideFlags: 0
@@ -5769,7 +5760,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.21658356, y: -0.0000068269724, z: 0.0000015145589, w: 0.9762641}
+  m_LocalRotation: {x: 0.21658356, y: -0.0000068437703, z: 0.0000015182856, w: 0.9762641}
   m_LocalPosition: {x: 2.7902033, y: 26.28, z: -73.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6706,7 +6697,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.21658354, y: -0.000006826972, z: 0.000001514559, w: 0.9762641}
+  m_LocalRotation: {x: 0.21658354, y: -0.00000684377, z: 0.0000015182858, w: 0.9762641}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7223,6 +7214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1748840433}
+  - component: {fileID: 1748840434}
   m_Layer: 0
   m_Name: camLookAt
   m_TagString: Untagged
@@ -7244,6 +7236,14 @@ Transform:
   m_Father: {fileID: 7404438760301021385}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1748840434
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748840432}
+  m_Enabled: 1
 --- !u!1 &1819190589
 GameObject:
   m_ObjectHideFlags: 0

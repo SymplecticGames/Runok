@@ -107,8 +107,7 @@ public class GenericBlock : MonoBehaviour
                     ResetBlock();
                 else
                 {
-                    Destroy(gameObject);
-                    AudioManager.audioInstance.PlayObjSound(ObjaudioTag.destroyBox);
+                    StartCoroutine(destroyDelay());
                 }
             }
 
@@ -135,6 +134,14 @@ public class GenericBlock : MonoBehaviour
         }
     }
 
+    IEnumerator destroyDelay()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        Destroy(gameObject);
+    }
+    
     public void ResetBlock()
     {
         GetComponent<Collider>().enabled = false;

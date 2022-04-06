@@ -56,7 +56,7 @@ public class PressureButton : MonoBehaviour
 
         onPressAction.Invoke();
 
-        AudioManager.audioInstance.PlayObjSound(ObjaudioTag.pressButton);
+        GetComponent<AudioSource>().Play();
     }
 
     private void OnTriggerExit(Collider other)

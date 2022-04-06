@@ -50,6 +50,8 @@ public class Pickable : MonoBehaviour
 
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
         {
+            GetComponent<AudioSource>().Play();   
+            
             action.Invoke();
 
             trigger.enabled = false; // We force it to be disabled before the delay
@@ -60,8 +62,6 @@ public class Pickable : MonoBehaviour
             // if pickable is a rune
             if (gameObject.CompareTag("Runa"))
                 GameManager.instance.pickedRune();
-            else
-                AudioManager.audioInstance.PlayObjSound(ObjaudioTag.pickParchment);
         }
     }
 

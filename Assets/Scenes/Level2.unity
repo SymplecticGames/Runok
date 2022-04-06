@@ -2727,7 +2727,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.32002297, y: -0.15720008, z: 0.053936552, w: 0.93271875}
+  m_LocalRotation: {x: 0.320023, y: -0.15720014, z: 0.053936593, w: 0.93271875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6767,7 +6767,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1265234566}
   - component: {fileID: 1265234565}
-  - component: {fileID: 1265234564}
   - component: {fileID: 1265234567}
   - component: {fileID: 1265234568}
   m_Layer: 0
@@ -6777,14 +6776,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1265234564
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265234563}
-  m_Enabled: 1
 --- !u!20 &1265234565
 Camera:
   m_ObjectHideFlags: 0
@@ -6835,7 +6826,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.32002294, y: -0.15720007, z: 0.053936575, w: 0.93271875}
+  m_LocalRotation: {x: 0.32002297, y: -0.15720016, z: 0.053936586, w: 0.93271875}
   m_LocalPosition: {x: 160.24992, y: 49.5, z: -205.60283}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -8243,7 +8234,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.320023, y: -0.15720014, z: 0.053936593, w: 0.93271875}
+  m_LocalRotation: {x: 0.32002297, y: -0.15720008, z: 0.053936552, w: 0.93271875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8896,6 +8887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1748840433}
+  - component: {fileID: 1748840434}
   m_Layer: 0
   m_Name: camLookAt
   m_TagString: Untagged
@@ -8917,6 +8909,14 @@ Transform:
   m_Father: {fileID: 7404438760301021385}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1748840434
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748840432}
+  m_Enabled: 1
 --- !u!1001 &1782363221
 PrefabInstance:
   m_ObjectHideFlags: 0

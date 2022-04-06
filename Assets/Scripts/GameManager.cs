@@ -150,8 +150,7 @@ public class GameManager : MonoBehaviour
             altar.enableAltar();
         }
         runesCounterUIScript.addRune(1);
-
-        AudioManager.audioInstance.PlayObjSound(ObjaudioTag.pickRune);
+        
     }
 
     public void respawnedPickedRune()

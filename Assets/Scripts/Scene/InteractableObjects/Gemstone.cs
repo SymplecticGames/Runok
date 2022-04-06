@@ -92,7 +92,7 @@ public class Gemstone : MonoBehaviour
             return;
 
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
-            AudioManager.audioInstance.PlayObjSound(ObjaudioTag.activation);
+            GetComponent<AudioSource>().Play();
     }
 
     private void OnTriggerStay(Collider other)
