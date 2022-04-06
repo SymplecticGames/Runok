@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
         {
             RenderSettings.ambientIntensity = 0.0f;
             RenderSettings.reflectionIntensity = 0.0f;
-            //Camera.main.backgroundColor = new Color();
+            Camera.main.backgroundColor = new Color();
             RenderSettings.skybox = null;
             RenderSettings.ambientLight = new Color(0, 0, 0);
             mainLight.enabled = false;
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         {
             RenderSettings.ambientIntensity = 1.0f;
             RenderSettings.reflectionIntensity = 1.0f;
-            //Camera.main.backgroundColor = currentBGColor;
+            Camera.main.backgroundColor = currentBGColor;
             RenderSettings.ambientLight = ambientLight;
             RenderSettings.skybox = skybox;
             mainLight.enabled = true;
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
             altar.enableAltar();
         }
         runesCounterUIScript.addRune(1);
-        
+
     }
 
     public void respawnedPickedRune()
