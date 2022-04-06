@@ -37,7 +37,7 @@
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
 				float4 screenPosition : TEXCOORD2;
-				
+
 				float3 viewDir : TEXCOORD3;
 				float3 normal : NORMAL;
             };
@@ -47,7 +47,7 @@
             float4 _MainTex_ST, _NormalMap_ST;
 			float _NormalStrength;
 			float2 _normalTiling, _normalOffset;
-			
+
 			float4 _RimColor, _OuterRimColor;
 			float _ShadowWidth;
 
@@ -58,7 +58,7 @@
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				o.uv2 = TRANSFORM_TEX(v.uv, _NormalMap);
 				o.screenPosition = ComputeScreenPos(o.vertex);
-				
+
 				o.viewDir = normalize(_WorldSpaceCameraPos - mul(unity_ObjectToWorld, v.vertex).xyz);
 				o.normal = normalize(mul(float4(v.normal, 0.0), unity_WorldToObject).xyz);
 
@@ -83,6 +83,7 @@
                 col = clamp(col, float4(0.0f, 0.0f, 0.0f, 0.0f), float4(1.0f, 1.0f, 1.0f, 1.0f));
 
 				UNITY_APPLY_FOG(i.fogCoord, col);
+                col.w =  clamp((col.r + col.b) * 5, .3f, 0.75f);
                 return col;
             }
             ENDCG

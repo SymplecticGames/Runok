@@ -58,7 +58,12 @@ public class Enemy : MonoBehaviour
         enemyMesh = GetComponentInChildren<SkinnedMeshRenderer>();
 
         bezier.enabled = allowWalking;
-        if (shadowEnemy) enemyMesh.material = shadowMat;
+
+        if (shadowEnemy) {
+            var mat = enemyMesh.materials;
+            mat[2] = shadowMat;
+            enemyMesh.materials = mat;
+        }
 
         _spawnTransform = gameObject.transform;
 
@@ -96,7 +101,7 @@ public class Enemy : MonoBehaviour
 
             bezier.enabled = false;
             animator.SetBool("isHit", true);
-            
+
             // Disable enemy collider
             isBeingHitted = true;
 
