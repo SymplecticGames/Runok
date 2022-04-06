@@ -39,7 +39,7 @@ public class HubController : MonoBehaviour
     private Vector3 p1;
     private Vector3 p2;
     private Vector3 p3;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,11 +73,11 @@ public class HubController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!context.performed || isMoving|| isEnteringLevel)
+        if (!context.performed || isMoving || isEnteringLevel)
             return;
 
         float direction = context.ReadValue<Vector2>().y;
-        
+
         // Go to next level
         if (direction > 0 && ProgressManager.instance.currentLevel < routes.Length - 1 && ProgressManager.instance.currentLevel < ProgressManager.instance.currentCompletedLevels)
         {
@@ -101,9 +101,9 @@ public class HubController : MonoBehaviour
         if (!isMoving && context.performed)
         {
             isEnteringLevel = true;
-            
+
             AudioManager.audioInstance.PlayUISound(UIaudioTag.enterLevel);
-            
+
             switch (ProgressManager.instance.currentLevel)
             {
                 case 0: // nivel 1
@@ -115,12 +115,12 @@ public class HubController : MonoBehaviour
                     break;
 
                 case 2: // nivel 3
-                    //StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level3"));
-                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("TestPlayground"));
+                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level3"));
                     break;
 
                 case 3: // nivel 4
-                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level4"));
+                    //StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level4"));
+                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("TestPlayground"));
                     break;
 
                 default: break;
