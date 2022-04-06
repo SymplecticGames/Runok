@@ -13,6 +13,8 @@ public class GenericBlock : MonoBehaviour
     private Rigidbody rb;
     private MeshRenderer rend;
 
+    AudioSource audioSource;
+
     [SerializeField]
     private bool startActive = false;
 
@@ -58,6 +60,7 @@ public class GenericBlock : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rend = GetComponent<MeshRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
         initialBoxPos = new Vector3[boxes.Length];
 
@@ -103,12 +106,7 @@ public class GenericBlock : MonoBehaviour
             if (golem.currentMaterial == GolemMaterial.Plumber)
             {
                 // Cute break method
-                if (cubeRespawn)
-                    ResetBlock();
-                else
-                {
-                    StartCoroutine(destroyDelay());
-                }
+                ResetBlock();
             }
 
             // Extensible
@@ -134,20 +132,21 @@ public class GenericBlock : MonoBehaviour
         }
     }
 
-    IEnumerator destroyDelay()
+    IEnumerator DestroyDelay(float delay)
     {
-        AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.Play();
-        yield return new WaitForSeconds(audioSource.clip.length);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(delay);
+
+        rend.enabled = false;
+        if (cubeRespawn) transform.position = cubeRespawn.position;
     }
-    
+
     public void ResetBlock()
     {
+        audioSource.Play();
         GetComponent<Collider>().enabled = false;
         rb.useGravity = false;
-        rend.enabled = false;
-        transform.position = cubeRespawn.position;
+
+        StartCoroutine(DestroyDelay(0.0f/*audioSource.clip.length*/));
     }
 
     public void SpawnBlock()

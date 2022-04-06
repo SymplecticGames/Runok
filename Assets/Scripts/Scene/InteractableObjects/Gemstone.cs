@@ -30,6 +30,8 @@ public class Gemstone : MonoBehaviour
 
     private Color gemEmiColor;
 
+    private AudioSource audio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,8 @@ public class Gemstone : MonoBehaviour
 
         gemMaterial = GetComponent<MeshRenderer>().material;
         gemEmiColor = gemMaterial.GetColor("_EmissionColor");
+
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -88,11 +92,11 @@ public class Gemstone : MonoBehaviour
         if (!enabled)
             return;
 
-        if (glowingUp)
+        if (!other.CompareTag("RadialLight"))
             return;
 
-        if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
-            GetComponent<AudioSource>().Play();
+        if (lightLerpStep < 0.5f)
+            audio.Play();
     }
 
     private void OnTriggerStay(Collider other)
@@ -103,7 +107,10 @@ public class Gemstone : MonoBehaviour
         if (!other.CompareTag("RadialLight"))
             return;
 
-        lightCoolDown = stayGlowDuration;
-        glowingUp = true;
+        if (!glowingUp)
+        {
+            lightCoolDown = stayGlowDuration;
+            glowingUp = true;
+        }
     }
 }

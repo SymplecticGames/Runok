@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeetleHoleManager : MonoBehaviour
+public class TeleportMonolith : MonoBehaviour
 {
 
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
     // neighbour hole (trigger) variable
-    public GameObject neighbourHole;
+    public GameObject neighbourMonolith;
     
     // path variables
     public GameObject path;
@@ -23,7 +23,7 @@ public class BeetleHoleManager : MonoBehaviour
     private bool _cameFromNeighbour;
     
     // neighbourHole script to change its state variables
-    private BeetleHoleManager _neighbourHoleScript;
+    private TeleportMonolith _neighbourMonolithScript;
 
     // time variable
     private float _waitedTime = 0;
@@ -34,7 +34,7 @@ public class BeetleHoleManager : MonoBehaviour
     void Start()
     {
         // get neighbour trigger hole script component
-        _neighbourHoleScript = neighbourHole.GetComponent<BeetleHoleManager>();
+        _neighbourMonolithScript = neighbourMonolith.GetComponent<TeleportMonolith>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -99,11 +99,11 @@ public class BeetleHoleManager : MonoBehaviour
         else
         {   // do normal hole teleport animation
             doHoleTeleport(other, transform.position);
-            _neighbourHoleScript.doHoleTeleport(other, neighbourHole.transform.position);
+            _neighbourMonolithScript.doHoleTeleport(other, neighbourMonolith.transform.position);
         }
 
         // change neighbour hole state
-        _neighbourHoleScript._cameFromNeighbour = true;
+        _neighbourMonolithScript._cameFromNeighbour = true;
 
         GetComponent<AudioSource>().Play();
     }
