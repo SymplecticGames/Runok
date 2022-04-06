@@ -53,7 +53,9 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    [SerializeField]
     private AudioClip[] clipsUI;
+    [SerializeField]
     private AudioClip[] clipsChar;
 
     private string _soundEffectsUIPath;
@@ -72,35 +74,36 @@ public class AudioManager : MonoBehaviour
         string[] namesChar = System.Enum.GetNames(typeof(CharaudioTag));
 
 
-        clipsUI = new AudioClip[namesUI.Length];
-        clipsChar = new AudioClip[namesChar.Length];
+        //clipsUI = new AudioClip[namesUI.Length];
+        //clipsChar = new AudioClip[namesChar.Length];
 
-        int i = 0;
-        foreach (var aTag in namesUI)
-        {
-            StartCoroutine(LoadUIAudio(aTag, i, 1));
-            i++;
-        }
+        //int i = 0;
+        //foreach (var aTag in namesUI)
+        //{
+        //    StartCoroutine(LoadUIAudio(aTag, i, 1));
+        //    i++;
+        //}
         
 
-        i = 0;
-        foreach (var cTag in namesChar)
-        {
-            StartCoroutine(LoadUIAudio(cTag, i, 3));
-            i++;
-        }
+        //i = 0;
+        //foreach (var cTag in namesChar)
+        //{
+        //    StartCoroutine(LoadUIAudio(cTag, i, 3));
+        //    i++;
+        //}
 
         allLoaded = true;
 
+        _audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource.loop = false;
+        _audioSource.playOnAwake = false;
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _audioSource = gameObject.AddComponent<AudioSource>();
-        _audioSource.loop = false;
-        _audioSource.playOnAwake = false;
+        
     }
 
     public void PlayUISound(UIaudioTag audio)

@@ -7,12 +7,20 @@ public class SceneTransition : MonoBehaviour
 {
 
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
-    public static SceneTransition sceneTransitioninstance;
+    public static SceneTransition instance;
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     private Animator _transitionAnim;
     
-    public IEnumerator LoadScene(string sceneName)
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+
+        // No funciona bien, así que por ahora lo hacemos así :_(
+        //StartCoroutine(LoadSceneSync(sceneName));
+    }
+
+    private IEnumerator LoadSceneSync(string sceneName)
     {
         yield return new WaitForSeconds(1.0f);
         _transitionAnim.SetTrigger("start");
@@ -22,7 +30,7 @@ public class SceneTransition : MonoBehaviour
     
     private void Awake()
     {
-        sceneTransitioninstance = this;
+        instance = this;
     }
     
     // Start is called before the first frame update

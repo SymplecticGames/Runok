@@ -89,7 +89,7 @@ public class Altar : MonoBehaviour
         }
 
         GetComponent<AudioSource>().Play();
-        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Hub"));
+        SceneTransition.instance.LoadScene("Hub");
     }
 
     private void OnTriggerExit(Collider other)

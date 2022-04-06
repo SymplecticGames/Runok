@@ -98,7 +98,7 @@ public class PauseMenuUI : MonoBehaviour
         }
         
         // do transition animation
-        StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene(sceneName));
+        SceneTransition.instance.LoadScene(sceneName);
         confirmationPanel.SetActive(false);
         pauseMenuPanel.SetActive(false);
         AudioManager.audioInstance.PlayUISound(UIaudioTag.click);

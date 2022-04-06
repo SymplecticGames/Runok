@@ -107,20 +107,20 @@ public class HubController : MonoBehaviour
             switch (ProgressManager.instance.currentLevel)
             {
                 case 0: // nivel 1
-                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level1"));
+                    SceneTransition.instance.LoadScene("Level1");
                     break;
 
                 case 1: // nivel 2
-                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level2"));
+                    SceneTransition.instance.LoadScene("Level2");
                     break;
 
                 case 2: // nivel 3
-                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level3"));
+                    SceneTransition.instance.LoadScene("Level3");
                     break;
 
                 case 3: // nivel 4
-                    //StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("Level4"));
-                    StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("TestPlayground"));
+                    //SceneTransition.sceneTransitioninstance.LoadScene("Level4");
+                    SceneTransition.instance.LoadScene("TestPlayground");
                     break;
 
                 default: break;
@@ -133,7 +133,7 @@ public class HubController : MonoBehaviour
         if (!isMoving && context.performed)
         {
             AudioManager.audioInstance.PlayUISound(UIaudioTag.exitHub);
-            StartCoroutine(SceneTransition.sceneTransitioninstance.LoadScene("MainMenu"));
+            SceneTransition.instance.LoadScene("MainMenu");
         }
     }
 
