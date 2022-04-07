@@ -49,10 +49,8 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    [SerializeField]
-    private AudioClip[] clipsUI;
-    [SerializeField]
-    private AudioClip[] clipsChar;
+    private AudioClip[] _clipsUI;
+    private AudioClip[] _clipsChar;
 
     private string _soundEffectsUIPath;
     private string _soundEffectsCharPath;
@@ -62,30 +60,30 @@ public class AudioManager : MonoBehaviour
     {
         audioInstance = this;
 
-        // _soundEffectsUIPath = "SoundEffects/UI/";
-        // _soundEffectsCharPath = "SoundEffects/Characters/";
-        //
-        // string[] namesUI = System.Enum.GetNames(typeof(UIaudioTag));
-        // string[] namesChar = System.Enum.GetNames(typeof(CharaudioTag));
+        _soundEffectsUIPath = "SoundEffects/UI/";
+        _soundEffectsCharPath = "SoundEffects/Characters/";
         
-        // clipsUI = new AudioClip[namesUI.Length];
-        // clipsChar = new AudioClip[namesChar.Length];
+        string[] namesUI = System.Enum.GetNames(typeof(UIaudioTag));
+        string[] namesChar = System.Enum.GetNames(typeof(CharaudioTag));
+        
+        _clipsUI = new AudioClip[namesUI.Length];
+        _clipsChar = new AudioClip[namesChar.Length];
 
-        // int i = 0;
-        // foreach (var aTag in namesUI)
-        // {
-        //     clipsUI[i] = Resources.Load<AudioClip>("Assets/Resources/SoundEffects/UI/click.wav");
-        //     Debug.Log(clipsUI[i]);
-        //     i++;
-        // }
-        //
-        //
-        // i = 0;
-        // foreach (var cTag in namesChar)
-        // {
-        //     clipsChar[i] = Resources.Load<AudioClip>(_soundEffectsCharPath + namesChar);
-        //     i++;
-        // }
+        int i = 0;
+        foreach (var aTag in namesUI)
+        {
+            _clipsUI[i] = Resources.Load<AudioClip>(_soundEffectsUIPath + aTag);
+            Debug.Log(_clipsUI[i]);
+            i++;
+        }
+        
+        
+        i = 0;
+        foreach (var cTag in namesChar)
+        {
+            _clipsChar[i] = Resources.Load<AudioClip>(_soundEffectsCharPath + cTag);
+            i++;
+        }
 
         allLoaded = true;
 
@@ -105,7 +103,7 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.loop = false;
         _audioSource.volume = 0.1f;
-        _audioSource.clip = clipsUI[(int)audio];
+        _audioSource.clip = _clipsUI[(int)audio];
         _audioSource.Play();
     }
 
@@ -149,7 +147,7 @@ public class AudioManager : MonoBehaviour
                 default: break;
             }
         }
-        _audioSource.clip = clipsUI[(int)uiaudio];
+        _audioSource.clip = _clipsUI[(int)uiaudio];
         _audioSource.Play();
 
     }
@@ -158,7 +156,7 @@ public class AudioManager : MonoBehaviour
     public void PlayCharSound(CharaudioTag audio)
     {
         _audioSource.volume = 0.05f;
-        _audioSource.clip = clipsChar[(int)audio];
+        _audioSource.clip = _clipsChar[(int)audio];
         _audioSource.Play();
     }
     
