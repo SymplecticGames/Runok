@@ -26,6 +26,10 @@ public enum UIaudioTag
     selectedRadial = 13,
     selectedShoot = 14,
     selectedLaser = 15,
+    
+    startCountDown =16,
+    countDown =17,
+    endCountDown =18,
 
 }
 
@@ -55,6 +59,7 @@ public class AudioManager : MonoBehaviour
     private string _soundEffectsUIPath;
     private string _soundEffectsCharPath;
 
+    private AudioSource _countDownAs;
 
     private void Awake()
     {
@@ -158,6 +163,52 @@ public class AudioManager : MonoBehaviour
         _audioSource.volume = 0.05f;
         _audioSource.clip = _clipsChar[(int)audio];
         _audioSource.Play();
+    }
+
+    public void PlayCountDown(float endCountDown)
+    {
+        _countDownAs = gameObject.AddComponent<AudioSource>();
+        _countDownAs.loop = false;
+        _countDownAs.playOnAwake = false;
+        StartCoroutine(CountDown(endCountDown));
+
+    }
+
+    IEnumerator CountDown(float endCountDown)
+    {
+        _countDownAs.clip = _clipsUI[(int)UIaudioTag.startCountDown];
+        _countDownAs.Play();
+        yield return new WaitForSeconds(_countDownAs.clip.length);
+        
+        _countDownAs.clip = _clipsUI[(int)UIaudioTag.countDown];
+        _countDownAs.loop = true;
+        _countDownAs.Play();
+        yield return new WaitForSeconds(endCountDown);
+
+        if (_countDownAs != null)
+        {
+            _countDownAs.loop = false;
+            _countDownAs.clip = _clipsUI[(int) UIaudioTag.endCountDown];
+            _countDownAs.Play();
+            yield return new WaitForSeconds(_countDownAs.clip.length);
+        }
+
+    }
+    
+    public void StopCountDown()
+    {
+        if (_countDownAs != null)
+        {
+            Destroy(_countDownAs);
+            
+        }
+
+    }
+
+    IEnumerator DestroyCountDownDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(_countDownAs);
     }
     
     // Update is called once per frame

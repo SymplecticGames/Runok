@@ -61,7 +61,10 @@ public class Pickable : MonoBehaviour
 
             // if pickable is a rune
             if (gameObject.CompareTag("Runa"))
+            {
                 GameManager.instance.pickedRune();
+                AudioManager.audioInstance.StopCountDown();
+            }
         }
     }
 
