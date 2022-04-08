@@ -254,7 +254,6 @@ GameObject:
   - component: {fileID: 3777974286639957476}
   - component: {fileID: 2091813047201504530}
   - component: {fileID: 2431715364789200780}
-  - component: {fileID: 7687580355620077070}
   m_Layer: 0
   m_Name: altarPortal
   m_TagString: Untagged
@@ -339,19 +338,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panTime: 2
   distanceToTarget: 15
---- !u!65 &7687580355620077070
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3937133795484174278}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5682624705818134150
 GameObject:
   m_ObjectHideFlags: 0

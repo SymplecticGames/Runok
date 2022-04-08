@@ -17,6 +17,8 @@ public class Altar : MonoBehaviour
 
     [SerializeField]
     private GameObject _altarParchment;
+
+    private Collider altarCollider;
     
     // action to do the Camera Pan
     [SerializeField]
@@ -34,7 +36,8 @@ public class Altar : MonoBehaviour
         mat = _altarPortal.GetComponent<MeshRenderer>().material;
         mat.color = disabledColor;
         _altarParchment.SetActive(false);
-        
+        altarCollider = GetComponent<Collider>();
+
         // get altar portal GOs
         disableAltar();
 
@@ -49,7 +52,7 @@ public class Altar : MonoBehaviour
 
     public void enableAltar()
     {
-        _altarPortal.GetComponent<Collider>().isTrigger = true;
+        altarCollider.isTrigger = true;
         _altarParchment.SetActive(true);
         defaultColor = enabledColor;
         mat.color = defaultColor;
@@ -102,7 +105,7 @@ public class Altar : MonoBehaviour
 
     public void disableAltar()
     {
-        _altarPortal.GetComponent<Collider>().isTrigger = false;
+        altarCollider.isTrigger = false;
     }
     
 }
