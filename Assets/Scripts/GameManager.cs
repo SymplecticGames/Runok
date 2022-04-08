@@ -96,11 +96,6 @@ public class GameManager : MonoBehaviour
 
         currentBGColor = Camera.main.backgroundColor;
 
-        if (_collectedRunes < _numRunes)
-        {
-            altar.disableAltar();
-        }
-
         skybox = RenderSettings.skybox;
         ambientLight = RenderSettings.ambientLight;
 
