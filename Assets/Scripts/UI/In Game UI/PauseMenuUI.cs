@@ -151,7 +151,7 @@ public class PauseMenuUI : MonoBehaviour
         GameManager.instance.player.input.actions.FindAction("BeetleBackRay").Enable();
         GameManager.instance.player.input.actions.FindAction("BeetleShoot").Enable();
         GameManager.instance.player.input.actions.FindAction("OpenInstructions").Enable();
-        GameManager.instance.player.input.actions.FindAction("WheelMenu").Enable();
+        if (GameManager.instance.player.selectionWheelEnabled) GameManager.instance.player.input.actions.FindAction("WheelMenu").Enable();
     }
 
 
