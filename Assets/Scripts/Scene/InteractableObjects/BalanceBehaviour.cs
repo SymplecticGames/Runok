@@ -7,6 +7,8 @@ public class BalanceBehaviour : MonoBehaviour
     [SerializeField]
     private List<BalancePlatform> balancePlatforms;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,18 @@ public class BalanceBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("P1: " + balancePlatforms[0].totalWeight + " | P2: " + balancePlatforms[1].totalWeight);
+        float totalWeights = 0.0f;
+        foreach (BalancePlatform plat in balancePlatforms)
+            totalWeights += plat.totalWeight;
+
+        float weightExpectedPerPlat = totalWeights / balancePlatforms.Count;
+
+        foreach (BalancePlatform plat in balancePlatforms)
+        {
+            float overWeight = weightExpectedPerPlat - plat.totalWeight;
+            Vector3 targetPos = plat.restPose + new Vector3(0.0f, overWeight, 0.0f);
+
+            plat.SetTargetPos(targetPos);
+        }
     }
 }
