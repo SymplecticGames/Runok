@@ -13,7 +13,7 @@ public enum PlatformPreset
 public class MobilePlatform : MonoBehaviour
 {
     [SerializeField]
-    private Transform platform;
+    public Transform platform;
 
     public Transform targetPos;
 
@@ -51,7 +51,7 @@ public class MobilePlatform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (_movementStarted)
         {
@@ -76,7 +76,7 @@ public class MobilePlatform : MonoBehaviour
                 lerpTime = 0.0f;
             }
             else
-                lerpTime += Time.deltaTime * currentSpeed;
+                lerpTime += Time.fixedDeltaTime * currentSpeed;
         }
     }
 
