@@ -453,31 +453,7 @@ MonoBehaviour:
     m_ActionId: 554b3435-6031-4a08-bc51-3a2ea830c405
     m_ActionName: Player/GolemJump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1825803207955690436}
-        m_TargetAssemblyTypeName: HubController, Assembly-CSharp
-        m_MethodName: OnEnterLevel
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: HubUI, Assembly-CSharp
-        m_MethodName: HideUI
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 3fa9c75f-42fb-4c86-9363-44a0e5b4b018
     m_ActionName: Player/GolemHit[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -564,6 +540,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c1fbfc74-aa2c-4c7e-a9d8-33185dfd1fcc
     m_ActionName: UI/DeviceJoined[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1825803207955690436}
+        m_TargetAssemblyTypeName: HubController, Assembly-CSharp
+        m_MethodName: OnEnterLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7859bae0-4167-4e58-836a-6e0070f37f59
+    m_ActionName: Player/GenericSubmitAction[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
 using UnityEngine.SceneManagement;
 
 public class CreditsScene : MonoBehaviour
@@ -11,19 +9,21 @@ public class CreditsScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Exit());
+
+        
     }
 
-    IEnumerator Exit()
+    public void ReturnToMainMenu(InputAction.CallbackContext context)
     {
+        if(context.performed)
+           SceneManager.LoadScene("MainMenu");
         
-        yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene("MainMenu");
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
+
+
 }
