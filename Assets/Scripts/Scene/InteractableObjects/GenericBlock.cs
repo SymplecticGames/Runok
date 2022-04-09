@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class GenericBlock : MonoBehaviour
@@ -55,12 +56,21 @@ public class GenericBlock : MonoBehaviour
 
     #endregion
 
+    private AudioSource pushAudioS;
+    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rend = GetComponent<MeshRenderer>();
         audioSource = GetComponent<AudioSource>();
+
+        pushAudioS = gameObject.AddComponent<AudioSource>();
+        pushAudioS.volume = 0.0f;
+        pushAudioS.loop = true;
+        pushAudioS.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.pushBox);
+        pushAudioS.Play();
+        
 
         initialBoxPos = new Vector3[boxes.Length];
 
@@ -86,6 +96,17 @@ public class GenericBlock : MonoBehaviour
                 growingStep = 0.0f;
             }
         }
+
+        if (Mathf.Abs(rb.velocity.y) >= 0.09f)
+        {
+            pushAudioS.volume = 0.0f;
+        }
+        else
+        {
+            Vector3 vel = rb.velocity;
+            vel.y = 0.0f;
+            pushAudioS.volume = Mathf.Clamp(vel.magnitude, 0.0f, 1.0f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -103,11 +124,7 @@ public class GenericBlock : MonoBehaviour
             
             // Pushable
             if (golem.currentMaterial == GolemMaterial.Terracotta)
-            {
                 rb.AddForce(golem.transform.forward * forceToApply, ForceMode.Impulse);
-                audioSource.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.pushBox);
-                audioSource.Play();
-            }
 
             // Breakable
             if (golem.currentMaterial == GolemMaterial.Plumber)
@@ -126,8 +143,10 @@ public class GenericBlock : MonoBehaviour
                 {
                     for (int i = 1; i < initialBoxPos.Length; i++)
                         boxes[i].SetActive(false);
-                    audioSource.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.destroyBox);
+                    AudioManager.audioInstance.SetAudioSourcePitch(audioSource, 1.5f);
+                    audioSource.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.growBox);
                     audioSource.Play();
+                    StartCoroutine(AudioManager.audioInstance.ResetPitch(audioSource, 0.2f));
                 }
                 else
                 {

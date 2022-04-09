@@ -232,7 +232,7 @@ public class GolemBehaviour : MonoBehaviour
     public void PlayLandSound()
     {
         if (genericBehaviour.controller.isGrounded){
-            AudioManager.audioInstance.SetAudioSourcePitch(1.5f);
+            AudioManager.audioInstance.SetAudioSourcePitch(AudioManager.audioInstance.GetAudioSource(), 1.5f);
             switch (currentMaterial)
             {
                 case GolemMaterial.Terracotta:
@@ -247,15 +247,10 @@ public class GolemBehaviour : MonoBehaviour
                     break;
             }
 
-            StartCoroutine(ResetPitch(0.2f));
+            StartCoroutine(AudioManager.audioInstance.ResetPitch(AudioManager.audioInstance.GetAudioSource(),0.2f));
         }
     }
-
-    IEnumerator ResetPitch(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        AudioManager.audioInstance.SetAudioSourcePitch(1.0f);
-    }
+    
     
     private void ResetHitCombo()
     {

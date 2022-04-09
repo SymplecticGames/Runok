@@ -236,10 +236,21 @@ public class AudioManager : MonoBehaviour
         return _clipsObj[(int)audio];
     }
 
-    public void SetAudioSourcePitch(float pitch)
+    public void SetAudioSourcePitch(AudioSource aS, float pitch)
     {
-        _audioSource.pitch = pitch;
+        aS.pitch = pitch;
     }
+    public IEnumerator ResetPitch(AudioSource aS, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SetAudioSourcePitch(aS, 1.0f);
+    }
+
+    public AudioSource GetAudioSource()
+    {
+        return _audioSource;
+    }
+    
     // Update is called once per frame
     void Update()
     {
