@@ -151,6 +151,7 @@ public class GenericBehaviour : MonoBehaviour
             jumpPressed = false;
             jumpFactor = maxJumpFactor;
             if (!controller.isGrounded) jumps++;
+            AudioManager.audioInstance.PlayCharSound(CharaudioTag.genericJump);
         }
 
         // Allow some movement (0.4) while shooting a ray

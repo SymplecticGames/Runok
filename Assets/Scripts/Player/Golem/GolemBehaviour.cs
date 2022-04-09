@@ -192,6 +192,11 @@ public class GolemBehaviour : MonoBehaviour
 
     public void PlayHitSound()
     {
+        AudioManager.audioInstance.PlayCharSound(CharaudioTag.punchAir);
+    }
+
+    public void PlayHitSomethingSound()
+    {
         switch (currentMaterial)
         {
             case GolemMaterial.Terracotta:
@@ -224,12 +229,34 @@ public class GolemBehaviour : MonoBehaviour
         }
     }
     
-    public void PlayJumpSound()
+    public void PlayLandSound()
     {
-        Debug.Log("JUMPPPPP");
-        AudioManager.audioInstance.PlayCharSound(CharaudioTag.genericJump);
+        if (genericBehaviour.controller.isGrounded){
+            AudioManager.audioInstance.SetAudioSourcePitch(1.5f);
+            switch (currentMaterial)
+            {
+                case GolemMaterial.Terracotta:
+                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.terracottaStomp);
+                    break;
+                case GolemMaterial.Plumber:
+                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.plumberStomp);
+                    
+                    break;
+                case GolemMaterial.Wooden:
+                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.woodenStomp);
+                    break;
+            }
+
+            StartCoroutine(ResetPitch(0.2f));
+        }
     }
 
+    IEnumerator ResetPitch(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        AudioManager.audioInstance.SetAudioSourcePitch(1.0f);
+    }
+    
     private void ResetHitCombo()
     {
         canDoCombo = true;

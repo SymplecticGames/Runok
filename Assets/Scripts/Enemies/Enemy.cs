@@ -96,6 +96,9 @@ public class Enemy : MonoBehaviour
             // get reference to golem
             GolemBehaviour golem = other.GetComponentInParent<GolemBehaviour>();
 
+            // set hittingAir to false
+            golem.PlayHitSomethingSound();
+            
             // update hit counter
             _hitCounter++;
 

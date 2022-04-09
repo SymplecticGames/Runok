@@ -56,6 +56,7 @@ public class PressureButton : MonoBehaviour
 
         onPressAction.Invoke();
 
+        GetComponent<AudioSource>().pitch = 1.0f;
         GetComponent<AudioSource>().Play();
     }
 
@@ -70,5 +71,7 @@ public class PressureButton : MonoBehaviour
         solidButton.transform.position = initialPos;
 
         onReleaseAction.Invoke();
+        GetComponent<AudioSource>().pitch = 2.0f;
+        GetComponent<AudioSource>().Play();
     }
 }

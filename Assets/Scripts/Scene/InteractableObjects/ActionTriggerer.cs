@@ -38,6 +38,13 @@ public class ActionTriggerer : MonoBehaviour
         {
             onHitAction.Invoke();
             GetComponent<AudioSource>().Play();
+
+            if (other.CompareTag("Hitter") &&
+                GameManager.instance.player.currentCharacter.TryGetComponent(out GolemBehaviour golem))
+            {
+                // set hittingAir to false
+                golem.PlayHitSomethingSound();
+            }
         }
     }
 

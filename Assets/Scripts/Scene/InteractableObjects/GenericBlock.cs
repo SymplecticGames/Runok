@@ -98,13 +98,21 @@ public class GenericBlock : MonoBehaviour
 
         if (GameManager.instance.player.currentCharacter.TryGetComponent(out GolemBehaviour golem))
         {
+            // set hittingAir to false
+            golem.PlayHitSomethingSound();
+            
             // Pushable
             if (golem.currentMaterial == GolemMaterial.Terracotta)
+            {
                 rb.AddForce(golem.transform.forward * forceToApply, ForceMode.Impulse);
+                audioSource.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.pushBox);
+                audioSource.Play();
+            }
 
             // Breakable
             if (golem.currentMaterial == GolemMaterial.Plumber)
             {
+                audioSource.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.destroyBox);
                 // Cute break method
                 ResetBlock();
             }
@@ -118,11 +126,16 @@ public class GenericBlock : MonoBehaviour
                 {
                     for (int i = 1; i < initialBoxPos.Length; i++)
                         boxes[i].SetActive(false);
+                    audioSource.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.destroyBox);
+                    audioSource.Play();
                 }
                 else
                 {
                     startGrowing = true;
                     boxes[currentBox].SetActive(true);
+                    audioSource.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.growBox);
+                    audioSource.Play();
+                    
                 }
             }
         }

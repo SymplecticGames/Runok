@@ -42,6 +42,14 @@ public enum CharaudioTag
     terracottaHit = 4,
     plumberHit = 5,
     woodenHit = 6,
+    punchAir = 7,
+}
+
+public enum ObjaudioTag
+{
+    pushBox = 0,
+    destroyBox = 1,
+    growBox = 2,
 }
 
 public class AudioManager : MonoBehaviour
@@ -55,9 +63,11 @@ public class AudioManager : MonoBehaviour
 
     private AudioClip[] _clipsUI;
     private AudioClip[] _clipsChar;
+    private AudioClip[] _clipsObj;
 
     private string _soundEffectsUIPath;
     private string _soundEffectsCharPath;
+    private string _soundEffectsObjPath;
 
     private AudioSource _countDownAs;
 
@@ -67,12 +77,15 @@ public class AudioManager : MonoBehaviour
 
         _soundEffectsUIPath = "SoundEffects/UI/";
         _soundEffectsCharPath = "SoundEffects/Characters/";
+        _soundEffectsObjPath = "SoundEffects/Objects/";
         
         string[] namesUI = System.Enum.GetNames(typeof(UIaudioTag));
         string[] namesChar = System.Enum.GetNames(typeof(CharaudioTag));
+        string[] namesObj = System.Enum.GetNames(typeof(ObjaudioTag));
         
         _clipsUI = new AudioClip[namesUI.Length];
         _clipsChar = new AudioClip[namesChar.Length];
+        _clipsObj = new AudioClip[namesObj.Length];
 
         int i = 0;
         foreach (var aTag in namesUI)
@@ -87,6 +100,13 @@ public class AudioManager : MonoBehaviour
         foreach (var cTag in namesChar)
         {
             _clipsChar[i] = Resources.Load<AudioClip>(_soundEffectsCharPath + cTag);
+            i++;
+        }
+        
+        i = 0;
+        foreach (var oTag in namesObj)
+        {
+            _clipsObj[i] = Resources.Load<AudioClip>(_soundEffectsObjPath + oTag);
             i++;
         }
 
@@ -211,6 +231,15 @@ public class AudioManager : MonoBehaviour
         Destroy(_countDownAs);
     }
     
+    public AudioClip GetObjSound(ObjaudioTag audio)
+    {
+        return _clipsObj[(int)audio];
+    }
+
+    public void SetAudioSourcePitch(float pitch)
+    {
+        _audioSource.pitch = pitch;
+    }
     // Update is called once per frame
     void Update()
     {
