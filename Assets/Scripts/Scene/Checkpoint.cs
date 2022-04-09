@@ -25,7 +25,7 @@ public class Checkpoint : MonoBehaviour
         if (!enabled)
             return;
 
-        if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
+        if (other.CompareTag("Golem"))
         {
             GameManager.instance.player.Checkpoint(respawnPoint);
         }
