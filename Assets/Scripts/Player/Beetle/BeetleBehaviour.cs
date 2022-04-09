@@ -133,6 +133,7 @@ public class BeetleBehaviour : MonoBehaviour
 
                     bulletPool.SpawnBullet();
                     shootElapsedTime = 0.0f;
+                    AudioManager.audioInstance.PlayAbilitySound(2, false);
                 }
                 else
                     animator.SetBool("BackRay", false);
@@ -151,6 +152,7 @@ public class BeetleBehaviour : MonoBehaviour
                     animator.SetBool("FrontRay", true);
 
                     StartCoroutine(ImpulseBwAndFrontRay(rayClip.length));
+                    AudioManager.audioInstance.PlayAbilitySound(3, false);
                 }
                 else
                     animator.SetBool("FrontRay", false);
@@ -161,6 +163,7 @@ public class BeetleBehaviour : MonoBehaviour
                     animator.SetBool("BackRay", true);
 
                     StartCoroutine(ImpulseFwAndBackRay(rayClip.length));
+                    AudioManager.audioInstance.PlayAbilitySound(3, false);
                 }
                 else
                     animator.SetBool("BackRay", false);
@@ -171,7 +174,8 @@ public class BeetleBehaviour : MonoBehaviour
                 break;
         }
 
-        charBehaviour.SetAdditionalVel(additionalVel);
+        if(charBehaviour != null)
+            charBehaviour.SetAdditionalVel(additionalVel);
     }
 
     public void ChangeLumMode(LumMode newMode)
@@ -230,7 +234,9 @@ public class BeetleBehaviour : MonoBehaviour
     
     public void StopFlutterSound()
     {
-        GetComponent<AudioSource>().Stop();
+        AudioSource o;
+        if(TryGetComponent<AudioSource>(out o))
+            GetComponent<AudioSource>().Stop();
     }
     
 }

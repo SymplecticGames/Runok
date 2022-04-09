@@ -164,10 +164,10 @@ public class AudioManager : MonoBehaviour
                     uiaudio = UIaudioTag.selectedRadial;
                     break;
                 case 2:
-                    uiaudio = UIaudioTag.selectedLaser;
+                    uiaudio = UIaudioTag.selectedShoot;
                     break;
                 case 3:
-                    uiaudio = UIaudioTag.selectedShoot;
+                    uiaudio = UIaudioTag.selectedLaser;
                     break;
                 default: break;
             }

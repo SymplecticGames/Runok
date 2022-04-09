@@ -1486,6 +1486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3041876612735627227}
   - component: {fileID: 3868582854619324970}
+  - component: {fileID: 611237816158005857}
   m_Layer: 8
   m_Name: Beetle
   m_TagString: Beetle
@@ -1528,6 +1529,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &611237816158005857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3041876612735627231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85d29388ad4ce94aa49541720e291b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetHeight: 0
+  upVerticalSpeed: 0
+  downVerticalSpeed: 0
+  shootCooldown: 0
+  rayCooldown: 0
+  frontRay: {fileID: 0}
+  backRay: {fileID: 0}
+  shootPressed: 0
+  frontRayPressed: 0
+  backRayPressed: 0
+  shootingBackRay: 0
+  shootingFrontRay: 0
+  currentLumMode: 0
+  rayClip: {fileID: 0}
+  impulseFactor: 0
 --- !u!1 &3366292013287115114
 GameObject:
   m_ObjectHideFlags: 0
