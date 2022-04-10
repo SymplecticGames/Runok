@@ -14,6 +14,9 @@ public class GenericBlock : MonoBehaviour
 
     AudioSource audioSource;
 
+    private Weight boxWeight;
+    private float boxWeightBaseValue;
+
     [SerializeField]
     private bool startActive = false;
 
@@ -62,13 +65,15 @@ public class GenericBlock : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rend = GetComponent<MeshRenderer>();
         audioSource = GetComponent<AudioSource>();
+        boxWeight = GetComponent<Weight>();
+
+        boxWeightBaseValue = boxWeight.weightValue;
 
         pushAudioS = gameObject.AddComponent<AudioSource>();
         pushAudioS.volume = 0.0f;
         pushAudioS.loop = true;
         pushAudioS.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.pushBox);
         pushAudioS.Play();
-        
 
         initialBoxPos = new Vector3[boxes.Length];
 
@@ -82,6 +87,9 @@ public class GenericBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Update box weight using the current extension of the block
+        boxWeight.weightValue = boxWeightBaseValue * (currentBox + 1);
+
         // For lerping box positions in extensible mode
         if (startGrowing)
         {

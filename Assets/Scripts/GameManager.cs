@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
 
     private List<MobilePlatform> mobilePlatforms;
 
+    private List<BalancePlatform> balancePlatforms;
+
     // List of defeated respawnable enemies in the level
     private List<Enemy> _respawnableEnemies;
 
@@ -92,6 +94,7 @@ public class GameManager : MonoBehaviour
         enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
         mobilePlatforms = new List<MobilePlatform>(FindObjectsOfType<MobilePlatform>());
         crackedPlatforms = new List<CrackedPlatform>(FindObjectsOfType<CrackedPlatform>());
+        balancePlatforms = new List<BalancePlatform>(FindObjectsOfType<BalancePlatform>());
         altar = FindObjectOfType<Altar>();
 
         currentBGColor = Camera.main.backgroundColor;
@@ -217,6 +220,14 @@ public class GameManager : MonoBehaviour
         foreach (MobilePlatform platform in mobilePlatforms)
             platform.enabled = false;
 
+        // Cracked platforms
+        foreach (CrackedPlatform platform in crackedPlatforms)
+            platform.enabled = false;
+
+        // Balance platforms
+        foreach (BalancePlatform platform in balancePlatforms)
+            platform.enabled = false;
+
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
 
     }
@@ -258,6 +269,14 @@ public class GameManager : MonoBehaviour
 
         // Mobile platforms
         foreach (MobilePlatform platform in mobilePlatforms)
+            platform.enabled = true;
+
+        // Cracked platforms
+        foreach (CrackedPlatform platform in crackedPlatforms)
+            platform.enabled = true;
+
+        // Balance platforms
+        foreach (BalancePlatform platform in balancePlatforms)
             platform.enabled = true;
 
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;

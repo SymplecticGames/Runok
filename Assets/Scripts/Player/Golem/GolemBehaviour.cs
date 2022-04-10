@@ -79,11 +79,14 @@ public class GolemBehaviour : MonoBehaviour
 
     private Material previousMaterial;
 
+    private Weight weight;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         genericBehaviour = GetComponent<GenericBehaviour>();
+        weight = GetComponent<Weight>();
 
         ChangeMaterial(currentMaterial);
     }
@@ -92,6 +95,7 @@ public class GolemBehaviour : MonoBehaviour
     void Update()
     {
         // Material dependant stats
+        weight.weightValue = golemStats.weight * 10;
         genericBehaviour.movementFactor = -.2f + 1.0f / golemStats.weight;
         genericBehaviour.maxJumps = genericBehaviour.controller.isGrounded ? golemStats.jumps : golemStats.jumps - 1;
 
