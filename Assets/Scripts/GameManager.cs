@@ -266,48 +266,15 @@ public class GameManager : MonoBehaviour
 
     public void OnDeviceChange(PlayerInput context)
     {
-
-        if (context.devices.Count > 0 && kbTags.Count > 0)
+        if (instance)
         {
-            if (context.devices[0].name.StartsWith("Keyboard"))
-            {
-                // Keyboard gamepad
-                for (int i = 0; i < kbTags.Count; i++)
-                {
-                    kbTags[i].enabled = true;
-                    xboxTags[i].enabled = false;
-                    psTags[i].enabled = false;
-                }
+            instance.usingGamepad =
+                !DeviceControlsManager.devicesInstance.GetDeviceConnected(context).Equals(DeviceConnected.Keyboard);
+        }
 
-                if (instance)
-                    instance.usingGamepad = false;
-
-            }
-            else if (context.devices[0].name.StartsWith("DualShock"))
-            {
-                // PlayStation gamepad
-                for (int i = 0; i < kbTags.Count; i++)
-                {
-                    kbTags[i].enabled = false;
-                    xboxTags[i].enabled = false;
-                    psTags[i].enabled = true;
-                }
-                if (instance)
-                    instance.usingGamepad = true;
-            }
-            else
-            {
-                // Xbox gamepad
-                for (int i = 0; i < kbTags.Count; i++)
-                {
-                    kbTags[i].enabled = false;
-                    xboxTags[i].enabled = true;
-                    psTags[i].enabled = false;
-                }
-
-                if (instance)
-                    instance.usingGamepad = true;
-            }
+        if (context.devices.Count > 0)
+        {
+            DeviceControlsManager.devicesInstance.SetTagsInScene(context, kbTags, xboxTags, psTags);
         }
     }
 

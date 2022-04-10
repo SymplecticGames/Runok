@@ -2,10 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class HubUI : MonoBehaviour
 {
     private CanvasGroup _cg;
+
+    public PlayerInput thisContext;
+    
+    public List<Image> kbTags;
+    public List<Image> xboxTags;
+    public List<Image> psTags;
+    
+    public void OnDeviceChange(PlayerInput context)
+    {
+        DeviceControlsManager.devicesInstance.SetTagsInScene(context, kbTags, xboxTags, psTags);    
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -13,6 +25,8 @@ public class HubUI : MonoBehaviour
         _cg = GetComponent<CanvasGroup>();
         _cg.alpha = 0;
         StartCoroutine(WaitTransitionToEnd());
+        
+        DeviceControlsManager.devicesInstance.SetTagsInScene(thisContext, kbTags, xboxTags, psTags);
     }
 
     public void HideUI(InputAction.CallbackContext context)
