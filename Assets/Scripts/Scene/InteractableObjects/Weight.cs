@@ -31,7 +31,7 @@ public class Weight : MonoBehaviour
     {
         float stackedValue = 0.0f;
 
-        Collider[] weightCols = Physics.OverlapBox(explicitSolidCollider.bounds.center, explicitSolidCollider.bounds.extents * 1.3f, Quaternion.identity, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+        Collider[] weightCols = Physics.OverlapBox(explicitSolidCollider.bounds.center, explicitSolidCollider.bounds.extents * 1.5f, Quaternion.identity, Physics.AllLayers, QueryTriggerInteraction.Ignore);
 
         foreach (Collider col in weightCols)
         {

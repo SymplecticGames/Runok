@@ -64,7 +64,7 @@ public class BalancePlatform : MonoBehaviour
         if (!explicitSolidCollider)
             return;
 
-        Collider[] weightCols = Physics.OverlapBox(explicitSolidCollider.bounds.center, explicitSolidCollider.bounds.extents * 1.3f, Quaternion.identity, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+        Collider[] weightCols = Physics.OverlapBox(explicitSolidCollider.bounds.center, explicitSolidCollider.bounds.extents * 1.5f, Quaternion.identity, Physics.AllLayers, QueryTriggerInteraction.Ignore);
 
         totalWeight = 0.0f;
         weights.Clear();
@@ -84,5 +84,11 @@ public class BalancePlatform : MonoBehaviour
         targetPos = newPos;
         lerpStep = 0.0f;
         isLerping = true;
+    }
+
+    public void ResetPlatform()
+    {
+        isLerping = false;
+        transform.position = restPose;
     }
 }
