@@ -28,6 +28,8 @@ public class BalancePlatform : MonoBehaviour
     [SerializeField]
     private float lerpSpeed = 3.0f;
 
+    private Transform childPlatform;
+
     private void Awake()
     {
         if (!explicitSolidCollider)
@@ -41,12 +43,20 @@ public class BalancePlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        childPlatform = transform.GetChild(0);
         targetPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Child platform position
+        float childY = 0.5f * (restPose.y + transform.position.y);
+        Vector3 newChildPos = childPlatform.position;
+        newChildPos.y = childY;
+        childPlatform.position = newChildPos;
+
+        // Main platform position lerp
         if (isLerping)
         {
             if (lerpStep < 1.0f)
