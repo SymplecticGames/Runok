@@ -23,11 +23,11 @@ public class ProgressManager : MonoBehaviour
             currentLevel = 0;
 
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 
