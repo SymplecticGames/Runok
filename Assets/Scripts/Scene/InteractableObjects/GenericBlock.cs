@@ -176,7 +176,10 @@ public class GenericBlock : MonoBehaviour
     IEnumerator DestroyDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-
+        
+        if (transform.childCount == 3)
+            transform.GetChild(2).gameObject.SetActive(false);
+        
         rend.enabled = false;
         if (cubeRespawn) transform.position = cubeRespawn.position;
     }
@@ -196,6 +199,8 @@ public class GenericBlock : MonoBehaviour
         rb.useGravity = true;
         rend.enabled = true;
         transform.position = cubeRespawn.position;
+        if (transform.childCount == 3)
+            transform.GetChild(2).gameObject.SetActive(true);
     }
 
 }

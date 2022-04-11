@@ -13,6 +13,9 @@ public class CameraPan : MonoBehaviour
     private float distanceToTarget = 15.0f;
 
     private bool firstTime = true;
+    
+    [SerializeField]
+    private bool onlyOnce = true;
 
     private void Start()
     {
@@ -21,7 +24,7 @@ public class CameraPan : MonoBehaviour
 
     public void Pan()
     {
-        if (!firstTime)
+        if (!firstTime && onlyOnce)
             return;
 
         firstTime = false;
