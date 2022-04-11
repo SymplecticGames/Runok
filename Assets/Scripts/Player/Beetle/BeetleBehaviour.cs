@@ -200,7 +200,7 @@ public class BeetleBehaviour : MonoBehaviour
         DeactivateFrontRay();
     }
 
-    private void DeactivateFrontRay()
+    public void DeactivateFrontRay()
     {
         frontRay.SetActive(false);
         fwRayElapsedTime = 0.0f;
@@ -222,7 +222,7 @@ public class BeetleBehaviour : MonoBehaviour
         DeactivateBackRay();
     }
 
-    private void DeactivateBackRay()
+    public void DeactivateBackRay()
     {
         backRay.SetActive(false);
         bwRayElapsedTime = 0.0f;

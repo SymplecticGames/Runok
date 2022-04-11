@@ -220,6 +220,9 @@ public class PlayerManager : MonoBehaviour
 
     private void AppendBeetle()
     {
+        beetleBehaviour.GetComponent<BeetleBehaviour>().DeactivateBackRay();
+        beetleBehaviour.GetComponent<BeetleBehaviour>().DeactivateFrontRay();
+        beetleBehaviour.isAttacking = false;
         restingBeetle = true;
         beetleBehaviour.controller.enabled = false;
 

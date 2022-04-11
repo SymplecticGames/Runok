@@ -8,7 +8,7 @@ public class GenericBehaviour : MonoBehaviour
     public CharacterController controller;
 
     [HideInInspector]
-    private bool isAttacking = false;
+    public bool isAttacking = false;
 
     [HideInInspector]
     public bool canRotate = true;
