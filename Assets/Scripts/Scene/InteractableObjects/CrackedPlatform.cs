@@ -45,6 +45,10 @@ public class CrackedPlatform : MonoBehaviour
             {
                 currentCheckPoint = crackedTime;
                 meshRend.material = crackedMaterial;
+                
+                // play cracked audio
+                GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.crackedPlatform);
+                GetComponent<AudioSource>().Play();
             }
 
             // Broken time
@@ -52,11 +56,30 @@ public class CrackedPlatform : MonoBehaviour
             {
                 currentCheckPoint = brokenTime;
 
-                // Break
-                gameObject.SetActive(false);
+                // play broken audio
+                Debug.Log("ROTO");
+                AudioSource aS = GetComponent<AudioSource>();
+                aS.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.brokenPlatform);
+                aS.Play();
+                StartCoroutine(BreakDelay(aS.clip.length));
+                
+                // hide platform
+                foreach (Renderer visualPart in GetComponentsInChildren<Renderer>())
+                    visualPart.enabled = false;
+
+                // disable collider
+                gameObject.GetComponent<Collider>().enabled = false;
+                
                 //Destroy(gameObject);
             }
         }
+    }
+
+    IEnumerator BreakDelay(float delay)
+    {
+        // Break
+        yield return new WaitForSeconds(delay);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerExit(Collider other)
@@ -80,5 +103,13 @@ public class CrackedPlatform : MonoBehaviour
         meshRend.material = originalMaterial;
 
         gameObject.SetActive(true);
+        
+        // show platform
+        foreach (Renderer visualPart in GetComponentsInChildren<Renderer>())
+            visualPart.enabled = true;
+
+        // enable collider
+        gameObject.GetComponent<Collider>().enabled = true;
+        
     }
 }

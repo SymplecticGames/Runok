@@ -32,6 +32,9 @@ public class Extensible : MonoBehaviour
             return;
 
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
+        {
             GameManager.instance.player.Die();
+            AudioManager.audioInstance.PlayCharSound(CharaudioTag.laserHit);
+        }
     }
 }

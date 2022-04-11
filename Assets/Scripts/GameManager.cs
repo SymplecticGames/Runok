@@ -66,11 +66,14 @@ public class GameManager : MonoBehaviour
     private AudioSource musicSource;
 
     private float musicBaseVolume;
+    private float targetMusicBaseVolume;
 
     private float volumeLerpStep = 0.0f;
 
     private Material skybox;
     private Color ambientLight;
+
+    private bool _isPaused;
 
     private void Awake()
     {
@@ -88,6 +91,7 @@ public class GameManager : MonoBehaviour
 
         musicSource = GetComponent<AudioSource>();
         musicBaseVolume = musicSource.volume;
+        targetMusicBaseVolume = musicSource.volume;
 
         musicSource.volume = 0.0f;
 
@@ -110,9 +114,17 @@ public class GameManager : MonoBehaviour
         if (volumeLerpStep < 1.0f)
         {
             volumeLerpStep += Time.deltaTime;
-            musicSource.volume = Mathf.Lerp(0.0f, musicBaseVolume, volumeLerpStep);
+            if (musicSource.volume != 0.0f)
+            {
+                musicSource.volume = Mathf.Lerp(musicSource.volume, targetMusicBaseVolume, volumeLerpStep);
+            }
+            else
+            {
+                musicSource.volume = Mathf.Lerp(0.0f, targetMusicBaseVolume, volumeLerpStep);
+
+            }
         }
-        else
+        else if(!_isPaused)
         {
             musicSource.volume = musicBaseVolume;
         }
@@ -186,7 +198,9 @@ public class GameManager : MonoBehaviour
 
     public void pause()
     {
-        musicSource.volume = 0.5f * musicBaseVolume;
+        _isPaused = true;
+        volumeLerpStep = 0.0f;
+        targetMusicBaseVolume = 0.05f * musicBaseVolume;
 
         // golem
         List<MonoBehaviour> scripts = new List<MonoBehaviour>(player.golemBehaviour.GetComponentsInChildren<MonoBehaviour>());
@@ -234,7 +248,9 @@ public class GameManager : MonoBehaviour
 
     public void play()
     {
-        musicSource.volume = musicBaseVolume;
+        _isPaused = false;
+        volumeLerpStep = 0.0f;
+        targetMusicBaseVolume = musicBaseVolume;
 
         // golem
         List<MonoBehaviour> scripts = new List<MonoBehaviour>(player.golemBehaviour.GetComponentsInChildren<MonoBehaviour>());

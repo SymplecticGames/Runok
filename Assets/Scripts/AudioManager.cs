@@ -46,6 +46,8 @@ public enum CharaudioTag
     
     enemyHit = 8,
     enemyIdle = 9,
+    
+    laserHit = 10,
 }
 
 public enum ObjaudioTag
@@ -53,6 +55,9 @@ public enum ObjaudioTag
     pushBox = 0,
     destroyBox = 1,
     growBox = 2,
+    
+    brokenPlatform = 3,
+    crackedPlatform = 4,
 }
 
 public class AudioManager : MonoBehaviour
@@ -256,6 +261,20 @@ public class AudioManager : MonoBehaviour
     public AudioSource GetAudioSource()
     {
         return _audioSource;
+    }
+
+    public void PlayLaserSound()
+    {
+        AudioSource laserAS = gameObject.AddComponent<AudioSource>();
+        laserAS.loop = false;
+        laserAS.clip = GetCharSound(CharaudioTag.laserHit);
+        laserAS.Play();
+    }
+
+    IEnumerator DestroyLaserAS(AudioSource aS)
+    {
+        yield return new WaitForSeconds(GetCharSound(CharaudioTag.laserHit).length);
+        Destroy(aS);
     }
     
     // Update is called once per frame

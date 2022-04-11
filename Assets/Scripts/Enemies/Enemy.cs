@@ -169,7 +169,7 @@ public class Enemy : MonoBehaviour
         // Disable CC and collider
         gameObject.GetComponent<CharacterController>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
-
+        GetComponent<AudioSource>().mute = true;
     }
 
     public void SpawnEnemy()
@@ -188,6 +188,7 @@ public class Enemy : MonoBehaviour
         gameObject.GetComponent<Collider>().enabled = true;
 
         bezier.enabled = allowWalking;
+        GetComponent<AudioSource>().mute = false;
     }
 
     private void EnableMovement()
