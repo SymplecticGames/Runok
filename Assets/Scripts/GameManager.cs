@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour
                 !DeviceControlsManager.devicesInstance.GetDeviceConnected(context).Equals(DeviceConnected.Keyboard);
         }
 
-        if (context.devices.Count > 0)
+        if (context.devices.Count > 0 && DeviceControlsManager.devicesInstance)
         {
             DeviceControlsManager.devicesInstance.SetTagsInScene(context, kbTags, xboxTags, psTags);
         }

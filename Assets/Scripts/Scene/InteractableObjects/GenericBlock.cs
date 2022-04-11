@@ -71,6 +71,9 @@ public class GenericBlock : MonoBehaviour
 
         pushAudioS = gameObject.AddComponent<AudioSource>();
         pushAudioS.volume = 0.0f;
+        pushAudioS.maxDistance = 10.0f;
+        pushAudioS.spatialBlend = 1.0f;
+        pushAudioS.rolloffMode = AudioRolloffMode.Linear;
         pushAudioS.loop = true;
         pushAudioS.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.pushBox);
         pushAudioS.Play();

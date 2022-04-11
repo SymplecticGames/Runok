@@ -7,6 +7,15 @@ using UnityEngine.UI;
 
 public class InterludioManager : MonoBehaviour
 {
+    public PlayerInput thisContext;
+
+
+    public Image skipButton;
+    
+    public List<Image> kbTags;
+    public List<Image> xboxTags;
+    public List<Image> psTags;
+
     public float damp = 0.5f;
     public float waitSecToAutoChange = 60f;
    
@@ -35,6 +44,8 @@ public class InterludioManager : MonoBehaviour
         _text = gameObject.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Text>();
         _text.text = interludioText[0];
         _targetPosition = imagePositions_X[0];
+        
+        DeviceControlsManager.devicesInstance.SetTagsInScene(thisContext, kbTags, xboxTags, psTags);
     }
 
     public void OnSubmit(InputAction.CallbackContext context)
@@ -43,6 +54,31 @@ public class InterludioManager : MonoBehaviour
             return;
         _submited = true;
     }
+    
+        
+    public void OnDeviceChange(PlayerInput context)
+    {
+        if(DeviceControlsManager.devicesInstance)
+            DeviceControlsManager.devicesInstance.SetTagsInScene(context, kbTags, xboxTags, psTags);    
+    }
+
+    public void OnSkip(InputAction.CallbackContext context)
+    {
+        if(!context.performed)
+            return;
+
+        StartCoroutine(HighLightSkipButton());
+    }
+
+    IEnumerator HighLightSkipButton()
+    {
+        skipButton.color = new Color(0.384f, 0.1294118f, 0.1176471f);
+        yield return new WaitForSeconds(0.5f);
+        skipButton.color = Color.black;
+        _actualSlide = interludioImages.Length * 3;
+        _submited = true;
+    }
+    
     
     // Update is called once per frame
     void Update()

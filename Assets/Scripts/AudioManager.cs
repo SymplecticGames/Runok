@@ -43,6 +43,9 @@ public enum CharaudioTag
     plumberHit = 5,
     woodenHit = 6,
     punchAir = 7,
+    
+    enemyHit = 8,
+    enemyIdle = 9,
 }
 
 public enum ObjaudioTag
@@ -91,7 +94,6 @@ public class AudioManager : MonoBehaviour
         foreach (var aTag in namesUI)
         {
             _clipsUI[i] = Resources.Load<AudioClip>(_soundEffectsUIPath + aTag);
-            Debug.Log(_clipsUI[i]);
             i++;
         }
         
@@ -234,6 +236,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip GetObjSound(ObjaudioTag audio)
     {
         return _clipsObj[(int)audio];
+    }
+    
+    public AudioClip GetCharSound(CharaudioTag audio)
+    {
+        return _clipsChar[(int)audio];
     }
 
     public void SetAudioSourcePitch(AudioSource aS, float pitch)
