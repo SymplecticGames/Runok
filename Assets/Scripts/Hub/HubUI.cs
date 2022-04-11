@@ -16,7 +16,8 @@ public class HubUI : MonoBehaviour
     
     public void OnDeviceChange(PlayerInput context)
     {
-        DeviceControlsManager.devicesInstance.SetTagsInScene(context, kbTags, xboxTags, psTags);    
+        if (DeviceControlsManager.devicesInstance)
+            DeviceControlsManager.devicesInstance.SetTagsInScene(context, kbTags, xboxTags, psTags);    
     }
     
     // Start is called before the first frame update
