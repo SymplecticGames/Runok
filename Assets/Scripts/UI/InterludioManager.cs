@@ -7,21 +7,18 @@ using UnityEngine.UI;
 
 public class InterludioManager : MonoBehaviour
 {
-    public PlayerInput thisContext;
-
-
     public Image skipButton;
-    
+
     public List<Image> kbTags;
     public List<Image> xboxTags;
     public List<Image> psTags;
 
     public float damp = 0.5f;
     public float waitSecToAutoChange = 60f;
-   
+
     [SerializeField] public Sprite[] interludioImages;
     [SerializeField] public string[] interludioText;
-    
+
     public Vector4 imagePositions_X;
     public GameObject finalText;
 
@@ -35,7 +32,7 @@ public class InterludioManager : MonoBehaviour
     private bool _submited;
     private bool _nextImageGroup;
     private bool _finalState;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,8 +41,11 @@ public class InterludioManager : MonoBehaviour
         _text = gameObject.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Text>();
         _text.text = interludioText[0];
         _targetPosition = imagePositions_X[0];
-        
-        DeviceControlsManager.devicesInstance.SetTagsInScene(thisContext, kbTags, xboxTags, psTags);
+
+        if (!DeviceControlsManager.instance)
+            return;
+
+        DeviceControlsManager.instance.SetTagsInScene(kbTags, xboxTags, psTags);
     }
 
     public void OnSubmit(InputAction.CallbackContext context)
@@ -54,17 +54,19 @@ public class InterludioManager : MonoBehaviour
             return;
         _submited = true;
     }
-    
-        
+
+
     public void OnDeviceChange(PlayerInput context)
     {
-        if(DeviceControlsManager.devicesInstance)
-            DeviceControlsManager.devicesInstance.SetTagsInScene(context, kbTags, xboxTags, psTags);    
+        if (!DeviceControlsManager.instance) return;
+
+        DeviceControlsManager.instance.UpdateDeviceConnection(context);
+        DeviceControlsManager.instance.SetTagsInScene(kbTags, xboxTags, psTags);
     }
 
     public void OnSkip(InputAction.CallbackContext context)
     {
-        if(!context.performed)
+        if (!context.performed)
             return;
 
         StartCoroutine(HighLightSkipButton());
@@ -78,8 +80,8 @@ public class InterludioManager : MonoBehaviour
         _actualSlide = interludioImages.Length * 3;
         _submited = true;
     }
-    
-    
+
+
     // Update is called once per frame
     void Update()
     {
@@ -88,10 +90,10 @@ public class InterludioManager : MonoBehaviour
         {
             _fadePanel.GetComponent<Animator>().ResetTrigger("doFadeOut");
             _fadePanel.GetComponent<Animator>().ResetTrigger("doFadeIn");
-            
+
             _counter += Time.deltaTime;
-            Vector3 pos =_imageGO.transform.localPosition;
-            
+            Vector3 pos = _imageGO.transform.localPosition;
+
             if (_submited || _counter >= waitSecToAutoChange)
             {
                 if (_finalState)
@@ -111,7 +113,7 @@ public class InterludioManager : MonoBehaviour
                     }
                     else
                     {
-                        
+
                         _fadePanel.GetComponent<Animator>().SetTrigger("doFadeIn");
                         _finalState = true;
                         finalText.SetActive(true);
@@ -139,7 +141,7 @@ public class InterludioManager : MonoBehaviour
 
             }
         }
-        else 
+        else
         {
             if (_fadePanel.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idleDark"))
             {

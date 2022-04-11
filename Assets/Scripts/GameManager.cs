@@ -285,16 +285,14 @@ public class GameManager : MonoBehaviour
 
     public void OnDeviceChange(PlayerInput context)
     {
-        if (instance)
-        {
-            instance.usingGamepad =
-                !DeviceControlsManager.devicesInstance.GetDeviceConnected(context).Equals(DeviceConnected.Keyboard);
-        }
+        if (!DeviceControlsManager.instance)
+            return;
 
-        if (context.devices.Count > 0 && DeviceControlsManager.devicesInstance)
-        {
-            DeviceControlsManager.devicesInstance.SetTagsInScene(context, kbTags, xboxTags, psTags);
-        }
+        if (instance)
+            instance.usingGamepad = !DeviceControlsManager.instance.currentDevice.Equals(ConnectedDevice.Keyboard);
+
+        if (context.devices.Count > 0)
+            DeviceControlsManager.instance.SetTagsInScene(kbTags, xboxTags, psTags);
     }
 
     public IEnumerator highLightTag(deviceTag deviceTag)
