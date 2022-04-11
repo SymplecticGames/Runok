@@ -20,9 +20,14 @@ public class MobilePlatformTrigger : MonoBehaviour
 
         if (!other.CompareTag("Golem"))
             return;
-        
-        if (other.CompareTag("Golem"))  // Each time the golem enters the trigger of the platform it will set it as its parent
+
+
+        if (other.CompareTag(
+                "Golem")) // Each time the golem enters the trigger of the platform it will set it as its parent
+        {
             other.transform.SetParent(mobilePlat.platform.transform);
+            Debug.Log("Entered Platform!!!!!!!!!");
+        }
         
         if (mobilePlat.platformPreset == PlatformPreset.MoveOnStep && !mobilePlat._movementStarted)
             mobilePlat.StartMovingPlatform();

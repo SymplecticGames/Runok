@@ -100,15 +100,18 @@ public class BeetleBehaviour : MonoBehaviour
 
         if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 9.0f, LayerMask.GetMask("LevelGeometry")))
         {
-            float distance = this.transform.position.y - hit.point.y;
+            if (!hit.collider.isTrigger)
+            {
+                float distance = this.transform.position.y - hit.point.y;
 
-            float factorByDist = targetHeight - distance;
-            if (factorByDist < 0.0f)
-                verticalSpeed = downVerticalSpeed;
-            else
-                verticalSpeed = upVerticalSpeed;
+                float factorByDist = targetHeight - distance;
+                if (factorByDist < 0.0f)
+                    verticalSpeed = downVerticalSpeed;
+                else
+                    verticalSpeed = upVerticalSpeed;
 
-            additionalVel = new Vector3(0.0f, verticalSpeed * factorByDist, 0.0f);
+                additionalVel = new Vector3(0.0f, verticalSpeed * factorByDist, 0.0f);
+            }
         }
         else
             additionalVel = Vector3.zero;

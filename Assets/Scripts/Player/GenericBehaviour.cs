@@ -192,6 +192,7 @@ public class GenericBehaviour : MonoBehaviour
 
         transform.position = respawnPoint.position;
         transform.rotation = respawnPoint.rotation;
+        transform.parent = null;
 
         controller.enabled = true;
     }
