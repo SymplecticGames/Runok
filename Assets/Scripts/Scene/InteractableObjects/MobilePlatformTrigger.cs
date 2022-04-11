@@ -20,10 +20,9 @@ public class MobilePlatformTrigger : MonoBehaviour
 
         if (!other.CompareTag("Golem"))
             return;
-        
-        if (other.CompareTag("Golem"))  // Each time the golem enters the trigger of the platform it will set it as its parent
-            other.transform.SetParent(mobilePlat.platform.transform);
-        
+
+        other.transform.SetParent(mobilePlat.platform.transform); // Each time the golem enters the trigger of the platform it will set it as its parent
+
         if (mobilePlat.platformPreset == PlatformPreset.MoveOnStep && !mobilePlat._movementStarted)
             mobilePlat.StartMovingPlatform();
     }
@@ -44,8 +43,7 @@ public class MobilePlatformTrigger : MonoBehaviour
 
         if (!other.CompareTag("Golem"))
             return;
-        
-        if (other.CompareTag("Golem"))  // Each time the golem exits the trigger of the platform it will set its parent as null
-            other.transform.parent = null;
+
+        other.transform.parent = null; // Each time the golem exits the trigger of the platform it will set its parent as null
     }
 }

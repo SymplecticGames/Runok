@@ -56,6 +56,25 @@ public class BalancePlatform : MonoBehaviour
         newChildPos.y = childY;
         childPlatform.position = newChildPos;
 
+        // Weights check
+        Collider[] weightCols = Physics.OverlapBox(explicitSolidCollider.bounds.center, explicitSolidCollider.bounds.extents * 1.5f, Quaternion.identity, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+
+        foreach (Weight w in transform.GetComponentsInChildren<Weight>())
+            w.transform.SetParent(null);
+
+        totalWeight = 0.0f;
+        weights.Clear();
+        foreach (Collider col in weightCols)
+        {
+            if (col.TryGetComponent(out Weight weight) && !weights.Contains(weight))
+            {
+                weights.Add(weight);
+                totalWeight += weight.GetStackedWeight(ref weights);
+
+                weight.transform.SetParent(transform);
+            }
+        }
+
         // Main platform position lerp
         if (isLerping)
         {
@@ -68,22 +87,6 @@ public class BalancePlatform : MonoBehaviour
             {
                 isLerping = false;
                 transform.position = targetPos;
-            }
-        }
-
-        if (!explicitSolidCollider)
-            return;
-
-        Collider[] weightCols = Physics.OverlapBox(explicitSolidCollider.bounds.center, explicitSolidCollider.bounds.extents * 1.5f, Quaternion.identity, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-
-        totalWeight = 0.0f;
-        weights.Clear();
-        foreach (Collider col in weightCols)
-        {
-            if (col.TryGetComponent(out Weight weight) && !weights.Contains(weight))
-            {
-                weights.Add(weight);
-                totalWeight += weight.GetStackedWeight(ref weights);
             }
         }
     }
