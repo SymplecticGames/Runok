@@ -79,7 +79,8 @@ MonoBehaviour:
   platform: {fileID: 2672088260225489031}
   targetPos: {fileID: 6187947663881979970}
   speed: 1
-  startMovingWhenOn: 0
+  platformPreset: 0
+  loopMovement: 0
   startingPos: {x: 0, y: 0, z: 0}
   currentSpeed: 0
   _movementStarted: 0
@@ -191,8 +192,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 0.6, z: 6}
-  m_Center: {x: 0, y: 0.72, z: 0}
+  m_Size: {x: 6, y: 9, z: 6}
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!65 &8099382166820062144
 BoxCollider:
   m_ObjectHideFlags: 0
