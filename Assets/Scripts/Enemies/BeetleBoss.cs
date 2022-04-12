@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class BeetleBoss : MonoBehaviour
 {
     #region Boss_Bullet_Hell
 
@@ -20,7 +20,9 @@ public class Boss : MonoBehaviour
     private float elapsedTime;
 
     // Bezier Follow
-    //private BezierFollow bezier;
+    private BezierFollow bezier;
+
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -28,19 +30,33 @@ public class Boss : MonoBehaviour
         // Bullet Spawn
         bulletPool = GetComponent<BulletPool>();
         EnableBulletSpawn();
+
+        bezier = GetComponent<BezierFollow>();
+        bezier.enabled = false;
+
+        anim = GetComponentInChildren<Animator>();
+        anim.SetBool("isBoss", true);
+
+        GameManager.instance.player.SwapCharacter();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //elapsedTime += Time.deltaTime;
+        //if (elapsedTime > 5.0f){
+        //    ChangeBulletPattern(15, 0, 1, 0, true);
+        //    elapsedTime = 0.0f;
+        //}
     }
 
-    public void ChangeBulletPattern(int waveSize, int cornerCount, float spawnRatio, float angleOffset)
+    public void ChangeBulletPattern(int waveSize, int cornerCount, float spawnRatio, float angleOffset, bool enableBezier)
     {
         this.waveSize = waveSize;
         this.cornerCount = cornerCount;
         this.spawnRatio = spawnRatio;
         this.angleOffset = angleOffset;
+        bezier.enabled = enableBezier;
     }
 
     public void EnableBulletSpawn()
