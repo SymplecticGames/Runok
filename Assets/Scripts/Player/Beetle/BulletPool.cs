@@ -33,7 +33,7 @@ public class BulletPool : MonoBehaviour
         }
     }
 
-    public GameObject SpawnBullet()
+    public GameObject SpawnBullet(Vector3 direction, float speedOffset = 0.0f)
     {
         GameObject objToSpawn = bulletPool.Dequeue();
 
@@ -42,10 +42,10 @@ public class BulletPool : MonoBehaviour
         objToSpawn.transform.rotation = transform.rotation;
 
         bulletComponent = objToSpawn.GetComponent<LightBullet>();
-        Vector3 forwardCam = Camera.main.transform.forward;
-        forwardCam.y = 0.0f;
-        objToSpawn.GetComponent<LightBullet>().SetDirection(forwardCam);
-        objToSpawn.GetComponent<LightBullet>().SetSpeed(speed);
+        Vector3 bulletDirection = direction;
+        bulletDirection.y = 0.0f;
+        objToSpawn.GetComponent<LightBullet>().SetDirection(bulletDirection);
+        objToSpawn.GetComponent<LightBullet>().SetSpeed(speed + speedOffset);
         objToSpawn.GetComponent<LightBullet>().SetDespawned(false);
 
         bulletPool.Enqueue(objToSpawn);

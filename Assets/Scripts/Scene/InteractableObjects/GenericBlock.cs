@@ -199,6 +199,14 @@ public class GenericBlock : MonoBehaviour
         rb.useGravity = true;
         rend.enabled = true;
         transform.position = cubeRespawn.position;
+
+        if(transform.childCount == 2)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(false);
+            currentBox = 0;
+        }
+
         if (transform.childCount == 3)
             transform.GetChild(2).gameObject.SetActive(true);
     }
