@@ -63,9 +63,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Light mainLight;
 
-    private AudioSource musicSource;
+    [HideInInspector] public AudioSource musicSource;
 
-    private float musicBaseVolume;
+    [HideInInspector] public float musicBaseVolume;
     private float targetMusicBaseVolume;
 
     private float volumeLerpStep = 0.0f;

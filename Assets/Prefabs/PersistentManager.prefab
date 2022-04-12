@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5010925712174556580}
   - component: {fileID: 5010925712174556581}
   - component: {fileID: 5010925712174556582}
+  - component: {fileID: 6523039724228727856}
   m_Layer: 0
   m_Name: PersistentManager
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   completedLevel: 00000000
   currentCompletedLevels: 0
   currentLevel: 0
+  firstTime: 1
 --- !u!114 &5010925712174556582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,3 +62,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDevice: 0
+--- !u!114 &6523039724228727856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010925712174556583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1f88ea1b58e9940a29863c467c6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliders: []
+  screenResolution: {fileID: 0}

@@ -17,9 +17,12 @@ public class ActionTriggerer : MonoBehaviour
     [HideInInspector]
     public bool isEnabled = true;
 
+    private float _baseVolume;
+    
     // Start is called before the first frame update
     void Start()
     {
+        _baseVolume = GetComponent<AudioSource>().volume;
 
     }
 
@@ -37,6 +40,7 @@ public class ActionTriggerer : MonoBehaviour
         if (triggererTags.Contains(other.tag) && isEnabled)
         {
             onHitAction.Invoke();
+            GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
             GetComponent<AudioSource>().Play();
 
             if (other.CompareTag("Hitter") &&

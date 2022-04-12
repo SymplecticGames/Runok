@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Mirror : MonoBehaviour
 {
+
+    private float _baseVolume;
+    
     // Start is called before the first frame update
     void Start()
     {
-
+        _baseVolume = GetComponent<AudioSource>().volume;
     }
 
     // Update is called once per frame
@@ -23,7 +26,7 @@ public class Mirror : MonoBehaviour
 
         if (other.CompareTag("Bullet"))
         {
-            
+            GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
             GetComponent<AudioSource>().Play();
             
             LightBullet bullet = other.GetComponent<LightBullet>();

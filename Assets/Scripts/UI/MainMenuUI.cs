@@ -14,6 +14,9 @@ public class MainMenuUI : MonoBehaviour
     public Transform playGameButton; 
     public Transform exitGameButton; 
     public Transform creditsButton; 
+    public Transform settingsButton;
+
+    public GameObject settingsUIgo;
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     private float _selectorTargetPosition;
@@ -25,13 +28,9 @@ public class MainMenuUI : MonoBehaviour
     private float _pgbTargetPos = 0.0f;
     private float _egbTargetPos = 0.0f;
     private float _cbTargetPos = 0.0f;
+    private float _sbTargetPos = 0.0f;
 
     private float _maxX = 5024.0f;
-    
-    // audio
-    private string audioFolder;
-    private AudioSource _audioSource;
-    private AudioClip _audioClip;
 
     public void ClickedPlayGame()
     {
@@ -45,6 +44,28 @@ public class MainMenuUI : MonoBehaviour
             SceneManager.LoadScene("Hub");
         else
             SceneManager.LoadScene("Interludio");
+    }
+    
+    public void ClickedSettings()
+    {
+        // open settings menu
+
+        if(!selector.activeInHierarchy)
+            return;
+        
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+
+        settingsUIgo.SetActive(true);
+        
+    }
+    
+
+    public void ClosedSettings()
+    {
+        settingsUIgo.SetActive(false);
+        _doFading = false;
+
+
     }
     
     public void ClickedExitGame() {
@@ -72,6 +93,15 @@ public class MainMenuUI : MonoBehaviour
             return;
 
         _selectorTargetPosition = playGameButton.localPosition.y;
+    }
+    
+    public void HoverSettingsButton()
+    {
+        // change selector position
+        if(!selector.activeInHierarchy)
+            return;
+
+        _selectorTargetPosition = settingsButton.localPosition.y;
     }
     
     public void HoverExitGameButton()
@@ -105,7 +135,13 @@ public class MainMenuUI : MonoBehaviour
         exitGameButton.localPosition = new Vector3(_maxX, exitGameButton.localPosition.y, exitGameButton.localPosition.z);
         
         _cbTargetPos = creditsButton.localPosition.x;
-        creditsButton.localPosition = new Vector3(_maxX, creditsButton.localPosition.y, creditsButton.localPosition.z);
+        creditsButton.localPosition = new Vector3(_maxX, creditsButton.localPosition.y, creditsButton.localPosition.z);        
+        
+        _sbTargetPos = settingsButton.localPosition.x;
+        settingsButton.localPosition = new Vector3(_maxX, settingsButton.localPosition.y, settingsButton.localPosition.z);
+        
+        Color sColor = settingsUIgo.GetComponent<Image>().color;
+        settingsUIgo.GetComponent<Image>().color = new Color(sColor.r,sColor.g,sColor.b, 1.0f);
         
         _selectorTargetPosition = selector.transform.localPosition.y;
     }
@@ -131,14 +167,18 @@ public class MainMenuUI : MonoBehaviour
             playGameButton.localPosition = Vector2.Lerp(pos, 
                 new Vector3(_pgbTargetPos, pos.y, pos.z), Time.deltaTime * _damp);
             
-            pos = exitGameButton.localPosition;
-            exitGameButton.localPosition = Vector2.Lerp(pos, 
-                new Vector3(_egbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.5f);
+            pos = settingsButton.localPosition;
+            settingsButton.localPosition = Vector2.Lerp(pos, 
+                new Vector3(_sbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.10f);
             
             pos = creditsButton.localPosition;
             creditsButton.localPosition = Vector2.Lerp(pos, 
-                new Vector3(_cbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.25f);
+                new Vector3(_cbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.20f);
             
+            pos = exitGameButton.localPosition;
+            exitGameButton.localPosition = Vector2.Lerp(pos, 
+                new Vector3(_egbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.40f);
+
             _doFading = !(title.alpha >= 1 && (Mathf.Abs(_pgbTargetPos - playGameButton.localPosition.x) <= 0.001f));
             
             if (!_doFading)

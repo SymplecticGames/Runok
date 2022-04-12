@@ -32,6 +32,8 @@ public class Gemstone : MonoBehaviour
 
     private AudioSource audio;
 
+    private float _baseVolume;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,8 @@ public class Gemstone : MonoBehaviour
         gemEmiColor = gemMaterial.GetColor("_EmissionColor");
 
         audio = GetComponent<AudioSource>();
+
+        _baseVolume = audio.volume;
     }
 
     // Update is called once per frame
@@ -96,7 +100,10 @@ public class Gemstone : MonoBehaviour
             return;
 
         if (lightLerpStep < 0.5f)
+        {
+            audio.volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
             audio.Play();
+        }
     }
 
     private void OnTriggerStay(Collider other)

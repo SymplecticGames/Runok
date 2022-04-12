@@ -27,11 +27,15 @@ public class CrackedPlatform : MonoBehaviour
 
     private Material originalMaterial;
 
+    private float _baseVolume;
+
     private void Start()
     {
         meshRend = GetComponent<MeshRenderer>();
 
         originalMaterial = meshRend.material;
+        
+        _baseVolume = GetComponent<AudioSource>().volume ;
     }
 
     private void OnTriggerStay(Collider other)
@@ -54,6 +58,7 @@ public class CrackedPlatform : MonoBehaviour
                 
                 // play cracked audio
                 GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.crackedPlatform);
+                GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
                 GetComponent<AudioSource>().Play();
             }
 
@@ -66,6 +71,7 @@ public class CrackedPlatform : MonoBehaviour
                 Debug.Log("ROTO");
                 AudioSource aS = GetComponent<AudioSource>();
                 aS.clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.brokenPlatform);
+                aS.volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
                 aS.Play();
                 StartCoroutine(BreakDelay(aS.clip.length));
 

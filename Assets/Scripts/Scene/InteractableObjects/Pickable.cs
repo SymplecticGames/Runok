@@ -18,10 +18,14 @@ public class Pickable : MonoBehaviour
 
     private Collider trigger;
 
+    private float _baseVolume;
+
     // Start is called before the first frame update
     void Start()
     {
         trigger = GetComponent<Collider>();
+        
+        _baseVolume = GetComponent<AudioSource>().volume;
     }
 
     // Update is called once per frame
@@ -50,6 +54,7 @@ public class Pickable : MonoBehaviour
 
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
         {
+            GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
             GetComponent<AudioSource>().Play();   
             
             action.Invoke();

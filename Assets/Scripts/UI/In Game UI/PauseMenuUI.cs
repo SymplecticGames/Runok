@@ -10,7 +10,8 @@ public enum ClickedButton
 {
     Continue = 0,
     MainMenu = 1,
-    Hub = 2
+    Hub = 2,
+    Settings = 3
 }
 public class PauseMenuUI : MonoBehaviour
 {
@@ -19,19 +20,23 @@ public class PauseMenuUI : MonoBehaviour
     public Button continueButton;
     public Button mainMenuButton;
     public Button goToHubButton;
+    public Button goToSettingsButton;
     
     public GameObject confirmationPanel;
     public Button yesButton;
     public Button noButton;
+
+    public GameObject settingsUI;
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     private bool _paused;
+    private bool _subMenuOpened;
     private ClickedButton _clickedButton;
 
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed || _subMenuOpened)
             return;
         
         if (_paused)
@@ -60,12 +65,46 @@ public class PauseMenuUI : MonoBehaviour
         AudioManager.audioInstance.PlayUISound(UIAudioTag.closePauseMenu);
     }
 
+    public void GoToSettings()
+    {
+        _clickedButton = ClickedButton.Settings;
+        settingsUI.SetActive(true);
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.openPauseMenu);
+        HidePauseMenuButtons();
+        _subMenuOpened = true;
+
+    }
+
+    public void HidePauseMenuButtons()
+    {
+        continueButton.gameObject.SetActive(false);
+        mainMenuButton.gameObject.SetActive(false);
+        goToHubButton.gameObject.SetActive(false);
+        goToSettingsButton.gameObject.SetActive(false);
+    }
+
+    public void ShowPauseMenuButtons()
+    {
+        continueButton.gameObject.SetActive(true);
+        mainMenuButton.gameObject.SetActive(true);
+        goToHubButton.gameObject.SetActive(true);
+        goToSettingsButton.gameObject.SetActive(true);
+    }
+
+    public void ClosedSettings()
+    {
+        ShowPauseMenuButtons();
+        settingsUI.SetActive(false);
+        _subMenuOpened = false;
+    }
+    
     public void GoToMainMenu()
     {
         _clickedButton = ClickedButton.MainMenu;
         EventSystem.current.SetSelectedGameObject(yesButton.gameObject);
         confirmationPanel.SetActive(true);
         AudioManager.audioInstance.PlayUISound(UIAudioTag.showConfirmationPanel);
+        _subMenuOpened = true;
     }
 
     public void GoToHub()
@@ -74,6 +113,7 @@ public class PauseMenuUI : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(yesButton.gameObject);
         confirmationPanel.SetActive(true);
         AudioManager.audioInstance.PlayUISound(UIAudioTag.showConfirmationPanel);
+        _subMenuOpened = true;
     }
 
     //////////////////////////////////////  CONFIRMATION PANEL//////////////////////////////////////  
@@ -109,6 +149,7 @@ public class PauseMenuUI : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
         confirmationPanel.SetActive(false);        
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+        _subMenuOpened = false;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,10 +161,10 @@ public class PauseMenuUI : MonoBehaviour
         continueButton.onClick.AddListener(Continue);
         mainMenuButton.onClick.AddListener(GoToMainMenu);
         goToHubButton.onClick.AddListener(GoToHub);
-        
+        goToSettingsButton.onClick.AddListener(GoToSettings);
+
         yesButton.onClick.AddListener(ClickedYes);
         noButton.onClick.AddListener(ClickedNo);
-        
     }
 
     private void PausePlayer()

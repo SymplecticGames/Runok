@@ -21,10 +21,14 @@ public class PressureButton : MonoBehaviour
 
     private bool isPlumber;
 
+    public float _baseVolume;
+    
     // Start is called before the first frame update
     void Start()
     {
         initialPos = solidButton.transform.position;
+
+        _baseVolume = GetComponent<AudioSource>().volume;
     }
 
     // Update is called once per frame
@@ -56,6 +60,7 @@ public class PressureButton : MonoBehaviour
 
         onPressAction.Invoke();
 
+        GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
         GetComponent<AudioSource>().pitch = 1.0f;
         GetComponent<AudioSource>().Play();
     }
@@ -71,6 +76,7 @@ public class PressureButton : MonoBehaviour
         solidButton.transform.position = initialPos;
 
         onReleaseAction.Invoke();
+        GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
         GetComponent<AudioSource>().pitch = 2.0f;
         GetComponent<AudioSource>().Play();
     }

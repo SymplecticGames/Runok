@@ -30,7 +30,6 @@ public enum UIAudioTag
     startCountDown =16,
     countDown =17,
     endCountDown =18,
-
 }
 
 public enum CharAudioTag
@@ -58,6 +57,8 @@ public enum ObjAudioTag
     
     brokenPlatform = 3,
     crackedPlatform = 4,
+    
+    laserBeam =5,
 }
 
 public enum SoundTrackAudioTag
@@ -66,8 +67,9 @@ public enum SoundTrackAudioTag
     interludios2 = 1,
     interludios3 = 2,
     interludios3_finalText = 3,
-    interludios3_endfinalText = 4,
-    
+    interludios3_endfinalText = 3,
+    desert = 5,
+
 }
 
 public class AudioManager : MonoBehaviour
@@ -75,6 +77,12 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]
     public static AudioManager audioInstance;
 
+    [HideInInspector]
+    public float soundEffectsFactor = 1.0f;
+    
+    [HideInInspector]
+    public float musicFactor = 1.0f;
+    
     public bool allLoaded;
 
     private AudioSource _audioSource;
@@ -156,7 +164,7 @@ public class AudioManager : MonoBehaviour
     public void PlayUISound(UIAudioTag audio)
     {
         _audioSource.loop = false;
-        _audioSource.volume = 0.1f;
+        _audioSource.volume = 0.1f * soundEffectsFactor;
         _audioSource.clip = _clipsUI[(int)audio];
         _audioSource.Play();
     }
@@ -201,6 +209,7 @@ public class AudioManager : MonoBehaviour
                 default: break;
             }
         }
+        _audioSource.volume = 0.1f * soundEffectsFactor;
         _audioSource.clip = _clipsUI[(int)uiaudio];
         _audioSource.Play();
 
@@ -209,7 +218,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayCharSound(CharAudioTag audio)
     {
-        _audioSource.volume = 0.05f;
+        _audioSource.volume = 0.05f * soundEffectsFactor;
         _audioSource.clip = _clipsChar[(int)audio];
         _audioSource.Play();
     }
@@ -219,6 +228,7 @@ public class AudioManager : MonoBehaviour
         _countDownAs = gameObject.AddComponent<AudioSource>();
         _countDownAs.loop = false;
         _countDownAs.playOnAwake = false;
+        _countDownAs.volume = 1.0f * soundEffectsFactor;
         StartCoroutine(CountDown(endCountDown));
 
     }
@@ -290,18 +300,40 @@ public class AudioManager : MonoBehaviour
         return _audioSource;
     }
 
-    public void PlayLaserSound()
+    public void PlayLaserBeamSound(AudioSource laserBeamAs)
     {
-        AudioSource laserAS = gameObject.AddComponent<AudioSource>();
-        laserAS.loop = false;
-        laserAS.clip = GetCharSound(CharAudioTag.laserHit);
-        laserAS.Play();
+        laserBeamAs.mute = false;
+        laserBeamAs.volume = 1.0f * soundEffectsFactor;
+        laserBeamAs.loop = true;
+        laserBeamAs.clip = GetObjSound(ObjAudioTag.laserBeam);
+        laserBeamAs.Play();
+    }
+    public void StopLaserBeamSound(AudioSource laserBeamAs)
+    {
+        laserBeamAs.mute = true;
+    }
+    
+    public void PlayLaserHitSound()
+    {
+        AudioSource laserAs = gameObject.AddComponent<AudioSource>();
+        laserAs.volume = 1.0f * soundEffectsFactor;
+        laserAs.loop = false;
+        laserAs.clip = GetCharSound(CharAudioTag.laserHit);
+        laserAs.Play();
+        DestroyLaserAS(laserAs);
     }
 
     IEnumerator DestroyLaserAS(AudioSource aS)
     {
         yield return new WaitForSeconds(GetCharSound(CharAudioTag.laserHit).length);
         Destroy(aS);
+    }
+
+    public void SetMusicVolume(float newMusicFactor)
+    {
+        musicFactor = newMusicFactor;
+        GameManager.instance.musicBaseVolume = musicFactor;
+        GameManager.instance.musicSource.volume = GameManager.instance.musicSource.volume * musicFactor;
     }
     
     // Update is called once per frame

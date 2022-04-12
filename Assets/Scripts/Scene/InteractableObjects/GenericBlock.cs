@@ -57,6 +57,9 @@ public class GenericBlock : MonoBehaviour
     #endregion
 
     private AudioSource pushAudioS;
+
+    private float _pushBaseVolume;
+    private float _baseVolume;
     
     // Start is called before the first frame update
     void Start()
@@ -75,6 +78,9 @@ public class GenericBlock : MonoBehaviour
         pushAudioS.rolloffMode = AudioRolloffMode.Linear;
         pushAudioS.loop = true;
         pushAudioS.clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.pushBox);
+
+        _pushBaseVolume = 1.0f;
+        _baseVolume = GetComponent<AudioSource>().volume;
         pushAudioS.Play();
 
         initialBoxPos = new Vector3[boxes.Length];
@@ -118,7 +124,7 @@ public class GenericBlock : MonoBehaviour
         {
             Vector3 vel = rb.velocity;
             vel.y = 0.0f;
-            pushAudioS.volume = Mathf.Clamp(vel.magnitude, 0.0f, 1.0f);
+            pushAudioS.volume = Mathf.Clamp(vel.magnitude, 0.0f, 1.0f) * AudioManager.audioInstance.soundEffectsFactor;
         }
     }
 
@@ -158,6 +164,7 @@ public class GenericBlock : MonoBehaviour
                         boxes[i].SetActive(false);
                     AudioManager.audioInstance.SetAudioSourcePitch(audioSource, 1.5f);
                     audioSource.clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.growBox);
+                    audioSource.volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
                     audioSource.Play();
                     StartCoroutine(AudioManager.audioInstance.ResetPitch(audioSource, 0.2f));
                 }
@@ -166,6 +173,8 @@ public class GenericBlock : MonoBehaviour
                     startGrowing = true;
                     boxes[currentBox].SetActive(true);
                     audioSource.clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.growBox);
+                    GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
+                    audioSource.volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;;
                     audioSource.Play();
                     
                 }
@@ -190,6 +199,7 @@ public class GenericBlock : MonoBehaviour
 
     public void ResetBlock()
     {
+        audioSource.volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
         audioSource.Play();
         GetComponent<Collider>().enabled = false;
         rb.useGravity = false;

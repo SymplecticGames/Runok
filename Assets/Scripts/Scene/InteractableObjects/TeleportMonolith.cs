@@ -28,6 +28,8 @@ public class TeleportMonolith : MonoBehaviour
     // time variable
     private float _waitedTime = 0;
 
+    private float _baseVolume;
+
     //////////////////////////////////////////////////  p r o g r a m  /////////////////////////////////////////////////
     /// 
     // Start is called before the first frame update
@@ -35,6 +37,8 @@ public class TeleportMonolith : MonoBehaviour
     {
         // get neighbour trigger hole script component
         _neighbourMonolithScript = neighbourMonolith.GetComponent<TeleportMonolith>();
+
+        _baseVolume = GetComponent<AudioSource>().volume;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -105,6 +109,7 @@ public class TeleportMonolith : MonoBehaviour
         // change neighbour hole state
         _neighbourMonolithScript._cameFromNeighbour = true;
 
+        GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
         GetComponent<AudioSource>().Play();
     }
     void doHoleTeleport(GameObject gO, Vector3 pos)

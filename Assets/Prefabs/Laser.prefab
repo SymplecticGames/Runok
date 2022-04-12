@@ -9973,6 +9973,8 @@ GameObject:
   - component: {fileID: 2716734709379027321}
   - component: {fileID: 1451636194715169991}
   - component: {fileID: 9039338628354742745}
+  - component: {fileID: 3838095946656791584}
+  - component: {fileID: 2625074633445024036}
   m_Layer: 2
   m_Name: Emitter
   m_TagString: Untagged
@@ -10139,6 +10141,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &3838095946656791584
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6759197609172981781}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 30
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2625074633445024036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6759197609172981781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53de61c6a0b59f542b8a27d129d5eed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7927169389084512589
 GameObject:
   m_ObjectHideFlags: 0

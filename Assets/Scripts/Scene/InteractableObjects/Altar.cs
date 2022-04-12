@@ -27,6 +27,8 @@ public class Altar : MonoBehaviour
     private Color defaultColor;
 
     private Material mat;
+
+    private float _baseVolume;
     
     //////////////////////////////////////////////////  p r o g r a m  /////////////////////////////////////////////////
     /// 
@@ -42,6 +44,8 @@ public class Altar : MonoBehaviour
         disableAltar();
 
         defaultColor = mat.color;
+        
+        _baseVolume = GetComponent<AudioSource>().volume;
     }
 
     // Update is called once per frame
@@ -91,6 +95,7 @@ public class Altar : MonoBehaviour
             ProgressManager.instance.currentCompletedLevels++;
         }
 
+        GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
         GetComponent<AudioSource>().Play();
         SceneTransition.instance.LoadScene("Hub");
     }
