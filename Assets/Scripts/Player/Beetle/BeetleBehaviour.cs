@@ -134,7 +134,7 @@ public class BeetleBehaviour : MonoBehaviour
                 {
                     animator.SetBool("BackRay", true);
 
-                    bulletPool.SpawnBullet();
+                    bulletPool.SpawnBullet(Camera.main.transform.forward);
                     shootElapsedTime = 0.0f;
                     AudioManager.audioInstance.PlayAbilitySound(2, false);
                 }
