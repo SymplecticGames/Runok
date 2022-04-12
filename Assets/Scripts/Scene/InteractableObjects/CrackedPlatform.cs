@@ -11,7 +11,13 @@ public class CrackedPlatform : MonoBehaviour
     private float crackedTime = 0.3f;
 
     [SerializeField]
+    private bool actuallyBreak = true;
+
+    [SerializeField]
     private float brokenTime = 1.0f;
+
+    [SerializeField]
+    private bool workOnAnyMaterial;
 
     private float currentCheckPoint = 0.0f;
 
@@ -35,7 +41,7 @@ public class CrackedPlatform : MonoBehaviour
 
         if (other.TryGetComponent(out GolemBehaviour golem))
         {
-            if (golem.currentMaterial != GolemMaterial.Plumber)
+            if (golem.currentMaterial != GolemMaterial.Plumber && !workOnAnyMaterial)
                 return;
 
             crackedStep += Time.deltaTime;
@@ -52,7 +58,7 @@ public class CrackedPlatform : MonoBehaviour
             }
 
             // Broken time
-            if (crackedStep > brokenTime && currentCheckPoint < brokenTime)
+            if (crackedStep > brokenTime && currentCheckPoint < brokenTime && actuallyBreak)
             {
                 currentCheckPoint = brokenTime;
 
