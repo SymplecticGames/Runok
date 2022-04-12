@@ -23,9 +23,6 @@ public class PlayerManager : MonoBehaviour
 
     public CinemachineFreeLook freelookCam;
 
-    [HideInInspector]
-    public float camOrbitRadius;
-
     private Animator animator;
 
     [HideInInspector]
@@ -62,8 +59,6 @@ public class PlayerManager : MonoBehaviour
 
         camLookAtTarget.parent = currentCharacter.transform;
         camLookAtTarget.localPosition = Vector3.zero;
-
-        camOrbitRadius = freelookCam.m_Orbits[1].m_Radius;
 
         // Get golem animator
         animator = currentCharacter.GetComponent<Animator>();

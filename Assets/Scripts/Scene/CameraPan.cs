@@ -17,6 +17,8 @@ public class CameraPan : MonoBehaviour
     [SerializeField]
     private bool onlyOnce = true;
 
+    private bool isPanning;
+
     private void Start()
     {
         playerManager = GameManager.instance.player;
@@ -34,33 +36,54 @@ public class CameraPan : MonoBehaviour
 
     private IEnumerator PanCoroutine()
     {
-        //playerManager.gameObject.SetActive(false);
-        playerManager.input.DeactivateInput();
+        if (!isPanning)
+        {
+            //playerManager.gameObject.SetActive(false);
+            playerManager.input.DeactivateInput();
 
-        playerManager.camLookAtTarget.parent = transform;
-        playerManager.camLookAtTarget.localPosition = Vector3.zero;
+            playerManager.camLookAtTarget.parent = transform;
+            playerManager.camLookAtTarget.localPosition = Vector3.zero;
 
-        // Set the orbits to a certain radius
-        playerManager.freelookCam.m_Orbits[0].m_Radius = distanceToTarget - 5.0f;
-        playerManager.freelookCam.m_Orbits[1].m_Radius = distanceToTarget;
-        playerManager.freelookCam.m_Orbits[2].m_Radius = distanceToTarget + 5.0f;
+            // Save the current orbit values
+            float radius0 = playerManager.freelookCam.m_Orbits[0].m_Radius;
+            float radius1 = playerManager.freelookCam.m_Orbits[1].m_Radius;
+            float radius2 = playerManager.freelookCam.m_Orbits[2].m_Radius;
+            float height0 = playerManager.freelookCam.m_Orbits[0].m_Height;
+            float height1 = playerManager.freelookCam.m_Orbits[1].m_Height;
+            float height2 = playerManager.freelookCam.m_Orbits[2].m_Height;
 
-        yield return new WaitForSeconds(panTime);
+            float convertFactor = distanceToTarget / radius1;
 
-        playerManager.camLookAtTarget.parent = playerManager.currentCharacter.transform;
-        playerManager.camLookAtTarget.localPosition = Vector3.zero;
+            isPanning = true;
 
-        // Reset the orbits
-        playerManager.freelookCam.m_Orbits[0].m_Radius = playerManager.camOrbitRadius - 5.0f;
-        playerManager.freelookCam.m_Orbits[1].m_Radius = playerManager.camOrbitRadius;
-        playerManager.freelookCam.m_Orbits[2].m_Radius = playerManager.camOrbitRadius + 5.0f;
+            // Set the orbits to a certain radius and height
+            playerManager.freelookCam.m_Orbits[0].m_Radius = radius0 * convertFactor;
+            playerManager.freelookCam.m_Orbits[1].m_Radius = radius1 * convertFactor;
+            playerManager.freelookCam.m_Orbits[2].m_Radius = radius2 * convertFactor;
+            playerManager.freelookCam.m_Orbits[0].m_Height = height0 * convertFactor;
+            playerManager.freelookCam.m_Orbits[1].m_Height = height1 * convertFactor;
+            playerManager.freelookCam.m_Orbits[2].m_Height = height2 * convertFactor;
 
-        //playerManager.gameObject.SetActive(true);
-        playerManager.input.ActivateInput();
+            yield return new WaitForSeconds(panTime);
 
-        if (playerManager.selectionWheelEnabled)
-            playerManager.input.actions.FindAction("WheelMenu").Enable();
-        else
-            playerManager.input.actions.FindAction("WheelMenu").Disable();
+            playerManager.camLookAtTarget.parent = playerManager.currentCharacter.transform;
+            playerManager.camLookAtTarget.localPosition = Vector3.zero;
+
+            // Reset the orbits
+            playerManager.freelookCam.m_Orbits[0].m_Radius = radius0;
+            playerManager.freelookCam.m_Orbits[1].m_Radius = radius1;
+            playerManager.freelookCam.m_Orbits[2].m_Radius = radius2;
+            playerManager.freelookCam.m_Orbits[0].m_Height = height0;
+            playerManager.freelookCam.m_Orbits[1].m_Height = height1;
+            playerManager.freelookCam.m_Orbits[2].m_Height = height2;
+
+            //playerManager.gameObject.SetActive(true);
+            playerManager.input.ActivateInput();
+
+            if (playerManager.selectionWheelEnabled)
+                playerManager.input.actions.FindAction("WheelMenu").Enable();
+            else
+                playerManager.input.actions.FindAction("WheelMenu").Disable();
+        }
     }
 }
