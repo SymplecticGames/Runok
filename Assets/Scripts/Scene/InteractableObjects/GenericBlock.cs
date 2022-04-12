@@ -44,13 +44,12 @@ public class GenericBlock : MonoBehaviour
 
     [Space]
     [Header("Extensible")]
-    [SerializeField]
-    private GameObject[] boxes;
+    [SerializeField] private GameObject[] boxes;
+    [SerializeField] private float growingFactor;
+    [SerializeField][Range(1, 3)] private int initialStackBoxes;
+
+
     private Vector3[] initialBoxPos;
-
-    [SerializeField]
-    private float growingFactor;
-
     private bool startGrowing;
     private float growingStep;
     private int currentBox;
@@ -85,6 +84,11 @@ public class GenericBlock : MonoBehaviour
 
         if (cubeRespawn && !startActive)
             ResetBlock();
+
+        for (int i = 1; i < initialStackBoxes; i++)
+            boxes[i].SetActive(true);
+
+        currentBox = initialStackBoxes - 1;
     }
 
     // Update is called once per frame
@@ -200,12 +204,13 @@ public class GenericBlock : MonoBehaviour
         rend.enabled = true;
         transform.position = cubeRespawn.position;
 
-        if(transform.childCount == 2)
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(false);
-            currentBox = 0;
-        }
+        for (int i = 1; i < boxes.Length; i++)
+            boxes[i].SetActive(false);
+        
+        for (int i = 1; i < initialStackBoxes; i++)
+            boxes[i].SetActive(true);
+
+        currentBox = initialStackBoxes - 1;
 
         if (transform.childCount == 3)
             transform.GetChild(2).gameObject.SetActive(true);
