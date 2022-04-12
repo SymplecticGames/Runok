@@ -134,7 +134,7 @@ public class SelectionWheel : MonoBehaviour
 
         if (_prevAbility != ability)
         {
-            AudioManager.audioInstance.PlayUISound(UIaudioTag.hoverSelectionWheel);
+            AudioManager.audioInstance.PlayUISound(UIAudioTag.hoverSelectionWheel);
         }
 
         _prevAbility = ability;

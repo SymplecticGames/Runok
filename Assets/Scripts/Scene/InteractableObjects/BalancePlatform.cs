@@ -57,7 +57,7 @@ public class BalancePlatform : MonoBehaviour
         childPlatform.position = newChildPos;
 
         // Weights check
-        Collider[] weightCols = Physics.OverlapBox(explicitSolidCollider.bounds.center, explicitSolidCollider.bounds.extents * 1.5f, Quaternion.identity, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+        Collider[] weightCols = Physics.OverlapBox(explicitSolidCollider.bounds.center + new Vector3(0.0f, 0.5f, 0.0f), explicitSolidCollider.bounds.extents, Quaternion.identity, Physics.AllLayers, QueryTriggerInteraction.Ignore);
 
         foreach (Weight w in transform.GetComponentsInChildren<Weight>())
             w.transform.SetParent(null);

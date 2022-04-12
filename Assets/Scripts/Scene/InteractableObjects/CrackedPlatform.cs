@@ -53,7 +53,7 @@ public class CrackedPlatform : MonoBehaviour
                 meshRend.material = crackedMaterial;
                 
                 // play cracked audio
-                GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.crackedPlatform);
+                GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.crackedPlatform);
                 GetComponent<AudioSource>().Play();
             }
 
@@ -65,10 +65,13 @@ public class CrackedPlatform : MonoBehaviour
                 // play broken audio
                 Debug.Log("ROTO");
                 AudioSource aS = GetComponent<AudioSource>();
-                aS.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.brokenPlatform);
+                aS.clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.brokenPlatform);
                 aS.Play();
                 StartCoroutine(BreakDelay(aS.clip.length));
-                
+
+                // Unparent all children (Golem)
+                transform.DetachChildren();
+
                 // hide platform
                 foreach (Renderer visualPart in GetComponentsInChildren<Renderer>())
                     visualPart.enabled = false;
@@ -85,6 +88,7 @@ public class CrackedPlatform : MonoBehaviour
     {
         // Break
         yield return new WaitForSeconds(delay);
+
         gameObject.SetActive(false);
     }
 

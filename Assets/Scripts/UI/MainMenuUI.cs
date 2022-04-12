@@ -40,8 +40,11 @@ public class MainMenuUI : MonoBehaviour
         if(!selector.activeInHierarchy)
             return;
         
-        AudioManager.audioInstance.PlayUISound(UIaudioTag.click);
-        SceneManager.LoadScene("Hub");
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+        if(!ProgressManager.instance.firstTime)
+            SceneManager.LoadScene("Hub");
+        else
+            SceneManager.LoadScene("Interludio");
     }
     
     public void ClickedExitGame() {
@@ -49,7 +52,7 @@ public class MainMenuUI : MonoBehaviour
         // exit Runok
         if(!selector.activeInHierarchy)
             return;
-        AudioManager.audioInstance.PlayUISound(UIaudioTag.click);
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
         Application.Quit();
     }
     
@@ -58,7 +61,7 @@ public class MainMenuUI : MonoBehaviour
         // credits scene
         if(!selector.activeInHierarchy)
             return;
-        AudioManager.audioInstance.PlayUISound(UIaudioTag.click);
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
         SceneManager.LoadScene("Credits");
     }
 

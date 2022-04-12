@@ -196,7 +196,7 @@ public class GolemBehaviour : MonoBehaviour
 
     public void PlayHitSound()
     {
-        AudioManager.audioInstance.PlayCharSound(CharaudioTag.punchAir);
+        AudioManager.audioInstance.PlayCharSound(CharAudioTag.punchAir);
     }
 
     public void PlayHitSomethingSound()
@@ -204,13 +204,13 @@ public class GolemBehaviour : MonoBehaviour
         switch (currentMaterial)
         {
             case GolemMaterial.Terracotta:
-                AudioManager.audioInstance.PlayCharSound(CharaudioTag.terracottaHit);
+                AudioManager.audioInstance.PlayCharSound(CharAudioTag.terracottaHit);
                 break;
             case GolemMaterial.Plumber:
-                AudioManager.audioInstance.PlayCharSound(CharaudioTag.plumberHit);
+                AudioManager.audioInstance.PlayCharSound(CharAudioTag.plumberHit);
                 break;
             case GolemMaterial.Wooden:
-                AudioManager.audioInstance.PlayCharSound(CharaudioTag.woodenHit);
+                AudioManager.audioInstance.PlayCharSound(CharAudioTag.woodenHit);
                 break;
         }
     }
@@ -221,13 +221,13 @@ public class GolemBehaviour : MonoBehaviour
             switch (currentMaterial)
             {
                 case GolemMaterial.Terracotta:
-                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.terracottaStomp);
+                    AudioManager.audioInstance.PlayCharSound(CharAudioTag.terracottaStomp);
                     break;
                 case GolemMaterial.Plumber:
-                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.plumberStomp);
+                    AudioManager.audioInstance.PlayCharSound(CharAudioTag.plumberStomp);
                     break;
                 case GolemMaterial.Wooden:
-                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.woodenStomp);
+                    AudioManager.audioInstance.PlayCharSound(CharAudioTag.woodenStomp);
                     break;
             }
         }
@@ -240,14 +240,14 @@ public class GolemBehaviour : MonoBehaviour
             switch (currentMaterial)
             {
                 case GolemMaterial.Terracotta:
-                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.terracottaStomp);
+                    AudioManager.audioInstance.PlayCharSound(CharAudioTag.terracottaStomp);
                     break;
                 case GolemMaterial.Plumber:
-                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.plumberStomp);
+                    AudioManager.audioInstance.PlayCharSound(CharAudioTag.plumberStomp);
                     
                     break;
                 case GolemMaterial.Wooden:
-                    AudioManager.audioInstance.PlayCharSound(CharaudioTag.woodenStomp);
+                    AudioManager.audioInstance.PlayCharSound(CharAudioTag.woodenStomp);
                     break;
             }
 

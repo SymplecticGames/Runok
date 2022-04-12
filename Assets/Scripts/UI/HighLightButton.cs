@@ -17,7 +17,7 @@ public class HighLightButton : MonoBehaviour
     {
         gameObject.GetComponent<RectTransform>().localScale = _originalScaleFactor * scaleFactor;
         gameObject.GetComponent<Image>().color = highLightColor;
-        AudioManager.audioInstance.PlayUISound(UIaudioTag.hover);
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
     }
 
     public void UndoChanges()

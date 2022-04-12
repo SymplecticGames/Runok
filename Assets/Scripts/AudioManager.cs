@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum UIaudioTag
+public enum UIAudioTag
 {
     click = 0,
     hover = 1,
@@ -33,7 +33,7 @@ public enum UIaudioTag
 
 }
 
-public enum CharaudioTag
+public enum CharAudioTag
 {
     genericJump = 0,
     terracottaStomp = 1,
@@ -50,7 +50,7 @@ public enum CharaudioTag
     laserHit = 10,
 }
 
-public enum ObjaudioTag
+public enum ObjAudioTag
 {
     pushBox = 0,
     destroyBox = 1,
@@ -58,6 +58,16 @@ public enum ObjaudioTag
     
     brokenPlatform = 3,
     crackedPlatform = 4,
+}
+
+public enum SoundTrackAudioTag
+{
+    interludios1 = 0,
+    interludios2 = 1,
+    interludios3 = 2,
+    interludios3_finalText = 3,
+    interludios3_endfinalText = 4,
+    
 }
 
 public class AudioManager : MonoBehaviour
@@ -72,10 +82,12 @@ public class AudioManager : MonoBehaviour
     private AudioClip[] _clipsUI;
     private AudioClip[] _clipsChar;
     private AudioClip[] _clipsObj;
+    private AudioClip[] _clipsSoundTrack;
 
     private string _soundEffectsUIPath;
     private string _soundEffectsCharPath;
     private string _soundEffectsObjPath;
+    private string _soundTrackPath;
 
     private AudioSource _countDownAs;
 
@@ -86,14 +98,17 @@ public class AudioManager : MonoBehaviour
         _soundEffectsUIPath = "SoundEffects/UI/";
         _soundEffectsCharPath = "SoundEffects/Characters/";
         _soundEffectsObjPath = "SoundEffects/Objects/";
+        _soundTrackPath = "SoundTracks/";
         
-        string[] namesUI = System.Enum.GetNames(typeof(UIaudioTag));
-        string[] namesChar = System.Enum.GetNames(typeof(CharaudioTag));
-        string[] namesObj = System.Enum.GetNames(typeof(ObjaudioTag));
+        string[] namesUI = System.Enum.GetNames(typeof(UIAudioTag));
+        string[] namesChar = System.Enum.GetNames(typeof(CharAudioTag));
+        string[] namesObj = System.Enum.GetNames(typeof(ObjAudioTag));
+        string[] namesSoundTrack = System.Enum.GetNames(typeof(SoundTrackAudioTag));
         
         _clipsUI = new AudioClip[namesUI.Length];
         _clipsChar = new AudioClip[namesChar.Length];
         _clipsObj = new AudioClip[namesObj.Length];
+        _clipsSoundTrack = new AudioClip[namesSoundTrack.Length];
 
         int i = 0;
         foreach (var aTag in namesUI)
@@ -116,6 +131,13 @@ public class AudioManager : MonoBehaviour
             _clipsObj[i] = Resources.Load<AudioClip>(_soundEffectsObjPath + oTag);
             i++;
         }
+        
+        i = 0;
+        foreach (var sTag in namesSoundTrack)
+        {
+            _clipsSoundTrack[i] = Resources.Load<AudioClip>(_soundTrackPath + sTag);
+            i++;
+        }
 
         allLoaded = true;
 
@@ -131,7 +153,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void PlayUISound(UIaudioTag audio)
+    public void PlayUISound(UIAudioTag audio)
     {
         _audioSource.loop = false;
         _audioSource.volume = 0.1f;
@@ -143,7 +165,7 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.loop = false;
         _audioSource.playOnAwake = false;
-        UIaudioTag uiaudio = UIaudioTag.selectedTerracotta;
+        UIAudioTag uiaudio = UIAudioTag.selectedTerracotta;
 
 
 
@@ -152,13 +174,13 @@ public class AudioManager : MonoBehaviour
             switch (ability)
             {
                 case 1:
-                    uiaudio = UIaudioTag.selectedTerracotta;
+                    uiaudio = UIAudioTag.selectedTerracotta;
                     break;
                 case 2:
-                    uiaudio = UIaudioTag.selectedPlumber;
+                    uiaudio = UIAudioTag.selectedPlumber;
                     break;
                 case 3:
-                    uiaudio = UIaudioTag.selectedWooden;
+                    uiaudio = UIAudioTag.selectedWooden;
                     break;
                 default: break;
             }
@@ -168,13 +190,13 @@ public class AudioManager : MonoBehaviour
             switch (ability)
             {
                 case 1:
-                    uiaudio = UIaudioTag.selectedRadial;
+                    uiaudio = UIAudioTag.selectedRadial;
                     break;
                 case 2:
-                    uiaudio = UIaudioTag.selectedShoot;
+                    uiaudio = UIAudioTag.selectedShoot;
                     break;
                 case 3:
-                    uiaudio = UIaudioTag.selectedLaser;
+                    uiaudio = UIAudioTag.selectedLaser;
                     break;
                 default: break;
             }
@@ -185,7 +207,7 @@ public class AudioManager : MonoBehaviour
     }
     
 
-    public void PlayCharSound(CharaudioTag audio)
+    public void PlayCharSound(CharAudioTag audio)
     {
         _audioSource.volume = 0.05f;
         _audioSource.clip = _clipsChar[(int)audio];
@@ -203,11 +225,11 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator CountDown(float endCountDown)
     {
-        _countDownAs.clip = _clipsUI[(int)UIaudioTag.startCountDown];
+        _countDownAs.clip = _clipsUI[(int)UIAudioTag.startCountDown];
         _countDownAs.Play();
         yield return new WaitForSeconds(_countDownAs.clip.length);
         
-        _countDownAs.clip = _clipsUI[(int)UIaudioTag.countDown];
+        _countDownAs.clip = _clipsUI[(int)UIAudioTag.countDown];
         _countDownAs.loop = true;
         _countDownAs.Play();
         yield return new WaitForSeconds(endCountDown);
@@ -215,7 +237,7 @@ public class AudioManager : MonoBehaviour
         if (_countDownAs != null)
         {
             _countDownAs.loop = false;
-            _countDownAs.clip = _clipsUI[(int) UIaudioTag.endCountDown];
+            _countDownAs.clip = _clipsUI[(int) UIAudioTag.endCountDown];
             _countDownAs.Play();
             yield return new WaitForSeconds(_countDownAs.clip.length);
         }
@@ -238,14 +260,19 @@ public class AudioManager : MonoBehaviour
         Destroy(_countDownAs);
     }
     
-    public AudioClip GetObjSound(ObjaudioTag audio)
+    public AudioClip GetObjSound(ObjAudioTag audio)
     {
         return _clipsObj[(int)audio];
     }
     
-    public AudioClip GetCharSound(CharaudioTag audio)
+    public AudioClip GetCharSound(CharAudioTag audio)
     {
         return _clipsChar[(int)audio];
+    }
+    
+    public AudioClip GetSoundTrackSound(SoundTrackAudioTag audio)
+    {
+        return _clipsSoundTrack[(int)audio];
     }
 
     public void SetAudioSourcePitch(AudioSource aS, float pitch)
@@ -267,13 +294,13 @@ public class AudioManager : MonoBehaviour
     {
         AudioSource laserAS = gameObject.AddComponent<AudioSource>();
         laserAS.loop = false;
-        laserAS.clip = GetCharSound(CharaudioTag.laserHit);
+        laserAS.clip = GetCharSound(CharAudioTag.laserHit);
         laserAS.Play();
     }
 
     IEnumerator DestroyLaserAS(AudioSource aS)
     {
-        yield return new WaitForSeconds(GetCharSound(CharaudioTag.laserHit).length);
+        yield return new WaitForSeconds(GetCharSound(CharAudioTag.laserHit).length);
         Destroy(aS);
     }
     

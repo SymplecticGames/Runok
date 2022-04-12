@@ -74,7 +74,7 @@ public class LateralMenuUI : MonoBehaviour
                 instructionsMenuGO.GetComponentInChildren<InstructionsUI>().DeactivateGifAnimation();
                 instructionsMenuGO.SetActive(false);
                 GameManager.instance.play();
-                AudioManager.audioInstance.PlayUISound(UIaudioTag.instructions);
+                AudioManager.audioInstance.PlayUISound(UIAudioTag.instructions);
                 return;
             }
 
@@ -92,7 +92,7 @@ public class LateralMenuUI : MonoBehaviour
             instructionsMenuGO.GetComponentInChildren<InstructionsUI>().ability = GameManager.instance.player.GetSelection();
             instructionsMenuGO.SetActive(true);
             instructionsMenuGO.GetComponentInChildren<InstructionsUI>().ActivateGifAnimation();
-            AudioManager.audioInstance.PlayUISound(UIaudioTag.instructions);
+            AudioManager.audioInstance.PlayUISound(UIAudioTag.instructions);
         }
     }
 
@@ -120,7 +120,7 @@ public class LateralMenuUI : MonoBehaviour
             {
                 // highlight button:     0-> swapTag     1-> parchmentTag     2->selectionWheelTag  3-> hitTag    4-> jumpTag
                 StartCoroutine(GameManager.instance.highLightTag(deviceTag.selectionWheelTag));
-                AudioManager.audioInstance.PlayUISound(UIaudioTag.openSelectionWheel);
+                AudioManager.audioInstance.PlayUISound(UIAudioTag.openSelectionWheel);
             }
 
             // open menu

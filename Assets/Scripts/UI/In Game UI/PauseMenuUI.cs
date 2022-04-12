@@ -44,7 +44,7 @@ public class PauseMenuUI : MonoBehaviour
             GameManager.instance.pause();
             pauseMenuPanel.SetActive(true);
             _paused = !_paused;   
-            AudioManager.audioInstance.PlayUISound(UIaudioTag.openPauseMenu);
+            AudioManager.audioInstance.PlayUISound(UIAudioTag.openPauseMenu);
         }
         EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
         
@@ -57,7 +57,7 @@ public class PauseMenuUI : MonoBehaviour
         pauseMenuPanel.SetActive(false);
         _clickedButton = ClickedButton.Continue;
         _paused = !_paused;
-        AudioManager.audioInstance.PlayUISound(UIaudioTag.closePauseMenu);
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.closePauseMenu);
     }
 
     public void GoToMainMenu()
@@ -65,7 +65,7 @@ public class PauseMenuUI : MonoBehaviour
         _clickedButton = ClickedButton.MainMenu;
         EventSystem.current.SetSelectedGameObject(yesButton.gameObject);
         confirmationPanel.SetActive(true);
-        AudioManager.audioInstance.PlayUISound(UIaudioTag.showConfirmationPanel);
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.showConfirmationPanel);
     }
 
     public void GoToHub()
@@ -73,7 +73,7 @@ public class PauseMenuUI : MonoBehaviour
         _clickedButton = ClickedButton.Hub;
         EventSystem.current.SetSelectedGameObject(yesButton.gameObject);
         confirmationPanel.SetActive(true);
-        AudioManager.audioInstance.PlayUISound(UIaudioTag.showConfirmationPanel);
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.showConfirmationPanel);
     }
 
     //////////////////////////////////////  CONFIRMATION PANEL//////////////////////////////////////  
@@ -101,14 +101,14 @@ public class PauseMenuUI : MonoBehaviour
         SceneTransition.instance.LoadScene(sceneName);
         confirmationPanel.SetActive(false);
         pauseMenuPanel.SetActive(false);
-        AudioManager.audioInstance.PlayUISound(UIaudioTag.click);
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
     }
 
     public void ClickedNo()
     {
         EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
         confirmationPanel.SetActive(false);        
-        AudioManager.audioInstance.PlayUISound(UIaudioTag.click);
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

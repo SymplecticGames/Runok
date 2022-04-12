@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
             // Disable enemy collider
             isBeingHitted = true;
 
-            GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetCharSound(CharaudioTag.enemyHit);
+            GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetCharSound(CharAudioTag.enemyHit);
             GetComponent<AudioSource>().Play();
             
             // if hits are enough to defeat the enemy, then, do deafeated animation
@@ -200,7 +200,7 @@ public class Enemy : MonoBehaviour
     
     public void PlayEnemyIdleSound()
     {
-        GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetCharSound(CharaudioTag.enemyIdle);
+        GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetCharSound(CharAudioTag.enemyIdle);
         GetComponent<AudioSource>().Play();
     }
 
