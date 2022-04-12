@@ -11,6 +11,9 @@ public class GenericBehaviour : MonoBehaviour
     public bool isAttacking = false;
 
     [HideInInspector]
+    public bool canMove= true;
+
+    [HideInInspector]
     public bool canRotate = true;
 
     [HideInInspector]
@@ -109,7 +112,7 @@ public class GenericBehaviour : MonoBehaviour
             jumps = 0;
 
         // Animations
-        animator.SetBool("isWalking", movementInput.magnitude > 0); // Golem/Beetle
+        animator.SetBool("isWalking", canMove && movementInput.magnitude > 0); // Golem/Beetle
 
         float animationSpeed = Movement().magnitude / 8;
 
@@ -139,6 +142,9 @@ public class GenericBehaviour : MonoBehaviour
     public Vector3 Movement()
     {
         if (isAttacking && CompareTag("Golem"))
+            return Vector3.zero;
+
+        if (!canMove)
             return Vector3.zero;
 
         Vector3 camSpaceMovement = Camera.main.transform.TransformVector(new Vector3(movementInput.x, 0, movementInput.y));

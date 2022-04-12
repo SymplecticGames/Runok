@@ -68,7 +68,10 @@ public class CrackedPlatform : MonoBehaviour
                 aS.clip = AudioManager.audioInstance.GetObjSound(ObjaudioTag.brokenPlatform);
                 aS.Play();
                 StartCoroutine(BreakDelay(aS.clip.length));
-                
+
+                // Unparent all children (Golem)
+                transform.DetachChildren();
+
                 // hide platform
                 foreach (Renderer visualPart in GetComponentsInChildren<Renderer>())
                     visualPart.enabled = false;
@@ -85,6 +88,7 @@ public class CrackedPlatform : MonoBehaviour
     {
         // Break
         yield return new WaitForSeconds(delay);
+
         gameObject.SetActive(false);
     }
 
