@@ -68,7 +68,6 @@ public class CrackedPlatform : MonoBehaviour
                 currentCheckPoint = brokenTime;
 
                 // play broken audio
-                Debug.Log("ROTO");
                 AudioSource aS = GetComponent<AudioSource>();
                 aS.clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.brokenPlatform);
                 aS.volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
@@ -83,8 +82,9 @@ public class CrackedPlatform : MonoBehaviour
                     visualPart.enabled = false;
 
                 // disable collider
-                gameObject.GetComponent<Collider>().enabled = false;
-                
+                foreach (Collider c in gameObject.GetComponents<Collider>())
+                    c.enabled = false;
+
                 //Destroy(gameObject);
             }
         }
@@ -125,7 +125,8 @@ public class CrackedPlatform : MonoBehaviour
             visualPart.enabled = true;
 
         // enable collider
-        gameObject.GetComponent<Collider>().enabled = true;
+        foreach (Collider c in gameObject.GetComponents<Collider>())
+            c.enabled = true;
         
     }
 }
