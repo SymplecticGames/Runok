@@ -22,7 +22,7 @@ public class LateralMenuUI : MonoBehaviour
     public GameObject instructionsMenuGO;
 
     
-    public Image beetleSight;   // Camera.main.WorldToViewportPoint(transform.position) --> 0.4 izq, 0.5 centr, 0.6 der
+    public GameObject beetleSight;   // Camera.main.WorldToViewportPoint(transform.position) --> 0.4 izq, 0.5 centr, 0.6 der
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////            
 
