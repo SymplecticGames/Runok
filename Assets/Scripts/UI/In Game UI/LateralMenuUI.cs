@@ -21,6 +21,9 @@ public class LateralMenuUI : MonoBehaviour
     public GameObject selectionWheelGO;
     public GameObject instructionsMenuGO;
 
+    
+    public Image beetleSight;   // Camera.main.WorldToViewportPoint(transform.position) --> 0.4 izq, 0.5 centr, 0.6 der
+    
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////            
 
 
@@ -51,6 +54,8 @@ public class LateralMenuUI : MonoBehaviour
 
             beetleIconColor.enabled = true;
             golemIconColor.enabled = false;
+            
+            beetleSight.gameObject.SetActive(false);
         }
         else
         {
@@ -60,6 +65,15 @@ public class LateralMenuUI : MonoBehaviour
 
             golemIconColor.enabled = true;
             beetleIconColor.enabled = false;
+
+            if (GameManager.instance.player.GetSelection() == 2)
+            {
+                beetleSight.gameObject.SetActive(true);
+            }
+            else
+            {
+                beetleSight.gameObject.SetActive(false);
+            }
         }
 
         isGolem = !isGolem;
@@ -109,6 +123,15 @@ public class LateralMenuUI : MonoBehaviour
                 // play selected ability sound
                 AudioManager.audioInstance.PlayAbilitySound(GameManager.instance.player.GetSelection(), isGolem);
  
+                // enable/disable beetleSight
+                if (!isGolem && GameManager.instance.player.GetSelection() == 2)
+                {
+                    beetleSight.gameObject.SetActive(true);
+                }
+                else
+                {
+                    beetleSight.gameObject.SetActive(false);
+                }
                 
                 return;
             }

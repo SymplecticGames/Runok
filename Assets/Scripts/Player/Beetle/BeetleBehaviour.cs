@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum LumMode
 {
@@ -74,7 +75,6 @@ public class BeetleBehaviour : MonoBehaviour
     private Vector3 additionalVel = Vector3.zero;
 
     private Light beetleLight;
-
     // Start is called before the first frame update
     void Start()
     {
