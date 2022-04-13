@@ -509,6 +509,11 @@ Transform:
   m_Father: {fileID: 835257052}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 8.165274, y: 41.322815, z: -150.54123}
+--- !u!1 &144099027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8764646475981134694, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+  m_PrefabInstance: {fileID: 1417728747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &147484363
 GameObject:
   m_ObjectHideFlags: 3
@@ -1853,7 +1858,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673495584}
-  m_LocalRotation: {x: 0.28994003, y: -0.020877158, z: 0.006326451, w: 0.95679617}
+  m_LocalRotation: {x: 0.28994003, y: -0.020877156, z: 0.0063264505, w: 0.95679617}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1916,6 +1921,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3984680674814815259, guid: 6468779793cfed14da104951d5447076, type: 3}
+      propertyPath: beetleSight
+      value: 
+      objectReference: {fileID: 144099027}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6468779793cfed14da104951d5447076, type: 3}
 --- !u!1 &762524539
@@ -2379,14 +2388,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901320775}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children:
   - {fileID: 835257052}
   m_Father: {fileID: 647999523}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &924983585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2764,6 +2773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8025ccf88fe43844a80309ae0b517fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundEffectsFactor: 1
+  musicFactor: 1
   allLoaded: 0
 --- !u!1 &1355362678
 GameObject:
@@ -2932,13 +2943,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406783153}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 54.11504, y: 54.11504, z: 54.11504}
   m_Children: []
   m_Father: {fileID: 647999523}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!137 &1406783155
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -3069,6 +3080,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 329311237}
     - target: {fileID: 632283047167056263, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: cmFreeLook
+      value: 
+      objectReference: {fileID: 61723959}
+    - target: {fileID: 632283047167056263, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: runes.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -3127,6 +3142,10 @@ PrefabInstance:
     - target: {fileID: 6254736526290237776, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: selectionWheelEnabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7200721881061785661, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: isGolem
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
