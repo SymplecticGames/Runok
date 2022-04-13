@@ -1802,6 +1802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1f88ea1b58e9940a29863c467c6103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cmSensitivityFactor: 1
   sliders:
   - {fileID: 632283046022852715}
   - {fileID: 632283046022852714}
@@ -2527,7 +2528,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.32450286, y: 0.01363571, z: -0.0046785204, w: 0.94577485}
+  m_LocalRotation: {x: 0.32450286, y: 0.013635709, z: -0.00467852, w: 0.94577485}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5782,7 +5783,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.32450286, y: 0.013635708, z: -0.0046785194, w: 0.94577485}
+  m_LocalRotation: {x: 0.32450286, y: 0.013635707, z: -0.00467852, w: 0.94577485}
   m_LocalPosition: {x: 5.190539, y: 13.58, z: -131.36626}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7116,7 +7117,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.32450286, y: 0.01363571, z: -0.0046785204, w: 0.94577485}
+  m_LocalRotation: {x: 0.32450286, y: 0.013635709, z: -0.00467852, w: 0.94577485}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9238,6 +9239,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 982756973}
     - target: {fileID: 632283047167056263, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: cmFreeLook
+      value: 
+      objectReference: {fileID: 498799636}
+    - target: {fileID: 632283047167056263, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: runes.Array.data[0]
       value: 
       objectReference: {fileID: 1270674947}
@@ -9280,6 +9285,14 @@ PrefabInstance:
     - target: {fileID: 1497270602280985294, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GoBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171122851726576966, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 292803925}
+    - target: {fileID: 6171122851726576966, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetCameraSensitivity
       objectReference: {fileID: 0}
     - target: {fileID: 6254736526290237776, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: freelookCam

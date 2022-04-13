@@ -452,6 +452,14 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 622008891628250951, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5010925712147469012}
+    - target: {fileID: 622008891628250951, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetCameraSensitivity
+      objectReference: {fileID: 0}
     - target: {fileID: 2735208888254577184, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

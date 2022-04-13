@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,6 +12,9 @@ public class SettingsUI : MonoBehaviour
 {
 
     public static SettingsUI settingsInstance;
+    
+    [HideInInspector]
+    public float _cmSensitivityFactor = 1.0f;
     
     // music, sounds, cameraSensibility
     public List<Slider> sliders;
@@ -20,7 +25,6 @@ public class SettingsUI : MonoBehaviour
     // resolutions
     private int[] _widths = new[] {1920, 1280, 960, 568};
     private int[] _heights = new[] {1080, 800, 540, 329};
-
 
     // Start is called before the first frame update
     void Start()
@@ -80,9 +84,17 @@ public class SettingsUI : MonoBehaviour
         AudioManager.audioInstance.soundEffectsFactor = value;
     }
 
-    public void SetCameraSensibility(float value)
+    public void SetCameraSensitivity(float value)
     {
-        // LOW:0 MED:1 HIGH:2
+        // 0--> 2
+        _cmSensitivityFactor = Mathf.Clamp(value, 0.1f, 2.0f);
+
+
+        if (GameManager.instance)
+        {
+            GameManager.instance.ChangeSensitivity(_cmSensitivityFactor);
+        }
+
     }
 
     public void GoBack()

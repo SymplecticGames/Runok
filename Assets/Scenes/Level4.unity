@@ -2361,7 +2361,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0.5
     m_SpeedMode: 0
-    m_MaxSpeed: 2
+    m_MaxSpeed: 0.2
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -2385,7 +2385,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 100
+    m_MaxSpeed: 10
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -2432,7 +2432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498799635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.10134, y: 13.62, z: -6.6698666}
+  m_LocalPosition: {x: 7.10134, y: 13.62, z: -6.6698647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1580229500}
@@ -2864,7 +2864,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.27728266, y: -0.4914969, z: 0.1686364, w: 0.80815035}
+  m_LocalRotation: {x: 0.27728263, y: -0.49149695, z: 0.16863641, w: 0.8081503}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5654,8 +5654,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.27728266, y: -0.49149692, z: 0.16863643, w: 0.80815035}
-  m_LocalPosition: {x: 7.10134, y: 13.62, z: -6.6698666}
+  m_LocalRotation: {x: 0.27728263, y: -0.49149698, z: 0.16863643, w: 0.80815023}
+  m_LocalPosition: {x: 7.10134, y: 13.62, z: -6.6698647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8043,7 +8043,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.27728263, y: -0.49149686, z: 0.16863637, w: 0.80815035}
+  m_LocalRotation: {x: 0.27728266, y: -0.49149698, z: 0.16863643, w: 0.8081503}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8128,7 +8128,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.24778257, y: -0.49729103, z: 0.15069517, w: 0.81767744}
+  m_LocalRotation: {x: 0.24778256, y: -0.49729115, z: 0.15069522, w: 0.81767744}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10237,6 +10237,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 982756973}
     - target: {fileID: 632283047167056263, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: cmFreeLook
+      value: 
+      objectReference: {fileID: 498799636}
+    - target: {fileID: 632283047167056263, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: runes.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -10271,6 +10275,18 @@ PrefabInstance:
     - target: {fileID: 1497270602280985294, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GoBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171122851726576966, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171122851726576966, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2066080743}
+    - target: {fileID: 6171122851726576966, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetCameraSensitivity
       objectReference: {fileID: 0}
     - target: {fileID: 6254736526290237776, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: freelookCam
@@ -10566,6 +10582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1f88ea1b58e9940a29863c467c6103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cmSensitivityFactor: 1
   sliders:
   - {fileID: 2029002310}
   - {fileID: 2029002309}

@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    // camera
+    public CinemachineFreeLook cmFreeLook;
+    public float _basecmYSpeed = 2.0f;
+    public float _basecmXSpeed = 100.0f;
+    
     public static Vector3 gravity = new Vector3(0.0f, -9.8f, 0.0f);
 
     // 0-> swapTag     1-> parchmentTag     2->selectionWheelTag    3-> hitTag    4-> jumpTag
@@ -105,6 +110,9 @@ public class GameManager : MonoBehaviour
 
         skybox = RenderSettings.skybox;
         ambientLight = RenderSettings.ambientLight;
+
+
+       ChangeSensitivity(1.0f);
 
     }
 
@@ -373,5 +381,11 @@ public class GameManager : MonoBehaviour
                 psTags[(int)deviceTag].color = Color.white;
             }
         }
+    }
+
+    public void ChangeSensitivity(float factor)
+    {
+        cmFreeLook.m_XAxis.m_MaxSpeed = _basecmXSpeed * factor;
+        cmFreeLook.m_YAxis.m_MaxSpeed = _basecmYSpeed * factor;
     }
 }
