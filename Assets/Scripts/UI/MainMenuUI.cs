@@ -36,34 +36,31 @@ public class MainMenuUI : MonoBehaviour
 
     public void ClickedNewGame()
     {
-        // open hub menu
-
         if(!selector.activeInHierarchy)
             return;
 
         // resetear la partida para empezar una nueva
+        ProgressManager.instance.currentCompletedLevels = 0;
+        ProgressManager.instance.SaveGame();  // se guarda la partida en el archivo con nivel actual 0 (se borra el entero que hubiera previamente)
         
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
         if(!ProgressManager.instance.firstTime)
             SceneManager.LoadScene("Hub");
         else
             SceneManager.LoadScene("Interludio");
-        
-        
     }
     
     public void ClickedContinueGame()
     {
-        // open hub menu
-
         if(!selector.activeInHierarchy)
+            return;
+
+        // cargar desde el nivel en el que se quedó el jugaor
+        if (!ProgressManager.instance.LoadGame())
             return;
         
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
-        if(!ProgressManager.instance.firstTime)
-            SceneManager.LoadScene("Hub");
-        
-        // cargar desde el nivel en el que se quedó el jugaor
+        SceneManager.LoadScene("Hub");
     }
     
     public void ClickedSettings()
