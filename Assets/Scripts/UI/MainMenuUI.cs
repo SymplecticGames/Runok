@@ -11,10 +11,11 @@ public class MainMenuUI : MonoBehaviour
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
     public CanvasGroup title;
     public GameObject selector;
-    public Transform playGameButton; 
-    public Transform exitGameButton; 
-    public Transform creditsButton; 
+    public Transform newGameButton; 
+    public Transform continueGameButton;
     public Transform settingsButton;
+    public Transform exitGameButton; 
+    public Transform creditsButton;
 
     public GameObject settingsUIgo;
     
@@ -25,14 +26,33 @@ public class MainMenuUI : MonoBehaviour
     
     // fading parameters
     private bool _doFading;
-    private float _pgbTargetPos = 0.0f;
+    private float _ngbTargetPos = 0.0f;
+    private float _cgbTargetPos = 0.0f;
     private float _egbTargetPos = 0.0f;
     private float _cbTargetPos = 0.0f;
     private float _sbTargetPos = 0.0f;
 
     private float _maxX = 5024.0f;
 
-    public void ClickedPlayGame()
+    public void ClickedNewGame()
+    {
+        // open hub menu
+
+        if(!selector.activeInHierarchy)
+            return;
+
+        // resetear la partida para empezar una nueva
+        
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+        if(!ProgressManager.instance.firstTime)
+            SceneManager.LoadScene("Hub");
+        else
+            SceneManager.LoadScene("Interludio");
+        
+        
+    }
+    
+    public void ClickedContinueGame()
     {
         // open hub menu
 
@@ -42,8 +62,8 @@ public class MainMenuUI : MonoBehaviour
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
         if(!ProgressManager.instance.firstTime)
             SceneManager.LoadScene("Hub");
-        else
-            SceneManager.LoadScene("Interludio");
+        
+        // cargar desde el nivel en el que se quedó el jugaor
     }
     
     public void ClickedSettings()
@@ -86,13 +106,22 @@ public class MainMenuUI : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
-    public void HoverPlayGameButton()
+    public void HoverContinueGameButton()
     {
         // change selector position
         if(!selector.activeInHierarchy)
             return;
 
-        _selectorTargetPosition = playGameButton.localPosition.y;
+        _selectorTargetPosition = continueGameButton.localPosition.y;
+    }
+    
+    public void HoverNewGameButton()
+    {
+        // change selector position
+        if(!selector.activeInHierarchy)
+            return;
+
+        _selectorTargetPosition = newGameButton.localPosition.y;
     }
     
     public void HoverSettingsButton()
@@ -128,8 +157,8 @@ public class MainMenuUI : MonoBehaviour
         selector.SetActive(false);
         title.alpha = 0.0f;
         
-        _pgbTargetPos = playGameButton.localPosition.x;
-        playGameButton.localPosition = new Vector3(_maxX, playGameButton.localPosition.y, playGameButton.localPosition.z);
+        _ngbTargetPos = newGameButton.localPosition.x;
+        newGameButton.localPosition = new Vector3(_maxX, newGameButton.localPosition.y, newGameButton.localPosition.z);
         
         _egbTargetPos = exitGameButton.localPosition.x;
         exitGameButton.localPosition = new Vector3(_maxX, exitGameButton.localPosition.y, exitGameButton.localPosition.z);
@@ -139,6 +168,9 @@ public class MainMenuUI : MonoBehaviour
         
         _sbTargetPos = settingsButton.localPosition.x;
         settingsButton.localPosition = new Vector3(_maxX, settingsButton.localPosition.y, settingsButton.localPosition.z);
+        
+        _cgbTargetPos = continueGameButton.localPosition.x;
+        continueGameButton.localPosition = new Vector3(_maxX, continueGameButton.localPosition.y, continueGameButton.localPosition.z);
         
         Color sColor = settingsUIgo.GetComponent<Image>().color;
         settingsUIgo.GetComponent<Image>().color = new Color(sColor.r,sColor.g,sColor.b, 1.0f);
@@ -163,28 +195,32 @@ public class MainMenuUI : MonoBehaviour
             }
             
             // move buttons
-            pos = playGameButton.localPosition;
-            playGameButton.localPosition = Vector2.Lerp(pos, 
-                new Vector3(_pgbTargetPos, pos.y, pos.z), Time.deltaTime * _damp);
+            pos = newGameButton.localPosition;
+            newGameButton.localPosition = Vector2.Lerp(pos, 
+                new Vector3(_ngbTargetPos, pos.y, pos.z), Time.deltaTime * _damp);
+            
+            pos = continueGameButton.localPosition;
+            continueGameButton.localPosition = Vector2.Lerp(pos, 
+                new Vector3(_cgbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.10f);
             
             pos = settingsButton.localPosition;
             settingsButton.localPosition = Vector2.Lerp(pos, 
-                new Vector3(_sbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.10f);
+                new Vector3(_sbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.20f);
             
             pos = creditsButton.localPosition;
             creditsButton.localPosition = Vector2.Lerp(pos, 
-                new Vector3(_cbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.20f);
+                new Vector3(_cbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.30f);
             
             pos = exitGameButton.localPosition;
             exitGameButton.localPosition = Vector2.Lerp(pos, 
                 new Vector3(_egbTargetPos, pos.y, pos.z), Time.deltaTime * _damp / 1.40f);
 
-            _doFading = !(title.alpha >= 1 && (Mathf.Abs(_pgbTargetPos - playGameButton.localPosition.x) <= 0.001f));
+            _doFading = !(title.alpha >= 1 && (Mathf.Abs(_ngbTargetPos - newGameButton.localPosition.x) <= 0.001f));
             
             if (!_doFading)
             {
                 selector.SetActive(true);
-                HoverPlayGameButton();
+                HoverNewGameButton();
             }
             
         }
