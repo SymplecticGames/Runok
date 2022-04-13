@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using TMPro.SpriteAssetUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -119,6 +120,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (instance)
+            instance.usingGamepad = !DeviceControlsManager.instance.currentDevice.Equals(ConnectedDevice.Keyboard);
+        
         if (volumeLerpStep < 1.0f)
         {
             volumeLerpStep += Time.deltaTime;
@@ -310,52 +314,10 @@ public class GameManager : MonoBehaviour
     public void OnDeviceChange(PlayerInput context)
     {
         if (!DeviceControlsManager.instance)
-        {
-            if (context.devices[0].name.StartsWith("Keyboard"))
-            {
-                // Keyboard Device
-                for (int i = 0; i < kbTags.Count; i++)
-                {
-                    kbTags[i].enabled = true;
-                    xboxTags[i].enabled = false;
-                    psTags[i].enabled = false;
-                }
-                if (instance)
-                    instance.usingGamepad = false;
-
-            }
-            else if (context.devices[0].name.StartsWith("DualShock"))
-            {
-                // PlayStation gamepad Device
-                for (int i = 0; i < kbTags.Count; i++)
-                {
-                    kbTags[i].enabled = false;
-                    xboxTags[i].enabled = false;
-                    psTags[i].enabled = true;
-                }
-                if (instance)
-                    instance.usingGamepad = true;
-            }
-            else
-            {
-                // Xbox gamepad Device
-                for (int i = 0; i < kbTags.Count; i++)
-                {
-                    kbTags[i].enabled = false;
-                    xboxTags[i].enabled = true;
-                    psTags[i].enabled = false;
-                }
-                if (instance)
-                    instance.usingGamepad = true;
-            }
             return;
-        }
 
-        if (instance)
-            instance.usingGamepad = !DeviceControlsManager.instance.currentDevice.Equals(ConnectedDevice.Keyboard);
-
+        DeviceControlsManager.instance.UpdateDeviceConnection(context);
         DeviceControlsManager.instance.SetTagsInScene(kbTags, xboxTags, psTags);
-
     }
 
     public IEnumerator highLightTag(deviceTag deviceTag)
