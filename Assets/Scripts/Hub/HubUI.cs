@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class HubUI : MonoBehaviour
     public List<Image> kbTags;
     public List<Image> xboxTags;
     public List<Image> psTags;
-
+    
     public void OnDeviceChange(PlayerInput context)
     {
         if (!DeviceControlsManager.instance)

@@ -13,7 +13,6 @@ public class DeviceControlsManager : MonoBehaviour
 {
     public static DeviceControlsManager instance;
 
-    [HideInInspector]
     public ConnectedDevice currentDevice;
 
     private void Awake()

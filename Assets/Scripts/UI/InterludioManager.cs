@@ -46,11 +46,6 @@ public class InterludioManager : MonoBehaviour
         _text = gameObject.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Text>();
         _text.text = interludioText[0];
         _targetPosition = imagePositions_X[0];
-        
-        if (!DeviceControlsManager.instance)
-            return;
-
-        DeviceControlsManager.instance.SetTagsInScene(kbTags, xboxTags, psTags);
 
         _interludioAS = GetComponent<AudioSource>();
 
@@ -81,7 +76,8 @@ public class InterludioManager : MonoBehaviour
 
     public void OnDeviceChange(PlayerInput context)
     {
-        if (!DeviceControlsManager.instance) return;
+        if (!DeviceControlsManager.instance)
+            return;
 
         DeviceControlsManager.instance.UpdateDeviceConnection(context);
         DeviceControlsManager.instance.SetTagsInScene(kbTags, xboxTags, psTags);
@@ -181,7 +177,7 @@ public class InterludioManager : MonoBehaviour
             }
             else
             {
-                if (_fadePanel.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idleDark"))
+                if (_fadePanel.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idleDark") && _actualSlide < interludioImages.Length * 3 - 1)
                 {
                     _text.text = interludioText[_actualSlide];
                     _targetPosition = imagePositions_X[0];
