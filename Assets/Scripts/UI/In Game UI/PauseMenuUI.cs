@@ -27,6 +27,8 @@ public class PauseMenuUI : MonoBehaviour
     public Button noButton;
 
     public GameObject settingsUI;
+
+    public bool showingTutorial;
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     private bool _paused;
@@ -36,7 +38,7 @@ public class PauseMenuUI : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (!context.performed || _subMenuOpened)
+        if (!context.performed || _subMenuOpened || showingTutorial)
             return;
         
         if (_paused)
