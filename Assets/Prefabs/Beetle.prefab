@@ -493,10 +493,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6644272186548342524}
   - component: {fileID: 2092408052834874197}
-  - component: {fileID: 5706616781313315214}
   m_Layer: 2
   m_Name: BeetleOnlyLight
-  m_TagString: RadialLight
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -577,19 +576,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!135 &5706616781313315214
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890559603323963306}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1217741925838140701
 GameObject:
   m_ObjectHideFlags: 0
@@ -5711,6 +5697,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  isAttacking: 0
+  canMove: 1
   canRotate: 1
   movementFactor: 0
   maxJumpFactor: 1
@@ -5752,6 +5740,7 @@ MonoBehaviour:
   currentLumMode: 1
   rayClip: {fileID: 7400000, guid: cf674a69ffe37284c971076b169ea2f3, type: 2}
   impulseFactor: 20
+  beetleSight: {fileID: 0}
 --- !u!54 &6655291664893331779
 Rigidbody:
   m_ObjectHideFlags: 0
