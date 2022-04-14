@@ -59,11 +59,11 @@ public class BeetleBoss : MonoBehaviour
         // Bullet Spawn
         EnableBulletSpawn();
 
-
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("isBoss", true);
 
         GameManager.instance.player.SwapCharacter();
+        GameManager.instance.player.currentCharacter.isInBoss = true;
     }
 
     // Update is called once per frame

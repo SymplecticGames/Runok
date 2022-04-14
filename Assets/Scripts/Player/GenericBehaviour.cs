@@ -60,6 +60,9 @@ public class GenericBehaviour : MonoBehaviour
     [HideInInspector]
     public Vector3 currentForwardTarget;
 
+    [HideInInspector]
+    public bool isInBoss;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -96,7 +99,7 @@ public class GenericBehaviour : MonoBehaviour
         // Rotation
         if (isAttacking)
         {
-            if (CompareTag("Beetle"))
+            if (CompareTag("Beetle") && !isInBoss)
                 InstantRotation(Camera.main.transform.forward);
             // NOTE: Erased by Dani to avoid weird rotations when golem hits
             /*
