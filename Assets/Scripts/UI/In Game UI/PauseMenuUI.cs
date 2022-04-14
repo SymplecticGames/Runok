@@ -21,13 +21,13 @@ public class PauseMenuUI : MonoBehaviour
     public Button mainMenuButton;
     public Button goToHubButton;
     public Button goToSettingsButton;
-    
+
     public GameObject confirmationPanel;
     public Button yesButton;
     public Button noButton;
 
     public GameObject settingsUI;
-    
+
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     private bool _paused;
     private bool _subMenuOpened;
@@ -38,7 +38,7 @@ public class PauseMenuUI : MonoBehaviour
     {
         if (!context.performed || _subMenuOpened)
             return;
-        
+
         if (_paused)
         {
             Continue();
@@ -48,11 +48,11 @@ public class PauseMenuUI : MonoBehaviour
             PausePlayer();
             GameManager.instance.pause();
             pauseMenuPanel.SetActive(true);
-            _paused = !_paused;   
+            _paused = !_paused;
             AudioManager.audioInstance.PlayUISound(UIAudioTag.openPauseMenu);
         }
         EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
-        
+
     }
 
     public void Continue()
@@ -97,7 +97,7 @@ public class PauseMenuUI : MonoBehaviour
         settingsUI.SetActive(false);
         _subMenuOpened = false;
     }
-    
+
     public void GoToMainMenu()
     {
         _clickedButton = ClickedButton.MainMenu;
@@ -119,24 +119,24 @@ public class PauseMenuUI : MonoBehaviour
     //////////////////////////////////////  CONFIRMATION PANEL//////////////////////////////////////  
     public void ClickedYes()
     {
-        string sceneName = "MainMenu"; 
-        
+        string sceneName = "MainMenu";
+
         switch (_clickedButton)
         {
             case ClickedButton.Hub:
                 // open hub menu
                 sceneName = "Hub";
                 break;
-            
+
             case ClickedButton.MainMenu:
                 // open main menu
-                sceneName = "MainMenu"; 
+                sceneName = "MainMenu";
                 break;
-            
+
             default:
                 break;
         }
-        
+
         // do transition animation
         SceneTransition.instance.LoadScene(sceneName);
         confirmationPanel.SetActive(false);
@@ -147,17 +147,17 @@ public class PauseMenuUI : MonoBehaviour
     public void ClickedNo()
     {
         EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
-        confirmationPanel.SetActive(false);        
+        confirmationPanel.SetActive(false);
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
         _subMenuOpened = false;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
         continueButton.onClick.AddListener(Continue);
         mainMenuButton.onClick.AddListener(GoToMainMenu);
         goToHubButton.onClick.AddListener(GoToHub);
@@ -187,7 +187,11 @@ public class PauseMenuUI : MonoBehaviour
         GameManager.instance.player.input.actions.FindAction("GolemHit").Enable();
         GameManager.instance.player.input.actions.FindAction("GolemJump").Enable();
         GameManager.instance.player.input.actions.FindAction("ReturnToGolem").Enable();
-        GameManager.instance.player.input.actions.FindAction("SwapCharacter").Enable();
+        GolemBoss golemBoss = FindObjectOfType<GolemBoss>();
+        if (!golemBoss)
+            GameManager.instance.player.input.actions.FindAction("SwapCharacter").Enable();
+        else if (golemBoss.beaten)
+            GameManager.instance.player.input.actions.FindAction("SwapCharacter").Enable();
         GameManager.instance.player.input.actions.FindAction("BeetleFrontRay").Enable();
         GameManager.instance.player.input.actions.FindAction("BeetleBackRay").Enable();
         GameManager.instance.player.input.actions.FindAction("BeetleShoot").Enable();

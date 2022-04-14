@@ -4,77 +4,32 @@ using UnityEngine;
 
 public class GolemBoss : MonoBehaviour
 {
-    #region Boss_Bullet_Hell
+    [SerializeField]
+    public bool beaten;
 
-    private BulletPool bulletPool;
+    [SerializeField]
+    private GolemHeadBoss head;
 
-    [Space]
-    [Header("Bullet Hell Variables")]
-    [SerializeField] private int waveSize;
-    [SerializeField] private int cornerCount;
-    [SerializeField] private float spawnRatio;
-    [SerializeField] private float angleOffset;
+    [SerializeField]
+    private GolemArmBoss leftArm;
 
-    #endregion
-
-    private float elapsedTime;
-
-    // Bezier Follow
-    //private BezierFollow bezier;
+    [SerializeField]
+    private GolemArmBoss rightArm;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Bullet Spawn
-        bulletPool = GetComponent<BulletPool>();
-        EnableBulletSpawn();
+        GameManager.instance.player.input.actions.FindAction("SwapCharacter").Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
-    public void ChangeBulletPattern(int waveSize, int cornerCount, float spawnRatio, float angleOffset)
+    private void EndOfHit()
     {
-        this.waveSize = waveSize;
-        this.cornerCount = cornerCount;
-        this.spawnRatio = spawnRatio;
-        this.angleOffset = angleOffset;
-    }
-
-    public void EnableBulletSpawn()
-    {
-        StartCoroutine(BulletSpawn());
-    }
-
-    public void DisableBulletSpawn()
-    {
-        StopCoroutine(BulletSpawn());
-    }
-
-    private IEnumerator BulletSpawn()
-    {
-        float offset = 0.0f;
-
-        while (true)
-        {
-            yield return new WaitForSeconds(spawnRatio);
-
-            float angle = offset;
-            float angleStep = 360.0f / waveSize;
-
-            for (int i = 0; i < waveSize; i++)
-            {
-                Vector3 bulletDirection = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad)).normalized;
-                float speedOffset = Mathf.Abs(Mathf.Sin(cornerCount * angle * (Mathf.PI / 360.0f)));
-
-                bulletPool.SpawnBullet(bulletDirection, speedOffset);
-
-                angle += angleStep;
-            }
-
-            offset += angleOffset;
-        }
+        head.EndOfHit();
     }
 }
