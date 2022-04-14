@@ -40,6 +40,7 @@ public class MainMenuUI : MonoBehaviour
             return;
 
         // resetear la partida para empezar una nueva
+        ProgressManager.instance.currentLevel = 0;
         ProgressManager.instance.currentCompletedLevels = 0;
         ProgressManager.instance.SaveGame();  // se guarda la partida en el archivo con nivel actual 0 (se borra el entero que hubiera previamente)
         

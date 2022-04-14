@@ -28,7 +28,7 @@ public class CameraPan : MonoBehaviour
     {
         if (!firstTime && onlyOnce)
             return;
-
+        
         firstTime = false;
 
         StartCoroutine(PanCoroutine());
@@ -85,5 +85,7 @@ public class CameraPan : MonoBehaviour
             else
                 playerManager.input.actions.FindAction("WheelMenu").Disable();
         }
+
+        isPanning = false;
     }
 }
