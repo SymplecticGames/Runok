@@ -95,6 +95,9 @@ public class Altar : MonoBehaviour
             ProgressManager.instance.currentCompletedLevels++;
         }
 
+        // Save game each time that an altar is triggered
+        ProgressManager.instance.SaveGame();
+        
         GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
         GetComponent<AudioSource>().Play();
         SceneTransition.instance.LoadScene("Hub");

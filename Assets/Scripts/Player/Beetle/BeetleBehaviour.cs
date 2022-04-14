@@ -74,12 +74,12 @@ public class BeetleBehaviour : MonoBehaviour
 
     private Vector3 additionalVel = Vector3.zero;
 
-    private Light beetleLight;
+    private GameObject beetleLight;
 
 
     public GameObject beetleSight;
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,7 +95,7 @@ public class BeetleBehaviour : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
-        beetleLight = GetComponentInChildren<Light>();
+        beetleLight = GameObject.FindGameObjectWithTag("RadialLight");
     }
 
     // Update is called once per frame
@@ -125,15 +125,15 @@ public class BeetleBehaviour : MonoBehaviour
         {
             case LumMode.RadialLight:
                 if (!GameManager.instance.player.restingBeetle)
-                    beetleLight.enabled = true;
+                    beetleLight.SetActive(true);
                 else
-                    beetleLight.enabled = false;
+                    beetleLight.SetActive(false);
 
                 animator.SetBool("BackRay", false);
                 animator.SetBool("FrontRay", false);
                 break;
             case LumMode.LightShot:
-                beetleLight.enabled = false;
+                beetleLight.SetActive(false);
 
                 if (shootPressed && shootElapsedTime > shootCooldown)
                 {
@@ -147,54 +147,24 @@ public class BeetleBehaviour : MonoBehaviour
                     animator.SetBool("BackRay", false);
 
                 shootElapsedTime += Time.deltaTime;
-                
-                
-                // beetleSight /////////////////////////////////////////////////////////////////////////////////////////
-                
 
-                
-                // Debug.Log((Camera.main.transform.eulerAngles.x )); //--> 17 arriba, 70 abajo
-                // float scale = 1.0f;
-                // var sc = beetleSight.GetComponent<RectTransform>().localScale;
-                // float beetleRot = Camera.main.transform.eulerAngles.x;
-                // if (beetleRot >= 17.6f)
-                // {
-                //     scale = 17.6f / beetleRot;
-                // }
-                //
-                // Vector3 newScale = new Vector3(scale, scale, sc.z);
-                // if(Mathf.Abs(beetleSight.GetComponent<RectTransform>().localScale.x - newScale.x) > 0.001f)
-                //     beetleSight.GetComponent<RectTransform>().localScale = Vector3.Lerp(sc, newScale, Time.deltaTime * 4.0f);
-                
-                
-                // Debug.Log((Camera.main.WorldToViewportPoint(transform.position).x )); --> 0.4 izq, 0.5 centr, 0.6 der
                 float xVal = 0.0f;
-                var pos = beetleSight.GetComponent<RectTransform>().localPosition;
+                Vector3 pos = beetleSight.GetComponent<RectTransform>().localPosition;
                 float beetlePos = Camera.main.WorldToViewportPoint(transform.position).x;
-                
+
                 if (beetlePos < 0.499f)
-                {
-                    // xVal = Mathf.Abs(0.49f - beetlePos) -10 -10*(1-scale);
-                    xVal = Mathf.Abs(0.49f - beetlePos) -10;
-                }else if (beetlePos > 0.511f)
-                {
-                    // xVal = Mathf.Abs(0.51f - beetlePos) + 10 + 10*(1-scale);
+                    xVal = Mathf.Abs(0.49f - beetlePos) - 10;
+                else if (beetlePos > 0.511f)
                     xVal = Mathf.Abs(0.51f - beetlePos) + 10;
-                    
-                }
-                
+
                 Vector3 newPos = new Vector3(xVal, pos.y, pos.z);
-                if(Mathf.Abs(beetleSight.GetComponent<RectTransform>().localPosition.x - newPos.x) > 0.001f)
-                    beetleSight.GetComponent<RectTransform>().localPosition = Vector3.Lerp(pos , newPos, Time.deltaTime * 4.0f);
+                if (Mathf.Abs(beetleSight.GetComponent<RectTransform>().localPosition.x - newPos.x) > 0.001f)
+                    beetleSight.GetComponent<RectTransform>().localPosition = Vector3.Lerp(pos, newPos, Time.deltaTime * 4.0f);
 
-
-                ////////////////////////////////////////////////////////////////////////////////////////////////////////
-                
-                
                 break;
             case LumMode.LightImpulse:
-                beetleLight.enabled = false;
-                
+                beetleLight.SetActive(false);
+
                 additionalVel += charBehaviour.currentForwardTarget * impulseFactor * forwardFactor;
                 additionalVel += charBehaviour.currentForwardTarget * impulseFactor * backwardFactor;
 
@@ -226,7 +196,7 @@ public class BeetleBehaviour : MonoBehaviour
                 break;
         }
 
-        if(charBehaviour != null)
+        if (charBehaviour != null)
             charBehaviour.SetAdditionalVel(additionalVel);
     }
 
@@ -283,12 +253,12 @@ public class BeetleBehaviour : MonoBehaviour
     {
         GetComponent<AudioSource>().Play();
     }
-    
+
     public void StopFlutterSound()
     {
         AudioSource o;
-        if(TryGetComponent<AudioSource>(out o))
+        if (TryGetComponent<AudioSource>(out o))
             GetComponent<AudioSource>().Stop();
     }
-    
+
 }

@@ -2,18 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct BeetleBossPattern
+{
+    public BeetleBossPattern(int waveSize, int cornerCount, float spawnRatio, float angleOffset, bool enableBezier)
+    {
+        this.waveSize = waveSize;
+        this.cornerCount = cornerCount;
+        this.spawnRatio = spawnRatio;
+        this.angleOffset = angleOffset;
+        this.enableBezier = enableBezier;
+    }
+
+    public int waveSize;
+    public int cornerCount;
+    public float spawnRatio;
+    public float angleOffset;
+    public bool enableBezier;
+}
+
 public class BeetleBoss : MonoBehaviour
 {
     #region Boss_Bullet_Hell
 
     private BulletPool bulletPool;
+    private float speedFactor = 2.0f;
 
     [Space]
     [Header("Bullet Hell Variables")]
-    [SerializeField] private int waveSize;
-    [SerializeField] private int cornerCount;
-    [SerializeField] private float spawnRatio;
-    [SerializeField] private float angleOffset;
+    [SerializeField]
+    private BeetleBossPattern spiralPattern;
+
+    [SerializeField]
+    private BeetleBossPattern circleBezier;
+
+    [SerializeField]
+    private BeetleBossPattern flowerPattern;
+
+    private BeetleBossPattern currentBossPattern;
 
     #endregion
 
@@ -27,12 +53,12 @@ public class BeetleBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Bullet Spawn
         bulletPool = GetComponent<BulletPool>();
+        bezier = GetComponentInParent<BezierFollow>();
+
+        // Bullet Spawn
         EnableBulletSpawn();
 
-        bezier = GetComponent<BezierFollow>();
-        bezier.enabled = false;
 
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("isBoss", true);
@@ -43,20 +69,15 @@ public class BeetleBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //elapsedTime += Time.deltaTime;
-        //if (elapsedTime > 5.0f){
-        //    ChangeBulletPattern(15, 0, 1, 0, true);
-        //    elapsedTime = 0.0f;
-        //}
-    }
+        currentBossPattern = flowerPattern;
+        bezier.enabled = currentBossPattern.enableBezier;
 
-    public void ChangeBulletPattern(int waveSize, int cornerCount, float spawnRatio, float angleOffset, bool enableBezier)
-    {
-        this.waveSize = waveSize;
-        this.cornerCount = cornerCount;
-        this.spawnRatio = spawnRatio;
-        this.angleOffset = angleOffset;
-        bezier.enabled = enableBezier;
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime > 5.0f)
+        {
+            spiralPattern.angleOffset = -spiralPattern.angleOffset;
+            elapsedTime = 0.0f;
+        }
     }
 
     public void EnableBulletSpawn()
@@ -75,22 +96,22 @@ public class BeetleBoss : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(spawnRatio);
+            yield return new WaitForSeconds(currentBossPattern.spawnRatio);
 
             float angle = offset;
-            float angleStep = 360.0f / waveSize;
+            float angleStep = 360.0f / currentBossPattern.waveSize;
 
-            for (int i = 0; i < waveSize; i++)
+            for (int i = 0; i < currentBossPattern.waveSize; i++)
             {
                 Vector3 bulletDirection = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad)).normalized;
-                float speedOffset = Mathf.Abs(Mathf.Sin(cornerCount * angle * (Mathf.PI / 360.0f)));
+                float speedOffset = Mathf.Abs(Mathf.Sin(currentBossPattern.cornerCount * angle * (Mathf.PI / 360.0f))) * speedFactor;
 
                 bulletPool.SpawnBullet(bulletDirection, speedOffset);
 
                 angle += angleStep;
             }
 
-            offset += angleOffset;
+            offset += currentBossPattern.angleOffset;
         }
     }
 }

@@ -1,5 +1,106 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &37633847010728825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8352041071100037870}
+  - component: {fileID: 5031347452496078025}
+  m_Layer: 8
+  m_Name: Scarab_transparent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8352041071100037870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37633847010728825}
+  m_LocalRotation: {x: -0.00000013767877, y: 0.7071068, z: 0.70710677, w: 0.00000013767878}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 90.19172, y: 90.19172, z: 90.19172}
+  m_Children: []
+  m_Father: {fileID: 3122619784660323541}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &5031347452496078025
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37633847010728825}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8b88f8f31df1d623e885fd04b7108e4a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 3276845548034810804, guid: 5893a004465b65ded92877ab63330dd6, type: 3}
+  m_Bones:
+  - {fileID: 4934032998213300875}
+  - {fileID: 6306154077520249124}
+  - {fileID: 619168580666322523}
+  - {fileID: 4779229539278369032}
+  - {fileID: 7296904225554156646}
+  - {fileID: 57471403810026684}
+  - {fileID: 2575877973013535439}
+  - {fileID: 2221391831094394849}
+  - {fileID: 6153834261159718927}
+  - {fileID: 8637461953827564079}
+  - {fileID: 4813645783146957780}
+  - {fileID: 2434212755975417454}
+  - {fileID: 744870177875891967}
+  - {fileID: 9102595739911968191}
+  - {fileID: 3361472933080040500}
+  - {fileID: 5900300849746822838}
+  - {fileID: 8373763835197943782}
+  - {fileID: 7898329875804652904}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 4934032998213300875}
+  m_AABB:
+    m_Center: {x: -0.0000798041, y: 0.0020304285, z: 0.0019619386}
+    m_Extent: {x: 0.022410944, y: 0.014098838, z: 0.011593007}
+  m_DirtyAABB: 0
 --- !u!1 &81262785307659160
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +224,7 @@ Transform:
   m_Children:
   - {fileID: 6883362353335996654}
   m_Father: {fileID: 3122619784660323541}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!120 &5566276655558490258
 LineRenderer:
@@ -493,10 +594,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6644272186548342524}
   - component: {fileID: 2092408052834874197}
-  - component: {fileID: 5706616781313315214}
   m_Layer: 2
   m_Name: BeetleOnlyLight
-  m_TagString: RadialLight
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -509,11 +609,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890559603323963306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.35, z: -0.89}
+  m_LocalPosition: {x: 0, y: -0.069, z: -0.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3122619784660323541}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &2092408052834874197
 Light:
@@ -577,19 +677,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!135 &5706616781313315214
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890559603323963306}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1217741925838140701
 GameObject:
   m_ObjectHideFlags: 0
@@ -5674,6 +5761,7 @@ Transform:
   - {fileID: 5137379156794872745}
   - {fileID: 4627203442495585242}
   - {fileID: 517637186457563925}
+  - {fileID: 8352041071100037870}
   - {fileID: 4398042863916571074}
   - {fileID: 6669583891032862211}
   - {fileID: 6644272186548342524}
@@ -5711,6 +5799,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  isAttacking: 0
+  canMove: 1
   canRotate: 1
   movementFactor: 0
   maxJumpFactor: 1
@@ -5752,6 +5842,7 @@ MonoBehaviour:
   currentLumMode: 1
   rayClip: {fileID: 7400000, guid: cf674a69ffe37284c971076b169ea2f3, type: 2}
   impulseFactor: 20
+  beetleSight: {fileID: 0}
 --- !u!54 &6655291664893331779
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6353,7 +6444,7 @@ GameObject:
   - component: {fileID: 517637186457563925}
   - component: {fileID: 7963887599427413464}
   m_Layer: 8
-  m_Name: Scarab
+  m_Name: Scarab_opaque
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6417,7 +6508,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 3276845548034810804, guid: 20f3c917fb15f4b46900d72a46aa1e15, type: 3}
+  m_Mesh: {fileID: 3276845548034810804, guid: cea9141959ddd134f842656e33e410dd, type: 3}
   m_Bones:
   - {fileID: 4934032998213300875}
   - {fileID: 6306154077520249124}
@@ -11489,7 +11580,7 @@ Transform:
   m_Children:
   - {fileID: 1358533792171537479}
   m_Father: {fileID: 3122619784660323541}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!120 &2520828280307021905
 LineRenderer:

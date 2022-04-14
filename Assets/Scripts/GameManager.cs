@@ -20,10 +20,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    // camera
-    public CinemachineFreeLook cmFreeLook;
-    public float _basecmYSpeed = 2.0f;
-    public float _basecmXSpeed = 100.0f;
+    // Camera
+    public float _basecmYSpeed;
+    public float _basecmXSpeed;
     
     public static Vector3 gravity = new Vector3(0.0f, -9.8f, 0.0f);
 
@@ -112,9 +111,13 @@ public class GameManager : MonoBehaviour
         skybox = RenderSettings.skybox;
         ambientLight = RenderSettings.ambientLight;
 
-
-       ChangeSensitivity(1.0f);
-
+        if (player.freelookCam)
+        {
+            _basecmXSpeed = player.freelookCam.m_XAxis.m_MaxSpeed;
+            _basecmYSpeed = player.freelookCam.m_YAxis.m_MaxSpeed;
+        }
+       
+        ChangeSensitivity(1.0f);
     }
 
     // Update is called once per frame
@@ -347,7 +350,10 @@ public class GameManager : MonoBehaviour
 
     public void ChangeSensitivity(float factor)
     {
-        cmFreeLook.m_XAxis.m_MaxSpeed = _basecmXSpeed * factor;
-        cmFreeLook.m_YAxis.m_MaxSpeed = _basecmYSpeed * factor;
+        if (!player.freelookCam)
+            return;
+
+        player.freelookCam.m_XAxis.m_MaxSpeed = _basecmXSpeed * factor;
+        player.freelookCam.m_YAxis.m_MaxSpeed = _basecmYSpeed * factor;
     }
 }

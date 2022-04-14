@@ -79,7 +79,7 @@ public class HubController : MonoBehaviour
         float direction = context.ReadValue<Vector2>().y;
 
         // Go to next level
-        if (direction > 0 && ProgressManager.instance.currentLevel < routes.Length - 1 && ProgressManager.instance.currentLevel < ProgressManager.instance.currentCompletedLevels)
+        if (direction > 0 && ProgressManager.instance.currentLevel < routes.Length && ProgressManager.instance.currentLevel < ProgressManager.instance.currentCompletedLevels)
         {
             back = false;
             AssignRoute();
@@ -120,7 +120,7 @@ public class HubController : MonoBehaviour
 
                 case 3: // nivel 4
                     //SceneTransition.sceneTransitioninstance.LoadScene("Level4");
-                    SceneTransition.instance.LoadScene("TestPlayground");
+                    SceneTransition.instance.LoadScene("Level4");
                     break;
 
                 default: break;
