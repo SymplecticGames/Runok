@@ -22,9 +22,12 @@ public class GolemArmBoss : MonoBehaviour
     [SerializeField]
     private float handRotSpeedLerpAccel = 2.0f;
 
+    private GolemBoss golemBoss;
+
     // Start is called before the first frame update
     void Start()
     {
+        golemBoss = GetComponentInParent<GolemBoss>();
         hand = transform.GetChild(0);
 
         meshFilter = hand.GetComponent<MeshFilter>();
@@ -57,6 +60,20 @@ public class GolemArmBoss : MonoBehaviour
                 hand.RotateAround(hand.TransformPoint(localHandCenter), transform.up, Time.deltaTime * 100 * currentHandRotSpeed);
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!enabled)
+            return;
+
+        if (!other.CompareTag("Golem"))
+            return;
+
+        if (other.GetComponent<GolemBehaviour>().currentMaterial == GolemMaterial.Plumber && golemBoss.IsSwiping())
+            golemBoss.HitPlumber();
+        else
+            GameManager.instance.player.Die();
     }
 
     public void StartHandRotation()

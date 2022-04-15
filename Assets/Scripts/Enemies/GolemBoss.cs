@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GolemBoss : MonoBehaviour
 {
-    [SerializeField]
+    [HideInInspector]
     public bool beaten;
 
     [SerializeField]
@@ -16,7 +18,8 @@ public class GolemBoss : MonoBehaviour
     [SerializeField]
     private GolemArmBoss rightArm;
 
-    private Animator headAnim;
+    [HideInInspector]
+    public Animator headAnim;
 
     private Animator armsAnim;
 
@@ -25,6 +28,23 @@ public class GolemBoss : MonoBehaviour
     private float bossTiredTimer;
 
     private int attacksDoneCounter;
+
+    [Header("Properties")]
+    [SerializeField]
+    private int maxHealth = 10;
+
+    private int currentHealth;
+
+    [SerializeField]
+    private float timeBetweenAttacks = 2.0f;
+
+    [SerializeField]
+    private float timeSpentTired = 5.0f;
+
+    [SerializeField]
+    private int maxContinousAttacks = 3;
+
+    private bool alreadyDead;
 
     // Start is called before the first frame update
     void Start()
@@ -36,52 +56,94 @@ public class GolemBoss : MonoBehaviour
         bossTiredTimer = 0.0f;
         attacksDoneCounter = 0;
 
+        currentHealth = maxHealth;
+
         GameManager.instance.player.input.actions.FindAction("SwapCharacter").Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // The boss is idling
-        if (!armsAnim.GetBool("SwipeLeft") && !armsAnim.GetBool("SwipeRight") && !headAnim.GetBool("isTired"))
+        if (beaten)
         {
-            bossIdleTimer += Time.deltaTime;
-
-            // Time in Idle
-            if (bossIdleTimer > 2.0f)
-            {
-                int rand = Random.Range(0, 2); // 2 possibilities (Swipe L, Swipe R)
-
-                if (attacksDoneCounter > 2)
-                    rand = 2;
-
-                if (rand == 0)
-                    armsAnim.SetBool("SwipeLeft", true);
-                else if (rand == 1)
-                    armsAnim.SetBool("SwipeRight", true);
-                else if (rand == 2)
-                {
-                    attacksDoneCounter = 0;
-                    head.SetRuneActive(true, 1.0f);
-                    headAnim.SetBool("isTired", true);
-                }
-
-                bossIdleTimer = 0.0f;
-                attacksDoneCounter++;
-            }
+            if (!alreadyDead) headAnim.SetTrigger("Die");
+            alreadyDead = true;
+            return;
         }
-        else if (headAnim.GetBool("isTired"))
+
+        if (headAnim.GetBool("isTired"))
         {
             bossTiredTimer += Time.deltaTime;
 
-            // Time in Tired
-            if (bossTiredTimer > 5.0f)
+            if (bossTiredTimer > timeSpentTired)
             {
                 bossTiredTimer = 0.0f;
                 head.SetRuneActive(false, 0.0f);
                 headAnim.SetBool("isTired", false);
             }
         }
+        else if (armsAnim.GetCurrentAnimatorStateInfo(0).IsTag("IdleTag"))
+        {
+            bossIdleTimer += Time.deltaTime;
+
+            if (bossIdleTimer > timeBetweenAttacks)
+            {
+                bossIdleTimer = 0.0f;
+                attacksDoneCounter++;
+
+                int rand = UnityEngine.Random.Range(0, 4); // 4 different patterns
+
+                if (attacksDoneCounter > maxContinousAttacks)
+                    rand = -1;
+
+                switch (rand)
+                {
+                    case -1:
+                        attacksDoneCounter = 0;
+                        head.SetRuneActive(true, 1.0f);
+                        headAnim.SetBool("isTired", true);
+                        break;
+                    case 0:
+                        armsAnim.SetTrigger("SwipeLeft");
+                        break;
+                    case 1:
+                        armsAnim.SetTrigger("SwipeRight");
+                        break;
+                    case 2:
+                        armsAnim.SetTrigger("SmashLeft");
+                        break;
+                    case 3:
+                        armsAnim.SetTrigger("SmashRight");
+                        break;
+                }
+            }
+        }
+    }
+
+    public void GoToBeetleBoss()
+    {
+        SceneManager.LoadScene("BeetleBoss");
+    }
+
+    public void LoseHealth(int healthLost)
+    {
+        currentHealth -= healthLost;
+
+        if (currentHealth <= 0)
+        {
+            beaten = true;
+            GameManager.instance.player.input.actions.FindAction("SwapCharacter").Enable();
+        }
+    }
+
+    public bool IsSwiping()
+    {
+        return armsAnim.GetCurrentAnimatorStateInfo(0).IsTag("SwipeAttack");
+    }
+
+    public void HitPlumber()
+    {
+        armsAnim.SetTrigger("HitPlumber");
     }
 
     private void EndOfHit()
@@ -97,7 +159,6 @@ public class GolemBoss : MonoBehaviour
     private void EndLeftHandRotation()
     {
         leftArm.EndHandRotation();
-        armsAnim.SetBool("SwipeLeft", false);
     }
 
     private void StartRightHandRotation()
@@ -108,6 +169,5 @@ public class GolemBoss : MonoBehaviour
     private void EndRightHandRotation()
     {
         rightArm.EndHandRotation();
-        armsAnim.SetBool("SwipeRight", false);
     }
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class GolemHeadBoss : MonoBehaviour
 {
-    [HideInInspector]
-    public Animator headAnim;
+    private GolemBoss golemBoss;
 
     private bool isBeingHitted;
 
@@ -15,7 +14,7 @@ public class GolemHeadBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        headAnim = GetComponent<Animator>();
+        golemBoss = GetComponentInParent<GolemBoss>();
         runeSymbol = GetComponentInChildren<SpriteRenderer>();
     }
 
@@ -39,8 +38,9 @@ public class GolemHeadBoss : MonoBehaviour
             golem.PlayHitSomethingSound();
 
             // update hit counter
+            golemBoss.LoseHealth(golem.golemStats.hitsNeededToKill); // Variable reutilizada para este caso, dado que funciona, es simple y yo que se, estoy cansado
 
-            headAnim.SetBool("isHit", true);
+            golemBoss.headAnim.SetBool("isHit", true);
 
             // Disable boss collider
             isBeingHitted = true;
@@ -55,7 +55,7 @@ public class GolemHeadBoss : MonoBehaviour
     {
         isBeingHitted = false;
 
-        headAnim.SetBool("isHit", false);
+        golemBoss.headAnim.SetBool("isHit", false);
     }
 
     public void SetRuneActive(bool active, float delay)
