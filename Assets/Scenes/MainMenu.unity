@@ -717,6 +717,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsUI-Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 4147065809028372555, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4572413363172616029, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -752,6 +756,14 @@ PrefabInstance:
     - target: {fileID: 4572413363172616029, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572413363172616029, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572413363172616029, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 4572413363172616029, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
       propertyPath: m_LocalPosition.x
