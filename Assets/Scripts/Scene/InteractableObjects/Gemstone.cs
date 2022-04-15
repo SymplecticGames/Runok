@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gemstone : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class Gemstone : MonoBehaviour
 
     [SerializeField]
     private bool neverGlowDown;
+
+    [SerializeField]
+    private UnityEvent onTouchAction;
 
     private float lightCoolDown;
 
@@ -103,6 +107,9 @@ public class Gemstone : MonoBehaviour
         {
             audio.volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
             audio.Play();
+
+            if (onTouchAction != null)
+                onTouchAction.Invoke();
         }
     }
 

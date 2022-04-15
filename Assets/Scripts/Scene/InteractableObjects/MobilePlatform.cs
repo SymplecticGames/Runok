@@ -90,6 +90,17 @@ public class MobilePlatform : MonoBehaviour
         StartCoroutine(MovePlatform());
     }
 
+    public void StartMovingTarget(Transform target)
+    {
+        if (target.position != platform.position && !_movementStarted)
+        {
+            targetPos.position = target.position;
+            startingPos = platform.position;
+            _movementStarted = false;
+            StartCoroutine(MovePlatform());
+        } 
+    }
+
     private IEnumerator MovePlatform()
     {
         yield return new WaitForSeconds(1.0f);
@@ -98,4 +109,5 @@ public class MobilePlatform : MonoBehaviour
 
         lerpTime = 0.0f;
     }
+
 }
