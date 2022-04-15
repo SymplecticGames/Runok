@@ -12,10 +12,10 @@ public enum PlatformPreset
 
 public class MobilePlatform : MonoBehaviour
 {
-    [SerializeField]
     public Transform platform;
 
-    public Transform targetPos;
+    [SerializeField]
+    private Transform targetPos;
 
     [SerializeField]
     private float speed;
@@ -26,17 +26,14 @@ public class MobilePlatform : MonoBehaviour
     private bool loopMovement;
 
     [HideInInspector]
-    public Vector3 startingPos;
-
-    [HideInInspector]
-    public float currentSpeed;
-
-    [HideInInspector]
     public bool _movementStarted;
 
+    private Vector3 startingPos;
+    private Vector3 finalPos;
+    private float currentSpeed;
     private float lerpTime;
-
     private bool firstTime = true;
+    private bool isTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +52,7 @@ public class MobilePlatform : MonoBehaviour
     {
         if (_movementStarted)
         {
-            platform.position = Vector3.Lerp(startingPos, targetPos.position, lerpTime);
+            platform.position = Vector3.Lerp(startingPos, finalPos, lerpTime);
 
             if (lerpTime > 1.0f)
             {
@@ -65,6 +62,12 @@ public class MobilePlatform : MonoBehaviour
                     currentSpeed = 0.0f;
 
                 lerpTime = 1.0f;
+
+                if (isTarget)
+                {
+                    _movementStarted = false;
+                    platform.position = finalPos;
+                }
             }
             else if (lerpTime < 0.0f)
             {
@@ -86,6 +89,7 @@ public class MobilePlatform : MonoBehaviour
             return;
 
         firstTime = false;
+        finalPos = targetPos.position;
 
         StartCoroutine(MovePlatform());
     }
@@ -94,9 +98,9 @@ public class MobilePlatform : MonoBehaviour
     {
         if (target.position != platform.position && !_movementStarted)
         {
-            targetPos.position = target.position;
             startingPos = platform.position;
-            _movementStarted = false;
+            finalPos = target.position;
+            isTarget = true;
             StartCoroutine(MovePlatform());
         } 
     }

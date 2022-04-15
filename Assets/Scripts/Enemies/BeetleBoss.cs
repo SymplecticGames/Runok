@@ -43,6 +43,11 @@ public class BeetleBoss : MonoBehaviour
 
     #endregion
 
+    [Space]
+    [SerializeField]
+    private GameObject[] forceShields;
+    private int currentShield;
+
     private float elapsedTime;
 
     // Bezier Follow
@@ -88,6 +93,16 @@ public class BeetleBoss : MonoBehaviour
     public void DisableBulletSpawn()
     {
         StopCoroutine(BulletSpawn());
+    }
+
+    public void DeactivateShieldForce()
+    {
+        Debug.Log("Break shield");
+        if(currentShield < forceShields.Length)
+        {
+            forceShields[currentShield].SetActive(false);
+            currentShield++;
+        }
     }
 
     private IEnumerator BulletSpawn()
