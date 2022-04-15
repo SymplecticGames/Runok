@@ -25,10 +25,6 @@ public class TutorialUI : MonoBehaviour
     private void Awake()
     {
 
-        
-        gameObject.GetComponent<CanvasGroup>().alpha = 0.0f;
-        StartCoroutine(WaitToShow());
-
     }
 
     IEnumerator WaitToShow()
@@ -39,25 +35,20 @@ public class TutorialUI : MonoBehaviour
             GameManager.instance.pause();
         }
         gameObject.GetComponent<CanvasGroup>().alpha = 1.0f;
-        
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         lateralMenu = CanvasInGameUI.GetComponent<LateralMenuUI>();
         pauseMenu = CanvasInGameUI.GetComponent<PauseMenuUI>();
-        
+
         lateralMenu.showingTutorial = true;
         pauseMenu.showingTutorial = true;
-        
+
         switch (ProgressManager.instance.currentLevel)
         {
             case 0:
                 clueIndex = 0;
                 maxLength = 4;
                 break;
-            
+
             case 1:
                 clueIndex = 4;
                 maxLength = 5;
@@ -65,11 +56,11 @@ public class TutorialUI : MonoBehaviour
                 nextButton.interactable = false;
                 skip_closeButton.GetComponentInChildren<Text>().text = "Cerrar pistas";
                 break;
-            
+
             case 2:
-                ClickedSkip_Close();
+
                 break;
-            
+
             case 3:
                 clueIndex = 5;
                 maxLength = 6;
@@ -77,13 +68,23 @@ public class TutorialUI : MonoBehaviour
                 nextButton.interactable = false;
                 skip_closeButton.GetComponentInChildren<Text>().text = "Cerrar pistas";
                 break;
-                
+
         }
-  
+
         previousButton.gameObject.SetActive(false);
         previousButton.interactable = false;
 
         ShowGroup();
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        gameObject.GetComponent<CanvasGroup>().alpha = 0.0f;
+
+        if (ProgressManager.instance.currentLevel != 2)
+            StartCoroutine(WaitToShow());
     }
 
     public void ClickedSkip_Close()
