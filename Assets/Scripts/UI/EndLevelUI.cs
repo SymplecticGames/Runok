@@ -31,6 +31,18 @@ public class EndLevelUI : MonoBehaviour
         beetleText.text = _beetleAbility[ProgressManager.instance.currentLevel];
     }
 
+    IEnumerator WaitForEndOfAnim()
+    {
+        GetComponent<CanvasGroup>().alpha = 0.0f;
+        yield return new WaitForSeconds(2.0f);
+        GetComponent<CanvasGroup>().alpha = 1.0f;
+        
+    }
+    public void ClickedContinue()
+    {
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+        SceneManager.LoadScene("Hub");
+    }
     // Update is called once per frame
     void Update()
     {
