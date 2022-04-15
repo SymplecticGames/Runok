@@ -21,7 +21,7 @@ public class ProgressManager : MonoBehaviour
         if (!instance)
         {
             currentCompletedLevels = 0;
-            currentLevel = 0;
+            currentLevel = 2;
 
             instance = this;
             DontDestroyOnLoad(this);

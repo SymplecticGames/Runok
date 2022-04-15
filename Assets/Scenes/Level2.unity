@@ -2848,7 +2848,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.32002333, y: -0.15719688, z: 0.053935487, w: 0.9327193}
+  m_LocalRotation: {x: 0.3200233, y: -0.15719686, z: 0.05393547, w: 0.9327193}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7069,7 +7069,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.3200234, y: -0.15719688, z: 0.053935498, w: 0.93271923}
+  m_LocalRotation: {x: 0.3200234, y: -0.15719688, z: 0.05393548, w: 0.93271923}
   m_LocalPosition: {x: 160.24986, y: 49.5, z: -205.60284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -8548,7 +8548,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.3200233, y: -0.15719686, z: 0.05393547, w: 0.9327193}
+  m_LocalRotation: {x: 0.32002333, y: -0.15719688, z: 0.053935487, w: 0.9327193}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8644,7 +8644,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.2859761, y: -0.15905005, z: 0.048197303, w: 0.9437149}
+  m_LocalRotation: {x: 0.28597614, y: -0.15905005, z: 0.048197296, w: 0.9437149}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8982,11 +8982,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2818099675424526788, guid: 146672980f0dd804e8d2d752f1c9f16e, type: 3}
   m_PrefabInstance: {fileID: 1683947864}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &1709343970 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 4871324482821423741, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
-  m_PrefabInstance: {fileID: 2029002307}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1735157016
 GameObject:
@@ -10496,16 +10491,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1995266414}
     m_Modifications:
+    - target: {fileID: 696929705993936478, guid: 191dbd069a3d29742b65a99590d1213b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2703680912249508426, guid: 191dbd069a3d29742b65a99590d1213b, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2760163541134140422, guid: 191dbd069a3d29742b65a99590d1213b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3599975073691103528, guid: 191dbd069a3d29742b65a99590d1213b, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 3355822844299656071, guid: 191dbd069a3d29742b65a99590d1213b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5320718306414441826, guid: 191dbd069a3d29742b65a99590d1213b, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 5107907197613549436, guid: 191dbd069a3d29742b65a99590d1213b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042683570174162994, guid: 191dbd069a3d29742b65a99590d1213b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7217821770885797534, guid: 191dbd069a3d29742b65a99590d1213b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7841479053435663497, guid: 191dbd069a3d29742b65a99590d1213b, type: 3}
@@ -10919,7 +10930,7 @@ PrefabInstance:
     - target: {fileID: 11795782141075121, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: clues.Array.data[4]
       value: 
-      objectReference: {fileID: 1709343970}
+      objectReference: {fileID: 0}
     - target: {fileID: 497279135737848963, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_IsActive
       value: 1

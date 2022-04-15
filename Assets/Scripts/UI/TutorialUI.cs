@@ -57,10 +57,6 @@ public class TutorialUI : MonoBehaviour
                 skip_closeButton.GetComponentInChildren<Text>().text = "Cerrar pistas";
                 break;
 
-            case 2:
-
-                break;
-
             case 3:
                 clueIndex = 5;
                 maxLength = 6;
@@ -85,6 +81,9 @@ public class TutorialUI : MonoBehaviour
 
         if (ProgressManager.instance.currentLevel != 2)
             StartCoroutine(WaitToShow());
+        else
+            gameObject.SetActive(false);
+        
     }
 
     public void ClickedSkip_Close()
