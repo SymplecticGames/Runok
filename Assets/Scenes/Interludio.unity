@@ -603,6 +603,8 @@ GameObject:
   - component: {fileID: 549676996}
   - component: {fileID: 549676995}
   - component: {fileID: 549676998}
+  - component: {fileID: 549676999}
+  - component: {fileID: 549677000}
   m_Layer: 5
   m_Name: InterludioTransitionPanel
   m_TagString: Untagged
@@ -698,6 +700,153 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &549676999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549676993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6014960a857f8614a854ea1b36c54a64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skipButton: {fileID: 2048313047}
+  kbTags:
+  - {fileID: 525779297}
+  xboxTags:
+  - {fileID: 938662322}
+  psTags:
+  - {fileID: 564531781}
+  damp: 0.5
+  interludioImages:
+  - {fileID: 21300000, guid: 3b94b16fd6281f543a26adfe6ef6b9da, type: 3}
+  - {fileID: 21300000, guid: 766d89091833ee347b9b9bdc31cb94fd, type: 3}
+  - {fileID: 21300000, guid: e61e01d57fd00024994b8b0fdc17774b, type: 3}
+  interludioText:
+  - "Runok es un g\xF3lem que como otros tantos, fue creado para brindar ayuda a
+    la humanidad."
+  - "Cuando su creador lo termin\xF3 de construir, le otorg\xF3 un pergamino de instrucciones
+    que conten\xEDa todas las habilidades que era capaz de realizar."
+  - "Gracias a ellas, Runok ayud\xF3 a construir la pir\xE1mide destinada a venerar
+    a sus antepasados, y mientras tanto, \xE9l era feliz llevando a cabo esta tarea
+    trabajando junto al resto de habitantes de la ciudad."
+  - "Pero esta felicidad no dur\xF3 mucho, pues una tribu atac\xF3 la ciudad, y arras\xF3
+    con todo lo que se interpuso en su camino."
+  - A pesar de sus esfuerzos para defender a su creador, Runok fue alcanzado por
+    un encantamiento del hechicero de la tribu enemiga.
+  - "El conjuro separ\xF3 la consciencia del cuerpo del g\xF3lem y la transfiri\xF3
+    a un escarabajo que pasaba por all\xED, dejando su cuerpo inerte en el suelo."
+  - "Tras un tiempo Runok se despert\xF3 siendo un escarabajo, y al acercarse a su
+    cuerpo de g\xF3lem pudo conectarse con \xE9l gracias a un compartimento que su
+    creador le hizo en la espalda, volviendo a recuperar su movilidad."
+  - "El hechicero no solo separ\xF3 a Runok en dos, sino que tambi\xE9n dividi\xF3
+    el contenido de su pergamino de instrucciones en 3 trozos, que sell\xF3 en los
+    altares cercanos."
+  - "Pero lo que m\xE1s entristec\xEDa a Runok, era la p\xE9rdida de su creador,
+    que quiz\xE1s, pens\xF3, pudo haberse refugiado a tiempo en lo m\xE1s alto de
+    la pir\xE1mide."
+  imagePositions_X: {x: 630, y: 75, z: -535, w: -1048}
+  finalText: {fileID: 5829314}
+  _imageGO: {fileID: 2049187490}
+  _text: {fileID: 470317339}
+--- !u!82 &549677000
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549676993}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &564531779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,9 +1448,7 @@ GameObject:
   - component: {fileID: 896011802}
   - component: {fileID: 896011801}
   - component: {fileID: 896011809}
-  - component: {fileID: 896011805}
   - component: {fileID: 896011806}
-  - component: {fileID: 896011808}
   m_Layer: 5
   m_Name: InterludioCanvas
   m_TagString: Untagged
@@ -1392,56 +1539,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &896011805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896011800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6014960a857f8614a854ea1b36c54a64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skipButton: {fileID: 2048313047}
-  kbTags:
-  - {fileID: 525779297}
-  xboxTags:
-  - {fileID: 938662322}
-  psTags:
-  - {fileID: 564531781}
-  damp: 0.5
-  waitSecToAutoChange: 10
-  interludioImages:
-  - {fileID: 21300000, guid: 3b94b16fd6281f543a26adfe6ef6b9da, type: 3}
-  - {fileID: 21300000, guid: 766d89091833ee347b9b9bdc31cb94fd, type: 3}
-  - {fileID: 21300000, guid: e61e01d57fd00024994b8b0fdc17774b, type: 3}
-  interludioText:
-  - "Runok es un g\xF3lem que como otros tantos, fue creado para brindar ayuda a
-    la humanidad."
-  - "Cuando su creador lo termin\xF3 de construir, le otorg\xF3 un pergamino de instrucciones
-    que conten\xEDa todas las habilidades que era capaz de realizar."
-  - "Gracias a ellas, Runok ayud\xF3 a construir la pir\xE1mide destinada a venerar
-    a sus antepasados, y mientras tanto, \xE9l era feliz llevando a cabo esta tarea
-    trabajando junto al resto de habitantes de la ciudad."
-  - "Pero esta felicidad no dur\xF3 mucho, pues una tribu atac\xF3 la ciudad, y arras\xF3
-    con todo lo que se interpuso en su camino."
-  - A pesar de sus esfuerzos para defender a su creador, Runok fue alcanzado por
-    un encantamiento del hechicero de la tribu enemiga.
-  - "El conjuro separ\xF3 la consciencia del cuerpo del g\xF3lem y la transfiri\xF3
-    a un escarabajo que pasaba por all\xED, dejando su cuerpo inerte en el suelo."
-  - "Tras un tiempo Runok se despert\xF3 siendo un escarabajo, y al acercarse a su
-    cuerpo de g\xF3lem pudo conectarse con \xE9l gracias a un compartimento que su
-    creador le hizo en la espalda, volviendo a recuperar su movilidad."
-  - "El hechicero no solo separ\xF3 a Runok en dos, sino que tambi\xE9n dividi\xF3
-    el contenido de su pergamino de instrucciones, en 3 trozos que sell\xF3 en los
-    altares cercanos."
-  - "Pero lo que m\xE1s entristec\xEDa a Runok, era la p\xE9rdida de su creador,
-    que quiz\xE1s, pens\xF3, pudo haberse refugiado a tiempo en lo m\xE1s alto de
-    la pir\xE1mide."
-  imagePositions_X: {x: 630, y: 75, z: -535, w: -1048}
-  finalText: {fileID: 5829314}
 --- !u!114 &896011806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,7 +1563,7 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 896011805}
+      - m_Target: {fileID: 549676999}
         m_TargetAssemblyTypeName: InterludioManager, Assembly-CSharp
         m_MethodName: OnDeviceChange
         m_Mode: 0
@@ -1529,7 +1626,7 @@ MonoBehaviour:
     m_ActionName: Player/WheelMenu - Aim[/Mouse/position]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 896011805}
+      - m_Target: {fileID: 549676999}
         m_TargetAssemblyTypeName: InterludioManager, Assembly-CSharp
         m_MethodName: OnSkip
         m_Mode: 0
@@ -1589,7 +1686,7 @@ MonoBehaviour:
     m_ActionName: UI/DeviceJoined[/Keyboard/anyKey]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 896011805}
+      - m_Target: {fileID: 549676999}
         m_TargetAssemblyTypeName: InterludioManager, Assembly-CSharp
         m_MethodName: OnSubmit
         m_Mode: 0
@@ -1608,102 +1705,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!82 &896011808
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896011800}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &896011809
 MonoBehaviour:
   m_ObjectHideFlags: 0

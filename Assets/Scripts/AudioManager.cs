@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public enum UIAudioTag
 {
@@ -67,8 +64,9 @@ public enum SoundTrackAudioTag
     interludios2 = 1,
     interludios3 = 2,
     interludios3_finalText = 3,
-    interludios3_endfinalText = 3,
-    desert = 5,
+    interludios3_finalText_firstTime = 4,
+    interludios3_endfinalText = 5,
+    desert = 6,
 
 }
 

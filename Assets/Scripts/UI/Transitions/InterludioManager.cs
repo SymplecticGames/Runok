@@ -15,7 +15,6 @@ public class InterludioManager : MonoBehaviour
     public List<Image> psTags;
 
     public float damp = 0.5f;
-    public float waitSecToAutoChange = 60f;
 
     [SerializeField] public Sprite[] interludioImages;
     [SerializeField] public string[] interludioText;
@@ -23,11 +22,9 @@ public class InterludioManager : MonoBehaviour
     public Vector4 imagePositions_X;
     public GameObject finalText;
 
-    private GameObject _fadePanel;
-    private GameObject _imageGO;
-    private Text _text;
+    public GameObject _imageGO;
+    public Text _text;
 
-    private float _counter = 0.0f;
     private int _actualSlide = 0;
     private float _targetPosition;
     private bool _submited;
@@ -41,13 +38,11 @@ public class InterludioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _fadePanel = gameObject.transform.GetChild(1).gameObject;
-        _imageGO = gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
-        _text = gameObject.transform.GetChild(0).gameObject.transform.GetChild(3).GetComponent<Text>();
         _text.text = interludioText[0];
         _targetPosition = imagePositions_X[0];
 
         _interludioAS = GetComponent<AudioSource>();
+        _interludioAS.loop = true;
 
         // transition
         StartCoroutine(WaitToPlay());
@@ -56,14 +51,13 @@ public class InterludioManager : MonoBehaviour
 
     IEnumerator WaitToPlay()
     {
-        _fadePanel.GetComponent<Animator>().SetTrigger("doIdleDark");
+        GetComponent<Animator>().SetTrigger("doIdleDark");
         yield return new WaitForSeconds(1.0f);
-        _fadePanel.GetComponent<Animator>().SetTrigger("doFadeOut");
+        GetComponent<Animator>().SetTrigger("doFadeOut");
         // start music
         _interludioAS.clip = AudioManager.audioInstance.GetSoundTrackSound(SoundTrackAudioTag.interludios1);
         _interludioAS.Play();
         _endedFadeIn = true;
-
     }
 
     public void OnSubmit(InputAction.CallbackContext context)
@@ -104,29 +98,25 @@ public class InterludioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (_endedFadeIn)
         {
-            if (_fadePanel.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idle") || _finalState)
+            if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idle") || _finalState)
             {
-                _fadePanel.GetComponent<Animator>().ResetTrigger("doFadeOut");
-                _fadePanel.GetComponent<Animator>().ResetTrigger("doFadeIn");
+                GetComponent<Animator>().ResetTrigger("doFadeOut");
+                GetComponent<Animator>().ResetTrigger("doFadeIn");
 
-                _counter += Time.deltaTime;
                 Vector3 pos = _imageGO.transform.localPosition;
 
-                if (_submited || _counter >= waitSecToAutoChange)
+                if (_submited)
                 {
                     if (_finalState)
                     {
-
                         if (_interludioAS.loop)
                         {
-                            _interludioAS.clip =
-                                AudioManager.audioInstance.GetSoundTrackSound(SoundTrackAudioTag
-                                    .interludios3_endfinalText);
-                            _interludioAS.Play();
                             _interludioAS.loop = false;
+                            _interludioAS.clip = AudioManager.audioInstance.GetSoundTrackSound(SoundTrackAudioTag
+                                .interludios3_endfinalText);
+                            _interludioAS.Play();
                             StartCoroutine(LoadSceneDelay(_interludioAS.clip.length));
                         }
                     }
@@ -138,23 +128,25 @@ public class InterludioManager : MonoBehaviour
                             var idx = _actualSlide % interludioImages.Length;
 
                             _targetPosition = imagePositions_X[idx];
-                            _text.text = interludioText[_actualSlide];
                             _nextImageGroup = idx == 0;
+                            if (!_nextImageGroup)
+                                _text.text = interludioText[_actualSlide];
                         }
                         else
                         {
-
-                            _fadePanel.GetComponent<Animator>().SetTrigger("doFadeIn");
+                            GetComponent<Animator>().SetTrigger("doFadeIn");
                             _finalState = true;
                             finalText.SetActive(true);
-                            _interludioAS.clip =
-                                AudioManager.audioInstance.GetSoundTrackSound(SoundTrackAudioTag
-                                    .interludios3_finalText);
-                            _interludioAS.Play();
-                            _interludioAS.loop = true;
+                            if (_interludioAS.loop)
+                            {
+                                _interludioAS.loop = false;
+                                _interludioAS.clip =
+                                    AudioManager.audioInstance.GetSoundTrackSound(SoundTrackAudioTag
+                                        .interludios3_finalText_firstTime);
+                                _interludioAS.Play();
+                                StartCoroutine(WaitForLoop(_interludioAS.clip.length));
+                            }
                         }
-
-                        _counter = 0.0f;
                         _submited = false;
                     }
                 }
@@ -163,41 +155,36 @@ public class InterludioManager : MonoBehaviour
                 {
                     pos = Vector2.Lerp(pos, new Vector3(_targetPosition, pos.y, pos.z), Time.deltaTime * damp);
                     _imageGO.transform.localPosition = pos;
-
                 }
 
                 if (_nextImageGroup)
                 {
                     // ---------------------------------- Fade in transition ---------------------------------- //
-                    _fadePanel.GetComponent<Animator>().SetTrigger("doFadeIn");
-                    _counter = 0.0f;
+                    GetComponent<Animator>().SetTrigger("doFadeIn");
                     _nextImageGroup = false;
-                    // -------------------------------------------------------------------------------------------------- //
+                    // ---------------------------------------------------------------------------------------- //
                 }
             }
             else
             {
-                if (_fadePanel.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idleDark") && _actualSlide < interludioImages.Length * 3 - 1)
+                if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idleDark") && _actualSlide < interludioImages.Length * 3 - 1)
                 {
+                    GetComponent<Animator>().SetTrigger("doFadeOut");
                     _text.text = interludioText[_actualSlide];
                     _targetPosition = imagePositions_X[0];
                     var pos = _imageGO.transform.localPosition;
                     pos = new Vector3(_targetPosition, pos.y, pos.z);
                     _imageGO.transform.localPosition = pos;
                     _imageGO.GetComponent<Image>().sprite = interludioImages[_actualSlide / interludioImages.Length];
-                    _fadePanel.GetComponent<Animator>().SetTrigger("doFadeOut");
-
+                    
                     //change music playing
                     _interludioAS.clip =
                         AudioManager.audioInstance.GetSoundTrackSound(
                             (SoundTrackAudioTag) (_actualSlide / interludioImages.Length));
                     _interludioAS.Play();
                 }
-
-                _counter = 0.0f;
             }
         }
-
     }
 
     IEnumerator LoadSceneDelay(float delay)
@@ -205,5 +192,15 @@ public class InterludioManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         ProgressManager.instance.firstTime = false;
         SceneManager.LoadScene("Hub");
+    }
+
+    IEnumerator WaitForLoop(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _interludioAS.loop = true;
+        _interludioAS.clip =
+            AudioManager.audioInstance.GetSoundTrackSound(SoundTrackAudioTag
+                .interludios3_finalText);
+        _interludioAS.Play();
     }
 }
