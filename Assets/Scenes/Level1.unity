@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38502768, g: 0.28073594, b: 0.27779624, a: 1}
+  m_IndirectSpecularColor: {r: 0.3813202, g: 0.21023484, b: 0.12364881, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2528,7 +2528,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.3242132, y: 0.042200767, z: -0.014479406, w: 0.9449314}
+  m_LocalRotation: {x: 0.32421318, y: 0.0422008, z: -0.014479418, w: 0.9449314}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5783,7 +5783,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.32421327, y: 0.04220077, z: -0.014479408, w: 0.9449313}
+  m_LocalRotation: {x: 0.32421318, y: 0.042200796, z: -0.014479419, w: 0.9449314}
   m_LocalPosition: {x: 4.797717, y: 13.809999, z: -132.16417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7117,7 +7117,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.3242132, y: 0.042200807, z: -0.014479419, w: 0.9449314}
+  m_LocalRotation: {x: 0.32421318, y: 0.042200767, z: -0.014479407, w: 0.9449314}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9293,10 +9293,6 @@ PrefabInstance:
     - target: {fileID: 632283047167056312, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 632283047167056312, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 763952279273576881, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_IsActive
