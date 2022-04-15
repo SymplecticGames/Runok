@@ -707,7 +707,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.22841075, y: -0.6719406, z: 0.230548, w: 0.66571164}
+  m_LocalRotation: {x: 0.2284108, y: -0.6719407, z: 0.23054802, w: 0.6657116}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1290,7 +1290,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.22841075, y: -0.6719406, z: 0.230548, w: 0.66571164}
+  m_LocalRotation: {x: 0.22841081, y: -0.6719407, z: 0.23054802, w: 0.6657115}
   m_LocalPosition: {x: 54.198444, y: 49.309998, z: 0.43527612}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1543,8 +1543,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.22841075, y: -0.6719406, z: 0.230548, w: 0.66571164}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.1350411, y: -0.6971927, z: 0.13630469, w: 0.6907295}
+  m_LocalPosition: {x: 16.906445, y: -6.490616, z: 0.15746036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1181687091}
@@ -1628,7 +1628,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.20395337, y: -0.6803743, z: 0.20617528, w: 0.673042}
+  m_LocalRotation: {x: 0.20411019, y: -0.679862, z: 0.20602003, w: 0.6735596}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1765,11 +1765,11 @@ PrefabInstance:
       objectReference: {fileID: 2066080743}
     - target: {fileID: 89933694248207940, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HoverResolution
+      value: HoverSensitivity
       objectReference: {fileID: 0}
     - target: {fileID: 89933694248207940, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HoverResolution
+      value: HoverSensitivity
       objectReference: {fileID: 0}
     - target: {fileID: 440936696332722126, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1878,6 +1878,30 @@ PrefabInstance:
     - target: {fileID: 793995718252179646, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: HoverGeneralMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 899833103952553868, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2066080743}
+    - target: {fileID: 899833103952553868, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetScreenSize
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321056816126455957, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2066080743}
+    - target: {fileID: 1321056816126455957, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2066080743}
+    - target: {fileID: 1321056816126455957, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HoverResolution
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321056816126455957, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HoverResolution
       objectReference: {fileID: 0}
     - target: {fileID: 1391292328844751187, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_audioClip
@@ -2872,7 +2896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af03efeb95425b42a023c20ba8a256d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headAnim: {fileID: 0}
 --- !u!64 &8164078558015011696
 MeshCollider:
   m_ObjectHideFlags: 0
