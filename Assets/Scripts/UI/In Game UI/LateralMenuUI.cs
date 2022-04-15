@@ -23,13 +23,15 @@ public class LateralMenuUI : MonoBehaviour
 
     
     public GameObject beetleSight;   // Camera.main.WorldToViewportPoint(transform.position) --> 0.4 izq, 0.5 centr, 0.6 der
-    
+
+    [HideInInspector]
+    public bool showingTutorial;
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////            
 
 
     public bool MenuOpened()
     {
-        return selectionWheelGO.activeInHierarchy || instructionsMenuGO.activeInHierarchy;
+        return selectionWheelGO.activeInHierarchy || instructionsMenuGO.activeInHierarchy || showingTutorial;
     }
     
     
@@ -81,7 +83,7 @@ public class LateralMenuUI : MonoBehaviour
 
     public void UIOpenInstructions(InputAction.CallbackContext context)
     {
-        if (!selectionWheelGO.activeInHierarchy)
+        if (!selectionWheelGO.activeInHierarchy && !showingTutorial)
         {
             if (context.canceled && instructionsMenuGO.activeInHierarchy)
             {
@@ -112,7 +114,7 @@ public class LateralMenuUI : MonoBehaviour
 
     public void UISelectHability(InputAction.CallbackContext context)
     {
-        if (!instructionsMenuGO.activeInHierarchy)
+        if (!instructionsMenuGO.activeInHierarchy && !showingTutorial)
         {
             if (context.canceled && selectionWheelGO.activeInHierarchy)
             {
