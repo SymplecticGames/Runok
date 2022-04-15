@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +29,11 @@ public class HighLightButton : MonoBehaviour
     
     // Start is called before the first frame update
     void Start()
+    {
+
+    }
+
+    private void Awake()
     {
         _originalButtonColor = gameObject.GetComponent<Image>().color;
         _originalScaleFactor = gameObject.GetComponent<RectTransform>().localScale;

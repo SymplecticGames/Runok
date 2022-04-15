@@ -30,10 +30,10 @@ public class NewAbilityObtainedUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        button.onClick.AddListener(GoToHub);
+        
         if (ProgressManager.instance.currentLevel < ProgressManager.instance.completedLevel.Length-1)
         {
-            button.onClick.AddListener(GoToHub);
-
             golemText.text = _golemAbility[ProgressManager.instance.currentLevel];
             beetleText.text = _beetleAbility[ProgressManager.instance.currentLevel];
 

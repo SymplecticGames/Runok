@@ -100,7 +100,7 @@ public class Altar : MonoBehaviour
         
         GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
         GetComponent<AudioSource>().Play();
-        SceneTransition.instance.LoadScene("Hub");
+        SceneTransition.instance.LoadScene("NewAbilityObtained");
     }
 
     private void OnTriggerExit(Collider other)
