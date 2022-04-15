@@ -5,20 +5,24 @@ using UnityEngine;
 
 public class GolemHeadBoss : MonoBehaviour
 {
-    private Animator animator;
+    [HideInInspector]
+    public Animator headAnim;
 
     private bool isBeingHitted;
+
+    private SpriteRenderer runeSymbol;
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        headAnim = GetComponent<Animator>();
+        runeSymbol = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,7 +40,7 @@ public class GolemHeadBoss : MonoBehaviour
 
             // update hit counter
 
-            animator.SetBool("isHit", true);
+            headAnim.SetBool("isHit", true);
 
             // Disable boss collider
             isBeingHitted = true;
@@ -51,6 +55,25 @@ public class GolemHeadBoss : MonoBehaviour
     {
         isBeingHitted = false;
 
-        animator.SetBool("isHit", false);
+        headAnim.SetBool("isHit", false);
+    }
+
+    public void SetRuneActive(bool active, float delay)
+    {
+        StartCoroutine(SetRuneActiveSync(active, delay));
+    }
+
+    private IEnumerator SetRuneActiveSync(bool active, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Color col = runeSymbol.color;
+
+        if (!active)
+            col.a = 0.1f;
+        else
+            col.a = 1.0f;
+
+        runeSymbol.color = col;
     }
 }
