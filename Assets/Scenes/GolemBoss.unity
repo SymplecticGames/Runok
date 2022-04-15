@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 7, z: -9}
+  m_FollowOffset: {x: 0, y: 28, z: -36}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 7, z: -9}
+  m_FollowOffset: {x: 0, y: 28, z: -36}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -565,12 +565,12 @@ MonoBehaviour:
   m_BindingMode: 5
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 10
-    m_Radius: 4
-  - m_Height: 7
-    m_Radius: 9
-  - m_Height: 5
-    m_Radius: 14
+  - m_Height: 40
+    m_Radius: 16
+  - m_Height: 28
+    m_Radius: 36
+  - m_Height: 20
+    m_Radius: 56
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 1580229499}
@@ -584,7 +584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498799635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.679474, y: 28.31, z: 0.19751331}
+  m_LocalPosition: {x: 54.198444, y: 49.309998, z: 0.43527612}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1580229500}
@@ -632,11 +632,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507979099}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2580274976565522990}
   - {fileID: 959065109}
+  - {fileID: 543450652975372558}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -706,7 +707,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.22823527, y: -0.67244697, z: 0.23072174, w: 0.6652001}
+  m_LocalRotation: {x: 0.22841075, y: -0.6719406, z: 0.230548, w: 0.66571164}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -721,6 +722,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1151388029030508630}
     m_Modifications:
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 919132148705608629}
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToBeetleBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GolemBoss, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711214595496517907, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
+      propertyPath: onHitAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1711214595496517908, guid: 2dd012c8cf8ec9a45913e1145f5698aa, type: 3}
       propertyPath: m_Name
       value: ActivationMonolith
@@ -1128,7 +1157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 7, z: -9}
+  m_FollowOffset: {x: 0, y: 28, z: -36}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1261,8 +1290,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.22823526, y: -0.67244697, z: 0.23072174, w: 0.66520023}
-  m_LocalPosition: {x: 32.679474, y: 28.31, z: 0.19751331}
+  m_LocalRotation: {x: 0.22841075, y: -0.6719406, z: 0.230548, w: 0.66571164}
+  m_LocalPosition: {x: 54.198444, y: 49.309998, z: 0.43527612}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1514,7 +1543,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.22823527, y: -0.67244697, z: 0.23072174, w: 0.6652001}
+  m_LocalRotation: {x: 0.22841075, y: -0.6719406, z: 0.230548, w: 0.66571164}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1599,7 +1628,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.20395337, y: -0.6803743, z: 0.20617528, w: 0.673042}
+  m_LocalRotation: {x: 0.2041102, y: -0.67986196, z: 0.20602, w: 0.6735596}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2054,15 +2083,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148705608628}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.7, y: -42.2, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -32.9, y: -42.2, z: 0}
   m_LocalScale: {x: 40, y: 40, z: 40}
   m_Children:
   - {fileID: 1151388029030508630}
   - {fileID: 1151388027527480401}
   - {fileID: 1579679156}
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 507979100}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &919132148705608628
 GameObject:
@@ -2099,10 +2128,10 @@ MonoBehaviour:
   leftArm: {fileID: 8164078559857989483}
   rightArm: {fileID: 1579679159}
   headAnim: {fileID: 0}
-  maxHealth: 3
-  timeBetweenAttacks: 2
+  maxHealth: 16
+  timeBetweenAttacks: 3
   timeSpentTired: 5
-  maxContinousAttacks: 4
+  maxContinousAttacks: 5
 --- !u!95 &919132148705608630
 Animator:
   serializedVersion: 3
@@ -2559,6 +2588,22 @@ PrefabInstance:
       propertyPath: golemMaterial
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1684484324024519184, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: currentMaterial
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684484324024519184, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: WoodenStats.hitsNeededToKill
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684484324024519184, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: PlumberStats.hitsNeededToKill
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684484324024519184, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: TerracottaStats.hitsNeededToKill
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5186055796561449082, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2573,7 +2618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6793133458884979323, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.68
+      value: 18.2
       objectReference: {fileID: 0}
     - target: {fileID: 6793133458884979323, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2638,7 +2683,7 @@ GameObject:
   - component: {fileID: 8164078558015011694}
   - component: {fileID: 8164078558015011697}
   - component: {fileID: 8164078558015011698}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}

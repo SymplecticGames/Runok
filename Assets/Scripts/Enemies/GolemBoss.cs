@@ -1,4 +1,8 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GolemBoss : MonoBehaviour
 {
@@ -40,6 +44,8 @@ public class GolemBoss : MonoBehaviour
     [SerializeField]
     private int maxContinousAttacks = 3;
 
+    private bool alreadyDead;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,12 +66,23 @@ public class GolemBoss : MonoBehaviour
     {
         if (beaten)
         {
-            headAnim.SetBool("Die", true);
+            if (!alreadyDead) headAnim.SetTrigger("Die");
+            alreadyDead = true;
             return;
         }
 
-        // The boss is idling
-        if (!armsAnim.GetBool("SwipeLeft") && !armsAnim.GetBool("SwipeRight") && !armsAnim.GetBool("SmashLeft") && !armsAnim.GetBool("SmashRight") && !headAnim.GetBool("isTired"))
+        if (headAnim.GetBool("isTired"))
+        {
+            bossTiredTimer += Time.deltaTime;
+
+            if (bossTiredTimer > timeSpentTired)
+            {
+                bossTiredTimer = 0.0f;
+                head.SetRuneActive(false, 0.0f);
+                headAnim.SetBool("isTired", false);
+            }
+        }
+        else if (armsAnim.GetCurrentAnimatorStateInfo(0).IsTag("IdleTag"))
         {
             bossIdleTimer += Time.deltaTime;
 
@@ -74,7 +91,7 @@ public class GolemBoss : MonoBehaviour
                 bossIdleTimer = 0.0f;
                 attacksDoneCounter++;
 
-                int rand = Random.Range(0, 4); // 4 different patterns
+                int rand = UnityEngine.Random.Range(0, 4); // 4 different patterns
 
                 if (attacksDoneCounter > maxContinousAttacks)
                     rand = -1;
@@ -87,42 +104,46 @@ public class GolemBoss : MonoBehaviour
                         headAnim.SetBool("isTired", true);
                         break;
                     case 0:
-                        armsAnim.SetBool("SwipeLeft", true);
+                        armsAnim.SetTrigger("SwipeLeft");
                         break;
                     case 1:
-                        armsAnim.SetBool("SwipeRight", true);
+                        armsAnim.SetTrigger("SwipeRight");
                         break;
                     case 2:
-                        armsAnim.SetBool("SmashLeft", true);
+                        armsAnim.SetTrigger("SmashLeft");
                         break;
                     case 3:
-                        armsAnim.SetBool("SmashRight", true);
+                        armsAnim.SetTrigger("SmashRight");
                         break;
                 }
             }
         }
-        else if (headAnim.GetBool("isTired"))
-        {
-            bossTiredTimer += Time.deltaTime;
-
-            if (bossTiredTimer > timeSpentTired)
-            {
-                bossTiredTimer = 0.0f;
-                head.SetRuneActive(false, 0.0f);
-                headAnim.SetBool("isTired", false);
-            }
-        }
     }
 
-    public void LoseHealth()
+    public void GoToBeetleBoss()
     {
-        currentHealth--;
+        SceneManager.LoadScene("BeetleBoss");
+    }
 
-        if (currentHealth < 0)
+    public void LoseHealth(int healthLost)
+    {
+        currentHealth -= healthLost;
+
+        if (currentHealth <= 0)
         {
             beaten = true;
             GameManager.instance.player.input.actions.FindAction("SwapCharacter").Enable();
         }
+    }
+
+    public bool IsSwiping()
+    {
+        return armsAnim.GetCurrentAnimatorStateInfo(0).IsTag("SwipeAttack");
+    }
+
+    public void HitPlumber()
+    {
+        armsAnim.SetTrigger("HitPlumber");
     }
 
     private void EndOfHit()
@@ -138,13 +159,6 @@ public class GolemBoss : MonoBehaviour
     private void EndLeftHandRotation()
     {
         leftArm.EndHandRotation();
-        armsAnim.SetBool("SwipeLeft", false);
-    }
-
-    private void EndLeftHandSmash()
-    {
-        leftArm.EndHandRotation();
-        armsAnim.SetBool("SmashLeft", false);
     }
 
     private void StartRightHandRotation()
@@ -155,12 +169,5 @@ public class GolemBoss : MonoBehaviour
     private void EndRightHandRotation()
     {
         rightArm.EndHandRotation();
-        armsAnim.SetBool("SwipeRight", false);
-    }
-
-    private void EndRightHandSmash()
-    {
-        rightArm.EndHandRotation();
-        armsAnim.SetBool("SmashRight", false);
     }
 }

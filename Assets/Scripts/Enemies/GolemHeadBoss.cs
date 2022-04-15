@@ -38,6 +38,7 @@ public class GolemHeadBoss : MonoBehaviour
             golem.PlayHitSomethingSound();
 
             // update hit counter
+            golemBoss.LoseHealth(golem.golemStats.hitsNeededToKill); // Variable reutilizada para este caso, dado que funciona, es simple y yo que se, estoy cansado
 
             golemBoss.headAnim.SetBool("isHit", true);
 

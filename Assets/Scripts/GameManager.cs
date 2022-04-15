@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     // Camera
     public float _basecmYSpeed;
     public float _basecmXSpeed;
-    
+
     public static Vector3 gravity = new Vector3(0.0f, -9.8f, 0.0f);
 
     // 0-> swapTag     1-> parchmentTag     2->selectionWheelTag    3-> hitTag    4-> jumpTag
@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
 
     // List of defeated respawnable enemies in the level
     private List<Enemy> _respawnableEnemies;
+
+    // GolemBoss in the level
+    private GolemBoss golemBoss;
 
     // Players
     public PlayerManager player;
@@ -105,6 +108,7 @@ public class GameManager : MonoBehaviour
         crackedPlatforms = new List<CrackedPlatform>(FindObjectsOfType<CrackedPlatform>());
         balancePlatforms = new List<BalancePlatform>(FindObjectsOfType<BalancePlatform>());
         altar = FindObjectOfType<Altar>();
+        golemBoss = FindObjectOfType<GolemBoss>();
 
         currentBGColor = Camera.main.backgroundColor;
 
@@ -116,7 +120,7 @@ public class GameManager : MonoBehaviour
             _basecmXSpeed = player.freelookCam.m_XAxis.m_MaxSpeed;
             _basecmYSpeed = player.freelookCam.m_YAxis.m_MaxSpeed;
         }
-       
+
         ChangeSensitivity(1.0f);
     }
 
@@ -125,7 +129,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance)
             instance.usingGamepad = !DeviceControlsManager.instance.currentDevice.Equals(ConnectedDevice.Keyboard);
-        
+
         if (volumeLerpStep < 1.0f)
         {
             volumeLerpStep += Time.deltaTime;
@@ -139,7 +143,7 @@ public class GameManager : MonoBehaviour
 
             }
         }
-        else if(!_isPaused)
+        else if (!_isPaused)
         {
             musicSource.volume = musicBaseVolume;
         }
@@ -259,6 +263,16 @@ public class GameManager : MonoBehaviour
 
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
 
+        if (golemBoss)
+        {
+            List<MonoBehaviour> bossScripts = new List<MonoBehaviour>(golemBoss.GetComponentsInChildren<MonoBehaviour>());
+            foreach (MonoBehaviour script in bossScripts)
+                script.enabled = false;
+
+            List<Animator> anims = new List<Animator>(golemBoss.GetComponentsInChildren<Animator>());
+            foreach (Animator anim in anims)
+                anim.enabled = false;
+        }
     }
 
     public void play()
@@ -312,6 +326,15 @@ public class GameManager : MonoBehaviour
 
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
 
+        if (golemBoss)
+        {
+            List<MonoBehaviour> bossScripts = new List<MonoBehaviour>(golemBoss.GetComponentsInChildren<MonoBehaviour>());
+            foreach (MonoBehaviour script in bossScripts)
+                script.enabled = true;
+            List<Animator> anims = new List<Animator>(golemBoss.GetComponentsInChildren<Animator>());
+            foreach (Animator anim in anims)
+                anim.enabled = true;
+        }
     }
 
     public void OnDeviceChange(PlayerInput context)
