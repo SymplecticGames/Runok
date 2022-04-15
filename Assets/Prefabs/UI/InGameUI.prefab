@@ -4927,6 +4927,7 @@ MonoBehaviour:
   selectionWheelGO: {fileID: 4167879864070127333}
   instructionsMenuGO: {fileID: 8370980805377022598}
   beetleSight: {fileID: 3417966255728087996}
+  showingTutorial: 0
 --- !u!114 &5213215987017237552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4948,6 +4949,8 @@ MonoBehaviour:
   yesButton: {fileID: 3442393712848542908}
   noButton: {fileID: 538131164875946975}
   settingsUI: {fileID: 3622571515013741200}
+  showingTutorial: 0
+  settingsMusicButton: {fileID: 6758107937825618020}
 --- !u!114 &2441350605697413174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9018,14 +9021,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
---- !u!1 &3622571515013741200 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4147065809028372555, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
-  m_PrefabInstance: {fileID: 849108815618663131}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3800152164555113862 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4572413363172616029, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
+  m_PrefabInstance: {fileID: 849108815618663131}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6758107937825618020 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6197301242030299839, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
+  m_PrefabInstance: {fileID: 849108815618663131}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3622571515013741200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4147065809028372555, guid: 8d7e62a010f97944296f52d9bfba941a, type: 3}
   m_PrefabInstance: {fileID: 849108815618663131}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5672118015615011811

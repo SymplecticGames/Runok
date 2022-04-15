@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class MainMenuUI : MonoBehaviour
     public Transform creditsButton;
 
     public GameObject settingsUIgo;
+    public Slider settingsMusicButton;
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     private float _selectorTargetPosition;
@@ -34,9 +36,11 @@ public class MainMenuUI : MonoBehaviour
 
     private float _maxX = 5024.0f;
 
+    private bool _settingsOpened;
+    
     public void ClickedNewGame()
     {
-        if(!selector.activeInHierarchy)
+        if(!selector.activeInHierarchy || _settingsOpened)
             return;
 
         // resetear la partida para empezar una nueva
@@ -53,7 +57,7 @@ public class MainMenuUI : MonoBehaviour
     
     public void ClickedContinueGame()
     {
-        if(!selector.activeInHierarchy)
+        if(!selector.activeInHierarchy || _settingsOpened)
             return;
 
         // cargar desde el nivel en el que se quedó el jugaor
@@ -68,13 +72,16 @@ public class MainMenuUI : MonoBehaviour
     {
         // open settings menu
 
-        if(!selector.activeInHierarchy)
+        if(!selector.activeInHierarchy || _settingsOpened)
             return;
         
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
 
         settingsUIgo.SetActive(true);
+        _settingsOpened = true;
         
+        EventSystem.current.SetSelectedGameObject(settingsMusicButton.gameObject);
+
     }
     
 
@@ -82,14 +89,15 @@ public class MainMenuUI : MonoBehaviour
     {
         settingsUIgo.SetActive(false);
         _doFading = false;
-
+        _settingsOpened = false;
+        EventSystem.current.SetSelectedGameObject(continueGameButton.gameObject);
 
     }
     
     public void ClickedExitGame() {
         
         // exit Runok
-        if(!selector.activeInHierarchy)
+        if(!selector.activeInHierarchy || _settingsOpened)
             return;
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
         Application.Quit();
@@ -98,7 +106,7 @@ public class MainMenuUI : MonoBehaviour
     public void ClickedCredits() {
         
         // credits scene
-        if(!selector.activeInHierarchy)
+        if(!selector.activeInHierarchy || _settingsOpened)
             return;
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
         SceneManager.LoadScene("Credits");
@@ -107,7 +115,7 @@ public class MainMenuUI : MonoBehaviour
     public void HoverContinueGameButton()
     {
         // change selector position
-        if(!selector.activeInHierarchy)
+        if(!selector.activeInHierarchy || _settingsOpened)
             return;
 
         _selectorTargetPosition = continueGameButton.localPosition.y;
@@ -116,7 +124,7 @@ public class MainMenuUI : MonoBehaviour
     public void HoverNewGameButton()
     {
         // change selector position
-        if(!selector.activeInHierarchy)
+        if(!selector.activeInHierarchy || _settingsOpened)
             return;
 
         _selectorTargetPosition = newGameButton.localPosition.y;
@@ -125,7 +133,7 @@ public class MainMenuUI : MonoBehaviour
     public void HoverSettingsButton()
     {
         // change selector position
-        if(!selector.activeInHierarchy)
+        if(!selector.activeInHierarchy || _settingsOpened)
             return;
 
         _selectorTargetPosition = settingsButton.localPosition.y;
@@ -134,7 +142,7 @@ public class MainMenuUI : MonoBehaviour
     public void HoverExitGameButton()
     {
         // change selector position
-        if(!selector.activeInHierarchy)
+        if(!selector.activeInHierarchy || _settingsOpened)
             return;
         _selectorTargetPosition = exitGameButton.transform.localPosition.y;
     }
@@ -142,7 +150,7 @@ public class MainMenuUI : MonoBehaviour
     public void HoverCreditsButton()
     {
         // change selector position
-        if(!selector.activeInHierarchy)
+        if(!selector.activeInHierarchy || _settingsOpened)
             return;
         
         _selectorTargetPosition = creditsButton.localPosition.y;
@@ -151,6 +159,8 @@ public class MainMenuUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EventSystem.current.SetSelectedGameObject(newGameButton.gameObject);
+        
         _doFading = true;
         selector.SetActive(false);
         title.alpha = 0.0f;

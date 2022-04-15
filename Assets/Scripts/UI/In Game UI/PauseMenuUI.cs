@@ -29,6 +29,8 @@ public class PauseMenuUI : MonoBehaviour
     public GameObject settingsUI;
 
     public bool showingTutorial;
+
+    public Slider settingsMusicButton;
     
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     private bool _paused;
@@ -74,6 +76,8 @@ public class PauseMenuUI : MonoBehaviour
         AudioManager.audioInstance.PlayUISound(UIAudioTag.openPauseMenu);
         HidePauseMenuButtons();
         _subMenuOpened = true;
+        
+        EventSystem.current.SetSelectedGameObject(settingsMusicButton.gameObject);
 
     }
 
@@ -98,6 +102,7 @@ public class PauseMenuUI : MonoBehaviour
         ShowPauseMenuButtons();
         settingsUI.SetActive(false);
         _subMenuOpened = false;
+        EventSystem.current.SetSelectedGameObject(goToSettingsButton.gameObject);
     }
 
     public void GoToMainMenu()
