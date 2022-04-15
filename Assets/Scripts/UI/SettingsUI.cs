@@ -16,6 +16,12 @@ public class SettingsUI : MonoBehaviour
     // screen resolution
     public Dropdown screenResolution;
     
+    // highlight options
+    public Image generalMusic;
+    public Image soundEffects;
+    public Image sensitivity;
+    public Image resolution;
+    
     // resolutions
     private int[] _widths = new[] {1920, 1280, 960, 568};
     private int[] _heights = new[] {1080, 800, 540, 329};
@@ -56,7 +62,56 @@ public class SettingsUI : MonoBehaviour
         // }
         // /////////////////////////////////////////////////////////////////////////////////
     }
+
+    public void HoverGeneralMusic()
+    {
+        generalMusic.enabled = true;
+        soundEffects.enabled = false;
+        sensitivity.enabled = false;
+        resolution.enabled = false;
+        
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
+    }
     
+    public void HoverSoundEffect()
+    {
+        generalMusic.enabled = false;
+        soundEffects.enabled = true;
+        sensitivity.enabled = false;
+        resolution.enabled = false;
+        
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
+    }
+    
+    public void HoverSensitivity()
+    {
+        generalMusic.enabled = false;
+        soundEffects.enabled = false;
+        sensitivity.enabled = true;
+        resolution.enabled = false;
+        
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
+    }
+    
+    public void HoverResolution()
+    {
+        generalMusic.enabled = false;
+        soundEffects.enabled = false;
+        sensitivity.enabled = false;
+        resolution.enabled = true;
+        
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
+    }
+    
+    public void HoverGoBack()
+    {
+        generalMusic.enabled = false;
+        soundEffects.enabled = false;
+        sensitivity.enabled = false;
+        resolution.enabled = false;
+        
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
+    }
     
     public void SetScreenSize(int index)
     {
