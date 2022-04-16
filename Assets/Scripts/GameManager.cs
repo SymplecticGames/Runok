@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    // lifes
+    [HideInInspector]
+    public int _lifes;
+    public LifesCounterUI lifesCounterUI;
+
     // Camera
     public float _basecmYSpeed;
     public float _basecmXSpeed;
@@ -64,7 +69,8 @@ public class GameManager : MonoBehaviour
     private int _collectedRunes;
 
     // Number of deaths in the level
-    private int _numDeaths;
+    [HideInInspector]
+    public int numDeaths;
 
     private Color currentBGColor;
 
@@ -88,6 +94,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         _respawnableEnemies = new List<Enemy>();
         instance = this;
+        _lifes = 3;
     }
 
     // Start is called before the first frame update
@@ -95,7 +102,7 @@ public class GameManager : MonoBehaviour
     {
         _numRunes = GameObject.FindGameObjectsWithTag("Runa").Length;
         _collectedRunes = 0;
-        _numDeaths = 0;
+        numDeaths = 0;
 
         musicSource = GetComponent<AudioSource>();
         musicBaseVolume = musicSource.volume;
@@ -204,7 +211,8 @@ public class GameManager : MonoBehaviour
     {
         // this method is called when the player dies
 
-        _numDeaths++;
+        numDeaths++;
+        lifesCounterUI.DoDeath();
 
         // each defeated respawnable enemie is respawned
         foreach (Enemy enemy in _respawnableEnemies)

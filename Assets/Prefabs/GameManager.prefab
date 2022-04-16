@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10da1bb33657a3f4abb7d22134751864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lifes: 0
+  lifesCounterUI: {fileID: 8217120366319923626}
   _basecmYSpeed: 2
   _basecmXSpeed: 100
   kbTags:
@@ -114,6 +116,7 @@ MonoBehaviour:
   player: {fileID: 6254736526290237776}
   usingGamepad: 0
   runesCounterUIScript: {fileID: 3083556985085977481}
+  numDeaths: 0
   mainLight: {fileID: 0}
   musicSource: {fileID: 0}
   musicBaseVolume: 0
@@ -679,6 +682,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 023c4ae09133ad243865154acc0512df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8217120366319923626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2649342351531424112, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
+  m_PrefabInstance: {fileID: 6254736525671385306}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed13a33a1244a764a806117b6e522c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &547637949543081137 stripped
