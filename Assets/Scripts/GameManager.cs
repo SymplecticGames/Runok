@@ -82,9 +82,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public AudioSource musicSource;
 
     [HideInInspector] public float musicBaseVolume;
-    private float targetMusicBaseVolume;
+    [HideInInspector] public float targetMusicBaseVolume;
 
-    private float volumeLerpStep = 0.0f;
+    private float volumeLerpStep;
 
     private Material skybox;
     private Color ambientLight;
@@ -97,6 +97,9 @@ public class GameManager : MonoBehaviour
         _respawnableEnemies = new List<Enemy>();
         instance = this;
         _lifes = 3;
+        
+        musicSource = GetComponent<AudioSource>();
+
     }
 
     // Start is called before the first frame update
@@ -106,11 +109,9 @@ public class GameManager : MonoBehaviour
         _collectedRunes = 0;
         numDeaths = 0;
 
-        musicSource = GetComponent<AudioSource>();
+        volumeLerpStep = 0.0f;
         musicBaseVolume = musicSource.volume;
         targetMusicBaseVolume = musicSource.volume;
-
-        musicSource.volume = 0.0f;
 
         enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
         mobilePlatforms = new List<MobilePlatform>(FindObjectsOfType<MobilePlatform>());
@@ -144,15 +145,8 @@ public class GameManager : MonoBehaviour
         if (volumeLerpStep < 1.0f)
         {
             volumeLerpStep += Time.deltaTime;
-            if (musicSource.volume != 0.0f)
-            {
-                musicSource.volume = Mathf.Lerp(musicSource.volume, targetMusicBaseVolume, volumeLerpStep);
-            }
-            else
-            {
-                musicSource.volume = Mathf.Lerp(0.0f, targetMusicBaseVolume, volumeLerpStep);
+            musicSource.volume = Mathf.Lerp(musicSource.volume, targetMusicBaseVolume, volumeLerpStep);
 
-            }
         }
         else if (!_isPaused)
         {

@@ -44,6 +44,7 @@ public class SettingsUI : MonoBehaviour
         
         // stablish setttings state:
 
+        Debug.Log("SETTINGS UI: " + SettingsManager.settingsInstance.generalMusicValue);
         SetMusicVolume(SettingsManager.settingsInstance.generalMusicValue);
         sliders[0].value = SettingsManager.settingsInstance.generalMusicValue;
         
@@ -120,7 +121,8 @@ public class SettingsUI : MonoBehaviour
 
     public void SetMusicVolume(float value)
     {
-        AudioManager.audioInstance.musicFactor = value;
+
+        AudioManager.audioInstance.SetGeneralMusicVolume(value);
         if (SettingsManager.settingsInstance)
         {
             SettingsManager.settingsInstance.generalMusicValue = value;

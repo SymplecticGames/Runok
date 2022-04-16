@@ -327,11 +327,17 @@ public class AudioManager : MonoBehaviour
         Destroy(aS);
     }
 
-    public void SetMusicVolume(float newMusicFactor)
+    public void SetGeneralMusicVolume(float newMusicFactor)
     {
-        musicFactor = newMusicFactor;
-        GameManager.instance.musicBaseVolume = musicFactor;
-        GameManager.instance.musicSource.volume = GameManager.instance.musicSource.volume * musicFactor;
+
+        musicFactor = newMusicFactor;        
+
+        if (GameManager.instance)
+        {
+            GameManager.instance.musicBaseVolume = musicFactor;
+            GameManager.instance.targetMusicBaseVolume = 0.05f * musicFactor;
+            GameManager.instance.musicSource.volume *= musicFactor;
+        }
     }
     
     // Update is called once per frame
