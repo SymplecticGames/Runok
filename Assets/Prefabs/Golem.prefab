@@ -868,6 +868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  isAttacking: 0
+  canMove: 1
   canRotate: 1
   movementFactor: 0
   maxJumpFactor: 1
@@ -882,6 +884,7 @@ MonoBehaviour:
   jumpPressed: 0
   playerVel: {x: 0, y: 0, z: 0}
   currentForwardTarget: {x: 0, y: 0, z: 0}
+  isInBoss: 0
 --- !u!114 &1684484324024519184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,12 +910,12 @@ MonoBehaviour:
     hitsNeededToKill: 2
     hitCoolDown: 1.75
     jumps: 1
-    weight: 0.9
+    weight: 0.85
   PlumberStats:
     hitsNeededToKill: 1
     hitCoolDown: 2
     jumps: 0
-    weight: 1.3
+    weight: 1
   WoodenStats:
     hitsNeededToKill: 3
     hitCoolDown: 1.5
