@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -184,7 +185,16 @@ public class MainMenuUI : MonoBehaviour
         settingsUIgo.GetComponent<Image>().color = new Color(sColor.r,sColor.g,sColor.b, 1.0f);
         
         _selectorTargetPosition = selector.transform.localPosition.y;
-        
+
+        string destination = Application.persistentDataPath + "/save.dat";
+        FileStream file;
+
+        if (!File.Exists(destination))
+        {
+            Color col = continueGameButton.GetComponentInChildren<Text>().color;
+            col.a = 0.2f;
+            continueGameButton.GetComponentInChildren<Text>().color = col;
+        }
     }
 
     // Update is called once per frame
