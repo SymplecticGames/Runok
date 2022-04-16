@@ -44,7 +44,7 @@ public class BulletPool : MonoBehaviour
         bulletComponent = objToSpawn.GetComponent<LightBullet>();
         Vector3 bulletDirection = direction;
         bulletDirection.y = 0.0f;
-        objToSpawn.GetComponent<LightBullet>().SetDirection(bulletDirection);
+        objToSpawn.GetComponent<LightBullet>().SetDirection(bulletDirection.normalized);
         objToSpawn.GetComponent<LightBullet>().SetSpeed(speed + speedOffset);
         objToSpawn.GetComponent<LightBullet>().SetDespawned(false);
 

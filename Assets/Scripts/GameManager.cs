@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     private List<BalancePlatform> balancePlatforms;
 
+    private List<LightBullet> bullets;
+
     // List of defeated respawnable enemies in the level
     private List<Enemy> _respawnableEnemies;
 
@@ -104,6 +106,8 @@ public class GameManager : MonoBehaviour
         mobilePlatforms = new List<MobilePlatform>(FindObjectsOfType<MobilePlatform>());
         crackedPlatforms = new List<CrackedPlatform>(FindObjectsOfType<CrackedPlatform>());
         balancePlatforms = new List<BalancePlatform>(FindObjectsOfType<BalancePlatform>());
+        bullets = new List<LightBullet>(FindObjectsOfType<LightBullet>(true));
+        Debug.Log(bullets.Count);
         altar = FindObjectOfType<Altar>();
 
         currentBGColor = Camera.main.backgroundColor;
@@ -256,6 +260,10 @@ public class GameManager : MonoBehaviour
         // Balance platforms
         foreach (BalancePlatform platform in balancePlatforms)
             platform.enabled = false;
+
+        // Bullets
+        foreach (LightBullet bullet in bullets)
+            bullet.enabled = false;
 
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
 
