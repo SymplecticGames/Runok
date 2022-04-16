@@ -3563,7 +3563,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0.5
     m_SpeedMode: 0
-    m_MaxSpeed: 0.2
+    m_MaxSpeed: 2
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -3587,7 +3587,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 10
+    m_MaxSpeed: 100
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -4073,7 +4073,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.20879357, y: 0.7241267, z: -0.24845345, w: 0.6085365}
+  m_LocalRotation: {x: 0.20879352, y: 0.72412676, z: -0.24845347, w: 0.6085364}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5150,6 +5150,7 @@ MonoBehaviour:
   currentCompletedLevels: 0
   currentLevel: 0
   firstTime: 1
+  fightingBoss: 0
 --- !u!4 &980021574
 Transform:
   m_ObjectHideFlags: 0
@@ -7084,7 +7085,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.20879358, y: 0.7241267, z: -0.24845347, w: 0.60853654}
+  m_LocalRotation: {x: 0.20879352, y: 0.72412676, z: -0.24845348, w: 0.6085365}
   m_LocalPosition: {x: -19.965595, y: 23.3, z: -48.610405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -8263,7 +8264,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.20879357, y: 0.72412676, z: -0.2484535, w: 0.6085365}
+  m_LocalRotation: {x: 0.20879352, y: 0.72412676, z: -0.24845347, w: 0.6085364}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

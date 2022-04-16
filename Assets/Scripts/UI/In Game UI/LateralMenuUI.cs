@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class LateralMenuUI : MonoBehaviour
 {
@@ -48,37 +50,29 @@ public class LateralMenuUI : MonoBehaviour
         // highlight button:     0-> swapTag     1-> parchmentTag     2->selectionWheelTag   3-> hitTag    4-> jumpTag
         StartCoroutine(GameManager.instance.highLightTag(deviceTag.swapTag));
 
-        if (isGolem)
-        {
-            // Activate beetle parchment
-            beetleParchment.enabled = true;
-            golemParchment.enabled = false;
-
-            beetleIconColor.enabled = true;
-            golemIconColor.enabled = false;
-            
-            beetleSight.gameObject.SetActive(false);
-        }
-        else
-        {
-            // Activate golem parchment
-            golemParchment.enabled = true;
-            beetleParchment.enabled = false;
-
-            golemIconColor.enabled = true;
-            beetleIconColor.enabled = false;
-
-            if (GameManager.instance.player.GetSelection() == 2)
+        if(!SceneManager.GetActiveScene().name.Equals("BeetleBoss")){
+            if (isGolem)
             {
-                beetleSight.gameObject.SetActive(true);
+                // Activate beetle parchment
+                beetleParchment.enabled = true;
+                golemParchment.enabled = false;
+
+                beetleIconColor.enabled = true;
+                golemIconColor.enabled = false;
             }
             else
             {
-                beetleSight.gameObject.SetActive(false);
-            }
-        }
+                // Activate golem parchment
+                golemParchment.enabled = true;
+                beetleParchment.enabled = false;
 
-        isGolem = !isGolem;
+                golemIconColor.enabled = true;
+                beetleIconColor.enabled = false;
+            }
+
+            isGolem = !isGolem;
+        }
+        beetleSight.gameObject.SetActive(GameManager.instance.player.GetSelection() == 2 && !isGolem && !SceneManager.GetActiveScene().name.Equals("BeetleBoss"));
     }
 
     public void UIOpenInstructions(InputAction.CallbackContext context)
@@ -129,14 +123,7 @@ public class LateralMenuUI : MonoBehaviour
                 AudioManager.audioInstance.PlayAbilitySound(GameManager.instance.player.GetSelection(), isGolem);
  
                 // enable/disable beetleSight
-                if (!isGolem && GameManager.instance.player.GetSelection() == 2)
-                {
-                    beetleSight.gameObject.SetActive(true);
-                }
-                else
-                {
-                    beetleSight.gameObject.SetActive(false);
-                }
+                beetleSight.gameObject.SetActive(GameManager.instance.player.GetSelection() == 2 && !isGolem && !SceneManager.GetActiveScene().name.Equals("BeetleBoss"));
                 
                 return;
             }
@@ -171,7 +158,9 @@ public class LateralMenuUI : MonoBehaviour
         {
             golemParchment.enabled = false;
             golemIconColor.enabled = false;
+
         }
+        beetleSight.gameObject.SetActive(GameManager.instance.player.GetSelection() == 2 && !isGolem && !SceneManager.GetActiveScene().name.Equals("BeetleBoss"));
     }
 
     // Update is called once per frame
