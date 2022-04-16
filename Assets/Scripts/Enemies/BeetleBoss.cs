@@ -55,17 +55,23 @@ public class BeetleBoss : MonoBehaviour
     private AudioClip spawnClip;
     private AudioClip damageClip;
 
+    [Space]
+    [SerializeField]
+    AudioSource bossMusic;
+
     // Bezier Follow
     private BezierFollow bezier;
 
     private Animator anim;
+
+    [HideInInspector]
+    public bool isShooting;
 
     // Start is called before the first frame update
     void Start()
     {
         bulletPool = GetComponent<BulletPool>();
         bezier = GetComponentInParent<BezierFollow>();
-        bezier.enabled = false;
 
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("isBoss", true);
@@ -89,16 +95,22 @@ public class BeetleBoss : MonoBehaviour
             bossPatterns[0].angleOffset = -bossPatterns[0].angleOffset;
             elapsedTime = 0.0f;
         }
+
+        if (bossPatterns[currentBossPattern].enableBezier)
+            bezier.enabled = true;
+        else
+            bezier.enabled = false;
     }
 
     public void EnableBulletSpawn()
     {
         StartCoroutine(BulletSpawn());
+        isShooting = true;
     }
 
     public void DisableBulletSpawn()
     {
-        StopCoroutine(BulletSpawn());
+        StopAllCoroutines();
     }
 
     public void DeactivateForceShield()
@@ -117,15 +129,16 @@ public class BeetleBoss : MonoBehaviour
         if (currentShield == forceShields.Length)
         {
             yield return new WaitForSeconds(audiosrc.clip.length);
+            bossMusic.Play();
             EnableBulletSpawn();
         }     
     }
 
-    private IEnumerator BulletSpawn()
+    public IEnumerator BulletSpawn()
     {
         float offset = 0.0f;
 
-        while (true)
+        while (enabled)
         {
             audiosrc.clip = spawnClip;
             audiosrc.Play();
@@ -158,11 +171,6 @@ public class BeetleBoss : MonoBehaviour
         else
         {
             currentBossPattern++;
-
-            if(bossPatterns[currentBossPattern].enableBezier)
-                bezier.enabled = true;
-            else
-                bezier.enabled = false;
 
             hits = hitsPerPattern;
             lifeCount--;

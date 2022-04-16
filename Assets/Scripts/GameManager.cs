@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
     // GolemBoss in the level
     private GolemBoss golemBoss;
 
+    // BeetleBoss in the level
+    private BeetleBoss beetleBoss;
+
     // Players
     public PlayerManager player;
 
@@ -117,20 +120,14 @@ public class GameManager : MonoBehaviour
         crackedPlatforms = new List<CrackedPlatform>(FindObjectsOfType<CrackedPlatform>());
         balancePlatforms = new List<BalancePlatform>(FindObjectsOfType<BalancePlatform>());
         bullets = new List<LightBullet>(FindObjectsOfType<LightBullet>(true));
-        Debug.Log(bullets.Count);
         altar = FindObjectOfType<Altar>();
         golemBoss = FindObjectOfType<GolemBoss>();
+        beetleBoss = FindObjectOfType<BeetleBoss>();
 
         currentBGColor = Camera.main.backgroundColor;
 
         skybox = RenderSettings.skybox;
         ambientLight = RenderSettings.ambientLight;
-
-        if (player.freelookCam)
-        {
-            _basecmXSpeed = player.freelookCam.m_XAxis.m_MaxSpeed;
-            _basecmYSpeed = player.freelookCam.m_YAxis.m_MaxSpeed;
-        }
 
         ChangeSensitivity(1.0f);
     }
@@ -289,6 +286,18 @@ public class GameManager : MonoBehaviour
             foreach (Animator anim in anims)
                 anim.enabled = false;
         }
+
+        if (beetleBoss)
+        {
+            List<MonoBehaviour> bossScripts = new List<MonoBehaviour>(beetleBoss.transform.parent.GetComponentsInChildren<MonoBehaviour>());
+            foreach (MonoBehaviour script in bossScripts)
+                script.enabled = false;
+
+            beetleBoss.GetComponentInChildren<Animator>().enabled = false;
+
+            if (beetleBoss.isShooting)
+                beetleBoss.StopAllCoroutines();
+        }
     }
 
     public void play()
@@ -340,6 +349,10 @@ public class GameManager : MonoBehaviour
         foreach (BalancePlatform platform in balancePlatforms)
             platform.enabled = true;
 
+        // Bullets
+        foreach (LightBullet bullet in bullets)
+            bullet.enabled = true;
+
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
 
         if (golemBoss)
@@ -350,6 +363,18 @@ public class GameManager : MonoBehaviour
             List<Animator> anims = new List<Animator>(golemBoss.GetComponentsInChildren<Animator>());
             foreach (Animator anim in anims)
                 anim.enabled = true;
+        }
+
+        if (beetleBoss)
+        {
+            List<MonoBehaviour> bossScripts = new List<MonoBehaviour>(beetleBoss.transform.parent.GetComponentsInChildren<MonoBehaviour>());
+            foreach (MonoBehaviour script in bossScripts)
+                script.enabled = true;
+
+            beetleBoss.GetComponentInChildren<Animator>().enabled = true;
+
+            if(beetleBoss.isShooting)
+                beetleBoss.StartCoroutine(beetleBoss.BulletSpawn());
         }
     }
 

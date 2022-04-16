@@ -1094,18 +1094,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 251668}
-        m_TargetAssemblyTypeName: CameraPan, Assembly-CSharp
-        m_MethodName: Pan
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &157044388
 GameObject:
   m_ObjectHideFlags: 3
@@ -1333,6 +1321,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4833623756352005652, guid: 15af40e00ada6594d96d2ca6103cb2c7, type: 3}
   m_PrefabInstance: {fileID: 246340192}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &246819706 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1391292328844751187, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+  m_PrefabInstance: {fileID: 1417728747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &250009287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,6 +1522,7 @@ GameObject:
   - component: {fileID: 332414465}
   - component: {fileID: 332414464}
   - component: {fileID: 332414463}
+  - component: {fileID: 332414467}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1660,6 +1654,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &332414467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332414462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8025ccf88fe43844a80309ae0b517fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffectsFactor: 1
+  musicFactor: 1
+  allLoaded: 0
 --- !u!1 &340244948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2228,18 +2237,6 @@ MonoBehaviour:
       - m_Target: {fileID: 647999529}
         m_TargetAssemblyTypeName: BeetleBoss, Assembly-CSharp
         m_MethodName: DeactivateForceShield
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 251668}
-        m_TargetAssemblyTypeName: CameraPan, Assembly-CSharp
-        m_MethodName: Pan
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3095,6 +3092,8 @@ MonoBehaviour:
   - {fileID: 1074400238}
   - {fileID: 134373731}
   - {fileID: 360604761}
+  bossMusic: {fileID: 246819706}
+  isShooting: 0
 --- !u!1 &650603041
 GameObject:
   m_ObjectHideFlags: 0
@@ -4554,6 +4553,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 826b36ff190698943b97bdaaf987ef1d, type: 3}
+    - target: {fileID: 1391292328844751187, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1497270602280985294, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_Delegates.Array.size
       value: 3
@@ -5775,18 +5778,6 @@ MonoBehaviour:
       - m_Target: {fileID: 647999529}
         m_TargetAssemblyTypeName: BeetleBoss, Assembly-CSharp
         m_MethodName: DeactivateForceShield
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 251668}
-        m_TargetAssemblyTypeName: CameraPan, Assembly-CSharp
-        m_MethodName: Pan
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

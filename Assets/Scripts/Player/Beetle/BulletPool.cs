@@ -16,7 +16,7 @@ public class BulletPool : MonoBehaviour
     [SerializeField] int lifeTime;
     [SerializeField] int damage;
 
-    void Start()
+    void Awake()
     {
         bulletPool = new Queue<GameObject>();
 
