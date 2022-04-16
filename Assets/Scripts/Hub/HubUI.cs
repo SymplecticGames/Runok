@@ -12,6 +12,8 @@ public class HubUI : MonoBehaviour
     public List<Image> kbTags;
     public List<Image> xboxTags;
     public List<Image> psTags;
+
+    public SettingsUI settingsUI;
     
     public void OnDeviceChange(PlayerInput context)
     {
@@ -33,6 +35,8 @@ public class HubUI : MonoBehaviour
             return;
 
         DeviceControlsManager.instance.SetTagsInScene(kbTags, xboxTags, psTags);
+        
+        settingsUI.Start();
     }
 
     public void HideUI(InputAction.CallbackContext context)

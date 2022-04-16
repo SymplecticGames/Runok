@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TutorialUI : MonoBehaviour
@@ -53,6 +54,7 @@ public class TutorialUI : MonoBehaviour
                 clueIndex = 4;
                 maxLength = 5;
                 nextButton.gameObject.SetActive(false);
+                EventSystem.current.SetSelectedGameObject(previousButton.gameObject);
                 nextButton.interactable = false;
                 skip_closeButton.GetComponentInChildren<Text>().text = "Cerrar pistas";
                 break;
@@ -61,6 +63,7 @@ public class TutorialUI : MonoBehaviour
                 clueIndex = 5;
                 maxLength = 6;
                 nextButton.gameObject.SetActive(false);
+                EventSystem.current.SetSelectedGameObject(previousButton.gameObject);
                 nextButton.interactable = false;
                 skip_closeButton.GetComponentInChildren<Text>().text = "Cerrar pistas";
                 break;
@@ -69,7 +72,10 @@ public class TutorialUI : MonoBehaviour
 
         previousButton.gameObject.SetActive(false);
         previousButton.interactable = false;
+        EventSystem.current.SetSelectedGameObject(nextButton.gameObject);
 
+        if(!nextButton.gameObject.activeInHierarchy)
+            EventSystem.current.SetSelectedGameObject(skip_closeButton.gameObject);
         ShowGroup();
 
     }
@@ -104,6 +110,7 @@ public class TutorialUI : MonoBehaviour
         {
             previousButton.gameObject.SetActive(false);
             previousButton.interactable = false;
+            EventSystem.current.SetSelectedGameObject(nextButton.gameObject);
         }
         else if (clueIndex == maxLength - 1)
         {
@@ -131,6 +138,7 @@ public class TutorialUI : MonoBehaviour
                 nextButton.gameObject.SetActive(false);
                 nextButton.interactable = false;
                 skip_closeButton.GetComponentInChildren<Text>().text = "Cerrar pistas";
+                EventSystem.current.SetSelectedGameObject(previousButton.gameObject);
             }
             clueIndex++;
             ShowGroup();

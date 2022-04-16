@@ -184,6 +184,8 @@ public class MainMenuUI : MonoBehaviour
         settingsUIgo.GetComponent<Image>().color = new Color(sColor.r,sColor.g,sColor.b, 1.0f);
         
         _selectorTargetPosition = selector.transform.localPosition.y;
+        
+        settingsUIgo.GetComponent<SettingsUI>().Start();
     }
 
     // Update is called once per frame

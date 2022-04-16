@@ -1,15 +1,12 @@
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class SettingsUI : MonoBehaviour
 {
 
-    public static SettingsUI settingsInstance;
-    
-    [HideInInspector]
-    public float _cmSensitivityFactor = 1.0f;
-    
     // music, sounds, cameraSensibility
     public List<Slider> sliders;
 
@@ -22,36 +19,18 @@ public class SettingsUI : MonoBehaviour
     public Image sensitivity;
     public Image resolution;
     
-    // resolutions
-    private int[] _widths = new[] {1920, 1280, 960, 568};
-    private int[] _heights = new[] {1080, 800, 540, 329};
+    private float sensitivityFactor;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
+        for (int i = 0; i < SettingsManager.settingsInstance._widths.Length; i++)
+        {
+            options.Add(new Dropdown.OptionData(SettingsManager.settingsInstance._widths[i] + "x" + SettingsManager.settingsInstance._heights[i]));
+        }
 
-        if (!settingsInstance)
-        {
-            settingsInstance = this;
-            DontDestroyOnLoad(this);
-        }
-        else
-        {
-            Destroy(this);
-        }
+        screenResolution.options = options;
         
-        //set resolution text:
-        if (settingsInstance)
-        {
-            List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
-            for (int i = 0; i < _widths.Length; i++)
-            {
-                options.Add(new Dropdown.OptionData(_widths[i] + "x" + _heights[i]));
-            }
-
-            screenResolution.options = options;
-        }
-
         // // DEBUG /////////////////////////////////////////////////////////////////////////////////
         // Resolution[] resolutions = Screen.resolutions;
         //
@@ -61,6 +40,23 @@ public class SettingsUI : MonoBehaviour
         //     Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
         // }
         // /////////////////////////////////////////////////////////////////////////////////
+        
+        
+        // stablish setttings state:
+
+        SetMusicVolume(SettingsManager.settingsInstance.generalMusicValue);
+        sliders[0].value = SettingsManager.settingsInstance.generalMusicValue;
+        
+        SetSoundEffectsVolume(SettingsManager.settingsInstance.soundEffectsValue);
+        sliders[1].value = SettingsManager.settingsInstance.soundEffectsValue;
+        
+        sensitivityFactor = SettingsManager.settingsInstance.cmSensitivityValue;
+        SetCameraSensitivity(sensitivityFactor);
+        sliders[2].value = SettingsManager.settingsInstance.cmSensitivityValue;
+        
+        SetScreenSize(SettingsManager.settingsInstance.resolutionIdx);
+        screenResolution.value = SettingsManager.settingsInstance.resolutionIdx;
+
     }
 
     public void HoverGeneralMusic()
@@ -69,92 +65,96 @@ public class SettingsUI : MonoBehaviour
         soundEffects.enabled = false;
         sensitivity.enabled = false;
         resolution.enabled = false;
-        
+
         AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
     }
-    
+
     public void HoverSoundEffect()
     {
         generalMusic.enabled = false;
         soundEffects.enabled = true;
         sensitivity.enabled = false;
         resolution.enabled = false;
-        
+
         AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
     }
-    
+
     public void HoverSensitivity()
     {
         generalMusic.enabled = false;
         soundEffects.enabled = false;
         sensitivity.enabled = true;
         resolution.enabled = false;
-        
+
         AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
     }
-    
+
     public void HoverResolution()
     {
         generalMusic.enabled = false;
         soundEffects.enabled = false;
         sensitivity.enabled = false;
         resolution.enabled = true;
-        
+
         AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
     }
-    
+
     public void HoverGoBack()
     {
         generalMusic.enabled = false;
         soundEffects.enabled = false;
         sensitivity.enabled = false;
         resolution.enabled = false;
-        
+
         AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
     }
-    
+
     public void SetScreenSize(int index)
     {
-        if (settingsInstance)
-        {
-            int width = _widths[index];
-            int height = _heights[index];
-            Screen.SetResolution(width, height, true);
-        }
+        int width = SettingsManager.settingsInstance._widths[index];
+        int height = SettingsManager.settingsInstance._heights[index];
+        Screen.SetResolution(width, height, true);
+        if (SettingsManager.settingsInstance)
+            SettingsManager.settingsInstance.resolutionIdx = index;
     }
 
     public void SetMusicVolume(float value)
     {
         AudioManager.audioInstance.musicFactor = value;
+        if (SettingsManager.settingsInstance)
+        {
+            SettingsManager.settingsInstance.generalMusicValue = value;
+        }
     }
 
     public void SetSoundEffectsVolume(float value)
     {
         AudioManager.audioInstance.soundEffectsFactor = value;
+        if (SettingsManager.settingsInstance)
+            SettingsManager.settingsInstance.soundEffectsValue = value;
     }
 
     public void SetCameraSensitivity(float value)
     {
         // 0--> 2
-        _cmSensitivityFactor = Mathf.Clamp(value, 0.1f, 2.0f);
+        sensitivityFactor = Mathf.Clamp(value, 0.1f, 2.0f);
 
 
         if (GameManager.instance)
         {
-            GameManager.instance.ChangeSensitivity(_cmSensitivityFactor);
+            GameManager.instance.ChangeSensitivity(sensitivityFactor);
         }
+        
+        if (SettingsManager.settingsInstance)
+            SettingsManager.settingsInstance.cmSensitivityValue = sensitivityFactor;
 
     }
 
     public void GoBack()
     {
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
+    
+
 }

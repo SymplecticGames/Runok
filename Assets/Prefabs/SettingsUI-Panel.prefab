@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4000142534200568905}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
         m_MethodName: SetScreenSize
         m_Mode: 0
@@ -1086,7 +1086,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
           m_MethodName: HoverResolution
           m_Mode: 1
@@ -1102,7 +1102,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
           m_MethodName: HoverResolution
           m_Mode: 1
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4000142534200568905}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
         m_MethodName: SetSoundEffectsVolume
         m_Mode: 0
@@ -1499,7 +1499,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
           m_MethodName: HoverSoundEffect
           m_Mode: 1
@@ -1515,7 +1515,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
           m_MethodName: HoverSoundEffect
           m_Mode: 1
@@ -1649,6 +1649,7 @@ GameObject:
   - component: {fileID: 4572413363172616029}
   - component: {fileID: 7098020790262090221}
   - component: {fileID: 578332568028156865}
+  - component: {fileID: 4000142534200568905}
   m_Layer: 0
   m_Name: SettingsUI-Panel
   m_TagString: Untagged
@@ -1714,6 +1715,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4000142534200568905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147065809028372555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c13999ec39b049578ab377b225a347a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliders:
+  - {fileID: 6197301242030299839}
+  - {fileID: 3960017053600126711}
+  - {fileID: 622008891628250951}
+  screenResolution: {fileID: 5870779887633894797}
+  generalMusic: {fileID: 4276219785048863482}
+  soundEffects: {fileID: 1648140745415437257}
+  sensitivity: {fileID: 389002086377902771}
+  resolution: {fileID: 8853707669975121700}
 --- !u!1 &4200622000342644288
 GameObject:
   m_ObjectHideFlags: 0
@@ -2296,7 +2318,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4000142534200568905}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
         m_MethodName: GoBack
         m_Mode: 1
@@ -2337,7 +2359,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
           m_MethodName: GoBack
           m_Mode: 1
@@ -2350,36 +2372,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
+          m_TargetAssemblyTypeName: PauseMenuUI, Assembly-CSharp
           m_MethodName: ClosedSettings
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 15
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-          m_MethodName: GoBack
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-          m_MethodName: HoverGoBack
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2393,9 +2387,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-          m_MethodName: GoBack
+          m_MethodName: HoverGoBack
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2405,7 +2399,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
           m_MethodName: HoverGoBack
           m_Mode: 1
@@ -2741,7 +2739,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4000142534200568905}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
         m_MethodName: SetCameraSensitivity
         m_Mode: 0
@@ -2770,7 +2768,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
           m_MethodName: HoverSensitivity
           m_Mode: 1
@@ -2786,7 +2784,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
           m_MethodName: HoverSensitivity
           m_Mode: 1
@@ -3703,11 +3701,11 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.353
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4000142534200568905}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 0
@@ -3736,7 +3734,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
           m_MethodName: HoverGeneralMusic
           m_Mode: 1
@@ -3752,7 +3750,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 4000142534200568905}
           m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
           m_MethodName: HoverGeneralMusic
           m_Mode: 1
