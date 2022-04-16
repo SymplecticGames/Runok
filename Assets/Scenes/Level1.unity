@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38502768, g: 0.28073594, b: 0.27779624, a: 1}
+  m_IndirectSpecularColor: {r: 0.4379423, g: 0.3193337, b: 0.31598836, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2352,7 +2352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498799635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.7977242, y: 13.809999, z: -132.16417}
+  m_LocalPosition: {x: 4.797724, y: 13.809999, z: -132.16417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1580229500}
@@ -2528,7 +2528,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.3242132, y: 0.042200405, z: -0.014479287, w: 0.9449314}
+  m_LocalRotation: {x: 0.3242132, y: 0.042200428, z: -0.014479293, w: 0.9449314}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5783,8 +5783,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.32421327, y: 0.042200413, z: -0.01447929, w: 0.9449314}
-  m_LocalPosition: {x: 4.7977242, y: 13.809999, z: -132.16417}
+  m_LocalRotation: {x: 0.32421327, y: 0.04220044, z: -0.014479294, w: 0.9449314}
+  m_LocalPosition: {x: 4.797724, y: 13.809999, z: -132.16417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7117,7 +7117,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.3242132, y: 0.04220041, z: -0.014479286, w: 0.9449314}
+  m_LocalRotation: {x: 0.3242132, y: 0.042200428, z: -0.014479293, w: 0.9449314}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7286,7 +7286,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.2897202, y: 0.042697895, z: -0.012938834, w: 0.95607096}
+  m_LocalRotation: {x: 0.2897202, y: 0.042697925, z: -0.012938843, w: 0.95607096}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9334,6 +9334,18 @@ PrefabInstance:
       propertyPath: settingsMusicButton
       value: 
       objectReference: {fileID: 632283046022852715}
+    - target: {fileID: 2262043424885080538, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.87058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262043424885080538, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262043424885080538, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.38039216
+      objectReference: {fileID: 0}
     - target: {fileID: 2385143471928657886, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -9365,6 +9377,18 @@ PrefabInstance:
     - target: {fileID: 3025693884362546388, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047221566960731362, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.87058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047221566960731362, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047221566960731362, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.38039216
       objectReference: {fileID: 0}
     - target: {fileID: 3538978336737884272, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_IsActive
@@ -9402,6 +9426,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 91cda9f3d6ad6a246aa27ec8a913e19b, type: 3}
+    - target: {fileID: 4735771873829588035, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.87058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735771873829588035, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735771873829588035, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.38039216
+      objectReference: {fileID: 0}
     - target: {fileID: 5066006315010423195, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_IsActive
       value: 1
