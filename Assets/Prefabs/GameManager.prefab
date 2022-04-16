@@ -120,6 +120,7 @@ MonoBehaviour:
   mainLight: {fileID: 0}
   musicSource: {fileID: 0}
   musicBaseVolume: 0
+  targetMusicBaseVolume: 0
 --- !u!82 &1391292328844751187
 AudioSource:
   m_ObjectHideFlags: 0
@@ -629,6 +630,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1616425853639059366, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021362438429307150, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4102115582240776531, guid: 37e8e5338d8719e47801efc4a3b94aca, type: 3}

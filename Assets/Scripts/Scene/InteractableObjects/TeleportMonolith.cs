@@ -9,19 +9,19 @@ public class TeleportMonolith : MonoBehaviour
     /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
     // neighbour hole (trigger) variable
     public GameObject neighbourMonolith;
-    
+
     // path variables
     public GameObject path;
     public bool followPath;
-    
+
     // time variables
     public bool doWaitTime;
     public float waitTime;
-    
+
     ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////
     // boolean variables to determine states
     private bool _cameFromNeighbour;
-    
+
     // neighbourHole script to change its state variables
     private TeleportMonolith _neighbourMonolithScript;
 
@@ -70,7 +70,7 @@ public class TeleportMonolith : MonoBehaviour
         {
             // reset values
             _cameFromNeighbour = false;
-            
+
             // reset wait time
             _waitedTime = 0;
         }
@@ -92,18 +92,17 @@ public class TeleportMonolith : MonoBehaviour
             }
         }
     }
-    
-    
-    void moveToNeighbourHole(GameObject other)
+
+
+    private void moveToNeighbourHole(GameObject other)
     {
         if (followPath)
         {   // do followPath
-                    
+
         }
         else
-        {   // do normal hole teleport animation
-            doHoleTeleport(other, transform.position);
-            _neighbourMonolithScript.doHoleTeleport(other, neighbourMonolith.transform.position);
+        {
+            StartCoroutine(DoHoleTeleportFade(other));
         }
 
         // change neighbour hole state
@@ -112,21 +111,34 @@ public class TeleportMonolith : MonoBehaviour
         GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
         GetComponent<AudioSource>().Play();
     }
-    void doHoleTeleport(GameObject gO, Vector3 pos)
+
+    private IEnumerator DoHoleTeleportFade(GameObject other)
+    {
+        GameManager.instance.player.fadePanelAnim.SetTrigger("doFadeIn");
+
+        yield return new WaitForSeconds(0.1f);
+
+        GameManager.instance.player.fadePanelAnim.SetTrigger("doFadeOut");
+
+        // do normal hole teleport animation
+        doHoleTeleport(other, neighbourMonolith.transform.position);
+    }
+
+    private void doHoleTeleport(GameObject gO, Vector3 pos)
     {
         // get GO character controler component
         CharacterController cc = gO.GetComponent<CharacterController>();
-        
+
         // disable cc to do the 'teleport'
         cc.enabled = false;
-        
+
         // teleport
         gO.transform.position = pos;
-        
+
         // enable cc once teleport is made
         cc.enabled = true;
     }
-    
+
     // Update is called once per frame
     void Update()
     {

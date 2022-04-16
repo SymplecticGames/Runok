@@ -33,6 +33,9 @@ public class PlayerManager : MonoBehaviour
 
     private GameObject selectionWheel;
 
+    [HideInInspector]
+    public Animator fadePanelAnim;
+
     private void Awake()
     {
         selectionWheel = GameObject.FindGameObjectWithTag("SelectionWheel");
@@ -54,6 +57,8 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fadePanelAnim = lateralMenu.transform.Find("FadePanel").GetComponent<Animator>();
+
         // Activate golem
         currentCharacter = golemBehaviour;
 
@@ -176,8 +181,6 @@ public class PlayerManager : MonoBehaviour
 
             // Activate beetle
             currentCharacter = beetleBehaviour;
-            camLookAtTarget.parent = currentCharacter.transform;
-            camLookAtTarget.localPosition = Vector3.zero;
 
             // Get beetle animator
             animator = currentCharacter.GetComponent<Animator>();
@@ -188,12 +191,29 @@ public class PlayerManager : MonoBehaviour
             // Activate golem
             currentCharacter = golemBehaviour;
 
-            camLookAtTarget.parent = currentCharacter.transform;
-            camLookAtTarget.localPosition = Vector3.zero;
-
             // Get golem animator
             animator = currentCharacter.GetComponent<Animator>();
         }
+
+        if (Mathf.Sign(Camera.main.transform.position.y) != Mathf.Sign(currentCharacter.transform.position.y))
+            StartCoroutine(TransitionWithFade());
+        else
+        {
+            camLookAtTarget.parent = currentCharacter.transform;
+            camLookAtTarget.localPosition = Vector3.zero;
+        }
+    }
+
+    public IEnumerator TransitionWithFade()
+    {
+        fadePanelAnim.SetTrigger("doFadeIn");
+
+        yield return new WaitForSeconds(0.1f);
+
+        fadePanelAnim.SetTrigger("doFadeOut");
+
+        camLookAtTarget.parent = currentCharacter.transform;
+        camLookAtTarget.localPosition = Vector3.zero;
     }
 
     public void ReturnToGolem(InputAction.CallbackContext context)

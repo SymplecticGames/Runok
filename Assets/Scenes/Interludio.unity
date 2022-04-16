@@ -621,6 +621,7 @@ GameObject:
   - component: {fileID: 549676998}
   - component: {fileID: 549676999}
   - component: {fileID: 549677000}
+  - component: {fileID: 549677001}
   m_Layer: 5
   m_Name: InterludioTransitionPanel
   m_TagString: Untagged
@@ -863,6 +864,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &549677001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549676993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2259b398075d83e4b8c9fd5ba44c8ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &564531779
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class CameraPan : MonoBehaviour
     private float distanceToTarget = 15.0f;
 
     private bool firstTime = true;
-    
+
     [SerializeField]
     private bool onlyOnce = true;
 
@@ -28,7 +28,7 @@ public class CameraPan : MonoBehaviour
     {
         if (!firstTime && onlyOnce)
             return;
-        
+
         firstTime = false;
 
         StartCoroutine(PanCoroutine());
@@ -38,6 +38,15 @@ public class CameraPan : MonoBehaviour
     {
         if (!isPanning)
         {
+            if (Mathf.Sign(Camera.main.transform.position.y) != Mathf.Sign(transform.position.y))
+            {
+                playerManager.fadePanelAnim.SetTrigger("doFadeIn");
+
+                yield return new WaitForSeconds(0.1f);
+
+                playerManager.fadePanelAnim.SetTrigger("doFadeOut");
+            }
+
             //playerManager.gameObject.SetActive(false);
             playerManager.input.DeactivateInput();
 
@@ -65,6 +74,15 @@ public class CameraPan : MonoBehaviour
             playerManager.freelookCam.m_Orbits[2].m_Height = height2 * convertFactor;
 
             yield return new WaitForSeconds(panTime);
+
+            if (Mathf.Sign(Camera.main.transform.position.y) != Mathf.Sign(playerManager.currentCharacter.transform.position.y))
+            {
+                playerManager.fadePanelAnim.SetTrigger("doFadeIn");
+
+                yield return new WaitForSeconds(0.1f);
+
+                playerManager.fadePanelAnim.SetTrigger("doFadeOut");
+            }
 
             playerManager.camLookAtTarget.parent = playerManager.currentCharacter.transform;
             playerManager.camLookAtTarget.localPosition = Vector3.zero;
