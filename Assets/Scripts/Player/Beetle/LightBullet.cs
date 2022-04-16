@@ -75,5 +75,11 @@ public class LightBullet : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("LevelGeometry") || other.gameObject.layer == LayerMask.NameToLayer("Block"))
             SetInactive();
+
+        if (CompareTag("BossBullet") && other.CompareTag("Beetle"))
+        {
+            SetInactive();
+            GameManager.instance.player.Die();
+        }
     }
 }

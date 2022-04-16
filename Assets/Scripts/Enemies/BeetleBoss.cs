@@ -31,19 +31,29 @@ public class BeetleBoss : MonoBehaviour
     [Space]
     [Header("Bullet Hell Variables")]
     [SerializeField]
-    private BeetleBossPattern spiralPattern;
+    private BeetleBossPattern[] bossPatterns;
 
     [SerializeField]
-    private BeetleBossPattern circleBezier;
+    private int hitsPerPattern;
 
     [SerializeField]
-    private BeetleBossPattern flowerPattern;
+    private int lifeCount;
 
-    private BeetleBossPattern currentBossPattern;
+    private int currentBossPattern;
+    private int hits;
 
     #endregion
 
+    [Space]
+    [SerializeField]
+    private GameObject[] forceShields;
+    private int currentShield;
+
     private float elapsedTime;
+
+    private AudioSource audiosrc;
+    private AudioClip spawnClip;
+    private AudioClip damageClip;
 
     // Bezier Follow
     private BezierFollow bezier;
@@ -55,27 +65,28 @@ public class BeetleBoss : MonoBehaviour
     {
         bulletPool = GetComponent<BulletPool>();
         bezier = GetComponentInParent<BezierFollow>();
-
-        // Bullet Spawn
-        EnableBulletSpawn();
+        bezier.enabled = false;
 
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("isBoss", true);
 
         GameManager.instance.player.SwapCharacter();
         GameManager.instance.player.currentCharacter.isInBoss = true;
+
+        hits = hitsPerPattern;
+
+        audiosrc = GetComponent<AudioSource>();
+        spawnClip = (AudioClip)Resources.Load("SoundEffects/UI/selectedShoot");
+        damageClip = (AudioClip)Resources.Load("SoundEffects/Characters/laserHit");
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentBossPattern = flowerPattern;
-        bezier.enabled = currentBossPattern.enableBezier;
-
         elapsedTime += Time.deltaTime;
         if (elapsedTime > 5.0f)
         {
-            spiralPattern.angleOffset = -spiralPattern.angleOffset;
+            bossPatterns[0].angleOffset = -bossPatterns[0].angleOffset;
             elapsedTime = 0.0f;
         }
     }
@@ -90,28 +101,81 @@ public class BeetleBoss : MonoBehaviour
         StopCoroutine(BulletSpawn());
     }
 
+    public void DeactivateForceShield()
+    {
+        if(currentShield < forceShields.Length)
+            StartCoroutine(DelayedForceShield());
+    }
+
+    private IEnumerator DelayedForceShield()
+    {
+        yield return new WaitForSeconds(1.0f);
+        audiosrc.Play();
+        forceShields[currentShield].SetActive(false);
+        currentShield++;
+
+        if (currentShield == forceShields.Length)
+        {
+            yield return new WaitForSeconds(audiosrc.clip.length);
+            EnableBulletSpawn();
+        }     
+    }
+
     private IEnumerator BulletSpawn()
     {
         float offset = 0.0f;
 
         while (true)
         {
-            yield return new WaitForSeconds(currentBossPattern.spawnRatio);
+            audiosrc.clip = spawnClip;
+            audiosrc.Play();
+            yield return new WaitForSeconds(bossPatterns[currentBossPattern].spawnRatio);
 
             float angle = offset;
-            float angleStep = 360.0f / currentBossPattern.waveSize;
+            float angleStep = 360.0f / bossPatterns[currentBossPattern].waveSize;
 
-            for (int i = 0; i < currentBossPattern.waveSize; i++)
+            for (int i = 0; i < bossPatterns[currentBossPattern].waveSize; i++)
             {
                 Vector3 bulletDirection = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad)).normalized;
-                float speedOffset = Mathf.Abs(Mathf.Sin(currentBossPattern.cornerCount * angle * (Mathf.PI / 360.0f))) * speedFactor;
+                float speedOffset = Mathf.Abs(Mathf.Sin(bossPatterns[currentBossPattern].cornerCount * angle * (Mathf.PI / 360.0f))) * speedFactor;
 
                 bulletPool.SpawnBullet(bulletDirection, speedOffset);
 
                 angle += angleStep;
             }
 
-            offset += currentBossPattern.angleOffset;
+            offset += bossPatterns[currentBossPattern].angleOffset;
+        }
+    }
+
+    private void GetDamage()
+    {
+        audiosrc.clip = damageClip;
+        audiosrc.Play();
+
+        if(hits > 0)
+            hits--;
+        else
+        {
+            currentBossPattern++;
+
+            if(bossPatterns[currentBossPattern].enableBezier)
+                bezier.enabled = true;
+            else
+                bezier.enabled = false;
+
+            hits = hitsPerPattern;
+            lifeCount--;
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            other.GetComponent<LightBullet>().SetInactive();
+            GetDamage();
         }
     }
 }
