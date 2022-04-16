@@ -10,14 +10,23 @@ public class LightBullet : MonoBehaviour
     private float damage;
     private bool despawned;
 
+    private float elapsedTime;
+
     // Update is called once per frame
     void Update()
     {
         // Bullet movement
         transform.position += direction * speed * Time.deltaTime;
 
-        if(!despawned)
-            StartCoroutine(SetInactiveDelayed());
+        if (!despawned)
+        {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime > lifeTime)
+            {
+                SetInactive();
+                elapsedTime = 0.0f;
+            }
+        }
     }
 
     public void SetDirection(Vector3 bulletDirection)
@@ -48,17 +57,7 @@ public class LightBullet : MonoBehaviour
     public void SetDespawned(bool despawned)
     {
         this.despawned = despawned;
-    }
-
-    private IEnumerator SetInactiveDelayed()
-    {
-        despawned = true;
-        yield return new WaitForSeconds(lifeTime);
-
-        transform.position = Vector3.zero;
-        transform.rotation = Quaternion.identity;
-
-        gameObject.SetActive(false);
+        elapsedTime = 0.0f;
     }
 
     public void SetInactive()

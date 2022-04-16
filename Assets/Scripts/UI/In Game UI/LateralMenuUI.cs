@@ -89,11 +89,13 @@ public class LateralMenuUI : MonoBehaviour
             {
                 instructionsMenuGO.GetComponentInChildren<InstructionsUI>().DeactivateGifAnimation();
                 instructionsMenuGO.SetActive(false);
+                GameManager.instance.player.input.actions.FindAction("Look").Enable();
                 GameManager.instance.play();
                 AudioManager.audioInstance.PlayUISound(UIAudioTag.instructions);
                 return;
             }
 
+            GameManager.instance.player.input.actions.FindAction("Look").Disable();
             // stop gameMovement
             GameManager.instance.pause();
 
@@ -119,6 +121,7 @@ public class LateralMenuUI : MonoBehaviour
             if (context.canceled && selectionWheelGO.activeInHierarchy)
             {
                 selectionWheelGO.SetActive(false);
+                GameManager.instance.player.input.actions.FindAction("Look").Enable();
                 GameManager.instance.play();
                 GameManager.instance.player.ApplySelection(selectionWheelGO.GetComponent<SelectionWheel>().ability);
                 
@@ -138,6 +141,7 @@ public class LateralMenuUI : MonoBehaviour
                 return;
             }
 
+            GameManager.instance.player.input.actions.FindAction("Look").Disable();
             // stop gameMovement
             GameManager.instance.pause();
 
