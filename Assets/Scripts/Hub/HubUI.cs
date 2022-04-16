@@ -36,7 +36,6 @@ public class HubUI : MonoBehaviour
 
         DeviceControlsManager.instance.SetTagsInScene(kbTags, xboxTags, psTags);
         
-        settingsUI.Start();
     }
 
     public void HideUI(InputAction.CallbackContext context)

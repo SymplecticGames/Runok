@@ -185,7 +185,6 @@ public class MainMenuUI : MonoBehaviour
         
         _selectorTargetPosition = selector.transform.localPosition.y;
         
-        settingsUIgo.GetComponent<SettingsUI>().Start();
     }
 
     // Update is called once per frame
