@@ -4,6 +4,7 @@ using Cinemachine;
 using TMPro.SpriteAssetUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum deviceTag
@@ -108,6 +109,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (ProgressManager.instance)
+            ProgressManager.instance.fightingBoss = SceneManager.GetActiveScene().name.Contains("Boss");
+        
         _numRunes = GameObject.FindGameObjectsWithTag("Runa").Length;
         _collectedRunes = 0;
         numDeaths = 0;
