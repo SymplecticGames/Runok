@@ -172,6 +172,8 @@ public class PauseMenuUI : MonoBehaviour
 
         yesButton.onClick.AddListener(ClickedYes);
         noButton.onClick.AddListener(ClickedNo);
+        
+        settingsUI.GetComponent<SettingsUI>().Start();
     }
 
     private void PausePlayer()
