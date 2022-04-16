@@ -294,4 +294,36 @@ public class PlayerManager : MonoBehaviour
         else
             return (int) beetleBehaviour.GetComponent<BeetleBehaviour>().currentLumMode;
     }
+
+    public void PausePlayer()
+    {
+        input.actions.FindAction("Look").Disable();
+        input.actions.FindAction("GolemHit").Disable();
+        input.actions.FindAction("GolemJump").Disable();
+        input.actions.FindAction("ReturnToGolem").Disable();
+        input.actions.FindAction("SwapCharacter").Disable();
+        input.actions.FindAction("BeetleFrontRay").Disable();
+        input.actions.FindAction("BeetleBackRay").Disable();
+        input.actions.FindAction("BeetleShoot").Disable();
+        input.actions.FindAction("OpenInstructions").Disable();
+        input.actions.FindAction("WheelMenu").Disable();
+    }
+
+    public void ResumePlayer()
+    {
+        input.actions.FindAction("Look").Enable();
+        input.actions.FindAction("GolemHit").Enable();
+        input.actions.FindAction("GolemJump").Enable();
+        input.actions.FindAction("ReturnToGolem").Enable();
+        GolemBoss golemBoss = FindObjectOfType<GolemBoss>();
+        if (!golemBoss)
+            input.actions.FindAction("SwapCharacter").Enable();
+        else if (golemBoss.beaten)
+            input.actions.FindAction("SwapCharacter").Enable();
+        input.actions.FindAction("BeetleFrontRay").Enable();
+        input.actions.FindAction("BeetleBackRay").Enable();
+        input.actions.FindAction("BeetleShoot").Enable();
+        input.actions.FindAction("OpenInstructions").Enable();
+        if (selectionWheelEnabled) input.actions.FindAction("WheelMenu").Enable();
+    }
 }

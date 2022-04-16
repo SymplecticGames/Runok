@@ -33,6 +33,7 @@ public class TutorialUI : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if (GameManager.instance)
         {
+            GameManager.instance.player.PausePlayer();
             GameManager.instance.pause();
         }
         gameObject.GetComponent<CanvasGroup>().alpha = 1.0f;
@@ -98,6 +99,7 @@ public class TutorialUI : MonoBehaviour
         lateralMenu.showingTutorial = false;
         pauseMenu.showingTutorial = false;
         gameObject.SetActive(false);
+        GameManager.instance.player.ResumePlayer();
         GameManager.instance.play();
         
     }
