@@ -55,7 +55,8 @@ public class PauseMenuUI : MonoBehaviour
             _paused = !_paused;
             AudioManager.audioInstance.PlayUISound(UIAudioTag.openPauseMenu);
         }
-        EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
+        if(continueButton.gameObject)
+            EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
 
     }
 
@@ -212,5 +213,6 @@ public class PauseMenuUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 }

@@ -38,6 +38,7 @@ public class InterludioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        skipButton.GetComponent<Animator>().SetTrigger("Normal");
         _text.text = interludioText[0];
         _targetPosition = imagePositions_X[0];
 
@@ -87,9 +88,10 @@ public class InterludioManager : MonoBehaviour
 
     IEnumerator HighLightSkipButton()
     {
-        skipButton.color = new Color(0.384f, 0.1294118f, 0.1176471f);
-        yield return new WaitForSeconds(0.5f);
-        skipButton.color = Color.black;
+        skipButton.GetComponent<Animator>().SetTrigger("Selected");
+        yield return new WaitForSeconds(skipButton.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        skipButton.GetComponent<Animator>().SetTrigger("Normal");
+        yield return new WaitForSeconds(skipButton.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         _actualSlide = interludioImages.Length * 3;
         _submited = true;
     }

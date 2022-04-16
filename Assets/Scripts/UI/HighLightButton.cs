@@ -2,41 +2,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class HighLightButton : MonoBehaviour
 {
-    /////////////////////////////////////////  p u b l i c   v a r i a b l e s  ////////////////////////////////////////
-    public float scaleFactor = 1.0f;
-    public Color highLightColor;
-    
-    ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////   
-    private Color _originalButtonColor;
-    private Vector3 _originalScaleFactor;
 
+    ////////////////////////////////////////  p r i v a t e   v a r i a b l e s  ///////////////////////////////////////   
+    private Animator _anim;
+    
     public void DoChanges()
     {
-        gameObject.GetComponent<RectTransform>().localScale = _originalScaleFactor * scaleFactor;
-        gameObject.GetComponent<Image>().color = highLightColor;
-        AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
+        _anim.SetTrigger("Select");
+        if(EventSystem.current.currentSelectedGameObject != gameObject)
+            EventSystem.current.SetSelectedGameObject(gameObject);
     }
 
     public void UndoChanges()
     {
-        gameObject.GetComponent<RectTransform>().localScale = _originalScaleFactor;
-        gameObject.GetComponent<Image>().color = _originalButtonColor;
+        _anim.SetTrigger("Normal");
     }
     
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     private void Awake()
     {
-        _originalButtonColor = gameObject.GetComponent<Image>().color;
-        _originalScaleFactor = gameObject.GetComponent<RectTransform>().localScale;
+        _anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
