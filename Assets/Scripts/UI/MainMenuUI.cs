@@ -39,6 +39,9 @@ public class MainMenuUI : MonoBehaviour
 
     private bool _settingsOpened;
 
+    [SerializeField]
+    private Animator fadePanelAnim;
+
     public void ClickedNewGame()
     {
         if (!selector.activeInHierarchy || _settingsOpened)
@@ -193,6 +196,8 @@ public class MainMenuUI : MonoBehaviour
             col.a = 0.2f;
             continueGameButton.GetComponentInChildren<Text>().color = col;
         }
+
+        fadePanelAnim.SetTrigger("doFadeOut");
     }
 
     // Update is called once per frame
