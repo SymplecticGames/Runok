@@ -222,6 +222,8 @@ public class GameManager : MonoBehaviour
 
     public void pause()
     {
+        Cursor.visible = true;
+    
         _isPaused = true;
         volumeLerpStep = 0.0f;
         targetMusicBaseVolume = 0.05f * musicBaseVolume;
@@ -298,6 +300,8 @@ public class GameManager : MonoBehaviour
 
     public void play()
     {
+        Cursor.visible = false;
+        
         _isPaused = false;
         volumeLerpStep = 0.0f;
         targetMusicBaseVolume = musicBaseVolume;
