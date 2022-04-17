@@ -234,27 +234,26 @@ public class GolemBehaviour : MonoBehaviour
     
     public void PlayLandSound()
     {
-        if (genericBehaviour.controller.isGrounded){
-            AudioManager.audioInstance.SetAudioSourcePitch(AudioManager.audioInstance.GetAudioSource(), 1.5f);
-            switch (currentMaterial)
-            {
-                case GolemMaterial.Terracotta:
-                    AudioManager.audioInstance.PlayCharSound(CharAudioTag.terracottaStomp);
-                    break;
-                case GolemMaterial.Plumber:
-                    AudioManager.audioInstance.PlayCharSound(CharAudioTag.plumberStomp);
-                    
-                    break;
-                case GolemMaterial.Wooden:
-                    AudioManager.audioInstance.PlayCharSound(CharAudioTag.woodenStomp);
-                    break;
-            }
-
-            StartCoroutine(AudioManager.audioInstance.ResetPitch(AudioManager.audioInstance.GetAudioSource(),0.2f));
+        Debug.Log("LANDED");
+        AudioManager.audioInstance.SetAudioSourcePitch(AudioManager.audioInstance.GetAudioSource(), 1.5f);
+        switch (currentMaterial)
+        {
+            case GolemMaterial.Terracotta:
+                AudioManager.audioInstance.PlayCharSound(CharAudioTag.terracottaStomp);
+                break;
+            case GolemMaterial.Plumber:
+                AudioManager.audioInstance.PlayCharSound(CharAudioTag.plumberStomp);
+                
+                break;
+            case GolemMaterial.Wooden:
+                AudioManager.audioInstance.PlayCharSound(CharAudioTag.woodenStomp);
+                break;
         }
+
+        StartCoroutine(AudioManager.audioInstance.ResetPitch(AudioManager.audioInstance.GetAudioSource(),0.2f));
     }
-    
-    
+
+
     private void ResetHitCombo()
     {
         canDoCombo = true;
