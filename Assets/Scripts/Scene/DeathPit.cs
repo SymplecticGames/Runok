@@ -18,15 +18,12 @@ public class DeathPit : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!enabled)
             return;
 
-        // If what entered was not the golem or the beetle
-        if (!other.CompareTag("Golem") && !other.CompareTag("Beetle"))
-            return;
-
-        player.Die();
+        if (other.CompareTag("Golem"))
+            player.Die(true);
     }
 }

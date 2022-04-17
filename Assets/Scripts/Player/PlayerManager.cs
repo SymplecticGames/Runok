@@ -251,22 +251,29 @@ public class PlayerManager : MonoBehaviour
         respawnPoint = newRespawnPoint;
     }
 
-    public void Die()
+    public void Die(bool deathPit = false)
     {
-        if (currentCharacter == golemBehaviour)
+        if (!FindObjectOfType<BeetleBoss>())
         {
-            golemBehaviour.Die(respawnPoint);
+            if (currentCharacter == golemBehaviour)
+            {
+                golemBehaviour.Die(respawnPoint);
+            }
+            else
+            {
+                SwapCharacter();
+                lateralMenu.UISwapCharacter();
+            }
+
+            beetleBehaviour.Die(respawnPoint);
+            AppendBeetle();
+            beetleBehaviour.GetComponent<Animator>().SetBool("isActive", false);
         }
         else
-        {
-            SwapCharacter();
-            lateralMenu.UISwapCharacter();
-        }
+            beetleBehaviour.Die(respawnPoint);
 
-        beetleBehaviour.Die(respawnPoint);
-        AppendBeetle();
-
-        beetleBehaviour.GetComponent<Animator>().SetBool("isActive", false);
+        if (deathPit)
+            golemBehaviour.Die(respawnPoint);
 
         GameManager.instance.newDeath();
     }
@@ -290,9 +297,9 @@ public class PlayerManager : MonoBehaviour
     public int GetSelection()
     {
         if (currentCharacter == golemBehaviour)
-            return (int) golemBehaviour.GetComponent<GolemBehaviour>().currentMaterial;
+            return (int)golemBehaviour.GetComponent<GolemBehaviour>().currentMaterial;
         else
-            return (int) beetleBehaviour.GetComponent<BeetleBehaviour>().currentLumMode;
+            return (int)beetleBehaviour.GetComponent<BeetleBehaviour>().currentLumMode;
     }
 
     public void PausePlayer()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public struct BeetleBossPattern
@@ -163,6 +164,9 @@ public class BeetleBoss : MonoBehaviour
 
     private void GetDamage()
     {
+        if (!isShooting)
+            return;
+
         audiosrc.clip = damageClip;
         audiosrc.Play();
 
@@ -170,10 +174,15 @@ public class BeetleBoss : MonoBehaviour
             hits--;
         else
         {
-            currentBossPattern++;
-
-            hits = hitsPerPattern;
             lifeCount--;
+            if (lifeCount <= 0)
+                SceneManager.LoadScene("EndLevel");
+            else
+            {
+                currentBossPattern++;
+
+                hits = hitsPerPattern;
+            }
         }
 
     }
