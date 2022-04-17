@@ -63,15 +63,15 @@ public class PlayerManager : MonoBehaviour
             selectionWheel.SetActive(false);
         }
 
+        // Activate golem
+        currentCharacter = golemBehaviour;
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
         fadePanelAnim = lateralMenu.transform.Find("FadePanel").GetComponent<Animator>();
-
-        // Activate golem
-        currentCharacter = golemBehaviour;
 
         camLookAtTarget.parent = currentCharacter.transform;
         camLookAtTarget.localPosition = Vector3.zero;

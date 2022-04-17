@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 1450412659}
-  m_Follow: {fileID: 1226709084}
+  m_Follow: {fileID: 1832800529}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
@@ -443,7 +443,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61756540}
-  m_LocalRotation: {x: 0.46786988, y: 0.5205446, z: -0.4234162, w: 0.57519555}
+  m_LocalRotation: {x: 0.46786982, y: 0.52054465, z: -0.42341626, w: 0.5751955}
   m_LocalPosition: {x: -20, y: 47, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1833,7 +1833,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332414462}
-  m_LocalRotation: {x: 0.46786988, y: 0.5205446, z: -0.4234162, w: 0.57519555}
+  m_LocalRotation: {x: 0.46786982, y: 0.52054465, z: -0.42341626, w: 0.5751955}
   m_LocalPosition: {x: -20, y: 47, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -5159,6 +5159,10 @@ PrefabInstance:
       propertyPath: isGolem
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8797769330416675158, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
 --- !u!1 &1450412658
@@ -6058,6 +6062,11 @@ Transform:
   m_Father: {fileID: 839681386}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1832800529 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3122619784660323541, guid: 6468779793cfed14da104951d5447076, type: 3}
+  m_PrefabInstance: {fileID: 732260092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1834515638
 PrefabInstance:
   m_ObjectHideFlags: 0
