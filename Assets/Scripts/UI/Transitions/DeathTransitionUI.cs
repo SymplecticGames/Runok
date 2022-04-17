@@ -9,7 +9,7 @@ public class DeathTransitionUI : MonoBehaviour
 
     public Button button;
     public Text text;
-    
+
     public void Reappear()
     {
         if (ProgressManager.instance)
@@ -27,13 +27,12 @@ public class DeathTransitionUI : MonoBehaviour
                     break;
                 case 3:
                     if (ProgressManager.instance.fightingBoss)
-                    {
                         SceneTransition.instance.LoadScene("GolemBoss");
-                    }
-                    SceneTransition.instance.LoadScene("Level4");
+                    else
+                        SceneTransition.instance.LoadScene("Level4");
                     break;
             }
-            
+
             AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
         }
     }
@@ -42,7 +41,7 @@ public class DeathTransitionUI : MonoBehaviour
     {
         AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +59,6 @@ public class DeathTransitionUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

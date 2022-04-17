@@ -31,6 +31,9 @@ public class LockMovementTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (firstTriggerTime == -1)
             firstTriggerTime = Time.time;
     }
@@ -49,6 +52,9 @@ public class LockMovementTrigger : MonoBehaviour
         {
             isInTriggerCheck = Time.time;
             GameManager.instance.player.golemBehaviour.canMove = false;
+
+            FindObjectOfType<DeathPit>().enabled = false;
+            FindObjectOfType<PassToBoss>().enabled = true;
         }
     }
 }
