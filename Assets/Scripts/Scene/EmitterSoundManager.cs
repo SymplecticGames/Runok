@@ -7,6 +7,9 @@ public class EmitterSoundManager : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
         {
             AudioManager.audioInstance.PlayLaserBeamSound(GetComponent<AudioSource>());
@@ -15,6 +18,9 @@ public class EmitterSoundManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
         {
             AudioManager.audioInstance.StopLaserBeamSound(GetComponent<AudioSource>());
