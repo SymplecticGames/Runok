@@ -16,6 +16,9 @@ public class EndGameUI : MonoBehaviour
         
     private Animator _cameraAnim;
 
+    [SerializeField]
+    private Animator fadePanelAnim;
+
     public void NextAnim()
     {
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
@@ -31,8 +34,17 @@ public class EndGameUI : MonoBehaviour
             textsMiddle.gameObject.SetActive(false);
         }else if (_cameraAnim.GetCurrentAnimatorStateInfo(0).IsName("middleUp"))
         {
-            SceneManager.LoadScene("MainMenu");
+            StartCoroutine(GoToMenu());
         }
+    }
+
+    private IEnumerator GoToMenu()
+    {
+        fadePanelAnim.SetTrigger("doFadeIn");
+
+        yield return new WaitForSeconds(1.0f);
+
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void DisableButton()
@@ -61,6 +73,8 @@ public class EndGameUI : MonoBehaviour
         textsDown.gameObject.SetActive(true);
         textsMiddle.gameObject.SetActive(false);
         textsUp.gameObject.SetActive(false);
+
+        fadePanelAnim.SetTrigger("doFadeOut");
 
         _cameraAnim = Camera.main.GetComponent<Animator>();
 

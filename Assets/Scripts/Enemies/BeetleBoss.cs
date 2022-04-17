@@ -68,6 +68,8 @@ public class BeetleBoss : MonoBehaviour
     [HideInInspector]
     public bool isShooting;
 
+    private bool alreadyDead;
+
     [SerializeField]
     private Color[] particlesColor;
 
@@ -179,8 +181,8 @@ public class BeetleBoss : MonoBehaviour
         else
         {
             lifeCount--;
-            if (lifeCount <= 0)
-                SceneManager.LoadScene("EndLevel");
+            if (lifeCount <= 0 && !alreadyDead)
+                StartCoroutine(DelayedDeath());
             else
             {
                 currentBossPattern++;
@@ -189,6 +191,26 @@ public class BeetleBoss : MonoBehaviour
             }
         }
 
+    }
+
+    private IEnumerator DelayedDeath()
+    {
+        alreadyDead = true;
+
+        // Death
+        yield return new WaitForSeconds(1.0f);
+
+        ParticlesGenerator.instance.InstantiateParticles(transform.position, particlesColor[0], particlesColor[1], 5.0f - currentShield, 8.0f - currentShield, 6.0f - currentShield);
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+
+        yield return new WaitForSeconds(2.0f);
+
+        // Fade and Next Scene
+        GameManager.instance.player.fadePanelAnim.SetTrigger("doFadeIn");
+
+        yield return new WaitForSeconds(0.2f);
+
+        SceneManager.LoadScene("EndLevel");
     }
 
     private void OnTriggerEnter(Collider other)
