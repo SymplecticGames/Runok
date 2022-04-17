@@ -9015,7 +9015,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.14826411, y: -0.48806015, z: 0.08453872, w: 0.8559605}
+  m_LocalRotation: {x: 0.14826411, y: -0.48806015, z: 0.08453873, w: 0.8559604}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9970,6 +9970,7 @@ MonoBehaviour:
   soundEffectsFactor: 1
   musicFactor: 1
   allLoaded: 0
+  beetleAudioSource: {fileID: 2123233417}
 --- !u!81 &1748840435
 AudioListener:
   m_ObjectHideFlags: 0
@@ -11681,7 +11682,6 @@ MonoBehaviour:
   completedLevel: 00000000
   currentCompletedLevels: 0
   currentLevel: 0
-  firstTime: 1
   fightingBoss: 0
 --- !u!4 &2066080742
 Transform:
@@ -11977,6 +11977,11 @@ PrefabInstance:
       objectReference: {fileID: 2029002311}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6468779793cfed14da104951d5447076, type: 3}
+--- !u!82 &2123233417 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8002231599896888731, guid: 6468779793cfed14da104951d5447076, type: 3}
+  m_PrefabInstance: {fileID: 2123233416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &281855663639555871
 GameObject:
   m_ObjectHideFlags: 0

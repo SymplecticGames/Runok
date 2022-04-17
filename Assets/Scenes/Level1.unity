@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4379418, g: 0.31932735, b: 0.31598002, a: 1}
+  m_IndirectSpecularColor: {r: 0.4379412, g: 0.319327, b: 0.31598067, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1775,7 +1775,6 @@ MonoBehaviour:
   completedLevel: 00000000
   currentCompletedLevels: 0
   currentLevel: 0
-  firstTime: 1
   fightingBoss: 0
 --- !u!4 &292803924
 Transform:
@@ -7907,6 +7906,7 @@ MonoBehaviour:
   soundEffectsFactor: 1
   musicFactor: 1
   allLoaded: 0
+  beetleAudioSource: {fileID: 2123233418}
 --- !u!81 &1748840435
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8958,6 +8958,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670402e44cd0d3d49bed16761e8d64ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &2123233418 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8002231599896888731, guid: 6468779793cfed14da104951d5447076, type: 3}
+  m_PrefabInstance: {fileID: 2123233416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2133291456
 GameObject:
   m_ObjectHideFlags: 0
