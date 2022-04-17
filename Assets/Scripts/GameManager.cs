@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         _respawnableEnemies = new List<Enemy>();
         instance = this;
-        _lifes = 3;
+        _lifes = 5;
         
         musicSource = GetComponent<AudioSource>();
 
