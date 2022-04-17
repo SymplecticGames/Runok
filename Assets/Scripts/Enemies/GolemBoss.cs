@@ -132,6 +132,7 @@ public class GolemBoss : MonoBehaviour
 
     public void GoToBeetleBoss()
     {
+        Cursor.visible = false;
         SceneManager.LoadScene("BeetleBoss");
     }
 

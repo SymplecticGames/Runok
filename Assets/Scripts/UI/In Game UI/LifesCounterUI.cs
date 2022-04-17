@@ -20,6 +20,7 @@ public class LifesCounterUI : MonoBehaviour
             if (GameManager.instance.numDeaths == GameManager.instance._lifes)
             {
                 ResetLifes();
+                Cursor.visible = true;
                 SceneTransition.instance.LoadScene("DeathScene");
             }
             else

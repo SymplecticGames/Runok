@@ -198,6 +198,7 @@ public class InterludioManager : MonoBehaviour
     IEnumerator LoadSceneDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        Cursor.visible = true;
         SceneManager.LoadScene("Hub");
     }
 

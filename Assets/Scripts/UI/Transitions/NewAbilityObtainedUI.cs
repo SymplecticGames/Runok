@@ -22,8 +22,11 @@ public class NewAbilityObtainedUI : MonoBehaviour
     
     public void GoToHub()
     {
-        if(SceneTransition.instance)
+        if (SceneTransition.instance)
+        {
+            Cursor.visible = true;
             SceneTransition.instance.LoadScene("Hub");
+        }
     }
     
     
@@ -58,6 +61,7 @@ public class NewAbilityObtainedUI : MonoBehaviour
         else
         {
             // go to the end game scene
+            Cursor.visible = true;
             SceneManager.LoadScene("EndLevel");
         }
     }
@@ -72,6 +76,7 @@ public class NewAbilityObtainedUI : MonoBehaviour
     public void ClickedContinue()
     {
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+        Cursor.visible = true;
         SceneManager.LoadScene("Hub");
     }
     // Update is called once per frame

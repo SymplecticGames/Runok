@@ -17,7 +17,7 @@ public class EndLevelUI : MonoBehaviour
 
     public void GoToHub()
     {
-        Debug.Log("HOLA");
+        Cursor.visible = true;
         SceneTransition.instance.LoadScene("Hub");
     }
 
@@ -41,6 +41,7 @@ public class EndLevelUI : MonoBehaviour
     public void ClickedContinue()
     {
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+        Cursor.visible = true;
         SceneManager.LoadScene("Hub");
     }
     // Update is called once per frame

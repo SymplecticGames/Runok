@@ -25,6 +25,7 @@ public class PassToBoss : MonoBehaviour
         if (!other.CompareTag("Golem"))
             return;
 
+        Cursor.visible = false;
         SceneManager.LoadScene("GolemBoss");
     }
 }

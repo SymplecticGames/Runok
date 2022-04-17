@@ -31,7 +31,10 @@ public class CreditsScene : MonoBehaviour
     public void ReturnToMainMenu(InputAction.CallbackContext context)
     {
         if (context.performed)
+        {
+            Cursor.visible = true;
             SceneManager.LoadScene("MainMenu");
+        }
 
     }
 

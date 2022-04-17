@@ -146,6 +146,7 @@ public class PauseMenuUI : MonoBehaviour
         }
 
         // do transition animation
+        Cursor.visible = true;
         SceneTransition.instance.LoadScene(sceneName);
         confirmationPanel.SetActive(false);
         pauseMenuPanel.SetActive(false);

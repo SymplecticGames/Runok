@@ -100,6 +100,7 @@ public class Altar : MonoBehaviour
         
         GetComponent<AudioSource>().volume = _baseVolume * AudioManager.audioInstance.soundEffectsFactor;
         GetComponent<AudioSource>().Play();
+        Cursor.visible = true;
         SceneTransition.instance.LoadScene("NewAbilityObtained");
     }
 

@@ -44,6 +44,7 @@ public class EndGameUI : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
+        Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");
     }
 

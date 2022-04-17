@@ -213,6 +213,7 @@ public class BeetleBoss : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
 
+        Cursor.visible = true;
         SceneManager.LoadScene("EndLevel");
     }
 

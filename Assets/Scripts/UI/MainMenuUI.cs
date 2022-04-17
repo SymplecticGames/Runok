@@ -53,6 +53,7 @@ public class MainMenuUI : MonoBehaviour
         ProgressManager.instance.SaveGame();  // se guarda la partida en el archivo con nivel actual 0 (se borra el entero que hubiera previamente)
 
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+        Cursor.visible = false;
         SceneManager.LoadScene("Interludio");
     }
 
@@ -66,6 +67,7 @@ public class MainMenuUI : MonoBehaviour
             return;
 
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+        Cursor.visible = true;
         SceneManager.LoadScene("Hub");
     }
 
@@ -111,6 +113,7 @@ public class MainMenuUI : MonoBehaviour
         if (!selector.activeInHierarchy || _settingsOpened)
             return;
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+        Cursor.visible = false;
         SceneManager.LoadScene("Credits");
     }
 
