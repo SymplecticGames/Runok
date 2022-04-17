@@ -14,8 +14,6 @@ public class ProgressManager : MonoBehaviour
     [HideInInspector]
     public int currentLevel;
 
-    [HideInInspector] public bool firstTime = true;
-
     [HideInInspector] public bool fightingBoss;
     
     private void Awake()

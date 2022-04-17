@@ -4241,6 +4241,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7927169390197035633, guid: c650af831b81acd43b409e2d9bfcafe3, type: 3}
   m_PrefabInstance: {fileID: 897443533}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &897443535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6759197609172981781, guid: c650af831b81acd43b409e2d9bfcafe3, type: 3}
+  m_PrefabInstance: {fileID: 897443533}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &903594510
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,21 +4676,21 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2672088260225489031, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672088260225489031, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672088260225489031, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 4125194868291172715, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125194868291172715, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.70156
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125194868291172715, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.70156
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125194868291172715, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.70156
       objectReference: {fileID: 0}
     - target: {fileID: 4125194868291172715, guid: dc5b1f2a15d36ba49aa4c5e5f3f3677a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8569,7 +8574,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.16829892, y: -0.16375388, z: 0.02836443, w: 0.97162527}
+  m_LocalRotation: {x: 0.1682989, y: -0.16375385, z: 0.028364424, w: 0.97162527}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11306,6 +11311,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 962390897}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 897443535}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
