@@ -143,13 +143,18 @@ public class GenericBlock : MonoBehaviour
             
             // Pushable
             if (golem.currentMaterial == GolemMaterial.Terracotta)
+            {
+                Vector3 offset = new Vector3(0.0f, -1.5f, -1.0f);
+                ParticlesGenerator.instance.InstantiateParticles(transform.position + offset, Color.white, Color.gray, 0.1f, 0.5f);
                 rb.AddForce(golem.transform.forward * forceToApply, ForceMode.Impulse);
+            }
+                
 
             // Breakable
             if (golem.currentMaterial == GolemMaterial.Plumber)
             {
                 audioSource.clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.destroyBox);
-                // Cute break method
+                ParticlesGenerator.instance.InstantiateParticles(transform.position, Color.white, Color.gray, 2.0f, 3.0f, 4.0f);
                 ResetBlock();
             }
 

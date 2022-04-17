@@ -68,6 +68,9 @@ public class BeetleBehaviour : MonoBehaviour
     [SerializeField]
     private float impulseFactor;
 
+    [SerializeField]
+    private Color[] particlesColor;
+
     private float forwardFactor;
 
     private float backwardFactor;
@@ -202,6 +205,9 @@ public class BeetleBehaviour : MonoBehaviour
 
     public void ChangeLumMode(LumMode newMode)
     {
+        if (currentLumMode != newMode)
+            ParticlesGenerator.instance.InstantiateParticles(transform.position, particlesColor[0], particlesColor[1], 0.2f, 0.5f);
+
         currentLumMode = newMode;
     }
 

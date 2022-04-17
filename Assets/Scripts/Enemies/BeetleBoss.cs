@@ -68,6 +68,9 @@ public class BeetleBoss : MonoBehaviour
     [HideInInspector]
     public bool isShooting;
 
+    [SerializeField]
+    private Color[] particlesColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -124,6 +127,7 @@ public class BeetleBoss : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         audiosrc.Play();
+        ParticlesGenerator.instance.InstantiateParticles(transform.position, particlesColor[0], particlesColor[1], 5.0f - currentShield, 8.0f - currentShield, 6.0f - currentShield);
         forceShields[currentShield].SetActive(false);
         currentShield++;
 
