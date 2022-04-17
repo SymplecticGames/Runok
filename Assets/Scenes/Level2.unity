@@ -9204,6 +9204,7 @@ MonoBehaviour:
   soundEffectsFactor: 1
   musicFactor: 1
   allLoaded: 0
+  beetleAudioSource: {fileID: 2123233417}
 --- !u!114 &1769185659 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6709612741723000480, guid: 146672980f0dd804e8d2d752f1c9f16e, type: 3}
@@ -11203,6 +11204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6468779793cfed14da104951d5447076, type: 3}
+--- !u!82 &2123233417 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8002231599896888731, guid: 6468779793cfed14da104951d5447076, type: 3}
+  m_PrefabInstance: {fileID: 2123233416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2138881443 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6709612741723000480, guid: 146672980f0dd804e8d2d752f1c9f16e, type: 3}

@@ -83,6 +83,9 @@ public class AudioManager : MonoBehaviour
     
     public bool allLoaded;
 
+    public AudioSource beetleAudioSource;
+    private float _beetleAsBaseVolume;
+    
     private AudioSource _audioSource;
 
     private AudioClip[] _clipsUI;
@@ -150,13 +153,27 @@ public class AudioManager : MonoBehaviour
         _audioSource = gameObject.AddComponent<AudioSource>();
         _audioSource.loop = false;
         _audioSource.playOnAwake = false;
+        
+        if (beetleAudioSource)
+            _beetleAsBaseVolume = beetleAudioSource.volume;
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (beetleAudioSource)
+        {
+            beetleAudioSource.volume =  _beetleAsBaseVolume * soundEffectsFactor;
+        }
+    }
+
+    public void ChangeBeetleVolume()
+    {
+        if (beetleAudioSource)
+        {
+            beetleAudioSource.volume =  _beetleAsBaseVolume * soundEffectsFactor;
+        }
     }
 
     public void PlayUISound(UIAudioTag audio)

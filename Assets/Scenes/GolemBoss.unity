@@ -584,7 +584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498799635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 74.19757, y: 63.6, z: 0.62154067}
+  m_LocalPosition: {x: 74.19758, y: 63.6, z: 0.62154067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1580229500}
@@ -707,7 +707,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.12012029, y: -0.6999689, z: 0.12124423, w: 0.69348}
+  m_LocalRotation: {x: 0.12012027, y: -0.6999689, z: 0.121244214, w: 0.69348}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1290,8 +1290,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.09488362, y: -0.7039066, z: 0.0957714, w: 0.6973812}
-  m_LocalPosition: {x: 74.19757, y: 63.6, z: 0.62154067}
+  m_LocalRotation: {x: 0.0948836, y: -0.7039066, z: 0.09577139, w: 0.69738114}
+  m_LocalPosition: {x: 74.19758, y: 63.6, z: 0.62154067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1544,7 +1544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
   m_LocalRotation: {x: 0.12012029, y: -0.6999689, z: 0.12124423, w: 0.69348}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.0000076293945, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1181687091}
@@ -1628,7 +1628,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.094883606, y: -0.70390654, z: 0.09577142, w: 0.69738126}
+  m_LocalRotation: {x: 0.09488358, y: -0.70390654, z: 0.095771395, w: 0.69738126}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1740,6 +1740,7 @@ MonoBehaviour:
   soundEffectsFactor: 1
   musicFactor: 1
   allLoaded: 0
+  beetleAudioSource: {fileID: 2123233417}
 --- !u!81 &1748840435
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1937,7 +1938,6 @@ MonoBehaviour:
   completedLevel: 00000000
   currentCompletedLevels: 0
   currentLevel: 0
-  firstTime: 1
   fightingBoss: 0
 --- !u!4 &2066080742
 Transform:
@@ -2032,6 +2032,11 @@ PrefabInstance:
       objectReference: {fileID: 2029002311}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6468779793cfed14da104951d5447076, type: 3}
+--- !u!82 &2123233417 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8002231599896888731, guid: 6468779793cfed14da104951d5447076, type: 3}
+  m_PrefabInstance: {fileID: 2123233416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &543450652975372558
 Transform:
   m_ObjectHideFlags: 0

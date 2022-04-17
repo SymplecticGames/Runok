@@ -40,8 +40,8 @@ public class SettingsUI : MonoBehaviour
         //     Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
         // }
         // /////////////////////////////////////////////////////////////////////////////////
-        
-        
+
+
         // stablish setttings state:
 
         SetMusicVolume(SettingsManager.settingsInstance.generalMusicValue);
@@ -131,6 +131,7 @@ public class SettingsUI : MonoBehaviour
     public void SetSoundEffectsVolume(float value)
     {
         AudioManager.audioInstance.soundEffectsFactor = value;
+        AudioManager.audioInstance.ChangeBeetleVolume();
         if (SettingsManager.settingsInstance)
             SettingsManager.settingsInstance.soundEffectsValue = value;
     }
