@@ -234,7 +234,6 @@ public class GolemBehaviour : MonoBehaviour
     
     public void PlayLandSound()
     {
-        Debug.Log("LANDED");
         AudioManager.audioInstance.SetAudioSourcePitch(AudioManager.audioInstance.GetAudioSource(), 1.5f);
         switch (currentMaterial)
         {
