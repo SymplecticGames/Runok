@@ -161,6 +161,4 @@ public class SettingsUI : MonoBehaviour
         AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
 
     }
-    
-
 }
