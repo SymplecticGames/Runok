@@ -161,6 +161,8 @@ public class GenericBehaviour : MonoBehaviour
             jumpFactor = maxJumpFactor;
             if (!controller.isGrounded) jumps++;
             AudioManager.audioInstance.PlayCharSound(CharAudioTag.genericJump);
+            Vector3 particleOffset = new Vector3(0.0f, -1.0f, 0.0f);
+            ParticlesGenerator.instance.InstantiateParticles(transform.position + particleOffset, Color.white, Color.grey, 0.1f, 0.5f, 0.2f);
         }
 
         // Allow some movement (0.4) while shooting a ray
