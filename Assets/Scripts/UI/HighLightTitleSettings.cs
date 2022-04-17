@@ -12,7 +12,6 @@ public class HighLightTitleSettings : MonoBehaviour
     
     public void DoChanges()
     {
-        _anim.SetTrigger("Select");
         if(EventSystem.current.currentSelectedGameObject != gameObject)
             EventSystem.current.SetSelectedGameObject(gameObject);
     }

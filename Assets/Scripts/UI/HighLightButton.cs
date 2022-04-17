@@ -13,7 +13,7 @@ public class HighLightButton : MonoBehaviour
     
     public void DoChanges()
     {
-        _anim.SetTrigger("Select");
+        _anim.SetTrigger("Selected");
         if(EventSystem.current.currentSelectedGameObject != gameObject)
             EventSystem.current.SetSelectedGameObject(gameObject);
     }

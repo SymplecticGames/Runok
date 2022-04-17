@@ -185,6 +185,11 @@ public class InterludioManager : MonoBehaviour
                             (SoundTrackAudioTag) (_actualSlide / interludioImages.Length));
                     _interludioAS.Play();
                 }
+                else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idleDark") &&
+                         !(_actualSlide < interludioImages.Length * 3 - 1))
+                {
+                    GetComponent<Animator>().SetTrigger("doFadeOut");
+                }
             }
         }
     }

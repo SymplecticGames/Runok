@@ -88,8 +88,7 @@ public class MainMenuUI : MonoBehaviour
         settingsUIgo.SetActive(false);
         _doFading = false;
         _settingsOpened = false;
-        EventSystem.current.SetSelectedGameObject(continueGameButton.gameObject);
-
+        EventSystem.current.SetSelectedGameObject(settingsButton.gameObject);
     }
 
     public void ClickedExitGame()
