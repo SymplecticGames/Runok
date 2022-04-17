@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04379412, g: 0.0319327, b: 0.03159807, a: 0.1}
+  m_IndirectSpecularColor: {r: 0.04379432, g: 0.031932842, b: 0.031598177, a: 0.1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2547,7 +2547,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 0.2996207
+    m_MaxSpeed: 2
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -2571,7 +2571,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 14.98103
+    m_MaxSpeed: 100
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -9015,7 +9015,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.14826411, y: -0.48806015, z: 0.08453872, w: 0.8559605}
+  m_LocalRotation: {x: 0.14826411, y: -0.48806015, z: 0.08453873, w: 0.8559604}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11681,7 +11681,6 @@ MonoBehaviour:
   completedLevel: 00000000
   currentCompletedLevels: 0
   currentLevel: 0
-  firstTime: 1
   fightingBoss: 0
 --- !u!4 &2066080742
 Transform:
