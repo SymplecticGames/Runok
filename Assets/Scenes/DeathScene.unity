@@ -150,11 +150,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4b857bad8848c6c4bb86e08460c39291, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2975,6 +2975,7 @@ MonoBehaviour:
   currentLumMode: 0
   rayClip: {fileID: 0}
   impulseFactor: 0
+  particlesColor: []
   beetleSight: {fileID: 0}
 --- !u!4 &4686609828682009974
 Transform:

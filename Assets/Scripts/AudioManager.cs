@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum UIAudioTag
 {
@@ -169,7 +170,8 @@ public class AudioManager : MonoBehaviour
         
         // get scene musicAudioSource:
         generalMusicAs.volume = musicFactor;
-        generalMusicAs.Play();
+        if (!SceneManager.GetActiveScene().name.Equals("BeetleBoss"))
+            generalMusicAs.Play();
         
     }
 
@@ -243,10 +245,22 @@ public class AudioManager : MonoBehaviour
         }
         _audioSource.volume = 0.1f * soundEffectsFactor;
         _audioSource.clip = _clipsUI[(int)uiaudio];
-        _audioSource.Play();
+        AudioSource abilityAS = gameObject.AddComponent<AudioSource>();
+        abilityAS.clip = _audioSource.clip;
+        abilityAS.volume = _audioSource.volume;
+        abilityAS.loop = _audioSource.loop;
+        abilityAS.playOnAwake = _audioSource.playOnAwake;
+        StartCoroutine(PlayAbilityToEnd(abilityAS));
+        // _audioSource.Play();
 
     }
-    
+
+    IEnumerator PlayAbilityToEnd(AudioSource aS)
+    {
+        aS.Play();
+        yield return new WaitForSeconds(aS.clip.length);
+        Destroy(aS);
+    }
 
     public void PlayCharSound(CharAudioTag audio)
     {
@@ -350,7 +364,6 @@ public class AudioManager : MonoBehaviour
 
     public void SetGeneralMusicVolume(float newMusicFactor)
     {
-
         if (audioInstance)
         {
             musicFactor = newMusicFactor;
@@ -363,7 +376,6 @@ public class AudioManager : MonoBehaviour
                 GameManager.instance.targetMusicBaseVolume = 0.05f * musicFactor;
                 GameManager.instance.musicSource.volume *= musicFactor;
             }
-            
         }
     }
     

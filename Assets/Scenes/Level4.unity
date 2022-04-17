@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04379418, g: 0.031932738, b: 0.031598, a: 0.1}
+  m_IndirectSpecularColor: {r: 0.04379432, g: 0.031932842, b: 0.031598177, a: 0.1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1779,11 +1779,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d759e51a12a632b44a31cb9180181a48, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e6e6b479ec0b2ad4c965d41c9cfdda84, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3265,7 +3265,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.1482641, y: -0.4880602, z: 0.084538735, w: 0.8559604}
+  m_LocalRotation: {x: 0.14826407, y: -0.48806018, z: 0.084538706, w: 0.8559604}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6699,7 +6699,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.11711453, y: -0.4908058, z: 0.066777565, w: 0.86077565}
+  m_LocalRotation: {x: 0.11711452, y: -0.49080575, z: 0.06677756, w: 0.86077565}
   m_LocalPosition: {x: 9.94824, y: 11.8, z: -9.340213}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -9199,7 +9199,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.1482641, y: -0.4880602, z: 0.084538735, w: 0.8559604}
+  m_LocalRotation: {x: 0.14826407, y: -0.48806018, z: 0.084538706, w: 0.8559604}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9359,7 +9359,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.117114544, y: -0.4908058, z: 0.06677756, w: 0.8607756}
+  m_LocalRotation: {x: 0.11711453, y: -0.49080577, z: 0.06677756, w: 0.8607756}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11547,6 +11547,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[2].eventID
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1682698890647773130, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Text
+      value: "  ___\n ???"
+      objectReference: {fileID: 0}
     - target: {fileID: 2890114373411678906, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -11558,6 +11562,10 @@ PrefabInstance:
     - target: {fileID: 3025693884362546388, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190735311959700128, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Text
+      value: "  ___\n ???"
       objectReference: {fileID: 0}
     - target: {fileID: 5066006315010423195, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_IsActive
@@ -11591,9 +11599,17 @@ PrefabInstance:
       propertyPath: selectionWheelEnabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6911148619110958091, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Text
+      value: '  0'
+      objectReference: {fileID: 0}
     - target: {fileID: 7649680326808144844, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088320151601024249, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_Text
+      value: '  0'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}

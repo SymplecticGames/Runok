@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -498,14 +498,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
   m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0
-  m_VerticalDamping: 0
+  m_HorizontalDamping: 1
+  m_VerticalDamping: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
+  m_DeadZoneWidth: 0.1
+  m_DeadZoneHeight: 0.1
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.5, z: -3}
+  m_FollowOffset: {x: 0, y: 6.441763, z: -10.24588}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -551,7 +551,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: 
     m_InputAxisValue: 0
-    m_InvertInput: 1
+    m_InvertInput: 0
     m_MinValue: -180
     m_MaxValue: 180
     m_Wrap: 1
@@ -780,7 +780,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
-    m_InvertInput: 0
+    m_InvertInput: 1
     m_MinValue: 0
     m_MaxValue: 1
     m_Wrap: 0
@@ -804,7 +804,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
-    m_InvertInput: 1
+    m_InvertInput: 0
     m_MinValue: -180
     m_MaxValue: 180
     m_Wrap: 1
@@ -827,12 +827,12 @@ MonoBehaviour:
   m_BindingMode: 5
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 4.5
-    m_Radius: 1.75
-  - m_Height: 2.5
-    m_Radius: 3
-  - m_Height: 0.4
-    m_Radius: 1.3
+  - m_Height: 10
+    m_Radius: 4
+  - m_Height: 7
+    m_Radius: 9
+  - m_Height: 5
+    m_Radius: 14
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 157044390}
@@ -1195,11 +1195,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 826b36ff190698943b97bdaaf987ef1d, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 1fd54ef1dbc9e7b4ab2db2cea5690bfe, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1644,7 +1644,6 @@ GameObject:
   - component: {fileID: 332414465}
   - component: {fileID: 332414464}
   - component: {fileID: 332414463}
-  - component: {fileID: 332414467}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1776,24 +1775,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &332414467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332414462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8025ccf88fe43844a80309ae0b517fad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundEffectsFactor: 1
-  musicFactor: 1
-  allLoaded: 0
-  generalMusicAs: {fileID: 192378270}
-  beetleAudioSource: {fileID: 732260093}
-  extensibles: []
 --- !u!1 &340244948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,14 +1995,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
   m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0
-  m_VerticalDamping: 0
+  m_HorizontalDamping: 1
+  m_VerticalDamping: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.55
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
+  m_ScreenY: 0.5
+  m_DeadZoneWidth: 0.1
+  m_DeadZoneHeight: 0.1
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
@@ -2040,7 +2021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.5, z: -3}
+  m_FollowOffset: {x: 0, y: 6.441763, z: -10.24588}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2067,7 +2048,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: 
     m_InputAxisValue: 0
-    m_InvertInput: 1
+    m_InvertInput: 0
     m_MinValue: -180
     m_MaxValue: 180
     m_Wrap: 1
@@ -2170,14 +2151,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
   m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0
-  m_VerticalDamping: 0
+  m_HorizontalDamping: 1
+  m_VerticalDamping: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.6
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
+  m_DeadZoneWidth: 0.1
+  m_DeadZoneHeight: 0.1
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
@@ -2196,7 +2177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.5, z: -3}
+  m_FollowOffset: {x: 0, y: 6.441763, z: -10.24588}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2223,7 +2204,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: 
     m_InputAxisValue: 0
-    m_InvertInput: 1
+    m_InvertInput: 0
     m_MinValue: -180
     m_MaxValue: 180
     m_Wrap: 1
@@ -3118,7 +3099,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fb70cabb406b87c4ca1ffb6f4772c17c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f834cbb4449c36f4190f55a3f03282b3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 0.7
@@ -3274,7 +3255,7 @@ MonoBehaviour:
   - {fileID: 1074400238}
   - {fileID: 134373731}
   - {fileID: 360604761}
-  bossMusic: {fileID: 0}
+  bossMusic: {fileID: 192378270}
   isShooting: 0
   particlesColor:
   - {r: 0.8901961, g: 0.5176471, b: 0.9372549, a: 1}
@@ -3456,6 +3437,18 @@ PrefabInstance:
       propertyPath: beetleSight
       value: 
       objectReference: {fileID: 144099027}
+    - target: {fileID: 8002231599896888731, guid: 6468779793cfed14da104951d5447076, type: 3}
+      propertyPath: MaxDistance
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002231599896888731, guid: 6468779793cfed14da104951d5447076, type: 3}
+      propertyPath: MinDistance
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002231599896888731, guid: 6468779793cfed14da104951d5447076, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6468779793cfed14da104951d5447076, type: 3}
 --- !u!82 &732260093 stripped
@@ -4249,15 +4242,7 @@ Transform:
   m_Father: {fileID: 1834515639}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1226709085
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226709083}
-  m_Enabled: 1
---- !u!114 &1226709086
+--- !u!114 &1226709085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4272,9 +4257,17 @@ MonoBehaviour:
   soundEffectsFactor: 1
   musicFactor: 1
   allLoaded: 0
-  generalMusicAs: {fileID: 0}
-  beetleAudioSource: {fileID: 0}
+  generalMusicAs: {fileID: 192378270}
+  beetleAudioSource: {fileID: 732260093}
   extensibles: []
+--- !u!81 &1226709086
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226709083}
+  m_Enabled: 1
 --- !u!1 &1339035440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7001779511600109895, guid: d02939d4e170fae46b17d9b897fc5681, type: 3}
@@ -4807,7 +4800,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6254736526290237778, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254736526290237778, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254736526290237778, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[21].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254736526290237778, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6254736526290237778, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5670,6 +5675,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 89025840277155712, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032038695257289318, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684484324024519184, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5186055796561449082, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5728,6 +5745,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7404438760194089661, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404438760194089662, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404438760194089663, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859037027454536766, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106941931567951281, guid: 50ead310ea42f284ea89f5b169f6c941, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5743,7 +5776,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1834515638}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 670402e44cd0d3d49bed16761e8d64ee, type: 3}
   m_Name: 

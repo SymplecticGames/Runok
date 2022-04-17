@@ -120,7 +120,6 @@ public class SettingsUI : MonoBehaviour
 
     public void SetMusicVolume(float value)
     {
-
         AudioManager.audioInstance.SetGeneralMusicVolume(value);
         if (SettingsManager.settingsInstance)
         {
