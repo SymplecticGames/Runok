@@ -55,6 +55,9 @@ public class GolemBehaviour : MonoBehaviour
     [SerializeField]
     private GolemMaterialStats WoodenStats;
 
+    [SerializeField]
+    private Color[] particlesColor;
+
     private GenericBehaviour genericBehaviour;
 
     private Animator animator;
@@ -109,19 +112,6 @@ public class GolemBehaviour : MonoBehaviour
             comboCounter = 0;
             canDoCombo = true;
         }
-
-        // Material lerp (Not working)
-        //if (isChangingMaterial)
-        //    if (materialLerpStep < 1.0f)
-        //    {
-        //        materialLerpStep += Time.deltaTime;
-        //        golemMesh.material.Lerp(previousMaterial, targetMaterial, materialLerpStep);
-        //    }
-        //    else
-        //    {
-        //        golemMesh.material = targetMaterial;
-        //        isChangingMaterial = false;
-        //    }
     }
 
     public void GolemHit()
@@ -149,6 +139,9 @@ public class GolemBehaviour : MonoBehaviour
             case GolemMaterial.Terracotta:
                 golemStats = TerracottaStats;
 
+                if(previousMaterial != targetMaterial)
+                    ParticlesGenerator.instance.InstantiateParticles(transform.position, particlesColor[0], particlesColor[1], 2.0f, 4.0f, 3.0f);
+
                 animator.SetLayerWeight(0, 1.0f);
                 animator.SetLayerWeight(1, 0.0f);
                 animator.SetLayerWeight(2, 0.0f);
@@ -156,12 +149,18 @@ public class GolemBehaviour : MonoBehaviour
             case GolemMaterial.Plumber:
                 golemStats = PlumberStats;
 
+                if (previousMaterial != targetMaterial)
+                    ParticlesGenerator.instance.InstantiateParticles(transform.position, particlesColor[2], particlesColor[3], 2.0f, 4.0f, 3.0f);
+
                 animator.SetLayerWeight(0, 0.0f);
                 animator.SetLayerWeight(1, 1.0f);
                 animator.SetLayerWeight(2, 0.0f);
                 break;
             case GolemMaterial.Wooden:
                 golemStats = WoodenStats;
+
+                if (previousMaterial != targetMaterial)
+                    ParticlesGenerator.instance.InstantiateParticles(transform.position, particlesColor[4], particlesColor[5], 2.0f, 4.0f, 3.0f);
 
                 animator.SetLayerWeight(0, 0.0f);
                 animator.SetLayerWeight(1, 0.0f);

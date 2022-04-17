@@ -47,6 +47,9 @@ public class Enemy : MonoBehaviour
 
     private bool isBeingHitted;
 
+    [SerializeField]
+    private Color[] particlesColor;
+
     //////////////////////////////////////////////////  p r o g r a m  /////////////////////////////////////////////////
     ///
     // Start is called before the first frame update
@@ -157,6 +160,8 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         _isDefeated = true;
+        Vector3 offset = new Vector3(0.0f, 1.0f, 0.0f);
+        ParticlesGenerator.instance.InstantiateParticles(transform.position + offset, particlesColor[0], particlesColor[1], 1.0f, 2.0f, 2.0f);
         HideEnemy();
     }
 
