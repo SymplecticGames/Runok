@@ -11,7 +11,7 @@ public class TutorialUI : MonoBehaviour
     public Button nextButton;
     public Button skip_closeButton;
 
-    // 0-3->Lvl1 {{0-> env1,  1-> env2,  2-> cntrls1,  3-> cntrls2}},  4->Lvl2,  5->Lvl4  
+    // 0-3->Lvl1 {{0-> env1,  1-> env2,  2-> cntrls1,  3-> cntrls2  4-> cntrls2(1)}},  5->Lvl2,  6->Lvl4  
     public CanvasGroup[] clues;
 
     public GameObject CanvasInGameUI;
@@ -48,12 +48,12 @@ public class TutorialUI : MonoBehaviour
         {
             case 0:
                 clueIndex = 0;
-                maxLength = 4;
+                maxLength = 5;
                 break;
 
             case 1:
-                clueIndex = 4;
-                maxLength = 5;
+                clueIndex = 5;
+                maxLength = 6;
                 nextButton.gameObject.SetActive(false);
                 EventSystem.current.SetSelectedGameObject(previousButton.gameObject);
                 nextButton.interactable = false;
@@ -61,8 +61,8 @@ public class TutorialUI : MonoBehaviour
                 break;
 
             case 3:
-                clueIndex = 5;
-                maxLength = 6;
+                clueIndex = 6;
+                maxLength =7;
                 nextButton.gameObject.SetActive(false);
                 EventSystem.current.SetSelectedGameObject(previousButton.gameObject);
                 nextButton.interactable = false;
