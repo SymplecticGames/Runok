@@ -58,7 +58,7 @@ public class SettingsManager : MonoBehaviour
     public void Start()
     {
 
-         generalMusicValue = 0.1f;
+         generalMusicValue = 1.0f;
          soundEffectsValue = 1.0f;
          cmSensitivityValue = 1.0f;
          resolutionIdx = 0;

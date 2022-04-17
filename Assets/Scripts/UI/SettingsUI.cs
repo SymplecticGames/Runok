@@ -132,6 +132,11 @@ public class SettingsUI : MonoBehaviour
     {
         AudioManager.audioInstance.soundEffectsFactor = value;
         AudioManager.audioInstance.ChangeBeetleVolume();
+        foreach (var extensible in AudioManager.audioInstance.extensibles)
+        {
+            extensible.GetComponent<AudioSource>().volume = 1.0f * value;
+        }
+
         if (SettingsManager.settingsInstance)
             SettingsManager.settingsInstance.soundEffectsValue = value;
     }

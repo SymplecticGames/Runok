@@ -14,6 +14,7 @@ public class HighLightButton : MonoBehaviour
     public void DoChanges()
     {
         _anim.SetTrigger("Selected");
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.hover);
         if(EventSystem.current.currentSelectedGameObject != gameObject)
             EventSystem.current.SetSelectedGameObject(gameObject);
     }

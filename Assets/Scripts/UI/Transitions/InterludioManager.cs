@@ -44,6 +44,7 @@ public class InterludioManager : MonoBehaviour
 
         _interludioAS = GetComponent<AudioSource>();
         _interludioAS.loop = true;
+        _interludioAS.volume = SettingsManager.settingsInstance.generalMusicValue;
 
         // transition
         StartCoroutine(WaitToPlay());
