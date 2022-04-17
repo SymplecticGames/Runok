@@ -36,6 +36,17 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public Animator fadePanelAnim;
 
+    // Flickering
+    private List<SkinnedMeshRenderer> rends;
+    private bool isFlickering;
+    private float invencibilityElapsed;
+    private float flickerTime;
+    private bool visible;
+
+    // Invencibility
+    [HideInInspector]
+    public bool canTakeDamage = true;
+
     private void Awake()
     {
         selectionWheel = GameObject.FindGameObjectWithTag("SelectionWheel");
@@ -68,6 +79,10 @@ public class PlayerManager : MonoBehaviour
         // Get golem animator
         animator = currentCharacter.GetComponent<Animator>();
 
+        // Flickering
+        rends = new List<SkinnedMeshRenderer>(GameObject.FindGameObjectWithTag("Golem").GetComponentsInChildren<SkinnedMeshRenderer>());
+        rends.AddRange(GameObject.FindGameObjectWithTag("Beetle").GetComponentsInChildren<SkinnedMeshRenderer>());
+
         // Set beetle on Golem's back
         AppendBeetle();
     }
@@ -75,6 +90,30 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isFlickering)
+        {
+            invencibilityElapsed += Time.deltaTime;
+            flickerTime += Time.deltaTime;
+
+            if(flickerTime > 0.1f)
+            {
+                visible = !visible;
+                foreach (SkinnedMeshRenderer rend in rends)
+                    rend.enabled = visible;
+
+                flickerTime = 0.0f;
+            }
+               
+            if (invencibilityElapsed > 2.0f)
+            {
+                isFlickering = false;
+                canTakeDamage = true;
+                invencibilityElapsed = 0.0f;
+
+                foreach (SkinnedMeshRenderer rend in rends)
+                    rend.enabled = true;
+            }
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -253,29 +292,35 @@ public class PlayerManager : MonoBehaviour
 
     public void Die(bool deathPit = false)
     {
-        if (!FindObjectOfType<BeetleBoss>())
+        if (canTakeDamage)
         {
-            if (currentCharacter == golemBehaviour)
+            if (!FindObjectOfType<BeetleBoss>())
             {
-                golemBehaviour.Die(respawnPoint);
+                if (currentCharacter == golemBehaviour)
+                {
+                    golemBehaviour.Die(respawnPoint);
+                }
+                else
+                {
+                    SwapCharacter();
+                    lateralMenu.UISwapCharacter();
+                }
+
+                beetleBehaviour.Die(respawnPoint);
+                AppendBeetle();
+                beetleBehaviour.GetComponent<Animator>().SetBool("isActive", false);
             }
             else
-            {
-                SwapCharacter();
-                lateralMenu.UISwapCharacter();
-            }
+                beetleBehaviour.Die(respawnPoint);
 
-            beetleBehaviour.Die(respawnPoint);
-            AppendBeetle();
-            beetleBehaviour.GetComponent<Animator>().SetBool("isActive", false);
+            if (deathPit)
+                golemBehaviour.Die(respawnPoint);
+
+            isFlickering = true;
+            canTakeDamage = false;
+
+            GameManager.instance.newDeath();
         }
-        else
-            beetleBehaviour.Die(respawnPoint);
-
-        if (deathPit)
-            golemBehaviour.Die(respawnPoint);
-
-        GameManager.instance.newDeath();
     }
 
     public void ApplySelection(int selection)
