@@ -433,7 +433,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 180059831}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: DoChanges
           m_Mode: 1
           m_Arguments:
@@ -461,7 +461,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 180059831}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: UndoChanges
           m_Mode: 1
           m_Arguments:
@@ -493,7 +493,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 180059831}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: DoChanges
           m_Mode: 1
           m_Arguments:
@@ -521,7 +521,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 180059831}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: UndoChanges
           m_Mode: 1
           m_Arguments:
@@ -557,11 +557,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 180059828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa77386d7c5ccd40b682a13cf623d50, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d0b0b2eae4228a458ee3aa5101b922d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleFactor: 1.05
-  highLightColor: {r: 1, g: 1, b: 1, a: 0}
+  scaleFactor: 1.1
+  highLightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &180059832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,11 +1482,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 782535520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa77386d7c5ccd40b682a13cf623d50, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d0b0b2eae4228a458ee3aa5101b922d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleFactor: 1.05
-  highLightColor: {r: 1, g: 1, b: 1, a: 0}
+  scaleFactor: 1.1
+  highLightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &782535526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1505,7 +1505,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 782535525}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: DoChanges
           m_Mode: 1
           m_Arguments:
@@ -1533,7 +1533,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 782535525}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: UndoChanges
           m_Mode: 1
           m_Arguments:
@@ -1565,7 +1565,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 782535525}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: DoChanges
           m_Mode: 1
           m_Arguments:
@@ -1593,7 +1593,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 782535525}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: UndoChanges
           m_Mode: 1
           m_Arguments:
@@ -1809,7 +1809,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1005675616}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: DoChanges
           m_Mode: 1
           m_Arguments:
@@ -1837,7 +1837,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1005675616}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: UndoChanges
           m_Mode: 1
           m_Arguments:
@@ -1869,7 +1869,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1005675616}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: DoChanges
           m_Mode: 1
           m_Arguments:
@@ -1897,7 +1897,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1005675616}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: UndoChanges
           m_Mode: 1
           m_Arguments:
@@ -1933,11 +1933,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005675613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa77386d7c5ccd40b682a13cf623d50, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d0b0b2eae4228a458ee3aa5101b922d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleFactor: 1.05
-  highLightColor: {r: 1, g: 1, b: 1, a: 0}
+  scaleFactor: 1.1
+  highLightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1005675617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2449,11 +2449,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1521219106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa77386d7c5ccd40b682a13cf623d50, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d0b0b2eae4228a458ee3aa5101b922d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleFactor: 1.05
-  highLightColor: {r: 1, g: 1, b: 1, a: 0}
+  scaleFactor: 1.1
+  highLightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1521219112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2472,7 +2472,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1521219111}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: DoChanges
           m_Mode: 1
           m_Arguments:
@@ -2500,7 +2500,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1521219111}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: UndoChanges
           m_Mode: 1
           m_Arguments:
@@ -2532,7 +2532,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1521219111}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: DoChanges
           m_Mode: 1
           m_Arguments:
@@ -2560,7 +2560,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1521219111}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: UndoChanges
           m_Mode: 1
           m_Arguments:
@@ -3220,7 +3220,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1866186544}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: DoChanges
           m_Mode: 1
           m_Arguments:
@@ -3248,7 +3248,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1866186544}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: UndoChanges
           m_Mode: 1
           m_Arguments:
@@ -3280,7 +3280,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1866186544}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: DoChanges
           m_Mode: 1
           m_Arguments:
@@ -3308,7 +3308,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1866186544}
-          m_TargetAssemblyTypeName: HighLightButton, Assembly-CSharp
+          m_TargetAssemblyTypeName: HighLightButtonsMainMenu, Assembly-CSharp
           m_MethodName: UndoChanges
           m_Mode: 1
           m_Arguments:
@@ -3344,11 +3344,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1866186540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa77386d7c5ccd40b682a13cf623d50, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d0b0b2eae4228a458ee3aa5101b922d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleFactor: 1.05
-  highLightColor: {r: 1, g: 1, b: 1, a: 0}
+  scaleFactor: 1.1
+  highLightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!222 &1866186545
 CanvasRenderer:
   m_ObjectHideFlags: 0
