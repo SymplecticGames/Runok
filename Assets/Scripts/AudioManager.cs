@@ -58,6 +58,9 @@ public enum ObjAudioTag
     crackedPlatform = 4,
     
     laserBeam =5,
+    
+    golemBossHit = 6,
+    golemBossPush = 7
 }
 
 public enum SoundTrackAudioTag

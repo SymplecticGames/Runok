@@ -126,6 +126,7 @@ public class BeetleBoss : MonoBehaviour
     private IEnumerator DelayedForceShield()
     {
         yield return new WaitForSeconds(1.0f);
+        audiosrc.volume = AudioManager.audioInstance.soundEffectsFactor;
         audiosrc.Play();
         ParticlesGenerator.instance.InstantiateParticles(transform.position, particlesColor[0], particlesColor[1], 5.0f - currentShield, 8.0f - currentShield, 6.0f - currentShield);
         forceShields[currentShield].SetActive(false);
@@ -146,6 +147,7 @@ public class BeetleBoss : MonoBehaviour
         while (enabled)
         {
             audiosrc.clip = spawnClip;
+            audiosrc.volume = AudioManager.audioInstance.soundEffectsFactor;
             audiosrc.Play();
             yield return new WaitForSeconds(bossPatterns[currentBossPattern].spawnRatio);
 
@@ -172,6 +174,7 @@ public class BeetleBoss : MonoBehaviour
             return;
 
         audiosrc.clip = damageClip;
+        audiosrc.volume = AudioManager.audioInstance.soundEffectsFactor;
         audiosrc.Play();
 
         if(hits > 0)

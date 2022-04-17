@@ -105,9 +105,13 @@ public class GolemBoss : MonoBehaviour
                         break;
                     case 0:
                         armsAnim.SetTrigger("SwipeLeft");
+                        GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.golemBossPush);
+                        GetComponent<AudioSource>().Play();
                         break;
                     case 1:
                         armsAnim.SetTrigger("SwipeRight");
+                        GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.golemBossPush);
+                        GetComponent<AudioSource>().Play();
                         break;
                     case 2:
                         armsAnim.SetTrigger("SmashLeft");
@@ -118,6 +122,12 @@ public class GolemBoss : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void playSmashSound()
+    {
+        GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetObjSound(ObjAudioTag.golemBossHit);
+        GetComponent<AudioSource>().Play();
     }
 
     public void GoToBeetleBoss()
