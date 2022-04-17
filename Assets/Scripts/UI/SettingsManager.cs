@@ -41,6 +41,11 @@ public class SettingsManager : MonoBehaviour
             
             // soundeffects
             AudioManager.audioInstance.soundEffectsFactor = settingsInstance.soundEffectsValue;
+            foreach (var extensible in AudioManager.audioInstance.extensibles)
+            {
+                Debug.Log("HOLLLLL");
+                extensible.GetComponent<AudioSource>().volume = 1.0f * settingsInstance.soundEffectsValue;
+            }
             
             //general music
             AudioManager.audioInstance.SetGeneralMusicVolume(settingsInstance.generalMusicValue);

@@ -201,6 +201,7 @@ public class Enemy : MonoBehaviour
     public void PlayEnemyIdleSound()
     {
         GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetCharSound(CharAudioTag.enemyIdle);
+        GetComponent<AudioSource>().volume = AudioManager.audioInstance.soundEffectsFactor;
         GetComponent<AudioSource>().Play();
     }
 

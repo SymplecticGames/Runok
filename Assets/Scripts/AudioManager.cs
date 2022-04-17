@@ -102,12 +102,16 @@ public class AudioManager : MonoBehaviour
     private string _soundTrackPath;
 
     private AudioSource _countDownAs;
+    
 
     [HideInInspector]
     public List<Extensible> extensibles;
 
     private void Awake()
     {
+        extensibles = new List<Extensible>(FindObjectsOfType<Extensible>());
+
+        
         audioInstance = this;
 
         _soundEffectsUIPath = "SoundEffects/UI/";
@@ -178,7 +182,6 @@ public class AudioManager : MonoBehaviour
             beetleAudioSource.volume =  _beetleAsBaseVolume * soundEffectsFactor;
         }
         
-        extensibles = new List<Extensible>(FindObjectsOfType<Extensible>());
         
     }
 
