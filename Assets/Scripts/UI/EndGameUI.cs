@@ -18,6 +18,7 @@ public class EndGameUI : MonoBehaviour
 
     public void NextAnim()
     {
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
         if (_cameraAnim.GetCurrentAnimatorStateInfo(0).IsName("down"))
         {
             textsDown.gameObject.SetActive(false);

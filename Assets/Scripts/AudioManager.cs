@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum UIAudioTag
@@ -82,7 +83,9 @@ public class AudioManager : MonoBehaviour
     public float musicFactor = 1.0f;
     
     public bool allLoaded;
-
+    
+    public AudioSource generalMusicAs;
+    
     public AudioSource beetleAudioSource;
     private float _beetleAsBaseVolume;
     
@@ -99,6 +102,9 @@ public class AudioManager : MonoBehaviour
     private string _soundTrackPath;
 
     private AudioSource _countDownAs;
+
+    [HideInInspector]
+    public List<Extensible> extensibles;
 
     private void Awake()
     {
@@ -156,6 +162,11 @@ public class AudioManager : MonoBehaviour
         
         if (beetleAudioSource)
             _beetleAsBaseVolume = beetleAudioSource.volume;
+        
+        // get scene musicAudioSource:
+        generalMusicAs.volume = musicFactor;
+        generalMusicAs.Play();
+        
     }
 
 
@@ -166,6 +177,9 @@ public class AudioManager : MonoBehaviour
         {
             beetleAudioSource.volume =  _beetleAsBaseVolume * soundEffectsFactor;
         }
+        
+        extensibles = new List<Extensible>(FindObjectsOfType<Extensible>());
+        
     }
 
     public void ChangeBeetleVolume()
@@ -314,19 +328,6 @@ public class AudioManager : MonoBehaviour
     {
         return _audioSource;
     }
-
-    public void PlayLaserBeamSound(AudioSource laserBeamAs)
-    {
-        laserBeamAs.mute = false;
-        laserBeamAs.volume = 1.0f * soundEffectsFactor;
-        laserBeamAs.loop = true;
-        laserBeamAs.clip = GetObjSound(ObjAudioTag.laserBeam);
-        laserBeamAs.Play();
-    }
-    public void StopLaserBeamSound(AudioSource laserBeamAs)
-    {
-        laserBeamAs.mute = true;
-    }
     
     public void PlayLaserHitSound()
     {
@@ -347,13 +348,19 @@ public class AudioManager : MonoBehaviour
     public void SetGeneralMusicVolume(float newMusicFactor)
     {
 
-        musicFactor = newMusicFactor;        
-
-        if (GameManager.instance)
+        if (audioInstance)
         {
-            GameManager.instance.musicBaseVolume = musicFactor;
-            GameManager.instance.targetMusicBaseVolume = 0.05f * musicFactor;
-            GameManager.instance.musicSource.volume *= musicFactor;
+            musicFactor = newMusicFactor;
+
+            generalMusicAs.volume = musicFactor;
+            
+            if (GameManager.instance)
+            {
+                GameManager.instance.musicBaseVolume = musicFactor;
+                GameManager.instance.targetMusicBaseVolume = 0.05f * musicFactor;
+                GameManager.instance.musicSource.volume *= musicFactor;
+            }
+            
         }
     }
     

@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Light mainLight;
 
-    [HideInInspector] public AudioSource musicSource;
+    public AudioSource musicSource;
 
     [HideInInspector] public float musicBaseVolume;
     [HideInInspector] public float targetMusicBaseVolume;
@@ -101,8 +101,6 @@ public class GameManager : MonoBehaviour
         _respawnableEnemies = new List<Enemy>();
         instance = this;
         _lifes = 5;
-        
-        musicSource = GetComponent<AudioSource>();
 
     }
 

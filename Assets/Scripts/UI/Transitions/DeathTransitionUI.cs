@@ -12,6 +12,8 @@ public class DeathTransitionUI : MonoBehaviour
 
     public void Reappear()
     {
+        AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+        
         if (ProgressManager.instance)
         {
             switch (ProgressManager.instance.currentLevel)
@@ -32,8 +34,7 @@ public class DeathTransitionUI : MonoBehaviour
                         SceneTransition.instance.LoadScene("Level4");
                     break;
             }
-
-            AudioManager.audioInstance.PlayUISound(UIAudioTag.click);
+            
         }
     }
 
