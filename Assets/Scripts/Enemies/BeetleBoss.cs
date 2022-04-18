@@ -112,11 +112,6 @@ public class BeetleBoss : MonoBehaviour
         isShooting = true;
     }
 
-    public void DisableBulletSpawn()
-    {
-        StopAllCoroutines();
-    }
-
     public void DeactivateForceShield()
     {
         if(currentShield < forceShields.Length)
@@ -144,7 +139,7 @@ public class BeetleBoss : MonoBehaviour
     {
         float offset = 0.0f;
 
-        while (enabled)
+        while (enabled && !alreadyDead)
         {
             audiosrc.clip = spawnClip;
             audiosrc.volume = AudioManager.audioInstance.soundEffectsFactor;
@@ -170,7 +165,7 @@ public class BeetleBoss : MonoBehaviour
 
     private void GetDamage()
     {
-        if (!isShooting)
+        if (!isShooting || alreadyDead)
             return;
 
         audiosrc.clip = damageClip;
@@ -218,7 +213,7 @@ public class BeetleBoss : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bullet"))
+        if (other.CompareTag("Bullet") && !alreadyDead)
         {
             other.GetComponent<LightBullet>().SetInactive();
             GetDamage();

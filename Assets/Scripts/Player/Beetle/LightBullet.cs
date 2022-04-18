@@ -12,6 +12,9 @@ public class LightBullet : MonoBehaviour
 
     private float elapsedTime;
 
+    [SerializeField]
+    private Color[] particlesColor;
+
     // Update is called once per frame
     void Update()
     {
@@ -63,6 +66,9 @@ public class LightBullet : MonoBehaviour
     public void SetInactive()
     {
         despawned = true;
+
+        // Spawn Particles
+        ParticlesGenerator.instance.InstantiateParticles(transform.position, particlesColor[0], particlesColor[1], 0.1f, 0.3f, 0.3f);
 
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;

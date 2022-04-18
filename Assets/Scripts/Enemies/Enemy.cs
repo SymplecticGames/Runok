@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour
             _hitCounter++;
 
             bezier.enabled = false;
-            animator.SetBool("isHit", true);
+            animator.SetTrigger("isHit");
 
             // Disable enemy collider
             isBeingHitted = true;
@@ -133,8 +133,8 @@ public class Enemy : MonoBehaviour
                 _hitCounter++;
 
                 bezier.enabled = false;
-                animator.SetBool("isHit", true);
-                
+                animator.SetTrigger("isHit");
+
                 GetComponent<AudioSource>().Play();
                 
                 // if hits are enough to defeat the enemy, then, do deafeated animation
@@ -199,10 +199,14 @@ public class Enemy : MonoBehaviour
     private void EnableMovement()
     {
         bezier.enabled = allowWalking;
-        animator.SetBool("isHit", false);
         isBeingHitted = false;
     }
-    
+
+    private void EndInvincibility()
+    {
+        isBeingHitted = false;
+    }
+
     public void PlayEnemyIdleSound()
     {
         GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetCharSound(CharAudioTag.enemyIdle);
