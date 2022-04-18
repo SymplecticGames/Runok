@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04379412, g: 0.0319327, b: 0.03159807, a: 0.1}
+  m_IndirectSpecularColor: {r: 0.04379432, g: 0.031932842, b: 0.031598177, a: 0.1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3066,7 +3066,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498799635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.94824, y: 11.8, z: -9.340213}
+  m_LocalPosition: {x: 9.948238, y: 11.8, z: -9.340215}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1580229500}
@@ -3590,7 +3590,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565010014}
-  m_LocalRotation: {x: 0.14826407, y: -0.48806018, z: 0.084538706, w: 0.8559604}
+  m_LocalRotation: {x: 0.14826411, y: -0.48806015, z: 0.08453873, w: 0.8559604}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7251,8 +7251,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265234563}
-  m_LocalRotation: {x: 0.11711452, y: -0.49080575, z: 0.06677756, w: 0.86077565}
-  m_LocalPosition: {x: 9.94824, y: 11.8, z: -9.340213}
+  m_LocalRotation: {x: 0.11711455, y: -0.49080575, z: 0.06677756, w: 0.86077565}
+  m_LocalPosition: {x: 9.948238, y: 11.8, z: -9.340215}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9751,7 +9751,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580229498}
-  m_LocalRotation: {x: 0.14826407, y: -0.48806018, z: 0.084538706, w: 0.8559604}
+  m_LocalRotation: {x: 0.14826411, y: -0.48806015, z: 0.08453873, w: 0.8559604}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9911,7 +9911,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599293885}
-  m_LocalRotation: {x: 0.11711453, y: -0.49080577, z: 0.06677756, w: 0.8607756}
+  m_LocalRotation: {x: 0.11711455, y: -0.49080572, z: 0.06677756, w: 0.86077565}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12209,18 +12209,6 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: d759e51a12a632b44a31cb9180181a48, type: 3}
-    - target: {fileID: 1497270602280985294, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
-      propertyPath: m_Delegates.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1497270602280985294, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
-      propertyPath: m_Delegates.Array.data[1].eventID
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1497270602280985294, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
-      propertyPath: m_Delegates.Array.data[2].eventID
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1682698890647773130, guid: 91979a91d3a790040a6642a3cfc4bc3c, type: 3}
       propertyPath: m_Text
       value: "  ___\n ???"

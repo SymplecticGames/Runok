@@ -52,7 +52,7 @@ public class PauseMenuUI : MonoBehaviour
             GameManager.instance.player.PausePlayer();
             GameManager.instance.pause();
             pauseMenuPanel.SetActive(true);
-            _paused = !_paused;
+            _paused = true;
             AudioManager.audioInstance.PlayUISound(UIAudioTag.openPauseMenu);
         }
         if(continueButton.gameObject)
@@ -66,7 +66,7 @@ public class PauseMenuUI : MonoBehaviour
         GameManager.instance.play();
         pauseMenuPanel.SetActive(false);
         _clickedButton = ClickedButton.Continue;
-        _paused = !_paused;
+        _paused = false;
         AudioManager.audioInstance.PlayUISound(UIAudioTag.closePauseMenu);
     }
 
