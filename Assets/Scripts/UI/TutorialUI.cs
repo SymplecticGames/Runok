@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TutorialUI : MonoBehaviour
@@ -61,14 +62,16 @@ public class TutorialUI : MonoBehaviour
                 break;
 
             case 3:
-                clueIndex = 6;
-                maxLength =7;
-                nextButton.gameObject.SetActive(false);
-                EventSystem.current.SetSelectedGameObject(previousButton.gameObject);
-                nextButton.interactable = false;
-                skip_closeButton.GetComponentInChildren<Text>().text = "Cerrar pistas";
+                if (!SceneManager.GetActiveScene().name.Contains("Boss"))
+                {
+                    clueIndex = 6;
+                    maxLength = 7;
+                    nextButton.gameObject.SetActive(false);
+                    EventSystem.current.SetSelectedGameObject(previousButton.gameObject);
+                    nextButton.interactable = false;
+                    skip_closeButton.GetComponentInChildren<Text>().text = "Cerrar pistas";
+                }
                 break;
-
         }
 
         previousButton.gameObject.SetActive(false);

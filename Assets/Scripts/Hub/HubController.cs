@@ -45,7 +45,11 @@ public class HubController : MonoBehaviour
     {
         goleAnim = GetComponentInChildren<Animator>();
 
-        transform.position = routes[ProgressManager.instance.currentLevel].GetChild(0).position;
+        if (ProgressManager.instance.currentLevel < routes.Length)
+            transform.position = routes[ProgressManager.instance.currentLevel].GetChild(0).position;
+        else
+            transform.position = routes[routes.Length - 1].GetChild(3).position;
+        
         fogObject.GetComponent<MeshRenderer>().material = fogMaterials[ProgressManager.instance.currentLevel];
     }
 

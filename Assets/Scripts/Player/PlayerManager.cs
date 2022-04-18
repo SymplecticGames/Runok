@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -65,26 +66,32 @@ public class PlayerManager : MonoBehaviour
 
         // Activate golem
         currentCharacter = golemBehaviour;
+        
+        if (SceneManager.GetActiveScene().name.Equals("BeetleBoss"))
+            currentCharacter = beetleBehaviour;
+        
+        // Get animator
+        animator = currentCharacter.GetComponent<Animator>();
 
+        if (SceneManager.GetActiveScene().name.Equals("BeetleBoss"))
+            animator.SetBool("isActive", true);  // Turn on beetle animator
     }
 
     // Start is called before the first frame update
     void Start()
     {
         fadePanelAnim = lateralMenu.transform.Find("FadePanel").GetComponent<Animator>();
-
+        
         camLookAtTarget.parent = currentCharacter.transform;
         camLookAtTarget.localPosition = Vector3.zero;
-
-        // Get golem animator
-        animator = currentCharacter.GetComponent<Animator>();
-
+        
         // Flickering
         rends = new List<SkinnedMeshRenderer>(GameObject.FindGameObjectWithTag("Golem").GetComponentsInChildren<SkinnedMeshRenderer>());
         rends.AddRange(GameObject.FindGameObjectWithTag("Beetle").GetComponentsInChildren<SkinnedMeshRenderer>());
 
         // Set beetle on Golem's back
-        AppendBeetle();
+        if (!SceneManager.GetActiveScene().name.Equals("BeetleBoss"))
+            AppendBeetle();
     }
 
     // Update is called once per frame

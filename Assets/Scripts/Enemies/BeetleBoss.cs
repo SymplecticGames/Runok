@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -52,7 +51,7 @@ public class BeetleBoss : MonoBehaviour
 
     private float elapsedTime;
 
-    private AudioSource audiosrc;
+    public AudioSource audiosrc;
     private AudioClip spawnClip;
     private AudioClip damageClip;
 
@@ -82,12 +81,11 @@ public class BeetleBoss : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("isBoss", true);
 
-        GameManager.instance.player.SwapCharacter();
+        //GameManager.instance.player.SwapCharacter();
         GameManager.instance.player.currentCharacter.isInBoss = true;
 
         hits = hitsPerPattern;
 
-        audiosrc = GetComponent<AudioSource>();
         spawnClip = (AudioClip)Resources.Load("SoundEffects/UI/selectedShoot");
         damageClip = (AudioClip)Resources.Load("SoundEffects/Characters/laserHit");
     }
@@ -188,12 +186,13 @@ public class BeetleBoss : MonoBehaviour
                 StartCoroutine(DelayedDeath());
             else
             {
-                currentBossPattern++;
-
-                hits = hitsPerPattern;
+                if (currentBossPattern < bossPatterns.Length - 1)
+                {
+                    currentBossPattern++;
+                    hits = hitsPerPattern;
+                }
             }
         }
-
     }
 
     private IEnumerator DelayedDeath()

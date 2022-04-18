@@ -2351,7 +2351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9372549, g: 0.8862745, b: 0.88235295, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2829,7 +2829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9372549, g: 0.8862745, b: 0.88235295, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3104,14 +3104,6 @@ PrefabInstance:
       propertyPath: fogObject
       value: 
       objectReference: {fileID: 51517273}
-    - target: {fileID: 1825803207955690436, guid: 2724bb414eecd18458d8e77d509e8949, type: 3}
-      propertyPath: fogMaterials.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1825803207955690436, guid: 2724bb414eecd18458d8e77d509e8949, type: 3}
-      propertyPath: fogMaterials.Array.data[3]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3b3e73693c4f62e4f81184b37f85fc2e, type: 2}
     - target: {fileID: 3904411392925929237, guid: 2724bb414eecd18458d8e77d509e8949, type: 3}
       propertyPath: backRay
       value: 
