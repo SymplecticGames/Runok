@@ -299,7 +299,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Die(bool deathPit = false)
     {
-        if (canTakeDamage)
+        if (canTakeDamage || deathPit)
         {
             if (!FindObjectOfType<BeetleBoss>())
             {
@@ -325,6 +325,7 @@ public class PlayerManager : MonoBehaviour
 
             isFlickering = true;
             canTakeDamage = false;
+            invencibilityElapsed = 0.0f;
 
             GameManager.instance.newDeath();
         }
