@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
         ambientLight = RenderSettings.ambientLight;
 
         ChangeSensitivity(1.0f);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Update is called once per frame
