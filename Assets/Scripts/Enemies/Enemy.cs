@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        bezier = GetComponent<BezierFollow>();
+        bezier = GetComponentInParent<BezierFollow>();
         enemyMesh = GetComponentInChildren<SkinnedMeshRenderer>();
 
         bezier.enabled = allowWalking;
@@ -209,6 +209,9 @@ public class Enemy : MonoBehaviour
 
     public void PlayEnemyIdleSound()
     {
+        if (!AudioManager.audioInstance)
+            return;
+
         GetComponent<AudioSource>().clip = AudioManager.audioInstance.GetCharSound(CharAudioTag.enemyIdle);
         GetComponent<AudioSource>().volume = AudioManager.audioInstance.soundEffectsFactor;
         GetComponent<AudioSource>().Play();
