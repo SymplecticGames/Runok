@@ -33,12 +33,12 @@
             struct v2f
             {
                 float2 uv : TEXCOORD0;
-				float2 uv2 : TEXCOORD1;
+				float2 uv2 : TEXCOORD2;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
-				float4 screenPosition : TEXCOORD2;
+				float4 screenPosition : TEXCOORD3;
 
-				float3 viewDir : TEXCOORD3;
+				float3 viewDir : TEXCOORD4;
 				float3 normal : NORMAL;
             };
 
