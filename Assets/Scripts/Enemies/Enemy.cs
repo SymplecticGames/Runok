@@ -89,8 +89,8 @@ public class Enemy : MonoBehaviour
         if (!enabled)
             return;
 
-        if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
-            GameManager.instance.player.Die();
+        //if (other.CompareTag("Golem") || other.CompareTag("Beetle"))
+        //    GameManager.instance.player.Die();
 
         // if the trigger is hit by the golem, the enemy dies when the number of hits is greater or equal
         // to the number of hits the golem needs (with that material) to defeat it.
